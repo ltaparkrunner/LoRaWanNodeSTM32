@@ -11,6 +11,11 @@
 *.ilk
 *.map
 *.exp
+*.bin
+*.axf
+*.sct
+*.lnp
+*.dep
 
 # Precompiled Headers
 *.gch
@@ -48,3 +53,4 @@ dkms.conf
 
 # Different descriptions
 *.htm*
+*.user1
