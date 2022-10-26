@@ -57,6 +57,7 @@
 #define HUMIDITY_DEFAULT_VAL      50.0f                 /*!< default humidity */
 #define TEMPERATURE_DEFAULT_VAL   18.0f                 /*!< default temperature */
 #define PRESSURE_DEFAULT_VAL      1000.0f               /*!< default pressure */
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/

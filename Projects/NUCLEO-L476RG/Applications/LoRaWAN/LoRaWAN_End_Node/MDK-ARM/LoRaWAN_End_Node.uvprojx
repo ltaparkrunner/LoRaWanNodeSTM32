@@ -409,16 +409,6 @@
           <GroupName>Application/Core</GroupName>
           <Files>
             <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>adc_if.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/adc_if.c</FilePath>
-            </File>
-            <File>
               <FileName>dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/dma.c</FilePath>
@@ -494,6 +484,11 @@
           <GroupName>Application/Target</GroupName>
           <Files>
             <File>
+              <FileName>stm32_spi2_radio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\stm32_spi2_radio.c</FilePath>
+            </File>
+            <File>
               <FileName>nucleo_l476rg_bus.c</FileName>
               <FileType>1</FileType>
               <FilePath>../LoRaWAN/Target/nucleo_l476rg_bus.c</FilePath>
@@ -561,7 +556,7 @@
             <File>
               <FileName>stm32l4xx_nucleo.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/BSP/STM32L4xx_Nucleo/stm32l4xx_nucleo.c</FilePath>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_Nucleo\stm32l4xx_nucleo.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1290,16 +1285,6 @@
           <GroupName>Application/Core</GroupName>
           <Files>
             <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>adc_if.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/adc_if.c</FilePath>
-            </File>
-            <File>
               <FileName>dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/dma.c</FilePath>
@@ -1375,6 +1360,11 @@
           <GroupName>Application/Target</GroupName>
           <Files>
             <File>
+              <FileName>stm32_spi2_radio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\stm32_spi2_radio.c</FilePath>
+            </File>
+            <File>
               <FileName>nucleo_l476rg_bus.c</FileName>
               <FileType>1</FileType>
               <FilePath>../LoRaWAN/Target/nucleo_l476rg_bus.c</FilePath>
@@ -1442,7 +1432,7 @@
             <File>
               <FileName>stm32l4xx_nucleo.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/BSP/STM32L4xx_Nucleo/stm32l4xx_nucleo.c</FilePath>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_Nucleo\stm32l4xx_nucleo.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2291,16 +2281,6 @@
           <GroupName>Application/Core</GroupName>
           <Files>
             <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>adc_if.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/adc_if.c</FilePath>
-            </File>
-            <File>
               <FileName>dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/dma.c</FilePath>
@@ -2376,6 +2356,11 @@
           <GroupName>Application/Target</GroupName>
           <Files>
             <File>
+              <FileName>stm32_spi2_radio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\stm32_spi2_radio.c</FilePath>
+            </File>
+            <File>
               <FileName>nucleo_l476rg_bus.c</FileName>
               <FileType>1</FileType>
               <FilePath>../LoRaWAN/Target/nucleo_l476rg_bus.c</FilePath>
@@ -2443,7 +2428,7 @@
             <File>
               <FileName>stm32l4xx_nucleo.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/BSP/STM32L4xx_Nucleo/stm32l4xx_nucleo.c</FilePath>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_Nucleo\stm32l4xx_nucleo.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3241,16 +3226,6 @@
           <GroupName>Application/Core</GroupName>
           <Files>
             <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>adc_if.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/adc_if.c</FilePath>
-            </File>
-            <File>
               <FileName>dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/dma.c</FilePath>
@@ -3326,6 +3301,11 @@
           <GroupName>Application/Target</GroupName>
           <Files>
             <File>
+              <FileName>stm32_spi2_radio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\stm32_spi2_radio.c</FilePath>
+            </File>
+            <File>
               <FileName>nucleo_l476rg_bus.c</FileName>
               <FileType>1</FileType>
               <FilePath>../LoRaWAN/Target/nucleo_l476rg_bus.c</FilePath>
@@ -3393,7 +3373,7 @@
             <File>
               <FileName>stm32l4xx_nucleo.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/BSP/STM32L4xx_Nucleo/stm32l4xx_nucleo.c</FilePath>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_Nucleo\stm32l4xx_nucleo.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4242,16 +4222,6 @@
           <GroupName>Application/Core</GroupName>
           <Files>
             <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>adc_if.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/adc_if.c</FilePath>
-            </File>
-            <File>
               <FileName>dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/dma.c</FilePath>
@@ -4327,6 +4297,11 @@
           <GroupName>Application/Target</GroupName>
           <Files>
             <File>
+              <FileName>stm32_spi2_radio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\stm32_spi2_radio.c</FilePath>
+            </File>
+            <File>
               <FileName>nucleo_l476rg_bus.c</FileName>
               <FileType>1</FileType>
               <FilePath>../LoRaWAN/Target/nucleo_l476rg_bus.c</FilePath>
@@ -4394,7 +4369,7 @@
             <File>
               <FileName>stm32l4xx_nucleo.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/BSP/STM32L4xx_Nucleo/stm32l4xx_nucleo.c</FilePath>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_Nucleo\stm32l4xx_nucleo.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5243,16 +5218,6 @@
           <GroupName>Application/Core</GroupName>
           <Files>
             <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>adc_if.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/adc_if.c</FilePath>
-            </File>
-            <File>
               <FileName>dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/dma.c</FilePath>
@@ -5328,6 +5293,11 @@
           <GroupName>Application/Target</GroupName>
           <Files>
             <File>
+              <FileName>stm32_spi2_radio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\stm32_spi2_radio.c</FilePath>
+            </File>
+            <File>
               <FileName>nucleo_l476rg_bus.c</FileName>
               <FileType>1</FileType>
               <FilePath>../LoRaWAN/Target/nucleo_l476rg_bus.c</FilePath>
@@ -5395,7 +5365,7 @@
             <File>
               <FileName>stm32l4xx_nucleo.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/BSP/STM32L4xx_Nucleo/stm32l4xx_nucleo.c</FilePath>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_Nucleo\stm32l4xx_nucleo.c</FilePath>
             </File>
           </Files>
         </Group>

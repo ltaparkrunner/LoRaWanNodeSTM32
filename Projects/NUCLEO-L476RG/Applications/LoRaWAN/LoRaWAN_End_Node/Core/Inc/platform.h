@@ -39,6 +39,7 @@ extern "C" {
 #include "main.h"
 #include "stm32l4xx_nucleo.h"
 #include "nucleo_l476rg_bus.h"
+#include "MU_l476vg_spi.h"
 
 /* USER CODE BEGIN include */
 

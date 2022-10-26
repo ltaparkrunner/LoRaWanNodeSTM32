@@ -213,14 +213,23 @@ void SysTick_Handler(void)
 
 void EXTI0_IRQHandler(void)
 {
+#if (defined(SX1276MB1MAS) | defined(SX1276MB1LAS) | defined(SX1272MB2DAS))
+  HAL_EXTI_IRQHandler(&H_EXTI_0);
+#endif
 }
 
 void EXTI1_IRQHandler(void)
 {
+#if (defined(SX1276MB1MAS) | defined(SX1276MB1LAS) | defined(SX1272MB2DAS))
+  HAL_EXTI_IRQHandler(&H_EXTI_1);
+#endif
 }
 
 void EXTI2_IRQHandler(void)
 {
+#if (defined(SX1276MB1MAS) | defined(SX1276MB1LAS) | defined(SX1272MB2DAS))
+  HAL_EXTI_IRQHandler(&H_EXTI_2);
+#endif
 }
 
 void EXTI3_IRQHandler(void)
@@ -232,21 +241,25 @@ void EXTI3_IRQHandler(void)
 
 void EXTI4_IRQHandler(void)
 {
-  HAL_EXTI_IRQHandler(&H_EXTI_4);
+  //HAL_EXTI_IRQHandler(&H_EXTI_4);
 }
 
 void EXTI9_5_IRQHandler(void)
 {
+/*
 #if (defined(SX1276MB1MAS) | defined(SX1276MB1LAS) | defined(SX1272MB2DAS))
   HAL_EXTI_IRQHandler(&H_EXTI_5);
 #endif
+*/
 }
 
 void EXTI15_10_IRQHandler(void)
 {
+/*
 #if (defined(SX1276MB1MAS) | defined(SX1276MB1LAS) | defined(SX1272MB2DAS))
   HAL_EXTI_IRQHandler(&H_EXTI_10);
 #endif
+*/
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
 }
 

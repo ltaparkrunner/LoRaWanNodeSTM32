@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include "platform.h"
 #include "sys_app.h"
-#include "adc_if.h"
+//#include "adc_if.h"
 #include "radio_board_if.h"
 #include "stm32_seq.h"
 #include "stm32_systime.h"
@@ -32,6 +32,7 @@
 #include "sys_debug.h"
 #include "rtc_if.h"
 #include "sys_sensors.h"
+#include "defaults.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -120,7 +121,7 @@ void SystemApp_Init(void)
   UTIL_ADV_TRACE_SetVerboseLevel(VERBOSE_LEVEL);
 
   /*Initialize the temperature and Battery measurement services */
-  SYS_InitMeasurement();
+  //SYS_InitMeasurement();
 
   Sx_Board_Bus_Init();
 
@@ -169,9 +170,10 @@ uint8_t GetBatteryLevel(void)
 
   /* USER CODE END GetBatteryLevel_0 */
 
-  batteryLevelmV = (uint16_t) SYS_GetBatteryLevel();
+  //batteryLevelmV = (uint16_t) SYS_GetBatteryLevel();
 
   /* Convert battery level from mV to linear scale: 1 (very low) to 254 (fully charged) */
+	/*
   if (batteryLevelmV > VDD_BAT)
   {
     batteryLevel = LORAWAN_MAX_BAT;
@@ -184,7 +186,8 @@ uint8_t GetBatteryLevel(void)
   {
     batteryLevel = (((uint32_t)(batteryLevelmV - VDD_MIN) * LORAWAN_MAX_BAT) / (VDD_BAT - VDD_MIN));
   }
-
+	*/
+	batteryLevel = LORAWAN_MAX_BAT;
   APP_LOG(TS_ON, VLEVEL_M, "VDDA= %d\r\n", batteryLevel);
 
   /* USER CODE BEGIN GetBatteryLevel_2 */
@@ -198,7 +201,7 @@ uint16_t GetTemperatureLevel(void)
 {
   uint16_t temperatureLevel = 0;
 
-  temperatureLevel = (uint16_t)(SYS_GetTemperatureLevel() / 256);
+  temperatureLevel = TEMPERATURE_DEFAULT_VAL;		//(uint16_t)(SYS_GetTemperatureLevel() / 256);
   /* USER CODE BEGIN GetTemperatureLevel */
 
   /* USER CODE END GetTemperatureLevel */

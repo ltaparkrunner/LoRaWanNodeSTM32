@@ -33,10 +33,11 @@
 #include "lora_info.h"
 #include "LmHandler.h"
 #include "stm32_lpm.h"
-#include "adc_if.h"
+//#include "adc_if.h"
 #include "sys_conf.h"
 #include "CayenneLpp.h"
 #include "sys_sensors.h"
+#include "defaults.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -396,14 +397,15 @@ static void SendTxData(void)
   int32_t longitude = 0;
   uint16_t altitudeGps = 0;
 #endif /* CAYENNE_LPP */
-
+	/*
   EnvSensors_Read(&sensor_data);
+
 #if defined (SENSOR_ENABLED) && (SENSOR_ENABLED == 1)
   temperature = (int16_t) sensor_data.temperature;
 #else
   temperature = (SYS_GetTemperatureLevel() >> 8);
-#endif  /* SENSOR_ENABLED */
-  pressure    = (uint16_t)(sensor_data.pressure * 100 / 10);      /* in hPa / 10 */
+#endif */ /* SENSOR_ENABLED */
+//  pressure    = (uint16_t)(sensor_data.pressure * 100 / 10);      /* in hPa / 10 */
 
   AppData.Port = LORAWAN_USER_APP_PORT;
 
@@ -423,8 +425,10 @@ static void SendTxData(void)
   CayenneLppCopy(AppData.Buffer);
   AppData.BufferSize = CayenneLppGetSize();
 #else  /* not CAYENNE_LPP */
-  humidity    = (uint16_t)(sensor_data.humidity * 10);            /* in %*10     */
-
+  humidity    = HUMIDITY_DEFAULT_VAL;//(uint16_t)(sensor_data.humidity * 10);            /* in %*10     */
+	temperature = TEMPERATURE_DEFAULT_VAL;
+	pressure	= PRESSURE_DEFAULT_VAL;
+	
   AppData.Buffer[i++] = AppLedStateOn;
   AppData.Buffer[i++] = (uint8_t)((pressure >> 8) & 0xFF);
   AppData.Buffer[i++] = (uint8_t)(pressure & 0xFF);
@@ -442,10 +446,11 @@ static void SendTxData(void)
   }
   else
   {
-    latitude = sensor_data.latitude;
-    longitude = sensor_data.longitude;
-
-    AppData.Buffer[i++] = GetBatteryLevel();        /* 1 (very low) to 254 (fully charged) */
+    latitude = STSOP_LATTITUDE;	//sensor_data.latitude;
+    longitude = STSOP_LONGITUDE;	//sensor_data.longitude;
+		altitudeGps = ALTITUDE_GPS;		// 
+		
+    AppData.Buffer[i++] = 220;	//GetBatteryLevel();        /* 1 (very low) to 254 (fully charged) */
     AppData.Buffer[i++] = (uint8_t)((latitude >> 16) & 0xFF);
     AppData.Buffer[i++] = (uint8_t)((latitude >> 8) & 0xFF);
     AppData.Buffer[i++] = (uint8_t)(latitude & 0xFF);

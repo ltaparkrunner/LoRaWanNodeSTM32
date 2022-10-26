@@ -24,7 +24,7 @@
 #include "stm32_lpm_if.h"
 #include "usart_if.h"
 #include "radio_board_if.h"
-#include "adc.h"
+//#include "adc.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -100,7 +100,7 @@ void PWR_EnterStopMode(void)
 
   Sx_Board_IoDeInit();
 
-  HAL_ADC_MspDeInit(&hadc);
+//  HAL_ADC_MspDeInit(&hadc);
 
   UTILS_EXIT_CRITICAL_SECTION();
   /* USER CODE BEGIN EnterStopMode_2 */
