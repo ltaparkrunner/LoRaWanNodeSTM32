@@ -57,7 +57,7 @@ int32_t MU_SPI2_DeInit(void)
 
   if (HAL_SPI_DeInit(&hspi2) == HAL_OK)
   {
-    ret = BSP_ERROR_NONE;
+    ret = MU_ERROR_NONE;
   }
 
   return ret;
@@ -156,7 +156,7 @@ static void SPI2_MspDeInit(SPI_HandleTypeDef *spiHandle)
   */
 int32_t MUPI2_Send(uint8_t *pData, uint16_t len)
 {
-  int32_t ret = BSP_ERROR_UNKNOWN_FAILURE;
+  int32_t ret = MU_ERROR_UNKNOWN_FAILURE;
 
   if (HAL_SPI_Transmit(&hspi2, pData, len, TIMEOUT_DURATION) == HAL_OK)
   {
@@ -173,7 +173,7 @@ int32_t MUPI2_Send(uint8_t *pData, uint16_t len)
   */
 int32_t  MU_SPI2_Recv(uint8_t *pData, uint16_t len)
 {
-  int32_t ret = BSP_ERROR_UNKNOWN_FAILURE;
+  int32_t ret = MU_ERROR_UNKNOWN_FAILURE;
 
   if (HAL_SPI_Receive(&hspi2, pData, len, TIMEOUT_DURATION) == HAL_OK)
   {
@@ -190,7 +190,7 @@ int32_t  MU_SPI2_Recv(uint8_t *pData, uint16_t len)
   */
 int32_t MU_SPI2_SendRecv(uint8_t *pTxData, uint8_t *pRxData, uint16_t len)
 {
-  int32_t ret = BSP_ERROR_UNKNOWN_FAILURE;
+  int32_t ret = MU_ERROR_UNKNOWN_FAILURE;
 
   if (HAL_SPI_TransmitReceive(&hspi2, pTxData, pRxData, len, TIMEOUT_DURATION) == HAL_OK)
   {

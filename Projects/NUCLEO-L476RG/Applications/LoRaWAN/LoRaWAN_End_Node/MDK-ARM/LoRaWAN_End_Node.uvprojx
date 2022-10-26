@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>STM32L476xx,USE_STM32L4XX_NUCLEO,SX1276MB1MAS</Define>
               <Undefine></Undefine>
-              <IncludePath>../LoRaWAN/App;../LoRaWAN/Target;../Core/Inc;../../../../../../Utilities/misc;../../../../../../Utilities/timer;../../../../../../Utilities/trace/adv_trace;../../../../../../Utilities/lpm/tiny_lpm;../../../../../../Utilities/sequencer;../../../../../../Drivers/BSP/STM32L4xx_Nucleo;../../../../../../Drivers/BSP/sx1276mb1mas;../../../../../../Drivers/STM32L4xx_HAL_Driver/Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32L4xx/Include;../../../../../../Drivers/CMSIS/Include;../../../../../../Drivers/CMSIS/Core/Include;../../../../../../Middlewares/Third_Party/SubGHz_Phy;../../../../../../Middlewares/Third_Party/SubGHz_Phy/sx1276;../../../../../../Middlewares/Third_Party/LoRaWAN/Crypto;../../../../../../Middlewares/Third_Party/LoRaWAN/Mac;../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/Region;../../../../../../Middlewares/Third_Party/LoRaWAN/Utilities;../../../../../../Middlewares/Third_Party/LoRaWAN/LmHandler;../../../../../../Middlewares/Third_Party/LoRaWAN/LmHandler/packages;../../../../../../Drivers/BSP/IKS01A2;../../../../../../Drivers/BSP/Components/Common;../../../../../../Drivers/BSP/Components/hts221;../../../../../../Drivers/BSP/Components/lps22hb;../../../../../../Drivers/BSP/Components/lsm6dsl;../../../../../../Drivers/BSP/Components/lsm303agr</IncludePath>
+              <IncludePath>../LoRaWAN/App;../LoRaWAN/Target;../Core/Inc;../../../../../../Utilities/misc;../../../../../../Utilities/timer;../../../../../../Utilities/trace/adv_trace;../../../../../../Utilities/lpm/tiny_lpm;../../../../../../Utilities/sequencer;../../../../../../Drivers/BSP/STM32L4xx_MU;../../../../../../Drivers/BSP/sx1276mb1mas;../../../../../../Drivers/STM32L4xx_HAL_Driver/Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32L4xx/Include;../../../../../../Drivers/CMSIS/Include;../../../../../../Drivers/CMSIS/Core/Include;../../../../../../Middlewares/Third_Party/SubGHz_Phy;../../../../../../Middlewares/Third_Party/SubGHz_Phy/sx1276;../../../../../../Middlewares/Third_Party/LoRaWAN/Crypto;../../../../../../Middlewares/Third_Party/LoRaWAN/Mac;../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/Region;../../../../../../Middlewares/Third_Party/LoRaWAN/Utilities;../../../../../../Middlewares/Third_Party/LoRaWAN/LmHandler;../../../../../../Middlewares/Third_Party/LoRaWAN/LmHandler/packages;../../../../../../Drivers/BSP/IKS01A2;../../../../../../Drivers/BSP/Components/Common;../../../../../../Drivers/BSP/Components/hts221;../../../../../../Drivers/BSP/Components/lps22hb;../../../../../../Drivers/BSP/Components/lsm6dsl;../../../../../../Drivers/BSP/Components/lsm303agr</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -527,16 +527,6 @@
               <FileName>stm32l4xx_hal.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l4xx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l4xx_hal_adc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32l4xx_hal_cortex.c</FileName>
@@ -792,6 +782,16 @@
               <FileName>stm32_tiny_vsnprintf.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/misc/stm32_tiny_vsnprintf.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Drivers/BSP/STM32L4xx_MU</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32l4xx_mu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_MU\stm32l4xx_mu.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1389,16 +1389,6 @@
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.c</FilePath>
             </File>
             <File>
-              <FileName>stm32l4xx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l4xx_hal_adc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc_ex.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32l4xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.c</FilePath>
@@ -1703,6 +1693,16 @@
               <FileName>stm32_tiny_vsnprintf.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/misc/stm32_tiny_vsnprintf.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Drivers/BSP/STM32L4xx_MU</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32l4xx_mu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_MU\stm32l4xx_mu.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2300,16 +2300,6 @@
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.c</FilePath>
             </File>
             <File>
-              <FileName>stm32l4xx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l4xx_hal_adc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc_ex.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32l4xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.c</FilePath>
@@ -2563,6 +2553,16 @@
               <FileName>stm32_tiny_vsnprintf.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/misc/stm32_tiny_vsnprintf.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Drivers/BSP/STM32L4xx_MU</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32l4xx_mu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_MU\stm32l4xx_mu.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3160,16 +3160,6 @@
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.c</FilePath>
             </File>
             <File>
-              <FileName>stm32l4xx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l4xx_hal_adc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc_ex.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32l4xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.c</FilePath>
@@ -3474,6 +3464,16 @@
               <FileName>stm32_tiny_vsnprintf.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/misc/stm32_tiny_vsnprintf.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Drivers/BSP/STM32L4xx_MU</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32l4xx_mu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_MU\stm32l4xx_mu.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4071,16 +4071,6 @@
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.c</FilePath>
             </File>
             <File>
-              <FileName>stm32l4xx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l4xx_hal_adc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc_ex.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32l4xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.c</FilePath>
@@ -4385,6 +4375,16 @@
               <FileName>stm32_tiny_vsnprintf.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/misc/stm32_tiny_vsnprintf.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Drivers/BSP/STM32L4xx_MU</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32l4xx_mu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_MU\stm32l4xx_mu.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4982,16 +4982,6 @@
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.c</FilePath>
             </File>
             <File>
-              <FileName>stm32l4xx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l4xx_hal_adc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc_ex.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32l4xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.c</FilePath>
@@ -5296,6 +5286,16 @@
               <FileName>stm32_tiny_vsnprintf.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/misc/stm32_tiny_vsnprintf.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Drivers/BSP/STM32L4xx_MU</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32l4xx_mu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_MU\stm32l4xx_mu.c</FilePath>
             </File>
           </Files>
         </Group>

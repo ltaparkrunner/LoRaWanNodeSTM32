@@ -3,8 +3,8 @@
 #ifndef __MU_L476VG_SPI_H
 #define __MU_L476VG_SPI_H
 
-#include "stm32l4xx_nucleo_conf.h"
-#include "nucleo_l476rg_errno.h"
+//#include "stm32l4xx_nucleo_conf.h"
+//#include "nucleo_l476rg_errno.h"
 
 #ifdef __cplusplus
 extern "C" {

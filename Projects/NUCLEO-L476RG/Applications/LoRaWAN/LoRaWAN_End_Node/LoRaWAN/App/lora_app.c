@@ -282,7 +282,7 @@ void LoRaWAN_Init(void)
     /* USER CODE BEGIN LoRaWAN_Init_3 */
 
     /* send every time button is pushed */
-    BSP_PB_Init(BUTTON_USER, BUTTON_MODE_EXTI);
+    MU_PB_Init(BUTTON_USER, BUTTON_MODE_EXTI);
     /* USER CODE END LoRaWAN_Init_3 */
   }
 

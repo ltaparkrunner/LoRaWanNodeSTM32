@@ -37,7 +37,7 @@ extern "C" {
 #include <stdbool.h>
 #include "stm32l4xx.h"
 #include "main.h"
-#include "stm32l4xx_nucleo.h"
+#include "stm32l4xx_mu.h"
 //#include "nucleo_l476rg_bus.h"
 #include "MU_l476vg_spi.h"
 
