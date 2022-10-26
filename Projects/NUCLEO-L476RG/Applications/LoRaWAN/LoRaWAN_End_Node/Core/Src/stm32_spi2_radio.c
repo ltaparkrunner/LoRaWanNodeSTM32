@@ -67,7 +67,7 @@ int32_t MU_GetTick(void)
   return HAL_GetTick();
 }
 
-/* SPI1 init function */
+/* SPI2 init function */
 
 __weak HAL_StatusTypeDef MX_SPI2_Init(SPI_HandleTypeDef *hspi)
 {
@@ -79,7 +79,7 @@ __weak HAL_StatusTypeDef MX_SPI2_Init(SPI_HandleTypeDef *hspi)
   hspi->Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi->Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi->Init.NSS = SPI_NSS_SOFT;
-  /* SPI1 is on APB2 for L0x3 -> HAL_RCC_GetPCLK2Freq */
+  /* SPI2 is on APB2 for L0x3 -> HAL_RCC_GetPCLK2Freq */
   hspi->Init.BaudRatePrescaler = SPI_GetPrescaler(HAL_RCC_GetPCLK2Freq(), RADIO_SPI_BAUDRATE);
   hspi->Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi->Init.TIMode = SPI_TIMODE_DISABLE;
@@ -98,7 +98,7 @@ static void SPI2_MspInit(SPI_HandleTypeDef *spiHandle)
   GPIO_InitTypeDef GPIO_InitStruct;
   /* USER CODE BEGIN SPI2_MspInit 0 */
 
-  /* USER CODE END SPI1_MspInit 0 */
+  /* USER CODE END SPI2_MspInit 0 */
   /* Enable Peripheral clock */
   __HAL_RCC_SPI2_CLK_ENABLE();
 
@@ -120,20 +120,20 @@ static void SPI2_MspInit(SPI_HandleTypeDef *spiHandle)
   GPIO_InitStruct.Pin = MU_SPI2_SCK_GPIO_PIN;
   HAL_GPIO_Init(MU_SPI2_SCK_GPIO_PORT, &GPIO_InitStruct);
 
-  /* USER CODE BEGIN SPI1_MspInit 1 */
+  /* USER CODE BEGIN SPI2_MspInit 1 */
 
-  /* USER CODE END SPI1_MspInit 1 */
+  /* USER CODE END SPI2_MspInit 1 */
 }
 
 static void SPI2_MspDeInit(SPI_HandleTypeDef *spiHandle)
 {
-  /* USER CODE BEGIN SPI1_MspDeInit 0 */
+  /* USER CODE BEGIN SPI2_MspDeInit 0 */
 
-  /* USER CODE END SPI1_MspDeInit 0 */
+  /* USER CODE END SPI2_MspDeInit 0 */
   /* Peripheral clock disable */
   __HAL_RCC_SPI2_CLK_DISABLE();
 
-  /**SPI1 GPIO Configuration
+  /**SPI2 GPIO Configuration
   PB10     ------> SPI2_SCK
   PC2      ------> SPI2_MISO
   PC3      ------> SPI2_MOSI
@@ -142,9 +142,9 @@ static void SPI2_MspDeInit(SPI_HandleTypeDef *spiHandle)
   HAL_GPIO_DeInit(MU_SPI2_MISO_GPIO_PORT, MU_SPI2_MISO_GPIO_PIN);
   HAL_GPIO_DeInit(MU_SPI2_SCK_GPIO_PORT, MU_SPI2_SCK_GPIO_PIN);
 
-  /* USER CODE BEGIN SPI1_MspDeInit 1 */
+  /* USER CODE BEGIN SPI2_MspDeInit 1 */
 
-  /* USER CODE END SPI1_MspDeInit 1 */
+  /* USER CODE END SPI2_MspDeInit 1 */
 }
 
 

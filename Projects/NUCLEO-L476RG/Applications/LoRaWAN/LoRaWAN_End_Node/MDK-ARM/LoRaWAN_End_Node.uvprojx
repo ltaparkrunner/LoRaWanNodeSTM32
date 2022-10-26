@@ -488,11 +488,6 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\stm32_spi2_radio.c</FilePath>
             </File>
-            <File>
-              <FileName>nucleo_l476rg_bus.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../LoRaWAN/Target/nucleo_l476rg_bus.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -506,92 +501,12 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Drivers/BSP/Components</GroupName>
-          <Files>
-            <File>
-              <FileName>hts221.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221.c</FilePath>
-            </File>
-            <File>
-              <FileName>hts221_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lps22hb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lps22hb\lps22hb.c</FilePath>
-            </File>
-            <File>
-              <FileName>lps22hb_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lps22hb\lps22hb_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm6dsl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm6dsl\lsm6dsl.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm6dsl_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm6dsl\lsm6dsl_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm303agr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm303agr\lsm303agr.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm303agr_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm303agr\lsm303agr_reg.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/STM32L4xx_Nucleo</GroupName>
-          <Files>
-            <File>
-              <FileName>stm32l4xx_nucleo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_Nucleo\stm32l4xx_nucleo.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Drivers/BSP/sx1276mb1mas</GroupName>
           <Files>
             <File>
               <FileName>sx1276mb1mas.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/BSP/sx1276mb1mas/sx1276mb1mas.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/IKS01A2</GroupName>
-          <Files>
-            <File>
-              <FileName>iks01a2_env_sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_env_sensors.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_env_sensors_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_env_sensors_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_motion_sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_motion_sensors.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_motion_sensors_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_motion_sensors_ex.c</FilePath>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\sx1276mb1mas\sx1276mb1mas.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1364,11 +1279,6 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\stm32_spi2_radio.c</FilePath>
             </File>
-            <File>
-              <FileName>nucleo_l476rg_bus.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../LoRaWAN/Target/nucleo_l476rg_bus.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -1378,61 +1288,6 @@
               <FileName>readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>../readme.txt</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/Components</GroupName>
-          <Files>
-            <File>
-              <FileName>hts221.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221.c</FilePath>
-            </File>
-            <File>
-              <FileName>hts221_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lps22hb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lps22hb\lps22hb.c</FilePath>
-            </File>
-            <File>
-              <FileName>lps22hb_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lps22hb\lps22hb_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm6dsl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm6dsl\lsm6dsl.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm6dsl_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm6dsl\lsm6dsl_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm303agr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm303agr\lsm303agr.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm303agr_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm303agr\lsm303agr_reg.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/STM32L4xx_Nucleo</GroupName>
-          <Files>
-            <File>
-              <FileName>stm32l4xx_nucleo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_Nucleo\stm32l4xx_nucleo.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1511,32 +1366,7 @@
             <File>
               <FileName>sx1276mb1mas.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/BSP/sx1276mb1mas/sx1276mb1mas.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/IKS01A2</GroupName>
-          <Files>
-            <File>
-              <FileName>iks01a2_env_sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_env_sensors.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_env_sensors_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_env_sensors_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_motion_sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_motion_sensors.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_motion_sensors_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_motion_sensors_ex.c</FilePath>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\sx1276mb1mas\sx1276mb1mas.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2360,11 +2190,6 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\stm32_spi2_radio.c</FilePath>
             </File>
-            <File>
-              <FileName>nucleo_l476rg_bus.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../LoRaWAN/Target/nucleo_l476rg_bus.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -2374,61 +2199,6 @@
               <FileName>readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>../readme.txt</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/Components</GroupName>
-          <Files>
-            <File>
-              <FileName>hts221.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221.c</FilePath>
-            </File>
-            <File>
-              <FileName>hts221_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lps22hb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lps22hb\lps22hb.c</FilePath>
-            </File>
-            <File>
-              <FileName>lps22hb_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lps22hb\lps22hb_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm6dsl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm6dsl\lsm6dsl.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm6dsl_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm6dsl\lsm6dsl_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm303agr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm303agr\lsm303agr.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm303agr_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm303agr\lsm303agr_reg.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/STM32L4xx_Nucleo</GroupName>
-          <Files>
-            <File>
-              <FileName>stm32l4xx_nucleo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_Nucleo\stm32l4xx_nucleo.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2507,32 +2277,7 @@
             <File>
               <FileName>sx1276mb1mas.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/BSP/sx1276mb1mas/sx1276mb1mas.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/IKS01A2</GroupName>
-          <Files>
-            <File>
-              <FileName>iks01a2_env_sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_env_sensors.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_env_sensors_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_env_sensors_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_motion_sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_motion_sensors.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_motion_sensors_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_motion_sensors_ex.c</FilePath>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\sx1276mb1mas\sx1276mb1mas.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3305,11 +3050,6 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\stm32_spi2_radio.c</FilePath>
             </File>
-            <File>
-              <FileName>nucleo_l476rg_bus.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../LoRaWAN/Target/nucleo_l476rg_bus.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -3319,61 +3059,6 @@
               <FileName>readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>../readme.txt</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/Components</GroupName>
-          <Files>
-            <File>
-              <FileName>hts221.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221.c</FilePath>
-            </File>
-            <File>
-              <FileName>hts221_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lps22hb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lps22hb\lps22hb.c</FilePath>
-            </File>
-            <File>
-              <FileName>lps22hb_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lps22hb\lps22hb_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm6dsl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm6dsl\lsm6dsl.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm6dsl_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm6dsl\lsm6dsl_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm303agr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm303agr\lsm303agr.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm303agr_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm303agr\lsm303agr_reg.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/STM32L4xx_Nucleo</GroupName>
-          <Files>
-            <File>
-              <FileName>stm32l4xx_nucleo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_Nucleo\stm32l4xx_nucleo.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3452,32 +3137,7 @@
             <File>
               <FileName>sx1276mb1mas.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/BSP/sx1276mb1mas/sx1276mb1mas.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/IKS01A2</GroupName>
-          <Files>
-            <File>
-              <FileName>iks01a2_env_sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_env_sensors.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_env_sensors_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_env_sensors_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_motion_sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_motion_sensors.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_motion_sensors_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_motion_sensors_ex.c</FilePath>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\sx1276mb1mas\sx1276mb1mas.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4301,11 +3961,6 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\stm32_spi2_radio.c</FilePath>
             </File>
-            <File>
-              <FileName>nucleo_l476rg_bus.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../LoRaWAN/Target/nucleo_l476rg_bus.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -4315,61 +3970,6 @@
               <FileName>readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>../readme.txt</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/Components</GroupName>
-          <Files>
-            <File>
-              <FileName>hts221.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221.c</FilePath>
-            </File>
-            <File>
-              <FileName>hts221_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lps22hb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lps22hb\lps22hb.c</FilePath>
-            </File>
-            <File>
-              <FileName>lps22hb_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lps22hb\lps22hb_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm6dsl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm6dsl\lsm6dsl.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm6dsl_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm6dsl\lsm6dsl_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm303agr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm303agr\lsm303agr.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm303agr_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm303agr\lsm303agr_reg.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/STM32L4xx_Nucleo</GroupName>
-          <Files>
-            <File>
-              <FileName>stm32l4xx_nucleo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_Nucleo\stm32l4xx_nucleo.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4448,32 +4048,7 @@
             <File>
               <FileName>sx1276mb1mas.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/BSP/sx1276mb1mas/sx1276mb1mas.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/IKS01A2</GroupName>
-          <Files>
-            <File>
-              <FileName>iks01a2_env_sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_env_sensors.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_env_sensors_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_env_sensors_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_motion_sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_motion_sensors.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_motion_sensors_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_motion_sensors_ex.c</FilePath>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\sx1276mb1mas\sx1276mb1mas.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5297,11 +4872,6 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\stm32_spi2_radio.c</FilePath>
             </File>
-            <File>
-              <FileName>nucleo_l476rg_bus.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../LoRaWAN/Target/nucleo_l476rg_bus.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -5311,61 +4881,6 @@
               <FileName>readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>../readme.txt</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/Components</GroupName>
-          <Files>
-            <File>
-              <FileName>hts221.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221.c</FilePath>
-            </File>
-            <File>
-              <FileName>hts221_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lps22hb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lps22hb\lps22hb.c</FilePath>
-            </File>
-            <File>
-              <FileName>lps22hb_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lps22hb\lps22hb_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm6dsl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm6dsl\lsm6dsl.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm6dsl_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm6dsl\lsm6dsl_reg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm303agr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm303agr\lsm303agr.c</FilePath>
-            </File>
-            <File>
-              <FileName>lsm303agr_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\Components\lsm303agr\lsm303agr_reg.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/STM32L4xx_Nucleo</GroupName>
-          <Files>
-            <File>
-              <FileName>stm32l4xx_nucleo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_Nucleo\stm32l4xx_nucleo.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5444,32 +4959,7 @@
             <File>
               <FileName>sx1276mb1mas.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/BSP/sx1276mb1mas/sx1276mb1mas.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/IKS01A2</GroupName>
-          <Files>
-            <File>
-              <FileName>iks01a2_env_sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_env_sensors.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_env_sensors_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_env_sensors_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_motion_sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_motion_sensors.c</FilePath>
-            </File>
-            <File>
-              <FileName>iks01a2_motion_sensors_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Drivers\BSP\IKS01A2\iks01a2_motion_sensors_ex.c</FilePath>
+              <FilePath>..\..\..\..\..\..\Drivers\BSP\sx1276mb1mas\sx1276mb1mas.c</FilePath>
             </File>
           </Files>
         </Group>

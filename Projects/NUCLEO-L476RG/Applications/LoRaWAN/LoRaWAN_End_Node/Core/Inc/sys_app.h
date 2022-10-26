@@ -69,10 +69,10 @@ extern "C" {
 #error "APP_LOG_ENABLED not defined or out of range <0,1>"
 #endif /* APP_LOG_ENABLED */
 
-#define LED_Init( x )
-#define LED_Toggle( x )
-#define LED_On( x )
-#define LED_Off( x )
+//#define LED_Init( x )
+//#define LED_Toggle( x )
+//#define LED_On( x )
+//#define LED_Off( x )
 
 /* USER CODE BEGIN EM */
 

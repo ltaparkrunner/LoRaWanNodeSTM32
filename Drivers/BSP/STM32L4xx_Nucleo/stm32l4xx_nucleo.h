@@ -165,46 +165,6 @@ typedef enum
   */
 #endif /* USE_STM32L4XX_NUCLEO_64_SMPS */
 
-/** @defgroup STM32L4XX_NUCLEO_BUS BUS
-  * @{
-  */
-/*###################### SPI ###################################*/
-#ifdef USE_STM32L4XX_NUCLEO_64_SMPS
-#define NUCLEO_SPIx                                 SPI2
-#define NUCLEO_SPIx_CLK_ENABLE()                    __HAL_RCC_SPI2_CLK_ENABLE()
-
-#define NUCLEO_SPIx_SCK_AF                          GPIO_AF5_SPI2
-#define NUCLEO_SPIx_SCK_GPIO_PORT                   GPIOB
-#define NUCLEO_SPIx_SCK_PIN                         GPIO_PIN_13
-#define NUCLEO_SPIx_SCK_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOB_CLK_ENABLE()
-#define NUCLEO_SPIx_SCK_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOB_CLK_DISABLE()
-
-#define NUCLEO_SPIx_MISO_MOSI_AF                    GPIO_AF5_SPI2
-#define NUCLEO_SPIx_MISO_MOSI_GPIO_PORT             GPIOB
-#define NUCLEO_SPIx_MISO_MOSI_GPIO_CLK_ENABLE()     __HAL_RCC_GPIOB_CLK_ENABLE()
-#define NUCLEO_SPIx_MISO_MOSI_GPIO_CLK_DISABLE()    __HAL_RCC_GPIOB_CLK_DISABLE()
-#define NUCLEO_SPIx_MISO_PIN                        GPIO_PIN_14
-#define NUCLEO_SPIx_MOSI_PIN                        GPIO_PIN_15
-
-#else
-
-#define NUCLEO_SPIx                                 SPI1
-#define NUCLEO_SPIx_CLK_ENABLE()                    __HAL_RCC_SPI1_CLK_ENABLE()
-
-#define NUCLEO_SPIx_SCK_AF                          GPIO_AF5_SPI1
-#define NUCLEO_SPIx_SCK_GPIO_PORT                   GPIOA
-#define NUCLEO_SPIx_SCK_PIN                         GPIO_PIN_5
-#define NUCLEO_SPIx_SCK_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOA_CLK_ENABLE()
-#define NUCLEO_SPIx_SCK_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOA_CLK_DISABLE()
-
-#define NUCLEO_SPIx_MISO_MOSI_AF                    GPIO_AF5_SPI1
-#define NUCLEO_SPIx_MISO_MOSI_GPIO_PORT             GPIOA
-#define NUCLEO_SPIx_MISO_MOSI_GPIO_CLK_ENABLE()     __HAL_RCC_GPIOA_CLK_ENABLE()
-#define NUCLEO_SPIx_MISO_MOSI_GPIO_CLK_DISABLE()    __HAL_RCC_GPIOA_CLK_DISABLE()
-#define NUCLEO_SPIx_MISO_PIN                        GPIO_PIN_6
-#define NUCLEO_SPIx_MOSI_PIN                        GPIO_PIN_7
-
-#endif /* USE_STM32L4XX_NUCLEO_64_SMPS */
 /* Maximum Timeout values for flags waiting loops. These timeouts are not based
    on accurate values, they just guarantee that the application will not remain
    stuck if the SPI communication is corrupted.

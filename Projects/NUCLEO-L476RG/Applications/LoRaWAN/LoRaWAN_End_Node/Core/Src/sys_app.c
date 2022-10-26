@@ -128,7 +128,7 @@ void SystemApp_Init(void)
   Sx_Board_IoInit();
 
   /*Initialize the Sensors */
-  EnvSensors_Init();
+  //EnvSensors_Init();
 
   /*Init low power manager*/
   UTIL_LPM_Init();

@@ -43,9 +43,6 @@ extern "C" {
 /* I2C1 Frequency in Hz  */
 #define BUS_I2C1_FREQUENCY                  100000U /* Frequency of I2C1 = 100 KHz*/
 
-/* SPI1 Baud rate in bps  */
-#define BUS_SPI1_BAUDRATE                   16000000U /* baud rate of SPIn = 16 Mbps */
-
 /* UART1 Baud rate in bps  */
 #define BUS_UART1_BAUDRATE                  9600U /* baud rate of UARTn = 9600 baud */
 /**

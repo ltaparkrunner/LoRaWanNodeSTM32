@@ -390,18 +390,18 @@ uint32_t SX1276MB1MAS_RADIO_GetDio1PinState(void)
 static void SX1276MB1MAS_RADIO_SPI_IoInit(SPI_HandleTypeDef *spiHandle)
 {
   GPIO_InitTypeDef GPIO_InitStruct;
-  /* USER CODE BEGIN SPI1_MspInit 0 */
+  /* USER CODE BEGIN SPI2_MspInit 0 */
 
-  /* USER CODE END SPI1_MspInit 0 */
+  /* USER CODE END SPI2_MspInit 0 */
   /* Enable Peripheral clock */
   RADIO_SPI_SCK_GPIO_CLK_ENABLE();
   RADIO_SPI_MOSI_GPIO_CLK_ENABLE();
   RADIO_SPI_MISO_GPIO_CLK_ENABLE();
 
-  /**SPI1 GPIO Configuration
-  PA5     ------> SPI1_SCK
-  PA6     ------> SPI1_MISO
-  PA7     ------> SPI1_MOSI
+  /**SPI2 GPIO Configuration
+  PB10     ------> SPI2_SCK
+  PC2     ------> SPI2_MISO
+  PC3     ------> SPI2_MOSI
     */
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
@@ -428,7 +428,7 @@ static void SX1276MB1MAS_RADIO_SPI_IoDeInit(void)
   GPIO_InitTypeDef GPIO_InitStruct;
 
   /* Peripheral clock disable */
-  /* no need to call SPI1_CLK_DISABLE() because going in LowPower it gets disabled automatically */
+  /* no need to call SPI2_CLK_DISABLE() because going in LowPower it gets disabled automatically */
 
   /* DeInitialize Peripheral GPIOs */
   /* Instead of using HAL_GPIO_DeInit() which set ANALOG mode

@@ -59,7 +59,7 @@ extern "C" {
 #define RADIO_NSS_PIN               GPIO_PIN_9
 
 /* LORA I/O pin mapping */
-#define RADIO_RESET_CLK_ENABLE()    __HAL_RCC_GPIOA_CLK_ENABLE()
+#define RADIO_RESET_CLK_ENABLE()    __HAL_RCC_GPIOD_CLK_ENABLE()
 #define RADIO_RESET_PORT            GPIOD
 #define RADIO_RESET_PIN             GPIO_PIN_6
 
