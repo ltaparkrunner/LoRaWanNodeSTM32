@@ -37,6 +37,7 @@
 #include "sys_conf.h"
 #include "CayenneLpp.h"
 #include "sys_sensors.h"
+#include "stm32l4xx_mu.h"
 #include "defaults.h"
 
 /* USER CODE BEGIN Includes */
@@ -253,8 +254,9 @@ void LoRaWAN_Init(void)
 
   /* USER CODE END LoRaWAN_Init_1 */
 
-  UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
-  UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, SendTxData);
+  //  temporary UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
+  //  temporary UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, SendTxData);
+	
   /* Init Info table used by LmHandler*/
   LoraInfo_Init();
 
@@ -282,7 +284,7 @@ void LoRaWAN_Init(void)
     /* USER CODE BEGIN LoRaWAN_Init_3 */
 
     /* send every time button is pushed */
-    MU_PB_Init(BUTTON_USER, BUTTON_MODE_EXTI);
+    MU_PB_Init(BUTTON_MODE_EXTI); //BUTTON_USER, 
     /* USER CODE END LoRaWAN_Init_3 */
   }
 

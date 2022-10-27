@@ -44,35 +44,27 @@ extern "C" {
 /** @defgroup STM32L4XX_MU_Exported_Types Exported Types
   * @{
   */
+	
 
-typedef enum
-{
-  LED4 = 0,
+typedef enum{
+	BUTTON_MODE_GPIO,
+	BUTTON_MODE_EXTI	
+}	ButtonMode_TypeDef;
 
-  LED_GREEN = LED4
-}
-Led_TypeDef;
-/*
-typedef enum
-{
-  LED2 = 0,
+#define HL1_Pin GPIO_PIN_14   				// —ветодиоды 2 шт. на маленькой плате
+#define HL1_GPIO_Port GPIOE
+#define HL2_Pin GPIO_PIN_15
+#define HL2_GPIO_Port GPIOE
 
-  LED_GREEN = LED2
-} Led_TypeDef;
-*/
+#define Ard3v3_Pin GPIO_PIN_10				// ¬кл-ќткл питани§ на LED_Shield
+#define Ard3v3_GPIO_Port GPIOD				// 3.3в отключить
+#define Ard5v_Pin GPIO_PIN_12					// 5v и преобразователь включить
+#define Ard5v_GPIO_Port GPIOD
+#define LevelPower_Pin GPIO_PIN_14
+#define LevelPower_GPIO_Port GPIOD
 
-typedef enum
-{
-  BUTTON_USER = 0,
-  /* Alias */
-  BUTTON_KEY  = BUTTON_USER
-} Button_TypeDef;
-
-typedef enum
-{
-  BUTTON_MODE_GPIO = 0,
-  BUTTON_MODE_EXTI = 1
-} ButtonMode_TypeDef;
+#define NRST_Pin GPIO_PIN_7						// кнопка RST на LED_Shield
+#define NRST_GPIO_Port GPIOD
 
 /**
   * @}
@@ -92,29 +84,27 @@ typedef enum
 /** @defgroup STM32L4XX_MU_LED LED
   * @{
   */
+	
 #define LEDn                               2
 
-#define LED4_PIN                           GPIO_PIN_13
-#define LED4_GPIO_PORT                     GPIOB
-#define LED4_GPIO_CLK_ENABLE()             __HAL_RCC_GPIOB_CLK_ENABLE()
-#define LED4_GPIO_CLK_DISABLE()            __HAL_RCC_GPIOB_CLK_DISABLE()
-#define LEDx_GPIO_CLK_ENABLE(__LED__)      do { if((__LED__) == LED4) { LED4_GPIO_CLK_ENABLE(); } } while(0)
-#define LEDx_GPIO_CLK_DISABLE(__LED__)     do { if((__LED__) == LED4) { LED4_GPIO_CLK_DISABLE(); } } while(0)
+#define LED1_PIN                           GPIO_PIN_10
+#define LED1_GPIO_PORT                     GPIOD
+#define LED1_GPIO_CLK_ENABLE()             __HAL_RCC_GPIOD_CLK_ENABLE()
+#define LED1_GPIO_CLK_DISABLE()            __HAL_RCC_GPIOD_CLK_DISABLE()
 
-#define LED2_PIN                           GPIO_PIN_5
-#define LED2_GPIO_PORT                     GPIOA
-#define LED2_GPIO_CLK_ENABLE()             __HAL_RCC_GPIOA_CLK_ENABLE()
-#define LED2_GPIO_CLK_DISABLE()            __HAL_RCC_GPIOA_CLK_DISABLE()
-#define LEDx2_GPIO_CLK_ENABLE(__LED__)      do { if((__LED__) == LED2) { LED2_GPIO_CLK_ENABLE(); } } while(0)
-#define LEDx2_GPIO_CLK_DISABLE(__LED__)     do { if((__LED__) == LED2) { LED2_GPIO_CLK_DISABLE(); } } while(0)
+#define LED2_PIN                           GPIO_PIN_15
+#define LED2_GPIO_PORT                     GPIOE
+#define LED2_GPIO_CLK_ENABLE()             __HAL_RCC_GPIOE_CLK_ENABLE()
+#define LED2_GPIO_CLK_DISABLE()            __HAL_RCC_GPIOE_CLK_DISABLE()
 
-
+#define LEDx_GPIO_CLK_ENABLE(__LED__)      do { if((__LED__) == LED1) { LED1_GPIO_CLK_ENABLE();  } if((__LED__) == LED2) { LED2_GPIO_CLK_ENABLE();  }} while(0)
+#define LEDx_GPIO_CLK_DISABLE(__LED__)     do { if((__LED__) == LED1) { LED1_GPIO_CLK_DISABLE(); } if((__LED__) == LED2) { LED2_GPIO_CLK_DISABLE(); }} while(0)
 
 /**
   * @}
   */
 
-/** @defgroup STM32L4XX_NUCLEO_BUTTON BUTTON
+/** @defgroup STM32L4XX_MU_BUTTON BUTTON
   * @{
   */
 #define BUTTONn                            1
@@ -122,19 +112,19 @@ typedef enum
 /**
   * @brief Key push-button
   */
-#define USER_BUTTON_PIN                         GPIO_PIN_13
-#define USER_BUTTON_GPIO_PORT                   GPIOC
-#define USER_BUTTON_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOC_CLK_ENABLE()
-#define USER_BUTTON_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOC_CLK_DISABLE()
-#define USER_BUTTON_EXTI_LINE                   GPIO_PIN_13
-#define USER_BUTTON_EXTI_IRQn                   EXTI15_10_IRQn
+#define USER_BUTTON_PIN                         GPIO_PIN_7
+#define USER_BUTTON_GPIO_PORT                   GPIOD
+#define USER_BUTTON_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOD_CLK_ENABLE()
+#define USER_BUTTON_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOD_CLK_DISABLE()
+#define USER_BUTTON_EXTI_LINE                   EXTI_LINE_7
+#define USER_BUTTON_EXTI_IRQn                   EXTI9_5_IRQn
 /* Aliases */
-#define MU_BUTTON_PIN                          USER_BUTTON_PIN
-#define MU_BUTTON_GPIO_PORT                    USER_BUTTON_GPIO_PORT
-#define MU_BUTTON_GPIO_CLK_ENABLE()            USER_BUTTON_GPIO_CLK_ENABLE()
-#define MU_BUTTON_GPIO_CLK_DISABLE()           USER_BUTTON_GPIO_CLK_DISABLE()
-#define MU_BUTTON_EXTI_LINE                    USER_BUTTON_EXTI_LINE
-#define MU_BUTTON_EXTI_IRQn                    USER_BUTTON_EXTI_IRQn
+#define SHIELD_RST_PIN                          USER_BUTTON_PIN
+#define SHIELD_RST_GPIO_PORT                    USER_BUTTON_GPIO_PORT
+#define SHIELD_RST_GPIO_CLK_ENABLE()            USER_BUTTON_GPIO_CLK_ENABLE()
+#define SHIELD_RST_GPIO_CLK_DISABLE()           USER_BUTTON_GPIO_CLK_DISABLE()
+#define SHIELD_RST_EXTI_LINE                    USER_BUTTON_EXTI_LINE
+#define SHIELD_RST_EXTI_IRQn                    USER_BUTTON_EXTI_IRQn
 
 
 #define BUTTONx_GPIO_CLK_ENABLE(__BUTTON__)    do { if((__BUTTON__) == BUTTON_USER) { USER_BUTTON_GPIO_CLK_ENABLE(); } } while(0)
@@ -185,19 +175,26 @@ typedef enum
 /** @addtogroup STM32L4XX_MU_LED_Functions
   * @{
   */
-//void             MU_LED_Init(Led_TypeDef Led);
-//void             MU_LED_DeInit(Led_TypeDef Led);
-//void             MU_LED_On(Led_TypeDef Led);
-//void             MU_LED_Off(Led_TypeDef Led);
-//void             MU_LED_Toggle(Led_TypeDef Led);
+	
+typedef enum
+{
+  LED1,
+  LED2
+} Led_TypeDef;
+
+void             MU_LED_Init(Led_TypeDef Led);
+void             MU_LED_DeInit(Led_TypeDef Led);
+void             MU_LED_On(Led_TypeDef Led);
+void             MU_LED_Off(Led_TypeDef Led);
+void             MU_LED_Toggle(Led_TypeDef Led);
 /**
   * @}
   */
 
-/** @addtogroup STM32L4XX_MU_BUTTON_Functions
+/** @addtogroup STM32L4XX_SHIELD_RST_Functions
   * @{
   */
-void             MU_PB_Init(Button_TypeDef Button, ButtonMode_TypeDef ButtonMode);
+void MU_PB_Init(ButtonMode_TypeDef ButtonMode);	//Button_TypeDef Button,
 //void             MU_PB_DeInit(Button_TypeDef Button);
 //uint32_t         MU_PB_GetState(Button_TypeDef Button);
 
