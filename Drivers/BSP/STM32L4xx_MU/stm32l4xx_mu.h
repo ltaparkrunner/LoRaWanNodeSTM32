@@ -56,6 +56,33 @@ typedef enum{
 #define HL2_Pin GPIO_PIN_15
 #define HL2_GPIO_Port GPIOE
 
+#define SoundSign_Pin GPIO_PIN_7      // ?инамик на плате пульта
+#define SoundSign_GPIO_Port GPIOE
+#define HL3Sign_Pin GPIO_PIN_4				// Чветодиоды 3 шт. на плате пульта
+#define HL3Sign_GPIO_Port GPIOE
+#define HL2Sign_Pin GPIO_PIN_5
+#define HL2Sign_GPIO_Port GPIOE
+#define HL1Sign_Pin GPIO_PIN_6
+#define HL1Sign_GPIO_Port GPIOE
+#define button_Pin GPIO_PIN_4					// Эт кнопок на LED_Shield 
+#define button_GPIO_Port GPIOC				// один аналоговый сигнал на 5 кнопок 
+																			// SELECT, LEFT, UP, DOWN, RIGHT
+#define Light_Pin GPIO_PIN_13					// ђкл-Эткл подсветки индикатора
+#define Light_GPIO_Port GPIOE																			
+
+#define RS_Pin GPIO_PIN_2							// Чигналы управлени§ индикатором
+#define RS_GPIO_Port GPIOB						// LED_Shield
+#define ENABLE_Pin GPIO_PIN_9
+#define ENABLE_GPIO_Port GPIOC
+#define D4_Pin GPIO_PIN_11
+#define D4_GPIO_Port GPIOB
+#define D5_Pin GPIO_PIN_8
+#define D5_GPIO_Port GPIOB
+#define D6_Pin GPIO_PIN_7
+#define D6_GPIO_Port GPIOC
+#define D7_Pin GPIO_PIN_6
+#define D7_GPIO_Port GPIOC
+
 #define Ard3v3_Pin GPIO_PIN_10				// ¬кл-ќткл питани§ на LED_Shield
 #define Ard3v3_GPIO_Port GPIOD				// 3.3в отключить
 #define Ard5v_Pin GPIO_PIN_12					// 5v и преобразователь включить
@@ -65,6 +92,10 @@ typedef enum{
 
 #define NRST_Pin GPIO_PIN_7						// кнопка RST на LED_Shield
 #define NRST_GPIO_Port GPIOD
+
+
+#define BAT_POWER GPIO_PIN_0					// опросить напр§жение батарейки
+#define BAT_POWER_GPIO_Port GPIOB
 
 /**
   * @}
@@ -87,13 +118,13 @@ typedef enum{
 	
 #define LEDn                               2
 
-#define LED1_PIN                           GPIO_PIN_10
-#define LED1_GPIO_PORT                     GPIOD
+#define LED1_PIN                           HL1_Pin
+#define LED1_GPIO_PORT                     HL1_GPIO_Port
 #define LED1_GPIO_CLK_ENABLE()             __HAL_RCC_GPIOD_CLK_ENABLE()
 #define LED1_GPIO_CLK_DISABLE()            __HAL_RCC_GPIOD_CLK_DISABLE()
 
-#define LED2_PIN                           GPIO_PIN_15
-#define LED2_GPIO_PORT                     GPIOE
+#define LED2_PIN                           HL2_Pin
+#define LED2_GPIO_PORT                     HL2_GPIO_Port
 #define LED2_GPIO_CLK_ENABLE()             __HAL_RCC_GPIOE_CLK_ENABLE()
 #define LED2_GPIO_CLK_DISABLE()            __HAL_RCC_GPIOE_CLK_DISABLE()
 
@@ -187,6 +218,7 @@ void             MU_LED_DeInit(Led_TypeDef Led);
 void             MU_LED_On(Led_TypeDef Led);
 void             MU_LED_Off(Led_TypeDef Led);
 void             MU_LED_Toggle(Led_TypeDef Led);
+void MU_Sound_Init(void);
 /**
   * @}
   */

@@ -139,6 +139,8 @@ static void OnRxTimerLedEvent(void *context);
   */
 static void OnJoinTimerLedEvent(void *context);
 
+static void ledSwitch1(void);
+static void ledSwitch2(void);
 /* USER CODE END PFP */
 
 /* Private variables ---------------------------------------------------------*/
@@ -223,9 +225,11 @@ void LoRaWAN_Init(void)
 {
   /* USER CODE BEGIN LoRaWAN_Init_1 */
 
-//  LED_Init(LED_BLUE);
-//  LED_Init(LED_RED1);
-//  LED_Init(LED_RED2);
+
+	MU_LED_Init(LED1);
+
+	MU_LED_Init(LED2);
+	MU_Sound_Init();
 
   /* Get LoRa APP version*/
   APP_LOG(TS_OFF, VLEVEL_M, "APP_VERSION:        V%X.%X.%X\r\n",
@@ -248,15 +252,16 @@ void LoRaWAN_Init(void)
   UTIL_TIMER_Create(&TxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnTxTimerLedEvent, NULL);
   UTIL_TIMER_Create(&RxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnRxTimerLedEvent, NULL);
   UTIL_TIMER_Create(&JoinLedTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnJoinTimerLedEvent, NULL);
-  UTIL_TIMER_SetPeriod(&TxLedTimer, 500);
+  UTIL_TIMER_SetPeriod(&TxLedTimer, 1500);
   UTIL_TIMER_SetPeriod(&RxLedTimer, 500);
   UTIL_TIMER_SetPeriod(&JoinLedTimer, 500);
 
   /* USER CODE END LoRaWAN_Init_1 */
 
-  //  temporary UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
-  //  temporary UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, SendTxData);
-	
+//  TODO: UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
+  //  TODO: UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, SendTxData);
+	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, ledSwitch2);
+	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, ledSwitch1);
   /* Init Info table used by LmHandler*/
   LoraInfo_Init();
 
@@ -266,6 +271,7 @@ void LoRaWAN_Init(void)
   LmHandlerConfigure(&LmHandlerParams);
 
   /* USER CODE BEGIN LoRaWAN_Init_2 */
+	//UTIL_TIMER_Start(&TxLedTimer);
   UTIL_TIMER_Start(&JoinLedTimer);
 
   /* USER CODE END LoRaWAN_Init_2 */
@@ -288,6 +294,7 @@ void LoRaWAN_Init(void)
     /* USER CODE END LoRaWAN_Init_3 */
   }
 
+	HAL_Delay(100);
   /* USER CODE BEGIN LoRaWAN_Init_Last */
 
   /* USER CODE END LoRaWAN_Init_Last */
@@ -381,7 +388,17 @@ static void OnRxData(LmHandlerAppData_t *appData, LmHandlerRxParams_t *params)
   }
   /* USER CODE END OnRxData_1 */
 }
+static void ledSwitch1(void)
+{
+//	MU_LED_Toggle(1);
+	MU_LED_Toggle(LED1);
+}
 
+static void ledSwitch2(void)
+{
+	MU_LED_Toggle(LED2);
+//	MU_LED_Toggle(0);
+}
 static void SendTxData(void)
 {
   /* USER CODE BEGIN SendTxData_1 */
@@ -496,6 +513,8 @@ static void OnTxTimerEvent(void *context)
 static void OnTxTimerLedEvent(void *context)
 {
 //  LED_Off(LED_RED2);
+	MU_LED_Toggle(LED1);
+	
 }
 
 static void OnRxTimerLedEvent(void *context)
@@ -506,6 +525,7 @@ static void OnRxTimerLedEvent(void *context)
 static void OnJoinTimerLedEvent(void *context)
 {
 //  LED_Toggle(LED_RED1) ;
+	MU_LED_Toggle(LED2);
 }
 
 /* USER CODE END PrFD_LedEvents */

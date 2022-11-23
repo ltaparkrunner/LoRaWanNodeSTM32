@@ -52,16 +52,27 @@ void MU_LED_Init(Led_TypeDef Led)
 
   /* Enable the GPIO_LED Clock */
   LEDx_GPIO_CLK_ENABLE(Led);
-	if(Led == LED1){
+	if(Led == LED1 || Led == LED2){
   /* Configure the GPIO_LED pin */
 		GPIO_InitStruct.Pin   = LED_GPIO_PIN[Led];
 		GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
 		GPIO_InitStruct.Pull  = GPIO_NOPULL;
-		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 		HAL_GPIO_Init(LED_GPIO_PORT[Led], &GPIO_InitStruct);
 	}
 }
-
+void MU_Sound_Init(void)
+{
+	GPIO_InitTypeDef  GPIO_InitStruct = {0};
+	GPIO_InitStruct.Pin   = SoundSign_Pin;
+	GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull  = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	// TODO: delete one of two WritePin below
+	HAL_GPIO_WritePin(SoundSign_GPIO_Port, SoundSign_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_Init(SoundSign_GPIO_Port, &GPIO_InitStruct);
+	HAL_GPIO_WritePin(SoundSign_GPIO_Port, SoundSign_Pin, GPIO_PIN_RESET);
+}
 /**
   * @brief  DeInitialize LED GPIO.
   * @param  Led: LED to be deinitialized.
