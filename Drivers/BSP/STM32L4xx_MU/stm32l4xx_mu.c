@@ -11,7 +11,8 @@ void MU_PB_Init(ButtonMode_TypeDef ButtonMode)	//Button_TypeDef Button,
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* Enable the BUTTON Clock */
-  SHIELD_RST_GPIO_CLK_ENABLE();
+  //SHIELD_RST_GPIO_CLK_ENABLE();
+	__HAL_RCC_GPIOD_CLK_ENABLE();
 
   if (ButtonMode == BUTTON_MODE_GPIO)
   {
@@ -27,9 +28,9 @@ void MU_PB_Init(ButtonMode_TypeDef ButtonMode)	//Button_TypeDef Button,
   {
     /* Configure Button pin as input with External interrupt */
     GPIO_InitStruct.Pin    = SHIELD_RST_PIN;
-    GPIO_InitStruct.Mode   = GPIO_MODE_IT_FALLING;
-    GPIO_InitStruct.Pull   = GPIO_NOPULL;
-    GPIO_InitStruct.Speed  = GPIO_SPEED_FREQ_HIGH;
+    GPIO_InitStruct.Mode   = GPIO_MODE_IT_FALLING;//GPIO_MODE_IT_RISING;//
+    GPIO_InitStruct.Pull   = GPIO_PULLUP;
+    GPIO_InitStruct.Speed  = GPIO_SPEED_FREQ_LOW;
     HAL_GPIO_Init(SHIELD_RST_GPIO_PORT, &GPIO_InitStruct);
 
     /* Enable and set Button EXTI Interrupt to the lowest priority */

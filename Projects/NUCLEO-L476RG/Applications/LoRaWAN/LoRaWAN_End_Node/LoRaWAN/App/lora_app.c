@@ -285,7 +285,7 @@ void LoRaWAN_Init(void)
     UTIL_TIMER_SetPeriod(&TxTimer,  APP_TX_DUTYCYCLE);
     UTIL_TIMER_Start(&TxTimer);
   }
-  else
+//  else
   {
     /* USER CODE BEGIN LoRaWAN_Init_3 */
 
@@ -294,7 +294,7 @@ void LoRaWAN_Init(void)
     /* USER CODE END LoRaWAN_Init_3 */
   }
 
-	HAL_Delay(100);
+	//HAL_Delay(100);
   /* USER CODE BEGIN LoRaWAN_Init_Last */
 
   /* USER CODE END LoRaWAN_Init_Last */
@@ -312,7 +312,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
       break;
   }
 }
-
+void CallbackRST(void)//(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+{
+	if (HAL_GPIO_ReadPin(SHIELD_RST_GPIO_PORT, SHIELD_RST_PIN) == GPIO_PIN_RESET)
+	{
+		HAL_Delay(100);
+	}
+}
 /* USER CODE END PB_Callbacks */
 
 /* Private functions ---------------------------------------------------------*/
