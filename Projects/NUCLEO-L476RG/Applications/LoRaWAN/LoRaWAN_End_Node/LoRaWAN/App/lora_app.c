@@ -312,7 +312,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
       break;
   }
 }
-void CallbackRST(void)//(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+void CallbackRSTButton(void)//(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
 {
 	if (HAL_GPIO_ReadPin(SHIELD_RST_GPIO_PORT, SHIELD_RST_PIN) == GPIO_PIN_RESET)
 	{

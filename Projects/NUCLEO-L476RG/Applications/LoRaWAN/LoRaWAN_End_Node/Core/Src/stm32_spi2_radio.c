@@ -5,7 +5,7 @@
 
 static void SPI2_MspInit(SPI_HandleTypeDef *spiHandle);
 static void SPI2_MspDeInit(SPI_HandleTypeDef *spiHandle);
-__weak HAL_StatusTypeDef MX_SPI2_Init(SPI_HandleTypeDef *hspi);
+HAL_StatusTypeDef MX_SPI2_Init(SPI_HandleTypeDef *hspi);
 static uint32_t SPI_GetPrescaler(uint32_t clock_src_hz, uint32_t baudrate_mbps);
 
 #define TIMEOUT_DURATION 1000
@@ -68,8 +68,30 @@ int32_t MU_GetTick(void)
 }
 
 /* SPI2 init function */
+static uint32_t SpiFrequency( uint32_t hz )
+{
+  uint32_t divisor = 0;
+  uint32_t SysClkTmp = SystemCoreClock;
+  uint32_t baudRate;
+  
+  while( SysClkTmp > hz)
+  {
+    divisor++;
+    SysClkTmp= ( SysClkTmp >> 1);
+    
+    if (divisor >= 7)
+      break;
+  }
+  
+  baudRate =((( divisor & 0x4 ) == 0 )? 0x0 : SPI_CR1_BR_2  )| 
+            ((( divisor & 0x2 ) == 0 )? 0x0 : SPI_CR1_BR_1  )| 
+            ((( divisor & 0x1 ) == 0 )? 0x0 : SPI_CR1_BR_0  );
+  
+  return baudRate;
+}
 
-__weak HAL_StatusTypeDef MX_SPI2_Init(SPI_HandleTypeDef *hspi)
+
+HAL_StatusTypeDef MX_SPI2_Init(SPI_HandleTypeDef *hspi)
 {
   HAL_StatusTypeDef ret = HAL_OK;
   hspi->Instance = SPI2;
@@ -80,11 +102,15 @@ __weak HAL_StatusTypeDef MX_SPI2_Init(SPI_HandleTypeDef *hspi)
   hspi->Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi->Init.NSS = SPI_NSS_SOFT;
   /* SPI2 is on APB2 for L0x3 -> HAL_RCC_GetPCLK2Freq */
-  hspi->Init.BaudRatePrescaler = SPI_GetPrescaler(HAL_RCC_GetPCLK2Freq(), RADIO_SPI_BAUDRATE);
+  //hspi->Init.BaudRatePrescaler = SPI_GetPrescaler(HAL_RCC_GetPCLK2Freq(), RADIO_SPI_BAUDRATE);
+	hspi->Init.BaudRatePrescaler = SpiFrequency( 10000000 );
   hspi->Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi->Init.TIMode = SPI_TIMODE_DISABLE;
   hspi->Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
   hspi->Init.CRCPolynomial = 7;
+	
+	__HAL_RCC_SPI2_CLK_ENABLE();
+	
   if (HAL_SPI_Init(hspi) != HAL_OK)
   {
     ret = HAL_ERROR;
@@ -106,22 +132,31 @@ static void SPI2_MspInit(SPI_HandleTypeDef *spiHandle)
   PB10     ------> SPI2_SCK
   PC2      ------> SPI2_MISO
   PC3      ------> SPI2_MOSI
+	PB9			 ------> SPI2_NSS
     */
+	__HAL_RCC_GPIOB_CLK_ENABLE();
+	__HAL_RCC_GPIOC_CLK_ENABLE();
+
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   GPIO_InitStruct.Alternate = MU_SPI2_MOSI_GPIO_AF;
   GPIO_InitStruct.Pin = MU_SPI2_MOSI_GPIO_PIN;
   HAL_GPIO_Init(MU_SPI2_MOSI_GPIO_PORT, &GPIO_InitStruct);
+	
   GPIO_InitStruct.Alternate = MU_SPI2_MISO_GPIO_AF;
   GPIO_InitStruct.Pin = MU_SPI2_MISO_GPIO_PIN;
   HAL_GPIO_Init(MU_SPI2_MISO_GPIO_PORT, &GPIO_InitStruct);
+	
   GPIO_InitStruct.Alternate = MU_SPI2_SCK_GPIO_AF;
   GPIO_InitStruct.Pin = MU_SPI2_SCK_GPIO_PIN;
   HAL_GPIO_Init(MU_SPI2_SCK_GPIO_PORT, &GPIO_InitStruct);
 
   /* USER CODE BEGIN SPI2_MspInit 1 */
-
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Pin = MU_SPI2_NSS_GPIO_PIN;
+	HAL_GPIO_Init(MU_SPI2_NSS_GPIO_PORT, &GPIO_InitStruct);
   /* USER CODE END SPI2_MspInit 1 */
 }
 

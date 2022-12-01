@@ -54,14 +54,14 @@ extern "C" {
 #define RADIO_SPI_MISO_GPIO_CLK_ENABLE() MU_SPI2_MISO_GPIO_CLK_ENABLE()
 
 /* SPIx Bus Pin mapping */
-#define RADIO_NSS_CLK_ENABLE()      __HAL_RCC_GPIOB_CLK_ENABLE()
-#define RADIO_NSS_PORT              GPIOB
-#define RADIO_NSS_PIN               GPIO_PIN_9
+#define RADIO_NSS_CLK_ENABLE()      			__HAL_RCC_GPIOB_CLK_ENABLE()
+#define RADIO_NSS_PORT              			GPIOB
+#define RADIO_NSS_PIN               			GPIO_PIN_9
 
 /* LORA I/O pin mapping */
-#define RADIO_RESET_CLK_ENABLE()    __HAL_RCC_GPIOD_CLK_ENABLE()
-#define RADIO_RESET_PORT            GPIOD
-#define RADIO_RESET_PIN             GPIO_PIN_6
+#define RADIO_RESET_CLK_ENABLE()    			__HAL_RCC_GPIOD_CLK_ENABLE()
+#define RADIO_RESET_PORT            			GPIOD
+#define RADIO_RESET_PIN             			GPIO_PIN_6
 
 #define RADIO_DIOn                               4U
 
@@ -79,15 +79,15 @@ extern "C" {
 #define RADIO_DIO_1_IRQn                  EXTI1_IRQn
 #define H_EXTI_1        hRADIO_DIO_exti[1]
 
-#define RADIO_DIO_2_PORT        GPIOD
-#define RADIO_DIO_2_PIN         GPIO_PIN_2
+#define RADIO_DIO_2_PORT        					GPIOD
+#define RADIO_DIO_2_PIN         					GPIO_PIN_2
 #define RADIO_DIO_2_GPIO_CLK_ENABLE()     __HAL_RCC_GPIOD_CLK_ENABLE()
 #define RADIO_DIO_2_EXTI_LINE             EXTI_LINE_2
 #define RADIO_DIO_2_IRQn                  EXTI2_IRQn
 #define H_EXTI_2        hRADIO_DIO_exti[2]
 
-#define RADIO_DIO_3_PORT        GPIOD
-#define RADIO_DIO_3_PIN         GPIO_PIN_3
+#define RADIO_DIO_3_PORT        					GPIOD
+#define RADIO_DIO_3_PIN         					GPIO_PIN_3
 #define RADIO_DIO_3_GPIO_CLK_ENABLE()     __HAL_RCC_GPIOD_CLK_ENABLE()
 #define RADIO_DIO_3_EXTI_LINE             EXTI_LINE_3
 #define RADIO_DIO_3_IRQn                  EXTI3_IRQn

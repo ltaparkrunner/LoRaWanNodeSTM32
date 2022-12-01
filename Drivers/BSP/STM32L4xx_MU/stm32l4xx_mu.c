@@ -11,8 +11,8 @@ void MU_PB_Init(ButtonMode_TypeDef ButtonMode)	//Button_TypeDef Button,
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* Enable the BUTTON Clock */
-  //SHIELD_RST_GPIO_CLK_ENABLE();
-	__HAL_RCC_GPIOD_CLK_ENABLE();
+  SHIELD_RST_GPIO_CLK_ENABLE();
+	//__HAL_RCC_GPIOD_CLK_ENABLE();
 
   if (ButtonMode == BUTTON_MODE_GPIO)
   {

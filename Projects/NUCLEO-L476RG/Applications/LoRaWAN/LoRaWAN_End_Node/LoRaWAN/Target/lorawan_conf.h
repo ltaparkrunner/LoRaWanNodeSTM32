@@ -50,7 +50,7 @@ extern "C" {
 /*#define REGION_KR920*/
 /*#define REGION_IN865*/
 /*#define REGION_US915*/
-/*#define REGION_RU864*/
+//#define REGION_RU864
 
 /**
   * \brief Limits the number usable channels by default for AU915, CN470 and US915 regions
