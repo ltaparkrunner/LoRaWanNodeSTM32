@@ -214,7 +214,7 @@ extern "C"
  * LoRaMac default channel 1
  * Channel = { Frequency [Hz], RX1 Frequency [Hz], { ( ( DrMax << 4 ) | DrMin ) }, Band }
  */
-#define RU864_LC1                                   { 868900000, 0, { ( ( DR_5 << 4 ) | DR_0 ) }, 0 }
+#define RU864_LC1                                   { 864100000,/*868900000,*/ 0, { ( ( DR_5 << 4 ) | DR_0 ) }, 0 }
 
 /*!
  * LoRaMac default channel 2

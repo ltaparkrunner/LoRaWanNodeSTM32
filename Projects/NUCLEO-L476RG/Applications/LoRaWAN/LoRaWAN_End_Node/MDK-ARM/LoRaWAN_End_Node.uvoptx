@@ -152,9 +152,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>2925</LineNumber>
+          <LineNumber>2932</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134253022</Address>
+          <Address>134253018</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -163,23 +163,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.c\2925</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>2565</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134252934</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.c\2565</Expression>
+          <Expression>\\sx1276mb1mas\../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.c\2932</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

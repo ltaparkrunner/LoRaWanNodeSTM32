@@ -40,7 +40,7 @@
   * @brief   LoRa MAC layer implementation
   ******************************************************************************
   */
-//#include "stm32l4xx_hal.h"		// funct HAL_Delay
+#include "stm32l4xx_hal.h"		// funct HAL_Delay
 
 #include "utilities.h"
 #include "Region.h"
@@ -2923,7 +2923,13 @@ static LoRaMacStatus_t SendFrameOnChannel( uint8_t channel )
 
     // Send now
     Radio.Send( MacCtx.PktBuffer, MacCtx.PktBufferLen );
-//		HAL_Delay(5000);
+		HAL_Delay(1500);
+		
+		Radio.Send( MacCtx.PktBuffer, MacCtx.PktBufferLen );
+		HAL_Delay(1500);
+		
+		Radio.Send( MacCtx.PktBuffer, MacCtx.PktBufferLen );
+		HAL_Delay(1500);
     return LORAMAC_STATUS_OK;
 }
 
