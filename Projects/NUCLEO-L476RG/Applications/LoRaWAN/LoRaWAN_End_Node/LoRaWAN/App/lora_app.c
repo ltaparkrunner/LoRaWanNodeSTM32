@@ -258,8 +258,8 @@ void LoRaWAN_Init(void)
 
   /* USER CODE END LoRaWAN_Init_1 */
 
-//  TODO: UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
-  //  TODO: UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, SendTxData);
+	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
+	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, SendTxData);
 	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, ledSwitch2);
 	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, ledSwitch1);
   /* Init Info table used by LmHandler*/
@@ -506,7 +506,7 @@ static void OnTxTimerEvent(void *context)
   /* USER CODE BEGIN OnTxTimerEvent_1 */
 
   /* USER CODE END OnTxTimerEvent_1 */
-  UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), CFG_SEQ_Prio_0);
+//  UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), CFG_SEQ_Prio_0);
 
   /*Wait for next tx slot*/
   UTIL_TIMER_Start(&TxTimer);
@@ -519,7 +519,7 @@ static void OnTxTimerEvent(void *context)
 static void OnTxTimerLedEvent(void *context)
 {
 //  LED_Off(LED_RED2);
-	MU_LED_Toggle(LED1);
+//	MU_LED_Toggle(LED1);
 	
 }
 
@@ -531,7 +531,7 @@ static void OnRxTimerLedEvent(void *context)
 static void OnJoinTimerLedEvent(void *context)
 {
 //  LED_Toggle(LED_RED1) ;
-	MU_LED_Toggle(LED2);
+//	MU_LED_Toggle(LED2);
 }
 
 /* USER CODE END PrFD_LedEvents */

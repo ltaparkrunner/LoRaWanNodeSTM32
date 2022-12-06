@@ -152,18 +152,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>2932</LineNumber>
+          <LineNumber>249</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134253018</Address>
+          <Address>134219352</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.c</Filename>
+          <Filename>../Core/Src/stm32l4xx_it.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.c\2932</Expression>
+          <Expression>\\sx1276mb1mas\../Core/Src/stm32l4xx_it.c\249</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -175,7 +175,22 @@
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>counter</ItemText>
+          <ItemText>RADIO_DIO_IRQn</ItemText>
+        </Ww>
+        <Ww>
+          <count>2</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>RadioRegsInit</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>RadioEvents</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>TaskSet</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -1350,7 +1365,7 @@
       <GroupNumber>6</GroupNumber>
       <FileNumber>20</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\..\..\Drivers\BSP\sx1276mb1mas\sx1276mb1mas.c</PathWithFileName>
@@ -1382,7 +1397,7 @@
 
   <Group>
     <GroupName>Drivers/STM32L4xx_HAL_Driver</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

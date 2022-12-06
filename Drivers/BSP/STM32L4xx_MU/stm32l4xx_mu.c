@@ -6,38 +6,95 @@
 uint16_t LED_GPIO_PIN[2] = {LED1_PIN, LED2_PIN };
 GPIO_TypeDef * LED_GPIO_PORT[2] = {LED1_GPIO_PORT, LED2_GPIO_PORT};
 
-void MU_PB_Init(ButtonMode_TypeDef ButtonMode)	//Button_TypeDef Button,
+//#define BUTTONn		1
+GPIO_TypeDef  *BUTTON_PORT = {USER_BUTTON_GPIO_PORT};
+const uint16_t BUTTON_PIN = {USER_BUTTON_PIN};
+const uint16_t BUTTON_IRQn = {USER_BUTTON_EXTI_IRQn};
+
+/**
+  * @brief  Configure Button GPIO and EXTI Line.
+  * @param  Button: Specifies the Button to be configured.
+  *   This parameter should be: BUTTON_USER
+  * @param  ButtonMode: Specifies Button mode.
+  *   This parameter can be one of following parameters:
+  *     @arg BUTTON_MODE_GPIO: Button will be used as simple IO
+  *     @arg BUTTON_MODE_EXTI: Button will be connected to EXTI line with interrupt
+  *                            generation capability
+  * @retval None
+  */
+void MU_PB_Init( ButtonMode_TypeDef ButtonMode)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* Enable the BUTTON Clock */
-  SHIELD_RST_GPIO_CLK_ENABLE();
-	//__HAL_RCC_GPIOD_CLK_ENABLE();
+  USER_BUTTON_GPIO_CLK_ENABLE();
 
   if (ButtonMode == BUTTON_MODE_GPIO)
   {
     /* Configure Button pin as input */
-    GPIO_InitStruct.Pin    = SHIELD_RST_PIN;
+    GPIO_InitStruct.Pin    = BUTTON_PIN;
     GPIO_InitStruct.Mode   = GPIO_MODE_INPUT;
     GPIO_InitStruct.Pull   = GPIO_NOPULL;
     GPIO_InitStruct.Speed  = GPIO_SPEED_FREQ_HIGH;
 
-    HAL_GPIO_Init(SHIELD_RST_GPIO_PORT, &GPIO_InitStruct);
+    HAL_GPIO_Init(BUTTON_PORT, &GPIO_InitStruct);
   }
   else if (ButtonMode == BUTTON_MODE_EXTI)
   {
     /* Configure Button pin as input with External interrupt */
-    GPIO_InitStruct.Pin    = SHIELD_RST_PIN;
-    GPIO_InitStruct.Mode   = GPIO_MODE_IT_FALLING;//GPIO_MODE_IT_RISING;//
+    GPIO_InitStruct.Pin    = BUTTON_PIN;
+    GPIO_InitStruct.Mode   = GPIO_MODE_IT_FALLING;
     GPIO_InitStruct.Pull   = GPIO_PULLUP;
-    GPIO_InitStruct.Speed  = GPIO_SPEED_FREQ_LOW;
-    HAL_GPIO_Init(SHIELD_RST_GPIO_PORT, &GPIO_InitStruct);
+    GPIO_InitStruct.Speed  = GPIO_SPEED_FREQ_HIGH;
+    HAL_GPIO_Init(BUTTON_PORT, &GPIO_InitStruct);
 
     /* Enable and set Button EXTI Interrupt to the lowest priority */
-    HAL_NVIC_SetPriority(SHIELD_RST_EXTI_IRQn, 0x0F, 0);
-    HAL_NVIC_EnableIRQ(SHIELD_RST_EXTI_IRQn);
+    HAL_NVIC_SetPriority((IRQn_Type)(BUTTON_IRQn), 0x0F, 0);
+    HAL_NVIC_EnableIRQ((IRQn_Type)(BUTTON_IRQn));
   }
 }
+
+void MU_PB_DeInit()
+{
+  GPIO_InitTypeDef GPIO_InitStruct;
+
+  GPIO_InitStruct.Pin = BUTTON_PIN;
+  HAL_NVIC_DisableIRQ((IRQn_Type)(BUTTON_IRQn));
+  HAL_GPIO_DeInit(BUTTON_PORT, GPIO_InitStruct.Pin);
+}
+
+//void MU_PB_Init(ButtonMode_TypeDef ButtonMode)	//Button_TypeDef Button,
+//{
+//  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+//  /* Enable the BUTTON Clock */
+//  SHIELD_RST_GPIO_CLK_ENABLE();
+//	//__HAL_RCC_GPIOD_CLK_ENABLE();
+
+//  if (ButtonMode == BUTTON_MODE_GPIO)
+//  {
+//    /* Configure Button pin as input */
+//    GPIO_InitStruct.Pin    = SHIELD_RST_PIN;
+//    GPIO_InitStruct.Mode   = GPIO_MODE_INPUT;
+//    GPIO_InitStruct.Pull   = GPIO_NOPULL;
+//    GPIO_InitStruct.Speed  = GPIO_SPEED_FREQ_HIGH;
+
+//    HAL_GPIO_Init(SHIELD_RST_GPIO_PORT, &GPIO_InitStruct);
+//  }
+//  else if (ButtonMode == BUTTON_MODE_EXTI)
+//  {
+//    /* Configure Button pin as input with External interrupt */
+//    GPIO_InitStruct.Pin    = SHIELD_RST_PIN;
+//    GPIO_InitStruct.Mode   = GPIO_MODE_IT_FALLING;//GPIO_MODE_IT_RISING;//
+//    GPIO_InitStruct.Pull   = GPIO_PULLUP;
+//    GPIO_InitStruct.Speed  = GPIO_SPEED_FREQ_LOW;
+//    HAL_GPIO_Init(SHIELD_RST_GPIO_PORT, &GPIO_InitStruct);
+
+//    /* Enable and set Button EXTI Interrupt to the lowest priority */
+//    HAL_NVIC_SetPriority(SHIELD_RST_EXTI_IRQn, 0x0F, 0);
+//    HAL_NVIC_EnableIRQ(SHIELD_RST_EXTI_IRQn);
+//  }
+//}
 
 
 /**

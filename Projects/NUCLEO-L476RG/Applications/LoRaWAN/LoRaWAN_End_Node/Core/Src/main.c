@@ -98,7 +98,7 @@ int main(void)
     /* USER CODE END WHILE */
     MX_LoRaWAN_Process();
 		//MU_LED_Toggle(1);
-		HAL_Delay(400);
+		//HAL_Delay(400);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

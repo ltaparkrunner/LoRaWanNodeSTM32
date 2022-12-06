@@ -143,7 +143,8 @@ typedef enum{
 /**
   * @brief Key push-button
   */
-#define USER_BUTTON_PIN                         GPIO_PIN_7
+												
+#define USER_BUTTON_PIN                         GPIO_PIN_7	// кнопка RST на LED_Shield
 #define USER_BUTTON_GPIO_PORT                   GPIOD
 #define USER_BUTTON_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOD_CLK_ENABLE()
 #define USER_BUTTON_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOD_CLK_DISABLE()

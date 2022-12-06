@@ -2923,14 +2923,14 @@ static LoRaMacStatus_t SendFrameOnChannel( uint8_t channel )
 
     // Send now
     Radio.Send( MacCtx.PktBuffer, MacCtx.PktBufferLen );
-		HAL_Delay(1500);
+/*		HAL_Delay(1500);
 		
 		Radio.Send( MacCtx.PktBuffer, MacCtx.PktBufferLen );
 		HAL_Delay(1500);
 		
 		Radio.Send( MacCtx.PktBuffer, MacCtx.PktBufferLen );
 		HAL_Delay(1500);
-    return LORAMAC_STATUS_OK;
+*/    return LORAMAC_STATUS_OK;
 }
 
 static LoRaMacStatus_t SetTxContinuousWave( uint16_t timeout )
