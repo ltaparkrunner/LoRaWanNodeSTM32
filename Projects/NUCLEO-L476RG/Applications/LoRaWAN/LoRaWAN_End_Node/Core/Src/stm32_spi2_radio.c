@@ -8,7 +8,7 @@ static void SPI2_MspDeInit(SPI_HandleTypeDef *spiHandle);
 HAL_StatusTypeDef MX_SPI2_Init(SPI_HandleTypeDef *hspi);
 static uint32_t SPI_GetPrescaler(uint32_t clock_src_hz, uint32_t baudrate_mbps);
 
-#define TIMEOUT_DURATION 1000
+#define TIMEOUT_DURATION 10000//10000
 
 SPI_HandleTypeDef hspi2;
 
@@ -107,7 +107,7 @@ HAL_StatusTypeDef MX_SPI2_Init(SPI_HandleTypeDef *hspi)
   hspi->Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi->Init.TIMode = SPI_TIMODE_DISABLE;
   hspi->Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi->Init.CRCPolynomial = 7;
+  //hspi->Init.CRCPolynomial = 7;
 	
 	__HAL_RCC_SPI2_CLK_ENABLE();
 	

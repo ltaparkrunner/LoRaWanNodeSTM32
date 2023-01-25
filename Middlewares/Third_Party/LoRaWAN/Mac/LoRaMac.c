@@ -1710,6 +1710,8 @@ static void OnRxWindow1TimerEvent( void* context )
     MacCtx.RxWindow1Config.RxSlot = RX_SLOT_WIN_1;
 
     RxWindowSetup( &MacCtx.RxWindowTimer1, &MacCtx.RxWindow1Config );
+		HAL_Delay(1);
+		HAL_Delay(1);
 }
 
 static void OnRxWindow2TimerEvent( void* context )
@@ -1728,6 +1730,7 @@ static void OnRxWindow2TimerEvent( void* context )
     MacCtx.RxWindow2Config.RxSlot = RX_SLOT_WIN_2;
 
     RxWindowSetup( &MacCtx.RxWindowTimer2, &MacCtx.RxWindow2Config );
+		HAL_Delay(1);
 }
 
 static void OnAckTimeoutTimerEvent( void* context )
@@ -2325,8 +2328,12 @@ static LoRaMacStatus_t Send( LoRaMacHeader_t* macHdr, uint8_t fPort, void* fBuff
     // Validate status
     if( ( status == LORAMAC_STATUS_OK ) || ( status == LORAMAC_STATUS_SKIPPED_APP_DATA ) )
     {
+				static LoRaMacStatus_t status2 = LORAMAC_STATUS_PARAMETER_INVALID;
         // Schedule frame, do not allow delayed transmissions
-        status = ScheduleTx( allowDelayedTx ); /* ST_WORKAROUND: Update Send request with new input parameter to allow delayed tx */
+        status2 = ScheduleTx( allowDelayedTx ); /* ST_WORKAROUND: Update Send request with new input parameter to allow delayed tx */
+				if (status2 != LORAMAC_STATUS_OK)
+					HAL_Delay(1);
+				status = status2;
     }
 
     // Post processing
@@ -2497,6 +2504,7 @@ static LoRaMacStatus_t ScheduleTx( bool allowDelayedTx )
     status = CheckForClassBCollision( );
     if( status != LORAMAC_STATUS_OK )
     {
+				HAL_Delay(1);
         return status;
     }
 
@@ -2507,6 +2515,7 @@ static LoRaMacStatus_t ScheduleTx( bool allowDelayedTx )
     status = SerializeTxFrame( );
     if( status != LORAMAC_STATUS_OK )
     {
+				HAL_Delay(1);
         return status;
     }
 
@@ -2922,15 +2931,12 @@ static LoRaMacStatus_t SendFrameOnChannel( uint8_t channel )
     }
 
     // Send now
+		//MacCtx.PktBufferLen = 0x10;
+		HAL_Delay(1000);
     Radio.Send( MacCtx.PktBuffer, MacCtx.PktBufferLen );
-/*		HAL_Delay(1500);
+		//HAL_Delay(1);
 		
-		Radio.Send( MacCtx.PktBuffer, MacCtx.PktBufferLen );
-		HAL_Delay(1500);
-		
-		Radio.Send( MacCtx.PktBuffer, MacCtx.PktBufferLen );
-		HAL_Delay(1500);
-*/    return LORAMAC_STATUS_OK;
+    return LORAMAC_STATUS_OK;
 }
 
 static LoRaMacStatus_t SetTxContinuousWave( uint16_t timeout )
