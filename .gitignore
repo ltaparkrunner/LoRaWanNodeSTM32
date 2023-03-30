@@ -56,3 +56,6 @@ dkms.conf
 *.htm*
 *.user1
 *.scvd
+
+# Debugger options
+*.dbgconf
