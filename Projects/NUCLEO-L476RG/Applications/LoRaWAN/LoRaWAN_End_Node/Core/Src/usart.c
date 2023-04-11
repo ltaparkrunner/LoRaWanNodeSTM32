@@ -133,11 +133,11 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uartHandle)
 
     /* Configure the NVIC for DMA */
     /* NVIC configuration for DMA transfer complete interrupt (USART1_TX) */
-    HAL_NVIC_SetPriority(USARTx_DMA_TX_IRQn, USARTx_Priority, 1);
+    HAL_NVIC_SetPriority(USARTx_DMA_TX_IRQn, 0x88/*USARTx_Priority*/, 1);
     HAL_NVIC_EnableIRQ(USARTx_DMA_TX_IRQn);
 
     /* NVIC for USART, to catch the TX complete */
-    HAL_NVIC_SetPriority(USARTx_IRQn, USARTx_DMA_Priority, 1);
+    HAL_NVIC_SetPriority(USARTx_IRQn, 0x88/*USARTx_DMA_Priority*/, 1);
     HAL_NVIC_EnableIRQ(USARTx_IRQn);
 
     /* USER CODE BEGIN USART2_MspInit 1 */

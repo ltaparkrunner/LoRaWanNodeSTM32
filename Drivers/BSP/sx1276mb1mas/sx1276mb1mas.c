@@ -247,7 +247,7 @@ void SX1276MB1MAS_RADIO_IoIrqInit(DioIrqHandler **irqHandlers)
   {
     HAL_EXTI_GetHandle(&hRADIO_DIO_exti[i], RADIO_DIO_EXTI_LINE[i]);
     HAL_EXTI_RegisterCallback(&hRADIO_DIO_exti[i], HAL_EXTI_COMMON_CB_ID, irqHandlers[i]);
-    HAL_NVIC_SetPriority(RADIO_DIO_IRQn[i], RADIO_DIO_IT_PRIO[i], 0x00);
+    HAL_NVIC_SetPriority(RADIO_DIO_IRQn[i], /*RADIO_DIO_IT_PRIO[i]*/0x88, 0x00);
     HAL_NVIC_EnableIRQ(RADIO_DIO_IRQn[i]);
   }
   CRITICAL_SECTION_END();

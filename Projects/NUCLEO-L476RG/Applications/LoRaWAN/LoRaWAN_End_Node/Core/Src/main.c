@@ -88,7 +88,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_LoRaWAN_Init();
   /* USER CODE BEGIN 2 */
-
+	MU_LoRaWAN_Process();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -96,7 +96,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    MX_LoRaWAN_Process();
+    //MX_LoRaWAN_Process();
 		//MU_LED_Toggle(1);
 		//HAL_Delay(400);
     /* USER CODE BEGIN 3 */
