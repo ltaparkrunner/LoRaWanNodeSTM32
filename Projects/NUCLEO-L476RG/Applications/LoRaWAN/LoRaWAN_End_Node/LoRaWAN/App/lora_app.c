@@ -259,9 +259,9 @@ void LoRaWAN_Init(void)
   /* USER CODE END LoRaWAN_Init_1 */
 
 	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
-	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, SendTxData);
+//	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, SendTxData);
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, ledSwitch2);
-	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, ledSwitch1);
+	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerEvent), UTIL_SEQ_RFU, ledSwitch1);
   /* Init Info table used by LmHandler*/
   LoraInfo_Init();
 
@@ -290,7 +290,7 @@ void LoRaWAN_Init(void)
     /* USER CODE BEGIN LoRaWAN_Init_3 */
 
     /* send every time button is pushed */
-    MU_PB_Init(BUTTON_MODE_EXTI); //BUTTON_USER, 
+    //MU_PB_Init(BUTTON_MODE_EXTI); //BUTTON_USER, 
     /* USER CODE END LoRaWAN_Init_3 */
   }
 
@@ -305,20 +305,20 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
   switch (GPIO_Pin)
   {
-    case  USER_BUTTON_PIN:
-      UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), CFG_SEQ_Prio_0);
-      break;
+//    case  USER_BUTTON_PIN:
+//      UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), CFG_SEQ_Prio_0);
+//      break;
     default:
       break;
   }
 }
-void CallbackRSTButton(void)//(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
-{
-	if (HAL_GPIO_ReadPin(SHIELD_RST_GPIO_PORT, SHIELD_RST_PIN) == GPIO_PIN_RESET)
-	{
-		HAL_Delay(100);
-	}
-}
+//void CallbackRSTButton(void)//(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+//{
+//	if (HAL_GPIO_ReadPin(SHIELD_RST_GPIO_PORT, SHIELD_RST_PIN) == GPIO_PIN_RESET)
+//	{
+//		HAL_Delay(100);
+//	}
+//}
 /* USER CODE END PB_Callbacks */
 
 /* Private functions ---------------------------------------------------------*/

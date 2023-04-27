@@ -46,10 +46,10 @@ extern "C" {
   */
 	
 
-typedef enum{
-	BUTTON_MODE_GPIO,
-	BUTTON_MODE_EXTI	
-}	ButtonMode_TypeDef;
+//typedef enum{
+//	BUTTON_MODE_GPIO,
+//	BUTTON_MODE_EXTI	
+//}	ButtonMode_TypeDef;
 
 #define HL1_Pin GPIO_PIN_14   				// Светодиоды 2 шт. на маленькой плате
 #define HL1_GPIO_Port GPIOE
@@ -138,30 +138,30 @@ typedef enum{
 /** @defgroup STM32L4XX_MU_BUTTON BUTTON
   * @{
   */
-#define BUTTONn                            1
+//#define BUTTONn                            1
 
 /**
   * @brief Key push-button
   */
-												
-#define USER_BUTTON_PIN                         GPIO_PIN_7	// кнопка RST на LED_Shield
-#define USER_BUTTON_GPIO_PORT                   GPIOD
-#define USER_BUTTON_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOD_CLK_ENABLE()
-#define USER_BUTTON_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOD_CLK_DISABLE()
-#define USER_BUTTON_EXTI_LINE                   EXTI_LINE_7
-#define USER_BUTTON_EXTI_IRQn                   EXTI9_5_IRQn
+//												
+//#define USER_BUTTON_PIN                         GPIO_PIN_7	// кнопка RST на LED_Shield
+//#define USER_BUTTON_GPIO_PORT                   GPIOD
+//#define USER_BUTTON_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOD_CLK_ENABLE()
+//#define USER_BUTTON_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOD_CLK_DISABLE()
+//#define USER_BUTTON_EXTI_LINE                   EXTI_LINE_7
+//#define USER_BUTTON_EXTI_IRQn                   EXTI9_5_IRQn
 /* Aliases */
-#define SHIELD_RST_PIN                          USER_BUTTON_PIN
-#define SHIELD_RST_GPIO_PORT                    USER_BUTTON_GPIO_PORT
-#define SHIELD_RST_GPIO_CLK_ENABLE()            USER_BUTTON_GPIO_CLK_ENABLE()
-#define SHIELD_RST_GPIO_CLK_DISABLE()           USER_BUTTON_GPIO_CLK_DISABLE()
-#define SHIELD_RST_EXTI_LINE                    USER_BUTTON_EXTI_LINE
-#define SHIELD_RST_EXTI_IRQn                    USER_BUTTON_EXTI_IRQn
+//#define SHIELD_RST_PIN                          USER_BUTTON_PIN
+//#define SHIELD_RST_GPIO_PORT                    USER_BUTTON_GPIO_PORT
+//#define SHIELD_RST_GPIO_CLK_ENABLE()            USER_BUTTON_GPIO_CLK_ENABLE()
+//#define SHIELD_RST_GPIO_CLK_DISABLE()           USER_BUTTON_GPIO_CLK_DISABLE()
+//#define SHIELD_RST_EXTI_LINE                    USER_BUTTON_EXTI_LINE
+//#define SHIELD_RST_EXTI_IRQn                    USER_BUTTON_EXTI_IRQn
 
 
-#define BUTTONx_GPIO_CLK_ENABLE(__BUTTON__)    do { if((__BUTTON__) == BUTTON_USER) { USER_BUTTON_GPIO_CLK_ENABLE(); } } while(0)
+//#define BUTTONx_GPIO_CLK_ENABLE(__BUTTON__)    do { if((__BUTTON__) == BUTTON_USER) { USER_BUTTON_GPIO_CLK_ENABLE(); } } while(0)
 
-#define BUTTONx_GPIO_CLK_DISABLE(__BUTTON__)   do { if((__BUTTON__) == BUTTON_USER) { USER_BUTTON_GPIO_CLK_DISABLE(); } } while(0)
+//#define BUTTONx_GPIO_CLK_DISABLE(__BUTTON__)   do { if((__BUTTON__) == BUTTON_USER) { USER_BUTTON_GPIO_CLK_DISABLE(); } } while(0)
 /**
   * @}
   */
@@ -227,7 +227,7 @@ void MU_Sound_Init(void);
 /** @addtogroup STM32L4XX_SHIELD_RST_Functions
   * @{
   */
-void MU_PB_Init(ButtonMode_TypeDef ButtonMode);	//Button_TypeDef Button,
+//void MU_PB_Init(ButtonMode_TypeDef ButtonMode);	//Button_TypeDef Button,
 //void             MU_PB_DeInit(Button_TypeDef Button);
 //uint32_t         MU_PB_GetState(Button_TypeDef Button);
 
