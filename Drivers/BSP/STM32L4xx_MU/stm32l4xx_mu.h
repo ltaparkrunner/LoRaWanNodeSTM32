@@ -51,6 +51,7 @@ extern "C" {
 //	BUTTON_MODE_EXTI	
 //}	ButtonMode_TypeDef;
 
+/*
 #define HL1_Pin GPIO_PIN_14   				// Светодиоды 2 шт. на маленькой плате
 #define HL1_GPIO_Port GPIOE
 #define HL2_Pin GPIO_PIN_15
@@ -96,6 +97,7 @@ extern "C" {
 
 #define BAT_POWER GPIO_PIN_0					// опросить напр¤жение батарейки
 #define BAT_POWER_GPIO_Port GPIOB
+*/
 
 /**
   * @}
@@ -143,25 +145,26 @@ extern "C" {
 /**
   * @brief Key push-button
   */
-//												
-//#define USER_BUTTON_PIN                         GPIO_PIN_7	// кнопка RST на LED_Shield
-//#define USER_BUTTON_GPIO_PORT                   GPIOD
-//#define USER_BUTTON_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOD_CLK_ENABLE()
-//#define USER_BUTTON_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOD_CLK_DISABLE()
-//#define USER_BUTTON_EXTI_LINE                   EXTI_LINE_7
-//#define USER_BUTTON_EXTI_IRQn                   EXTI9_5_IRQn
-/* Aliases */
-//#define SHIELD_RST_PIN                          USER_BUTTON_PIN
-//#define SHIELD_RST_GPIO_PORT                    USER_BUTTON_GPIO_PORT
-//#define SHIELD_RST_GPIO_CLK_ENABLE()            USER_BUTTON_GPIO_CLK_ENABLE()
-//#define SHIELD_RST_GPIO_CLK_DISABLE()           USER_BUTTON_GPIO_CLK_DISABLE()
-//#define SHIELD_RST_EXTI_LINE                    USER_BUTTON_EXTI_LINE
-//#define SHIELD_RST_EXTI_IRQn                    USER_BUTTON_EXTI_IRQn
+#define PWR_EN_PIN																GPIO_PIN_11
+#define PWR_EN_PORT																GPIOA
+#define PWR_EN_CLK_ENABLE()												__HAL_RCC_GPIOA_CLK_ENABLE()
+#define PWR_EN_CLK_DISABLE()												__HAL_RCC_GPIOA_CLK_DISABLE()
 
+#define BATMES_PIN																GPIO_PIN_10
+#define BATMES_PORT																GPIOA
+#define BATMES_CLK_ENABLE()												__HAL_RCC_GPIOA_CLK_ENABLE()
+#define BATMES_CLK_DISABLE()												__HAL_RCC_GPIOA_CLK_DISABLE()
 
-//#define BUTTONx_GPIO_CLK_ENABLE(__BUTTON__)    do { if((__BUTTON__) == BUTTON_USER) { USER_BUTTON_GPIO_CLK_ENABLE(); } } while(0)
+#define ADC_BAT_PIN																GPIO_PIN_1
+#define ADC_BAT_PORT															GPIOA
+#define ADC_BAT_CLK_ENABLE()											__HAL_RCC_GPIOA_CLK_ENABLE()
+#define ADC_BAT_CLK_DISABLE()											__HAL_RCC_GPIOA_CLK_DISABLE()
 
-//#define BUTTONx_GPIO_CLK_DISABLE(__BUTTON__)   do { if((__BUTTON__) == BUTTON_USER) { USER_BUTTON_GPIO_CLK_DISABLE(); } } while(0)
+#define ADC_DAT_PIN																GPIO_PIN_0
+#define ADC_DAT_PORT															GPIOA
+#define ADC_DAT_CLK_ENABLE()											__HAL_RCC_GPIOA_CLK_ENABLE()
+#define ADC_DAT_CLK_DISABLE()											__HAL_RCC_GPIOA_CLK_DISABLE()
+
 /**
   * @}
   */
