@@ -466,7 +466,7 @@
             <File>
               <FileName>usart_if.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Core/Src/usart_if.c</FilePath>
+              <FilePath>..\Core\Src\usart_if.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -749,11 +749,6 @@
           <GroupName>Utilities</GroupName>
           <Files>
             <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Utilities/trace/adv_trace/stm32_adv_trace.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32_lpm.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/lpm/tiny_lpm/stm32_lpm.c</FilePath>
@@ -783,6 +778,11 @@
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/misc/stm32_tiny_vsnprintf.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32_adv_trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -792,6 +792,21 @@
               <FileName>stm32l4xx_mu.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_MU\stm32l4xx_mu.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>JSON_settings</GroupName>
+          <Files>
+            <File>
+              <FileName>settings_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\settings_json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\tiny-json.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1257,7 +1272,7 @@
             <File>
               <FileName>usart_if.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Core/Src/usart_if.c</FilePath>
+              <FilePath>..\Core\Src\usart_if.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1660,11 +1675,6 @@
           <GroupName>Utilities</GroupName>
           <Files>
             <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Utilities/trace/adv_trace/stm32_adv_trace.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32_lpm.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/lpm/tiny_lpm/stm32_lpm.c</FilePath>
@@ -1694,6 +1704,11 @@
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/misc/stm32_tiny_vsnprintf.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32_adv_trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1703,6 +1718,21 @@
               <FileName>stm32l4xx_mu.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_MU\stm32l4xx_mu.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>JSON_settings</GroupName>
+          <Files>
+            <File>
+              <FileName>settings_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\settings_json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\tiny-json.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2168,7 +2198,7 @@
             <File>
               <FileName>usart_if.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Core/Src/usart_if.c</FilePath>
+              <FilePath>..\Core\Src\usart_if.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2520,11 +2550,6 @@
           <GroupName>Utilities</GroupName>
           <Files>
             <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Utilities/trace/adv_trace/stm32_adv_trace.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32_lpm.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/lpm/tiny_lpm/stm32_lpm.c</FilePath>
@@ -2554,6 +2579,11 @@
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/misc/stm32_tiny_vsnprintf.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32_adv_trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2563,6 +2593,21 @@
               <FileName>stm32l4xx_mu.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_MU\stm32l4xx_mu.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>JSON_settings</GroupName>
+          <Files>
+            <File>
+              <FileName>settings_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\settings_json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\tiny-json.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3028,7 +3073,7 @@
             <File>
               <FileName>usart_if.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Core/Src/usart_if.c</FilePath>
+              <FilePath>..\Core\Src\usart_if.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3431,11 +3476,6 @@
           <GroupName>Utilities</GroupName>
           <Files>
             <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Utilities/trace/adv_trace/stm32_adv_trace.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32_lpm.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/lpm/tiny_lpm/stm32_lpm.c</FilePath>
@@ -3465,6 +3505,11 @@
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/misc/stm32_tiny_vsnprintf.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32_adv_trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3474,6 +3519,21 @@
               <FileName>stm32l4xx_mu.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_MU\stm32l4xx_mu.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>JSON_settings</GroupName>
+          <Files>
+            <File>
+              <FileName>settings_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\settings_json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\tiny-json.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3939,7 +3999,7 @@
             <File>
               <FileName>usart_if.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Core/Src/usart_if.c</FilePath>
+              <FilePath>..\Core\Src\usart_if.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4342,11 +4402,6 @@
           <GroupName>Utilities</GroupName>
           <Files>
             <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Utilities/trace/adv_trace/stm32_adv_trace.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32_lpm.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/lpm/tiny_lpm/stm32_lpm.c</FilePath>
@@ -4376,6 +4431,11 @@
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/misc/stm32_tiny_vsnprintf.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32_adv_trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4385,6 +4445,21 @@
               <FileName>stm32l4xx_mu.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_MU\stm32l4xx_mu.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>JSON_settings</GroupName>
+          <Files>
+            <File>
+              <FileName>settings_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\settings_json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\tiny-json.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4850,7 +4925,7 @@
             <File>
               <FileName>usart_if.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Core/Src/usart_if.c</FilePath>
+              <FilePath>..\Core\Src\usart_if.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5253,11 +5328,6 @@
           <GroupName>Utilities</GroupName>
           <Files>
             <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../Utilities/trace/adv_trace/stm32_adv_trace.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32_lpm.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/lpm/tiny_lpm/stm32_lpm.c</FilePath>
@@ -5287,6 +5357,11 @@
               <FileType>1</FileType>
               <FilePath>../../../../../../Utilities/misc/stm32_tiny_vsnprintf.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32_adv_trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5296,6 +5371,21 @@
               <FileName>stm32l4xx_mu.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Drivers\BSP\STM32L4xx_MU\stm32l4xx_mu.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>JSON_settings</GroupName>
+          <Files>
+            <File>
+              <FileName>settings_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\settings_json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\tiny-json.c</FilePath>
             </File>
           </Files>
         </Group>

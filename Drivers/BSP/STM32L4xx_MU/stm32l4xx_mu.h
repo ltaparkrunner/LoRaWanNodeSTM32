@@ -51,7 +51,7 @@ extern "C" {
 //	BUTTON_MODE_EXTI	
 //}	ButtonMode_TypeDef;
 
-/*
+
 #define HL1_Pin GPIO_PIN_14   				// Светодиоды 2 шт. на маленькой плате
 #define HL1_GPIO_Port GPIOE
 #define HL2_Pin GPIO_PIN_15
@@ -59,6 +59,7 @@ extern "C" {
 
 #define SoundSign_Pin GPIO_PIN_7      // ?инамик на плате пульта
 #define SoundSign_GPIO_Port GPIOE
+/*
 #define HL3Sign_Pin GPIO_PIN_4				// —ветодиоды 3 шт. на плате пульта
 #define HL3Sign_GPIO_Port GPIOE
 #define HL2Sign_Pin GPIO_PIN_5

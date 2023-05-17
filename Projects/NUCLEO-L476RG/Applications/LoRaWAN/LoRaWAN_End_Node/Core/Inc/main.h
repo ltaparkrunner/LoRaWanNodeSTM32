@@ -71,29 +71,34 @@ void Error_Handler(void);
 
 /* Definition for USARTx's DMA Request */
 #define USARTx_TX_DMA_REQUEST             DMA_REQUEST_2
+#define USARTx_RX_DMA_REQUEST							DMA_REQUEST_2
 /* Definition for USARTx's DMA */
-#define USARTx_TX_DMA_CHANNEL             DMA1_Channel7
+#define USARTx_TX_DMA_CHANNEL             DMA1_Channel2
+#define USARTx_RX_DMA_CHANNEL							DMA1_Channel3
+
 
 /* Definition for USARTx's NVIC */
-#define USARTx_DMA_TX_IRQn                DMA1_Channel7_IRQn
-#define USARTx_DMA_TX_IRQHandler          DMA1_Channel7_IRQHandler
+#define USARTx_DMA_TX_IRQn                DMA1_Channel2_IRQn
+#define USARTx_DMA_TX_IRQHandler          DMA1_Channel2_IRQHandler
+#define USARTx_DMA_RX_IRQn                DMA1_Channel3_IRQn
+#define USARTx_DMA_RX_IRQHandler          DMA1_Channel3_IRQHandler
 
 /* Definition for USARTx's NVIC */
-#define USARTx_IRQn                      USART2_IRQn
+#define USARTx_IRQn                      USART3_IRQn
 #define USARTx_Priority 0
 #define USARTx_DMA_Priority 0
 
 
-#define USARTx_RX_Pin GPIO_PIN_3
-#define USARTx_RX_GPIO_Port GPIOA
-#define USARTx_TX_Pin GPIO_PIN_2
-#define USARTx_TX_GPIO_Port GPIOA
+#define USARTx_RX_Pin GPIO_PIN_9
+#define USARTx_RX_GPIO_Port GPIOD
+#define USARTx_TX_Pin GPIO_PIN_8
+#define USARTx_TX_GPIO_Port GPIOD
 
-#define USARTx_RX_GPIO_CLK_ENABLE()      __HAL_RCC_GPIOA_CLK_ENABLE()
-#define USARTx_TX_GPIO_CLK_ENABLE()      __HAL_RCC_GPIOA_CLK_ENABLE()
+#define USARTx_RX_GPIO_CLK_ENABLE()      __HAL_RCC_GPIOD_CLK_ENABLE()
+#define USARTx_TX_GPIO_CLK_ENABLE()      __HAL_RCC_GPIOD_CLK_ENABLE()
 
-#define USARTx_TX_AF                     GPIO_AF7_USART2
-#define USARTx_RX_AF                     GPIO_AF7_USART2
+#define USARTx_TX_AF                     GPIO_AF7_USART3
+#define USARTx_RX_AF                     GPIO_AF7_USART3
 
 /* USER CODE BEGIN Private defines */
 

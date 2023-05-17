@@ -25,7 +25,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "tiny-json.h"
+#include "string.h"
+#include "usart.h"
+#include "dma.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,7 +48,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+extern char set_JSON[];
+extern UART_HandleTypeDef huart3;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -88,7 +92,31 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_LoRaWAN_Init();
   /* USER CODE BEGIN 2 */
+	
+		//MX_DMA_Init();
+  MX_USART3_UART_Init();
+#define Num_Field 70
+	json_t pool[ Num_Field ];
+	json_t const *settings = json_create(set_JSON, pool, Num_Field);
+	if (settings == NULL) return -1;
+	
+	///////////////
+	json_t const* namefield = json_getProperty(settings, "LoRa_text");
+	if (namefield == NULL) return -1;
+	if (json_getType(namefield) != JSON_TEXT) return -1;
+	
+	//////////////////
+	char const* namevalue = json_getValue(namefield);
+	static char name2[150];
 
+  strcpy(name2, namevalue);
+	//HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+	HAL_UART_Transmit(&huart3, (uint8_t *)name2, 100, 800);
+	//strcpy(
+	//printf("%s%s%s", "LoRa_text: '", namevalue, "'.\n");
+	//printf(namevalue);
+	//printf("forever");
+	//printf(
   /* USER CODE END 2 */
 
   /* Infinite loop */

@@ -42,7 +42,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-
+extern UART_HandleTypeDef huart3;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -73,7 +73,8 @@ void HAL_MspInit(void)
   __HAL_RCC_WAKEUPSTOP_CLK_CONFIG(RCC_STOP_WAKEUPCLOCK_MSI);
 
   /* USER CODE BEGIN MspInit 1 */
-
+	//huart3.Instance = USART3;
+	//HAL_UART_MspInit(&huart3);
   /* USER CODE END MspInit 1 */
 }
 
