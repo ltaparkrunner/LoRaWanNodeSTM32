@@ -1,3 +1,8 @@
+#include <string.h>
+#include <ctype.h>
+#include "tiny-json.h"
+#include "settings_json.h"
+
 char set_JSON[] = "{\
 	\"LoRa_settings\": {\
 		\"DEVEUI\": 111101011010,\
@@ -60,3 +65,13 @@ char set_JSON[] = "{\
 	\"LoRa_Data\": [\"AD1\", \"INP1\", \"INP3\", \"AD4\", \"text\"],\
 	\"Command\": \"read_settings\"\
 }";
+
+json_t pool[ Num_Field ];
+json_t const *settings;// = json_create(set_JSON, pool, Num_Field);
+	
+	///////////////
+json_t const* namefield;// = json_getProperty(settings, "LoRa_text");
+
+	
+	//////////////////
+char const* namevalue;// = json_getValue(namefield);

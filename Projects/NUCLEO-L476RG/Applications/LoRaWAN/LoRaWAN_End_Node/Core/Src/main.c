@@ -93,7 +93,7 @@ int main(void)
   MX_LoRaWAN_Init();
   /* USER CODE BEGIN 2 */
 	
-		//MX_DMA_Init();
+	MX_DMA_Init();
   MX_USART3_UART_Init();
 #define Num_Field 70
 	json_t pool[ Num_Field ];
@@ -110,8 +110,13 @@ int main(void)
 	static char name2[150];
 
   strcpy(name2, namevalue);
-	//HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-	HAL_UART_Transmit(&huart3, (uint8_t *)name2, 100, 800);
+
+	//HAL_UART_Transmit(&huart3, (uint8_t *)name2, 100, 800);
+	if(HAL_UART_Transmit_DMA(&huart3, (uint8_t *)name2, 100) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	HAL_Delay(700);
 	//strcpy(
 	//printf("%s%s%s", "LoRa_text: '", namevalue, "'.\n");
 	//printf(namevalue);

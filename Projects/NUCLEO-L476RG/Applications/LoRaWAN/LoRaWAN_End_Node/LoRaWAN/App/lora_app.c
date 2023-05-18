@@ -405,6 +405,7 @@ static void ledSwitch2(void)
 	MU_LED_Toggle(LED2);
 //	MU_LED_Toggle(0);
 }
+#include "settings_json.h"
 static void SendTxData(void)
 {
   /* USER CODE BEGIN SendTxData_1 */
@@ -455,12 +456,13 @@ static void SendTxData(void)
 	pressure	= PRESSURE_DEFAULT_VAL;
 	
   AppData.Buffer[i++] = AppLedStateOn;
-  AppData.Buffer[i++] = (uint8_t)((pressure >> 8) & 0xFF);
-  AppData.Buffer[i++] = (uint8_t)(pressure & 0xFF);
-  AppData.Buffer[i++] = (uint8_t)(temperature & 0xFF);
-  AppData.Buffer[i++] = (uint8_t)((humidity >> 8) & 0xFF);
-  AppData.Buffer[i++] = (uint8_t)(humidity & 0xFF);
-
+//  AppData.Buffer[i++] = (uint8_t)((pressure >> 8) & 0xFF);
+//  AppData.Buffer[i++] = (uint8_t)(pressure & 0xFF);
+//  AppData.Buffer[i++] = (uint8_t)(temperature & 0xFF);
+//  AppData.Buffer[i++] = (uint8_t)((humidity >> 8) & 0xFF);
+//  AppData.Buffer[i++] = (uint8_t)(humidity & 0xFF);
+	i += fillBuff(&(AppData.Buffer[i]));	
+	
   if ((LmHandlerParams.ActiveRegion == LORAMAC_REGION_US915) || (LmHandlerParams.ActiveRegion == LORAMAC_REGION_AU915)
       || (LmHandlerParams.ActiveRegion == LORAMAC_REGION_AS923))
   {

@@ -112,53 +112,53 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uartHandle)
     GPIO_InitStruct.Alternate = GPIO_AF7_USART3; //USARTx_TX_AF;
     HAL_GPIO_Init(USARTx_TX_GPIO_Port, &GPIO_InitStruct);
 
-//    GPIO_InitStruct.Pin = USARTx_RX_Pin;
-//    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-//    GPIO_InitStruct.Pull = GPIO_NOPULL;
-//    GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
-//    GPIO_InitStruct.Alternate = USARTx_RX_AF;
-//    HAL_GPIO_Init(USARTx_RX_GPIO_Port, &GPIO_InitStruct);
+    GPIO_InitStruct.Pin = USARTx_RX_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
+    GPIO_InitStruct.Alternate = USARTx_RX_AF;
+    HAL_GPIO_Init(USARTx_RX_GPIO_Port, &GPIO_InitStruct);
 
     /* USART3 DMA Init */
     /* USART3_TX Init */
-//    /* Configure the DMA handler for Transmission process */
-//    hdma_usart3_tx.Instance                 = USARTx_TX_DMA_CHANNEL;
-//    hdma_usart3_tx.Init.Request             = USARTx_TX_DMA_REQUEST;
-//    hdma_usart3_tx.Init.Direction           = DMA_MEMORY_TO_PERIPH;
-//    hdma_usart3_tx.Init.PeriphInc           = DMA_PINC_DISABLE;
-//    hdma_usart3_tx.Init.MemInc              = DMA_MINC_ENABLE;
-//    hdma_usart3_tx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
-//    hdma_usart3_tx.Init.MemDataAlignment    = DMA_MDATAALIGN_BYTE;
-//    hdma_usart3_tx.Init.Mode                = DMA_NORMAL;
-//    hdma_usart3_tx.Init.Priority            = DMA_PRIORITY_LOW;
+    /* Configure the DMA handler for Transmission process */
+    hdma_usart3_tx.Instance                 = USARTx_TX_DMA_CHANNEL;
+    hdma_usart3_tx.Init.Request             = USARTx_TX_DMA_REQUEST;
+    hdma_usart3_tx.Init.Direction           = DMA_MEMORY_TO_PERIPH;
+    hdma_usart3_tx.Init.PeriphInc           = DMA_PINC_DISABLE;
+    hdma_usart3_tx.Init.MemInc              = DMA_MINC_ENABLE;
+    hdma_usart3_tx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
+    hdma_usart3_tx.Init.MemDataAlignment    = DMA_MDATAALIGN_BYTE;
+    hdma_usart3_tx.Init.Mode                = DMA_NORMAL;
+    hdma_usart3_tx.Init.Priority            = DMA_PRIORITY_LOW;
 
-//    if (HAL_DMA_Init(&hdma_usart3_tx) != HAL_OK)
-//    {
-//      Error_Handler();
-//    }
+    if (HAL_DMA_Init(&hdma_usart3_tx) != HAL_OK)
+    {
+      Error_Handler();
+    }
 
-//    /* Associate the initialized DMA handle to the UART handle */
-//    __HAL_LINKDMA(uartHandle, hdmatx, hdma_usart3_tx);
+    /* Associate the initialized DMA handle to the UART handle */
+    __HAL_LINKDMA(uartHandle, hdmatx, hdma_usart3_tx);
 
-//		/* USART3_RX Init */
-//		    /* Configure the DMA handler for Receiving process */
-//    hdma_usart3_rx.Instance                 = USARTx_RX_DMA_CHANNEL;
-//    hdma_usart3_rx.Init.Request             = USARTx_RX_DMA_REQUEST;
-//    hdma_usart3_rx.Init.Direction           = DMA_PERIPH_TO_MEMORY;
-//    hdma_usart3_rx.Init.PeriphInc           = DMA_PINC_DISABLE;
-//    hdma_usart3_rx.Init.MemInc              = DMA_MINC_ENABLE;
-//    hdma_usart3_rx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
-//    hdma_usart3_rx.Init.MemDataAlignment    = DMA_MDATAALIGN_BYTE;
-//    hdma_usart3_rx.Init.Mode                = DMA_NORMAL;
-//    hdma_usart3_rx.Init.Priority            = DMA_PRIORITY_LOW;
+		/* USART3_RX Init */
+		    /* Configure the DMA handler for Receiving process */
+    hdma_usart3_rx.Instance                 = USARTx_RX_DMA_CHANNEL;
+    hdma_usart3_rx.Init.Request             = USARTx_RX_DMA_REQUEST;
+    hdma_usart3_rx.Init.Direction           = DMA_PERIPH_TO_MEMORY;
+    hdma_usart3_rx.Init.PeriphInc           = DMA_PINC_DISABLE;
+    hdma_usart3_rx.Init.MemInc              = DMA_MINC_ENABLE;
+    hdma_usart3_rx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
+    hdma_usart3_rx.Init.MemDataAlignment    = DMA_MDATAALIGN_BYTE;
+    hdma_usart3_rx.Init.Mode                = DMA_NORMAL;
+    hdma_usart3_rx.Init.Priority            = DMA_PRIORITY_LOW;
 
-//    if (HAL_DMA_Init(&hdma_usart3_rx) != HAL_OK)
-//    {
-//      Error_Handler();
-//    }
+    if (HAL_DMA_Init(&hdma_usart3_rx) != HAL_OK)
+    {
+      Error_Handler();
+    }
 
-//    /* Associate the initialized DMA handle to the UART handle */
-//    __HAL_LINKDMA(uartHandle, hdmarx, hdma_usart3_rx);
+    /* Associate the initialized DMA handle to the UART handle */
+    __HAL_LINKDMA(uartHandle, hdmarx, hdma_usart3_rx);
 
     /* Configure the NVIC for DMA */
     /* NVIC configuration for DMA transfer complete interrupt (USART1_TX) */
@@ -166,8 +166,8 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uartHandle)
     //HAL_NVIC_EnableIRQ(USARTx_DMA_RX_IRQn);
 
     /* NVIC for USART, to catch the TX complete */
-//    HAL_NVIC_SetPriority(USARTx_IRQn, 0, 0);
-//    HAL_NVIC_EnableIRQ(USARTx_IRQn);
+    HAL_NVIC_SetPriority(USARTx_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(USARTx_IRQn);
 
     /* USER CODE BEGIN USART3_MspInit 1 */
 

@@ -223,7 +223,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart3)
 
   /* USER CODE END HAL_UART_TxCpltCallback_1 */
   /* buffer transmission complete*/
-  TxCpltCallback(NULL);
+  //TxCpltCallback(NULL);
   /* USER CODE BEGIN HAL_UART_TxCpltCallback_2 */
 
   /* USER CODE END HAL_UART_TxCpltCallback_2 */
