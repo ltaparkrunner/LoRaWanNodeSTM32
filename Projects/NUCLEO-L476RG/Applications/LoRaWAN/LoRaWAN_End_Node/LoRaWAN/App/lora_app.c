@@ -139,8 +139,8 @@ static void OnRxTimerLedEvent(void *context);
   */
 static void OnJoinTimerLedEvent(void *context);
 
-static void ledSwitch1(void);
-static void ledSwitch2(void);
+//static void ledSwitch1(void);
+//static void ledSwitch2(void);
 /* USER CODE END PFP */
 
 /* Private variables ---------------------------------------------------------*/
@@ -394,42 +394,42 @@ static void OnRxData(LmHandlerAppData_t *appData, LmHandlerRxParams_t *params)
   }
   /* USER CODE END OnRxData_1 */
 }
-static void ledSwitch1(void)
-{
-//	MU_LED_Toggle(1);
-	MU_LED_Toggle(LED1);
-}
+//static void ledSwitch1(void)
+//{
+////	MU_LED_Toggle(1);
+//	MU_LED_Toggle(LED1);
+//}
 
-static void ledSwitch2(void)
-{
-	MU_LED_Toggle(LED2);
-//	MU_LED_Toggle(0);
-}
+//static void ledSwitch2(void)
+//{
+//	MU_LED_Toggle(LED2);
+////	MU_LED_Toggle(0);
+//}
 #include "settings_json.h"
 static void SendTxData(void)
 {
   /* USER CODE BEGIN SendTxData_1 */
-  uint16_t pressure = 0;
-  int16_t temperature = 0;
-  sensor_t sensor_data;
+//  uint16_t pressure = 0;
+//  int16_t temperature = 0;
+//  sensor_t sensor_data;
   UTIL_TIMER_Time_t nextTxIn = 0;
 
 #ifdef CAYENNE_LPP
   uint8_t channel = 0;
 #else
-  uint16_t humidity = 0;
+//  uint16_t humidity = 0;
   uint32_t i = 0;
   int32_t latitude = 0;
-  int32_t longitude = 0;
-  uint16_t altitudeGps = 0;
+//  int32_t longitude = 0;
+//  uint16_t altitudeGps = 0;
 #endif /* CAYENNE_LPP */
 	/*
   EnvSensors_Read(&sensor_data);
 
 #if defined (SENSOR_ENABLED) && (SENSOR_ENABLED == 1)
-  temperature = (int16_t) sensor_data.temperature;
+//  temperature = (int16_t) sensor_data.temperature;
 #else
-  temperature = (SYS_GetTemperatureLevel() >> 8);
+//  temperature = (SYS_GetTemperatureLevel() >> 8);
 #endif */ /* SENSOR_ENABLED */
 //  pressure    = (uint16_t)(sensor_data.pressure * 100 / 10);      /* in hPa / 10 */
 
@@ -451,9 +451,9 @@ static void SendTxData(void)
   CayenneLppCopy(AppData.Buffer);
   AppData.BufferSize = CayenneLppGetSize();
 #else  /* not CAYENNE_LPP */
-  humidity    = HUMIDITY_DEFAULT_VAL;//(uint16_t)(sensor_data.humidity * 10);            /* in %*10     */
-	temperature = TEMPERATURE_DEFAULT_VAL;
-	pressure	= PRESSURE_DEFAULT_VAL;
+//  humidity    = HUMIDITY_DEFAULT_VAL;//(uint16_t)(sensor_data.humidity * 10);            /* in %*10     */
+//	temperature = TEMPERATURE_DEFAULT_VAL;
+//	pressure	= PRESSURE_DEFAULT_VAL;
 	
   AppData.Buffer[i++] = AppLedStateOn;
 //  AppData.Buffer[i++] = (uint8_t)((pressure >> 8) & 0xFF);
@@ -474,8 +474,8 @@ static void SendTxData(void)
   else
   {
     latitude = STSOP_LATTITUDE;	//sensor_data.latitude;
-    longitude = STSOP_LONGITUDE;	//sensor_data.longitude;
-		altitudeGps = ALTITUDE_GPS;		// 
+//    longitude = STSOP_LONGITUDE;	//sensor_data.longitude;
+//		altitudeGps = ALTITUDE_GPS;		// 
 		
     AppData.Buffer[i++] = 220;	//GetBatteryLevel();        /* 1 (very low) to 254 (fully charged) */
     AppData.Buffer[i++] = (uint8_t)((latitude >> 16) & 0xFF);

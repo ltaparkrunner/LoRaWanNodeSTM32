@@ -42,7 +42,7 @@
 #include "lorawan_conf.h"  /* LORAWAN_KMS */
 #include "radio.h"         /* needed for Random */
 #include "utilities.h"
-#include "mw_log_conf.h"   /* needed for MW_LOG */
+//#include "mw_log_conf.h"   /* needed for MW_LOG */
 #if (!defined (LORAWAN_KMS) || (LORAWAN_KMS == 0))
 #include "lorawan_aes.h"
 #include "cmac.h"
@@ -131,47 +131,47 @@ static void PrintKey( KeyIdentifier_t key )
     SecureElementStatus_t retval = SECURE_ELEMENT_ERROR;
     Key_t *keyItem;
     retval = SecureElementGetKeyByID(key, &keyItem);
-    if (retval == SECURE_ELEMENT_SUCCESS)
-    {
-        if (key == APP_KEY)
-        {
-            MW_LOG(TS_OFF, VLEVEL_M, "###### AppKey:      ");
-        }
-        else if (key == NWK_KEY)
-        {
-            MW_LOG(TS_OFF, VLEVEL_M, "###### NwkKey:      ");
-        }
-        else if (key == APP_S_KEY)
-        {
-            MW_LOG(TS_OFF, VLEVEL_M, "###### AppSKey:     ");
-        }
-        else if (key == NWK_S_KEY)
-        {
-            MW_LOG(TS_OFF, VLEVEL_M, "###### NwkSKey:     ");
-        }
-        else if (key == MC_ROOT_KEY)
-        {
-            MW_LOG(TS_OFF, VLEVEL_M, "###### MCRootKey:   ");
-        }
-        else if (key == MC_KE_KEY)
-        {
-            MW_LOG(TS_OFF, VLEVEL_M, "###### MCKEKey:     ");
-        }
-        else if (key == MC_KEY_0)
-        {
-            MW_LOG(TS_OFF, VLEVEL_M, "###### MCKey_0:     ");
-        }
-        else if (key == MC_APP_S_KEY_0)
-        {
-            MW_LOG(TS_OFF, VLEVEL_M, "###### MCAppSKey_0: ");
-        }
-        else if (key == MC_NWK_S_KEY_0)
-        {
-            MW_LOG(TS_OFF, VLEVEL_M, "###### MCNwkSKey_0: ");
-        }
-        MW_LOG(TS_OFF, VLEVEL_M, "%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X\r\n",
-               HEX16(keyItem->KeyValue));
-    }
+//    if (retval == SECURE_ELEMENT_SUCCESS)
+//    {
+//        if (key == APP_KEY)
+//        {
+//            MW_LOG(TS_OFF, VLEVEL_M, "###### AppKey:      ");
+//        }
+//        else if (key == NWK_KEY)
+//        {
+//            MW_LOG(TS_OFF, VLEVEL_M, "###### NwkKey:      ");
+//        }
+//        else if (key == APP_S_KEY)
+//        {
+//            MW_LOG(TS_OFF, VLEVEL_M, "###### AppSKey:     ");
+//        }
+//        else if (key == NWK_S_KEY)
+//        {
+//            MW_LOG(TS_OFF, VLEVEL_M, "###### NwkSKey:     ");
+//        }
+//        else if (key == MC_ROOT_KEY)
+//        {
+//            MW_LOG(TS_OFF, VLEVEL_M, "###### MCRootKey:   ");
+//        }
+//        else if (key == MC_KE_KEY)
+//        {
+//            MW_LOG(TS_OFF, VLEVEL_M, "###### MCKEKey:     ");
+//        }
+//        else if (key == MC_KEY_0)
+//        {
+//            MW_LOG(TS_OFF, VLEVEL_M, "###### MCKey_0:     ");
+//        }
+//        else if (key == MC_APP_S_KEY_0)
+//        {
+//            MW_LOG(TS_OFF, VLEVEL_M, "###### MCAppSKey_0: ");
+//        }
+//        else if (key == MC_NWK_S_KEY_0)
+//        {
+//            MW_LOG(TS_OFF, VLEVEL_M, "###### MCNwkSKey_0: ");
+//        }
+//        MW_LOG(TS_OFF, VLEVEL_M, "%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X\r\n",
+//               HEX16(keyItem->KeyValue));
+//    }
 }
 #endif /* KEY_EXTRACTABLE */
 
@@ -576,12 +576,12 @@ SecureElementStatus_t SecureElementInit( SecureElementNvmData_t *nvm, SecureElem
 #endif /* LORAWAN_KMS */
 
 #if (defined (KEY_EXTRACTABLE) && (KEY_EXTRACTABLE == 1))
-    MW_LOG(TS_OFF, VLEVEL_M, "###### OTAA ######\r\n");
-    PrintKey(APP_KEY);
-    PrintKey(NWK_KEY);
-    MW_LOG(TS_OFF, VLEVEL_M, "###### ABP  ######\r\n");
-    PrintKey(APP_S_KEY);
-    PrintKey(NWK_S_KEY);
+//    MW_LOG(TS_OFF, VLEVEL_M, "###### OTAA ######\r\n");
+//    PrintKey(APP_KEY);
+//    PrintKey(NWK_KEY);
+//    MW_LOG(TS_OFF, VLEVEL_M, "###### ABP  ######\r\n");
+//    PrintKey(APP_S_KEY);
+//    PrintKey(NWK_S_KEY);
 #endif /* KEY_EXTRACTABLE */
 
 #if !defined( SECURE_ELEMENT_PRE_PROVISIONED )

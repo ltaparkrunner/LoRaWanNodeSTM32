@@ -774,14 +774,14 @@
               <FilePath>../../../../../../Utilities/timer/stm32_timer.c</FilePath>
             </File>
             <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32_tiny_vsnprintf.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32_adv_trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1705,14 +1705,14 @@
               <FilePath>../../../../../../Utilities/timer/stm32_timer.c</FilePath>
             </File>
             <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32_tiny_vsnprintf.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32_adv_trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2585,14 +2585,14 @@
               <FilePath>../../../../../../Utilities/timer/stm32_timer.c</FilePath>
             </File>
             <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32_tiny_vsnprintf.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32_adv_trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3516,14 +3516,14 @@
               <FilePath>../../../../../../Utilities/timer/stm32_timer.c</FilePath>
             </File>
             <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32_tiny_vsnprintf.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32_adv_trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4447,14 +4447,14 @@
               <FilePath>../../../../../../Utilities/timer/stm32_timer.c</FilePath>
             </File>
             <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32_tiny_vsnprintf.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32_adv_trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5378,14 +5378,14 @@
               <FilePath>../../../../../../Utilities/timer/stm32_timer.c</FilePath>
             </File>
             <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32_tiny_vsnprintf.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32_adv_trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
             </File>
           </Files>
         </Group>

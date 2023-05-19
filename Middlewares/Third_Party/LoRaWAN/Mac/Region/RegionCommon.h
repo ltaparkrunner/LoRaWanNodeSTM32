@@ -632,9 +632,9 @@ uint32_t RegionCommonGetBandwidth( uint32_t drIndex, const uint32_t* bandwidths 
  * \param [IN] dr datarate
  *
  */
-void RegionCommonRxConfigPrint(LoRaMacRxSlot_t rxSlot,
-                               uint32_t frequency,
-                               int8_t dr);
+//void RegionCommonRxConfigPrint(LoRaMacRxSlot_t rxSlot,
+//                               uint32_t frequency,
+//                               int8_t dr);
 
 /*!
  * \brief Print the current TX configuration
@@ -644,7 +644,7 @@ void RegionCommonRxConfigPrint(LoRaMacRxSlot_t rxSlot,
  * \param [IN] dr datarate
  *
  */
-void RegionCommonTxConfigPrint(uint32_t frequency, int8_t dr);
+//void RegionCommonTxConfigPrint(uint32_t frequency, int8_t dr);
 /* ST_WORKAROUND_END */
 /*! \} defgroup REGIONCOMMON */
 

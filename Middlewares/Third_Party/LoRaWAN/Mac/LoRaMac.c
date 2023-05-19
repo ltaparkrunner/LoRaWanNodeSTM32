@@ -59,7 +59,7 @@
 #include "radio.h"
 
 #include "LoRaMac.h"
-#include "mw_log_conf.h"
+//#include "mw_log_conf.h"
 
 //#include "sx1276mb1mas.h"    // funct HAL_Delay
 
@@ -692,7 +692,7 @@ static void OnRadioTxDone( void )
     {
         MacCtx.MacCallbacks->MacProcessNotify( );
     }
-    MW_LOG(TS_ON, VLEVEL_M, "MAC txDone\r\n" );
+//    MW_LOG(TS_ON, VLEVEL_M, "MAC txDone\r\n" );
 }
 
 static void OnRadioRxDone( uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr )
@@ -709,7 +709,7 @@ static void OnRadioRxDone( uint8_t *payload, uint16_t size, int16_t rssi, int8_t
     {
         MacCtx.MacCallbacks->MacProcessNotify( );
     }
-    MW_LOG(TS_ON, VLEVEL_M, "MAC rxDone\r\n" );
+//    MW_LOG(TS_ON, VLEVEL_M, "MAC rxDone\r\n" );
 }
 
 static void OnRadioTxTimeout( void )
@@ -720,7 +720,7 @@ static void OnRadioTxTimeout( void )
     {
         MacCtx.MacCallbacks->MacProcessNotify( );
     }
-    MW_LOG(TS_ON, VLEVEL_M, "MAC txTimeOut\r\n" );
+//    MW_LOG(TS_ON, VLEVEL_M, "MAC txTimeOut\r\n" );
 }
 
 static void OnRadioRxError( void )
@@ -741,7 +741,7 @@ static void OnRadioRxTimeout( void )
     {
         MacCtx.MacCallbacks->MacProcessNotify( );
     }
-    MW_LOG(TS_ON, VLEVEL_M, "MAC rxTimeOut\r\n" );
+    //MW_LOG(TS_ON, VLEVEL_M, "MAC rxTimeOut\r\n" );
 }
 
 static void UpdateRxSlotIdleState( void )

@@ -1109,7 +1109,7 @@
 
   <Group>
     <GroupName>Application/Core</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1944,8 +1944,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</PathWithFileName>
-      <FilenameWithoutPath>stm32_adv_trace.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</PathWithFileName>
+      <FilenameWithoutPath>stm32_tiny_vsnprintf.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1956,8 +1956,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</PathWithFileName>
-      <FilenameWithoutPath>stm32_tiny_vsnprintf.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</PathWithFileName>
+      <FilenameWithoutPath>stm32_adv_trace.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

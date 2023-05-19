@@ -47,7 +47,7 @@
 #include "LmhPackage.h"
 #include "LmhpCompliance.h"
 #include "secure-element.h"
-#include "mw_log_conf.h"  /* needed for MW_LOG */
+//#include "mw_log_conf.h"  /* needed for MW_LOG */
 #include "lorawan_version.h"
 #include "lora_info.h"
 #if (!defined (LORAWAN_KMS) || (LORAWAN_KMS == 0))
@@ -351,7 +351,7 @@ LmHandlerErrorStatus_t LmHandlerConfigure( LmHandlerParams_t *handlerParams )
     }
     else
     {
-        MW_LOG(TS_ON, VLEVEL_ALWAYS, "error: Region is not defined in the MW: set lorawan_conf.h accordingly\r\n");
+        //MW_LOG(TS_ON, VLEVEL_ALWAYS, "error: Region is not defined in the MW: set lorawan_conf.h accordingly\r\n");
         while (1) {}  /* error: Region is not defined in the MW */
     }
 
@@ -385,18 +385,18 @@ LmHandlerErrorStatus_t LmHandlerConfigure( LmHandlerParams_t *handlerParams )
     mibReq.Param.DevAddr = CommissioningParams.DevAddr;
     LoRaMacMibSetRequestConfirm(&mibReq);
 
-    MW_LOG(TS_OFF, VLEVEL_M, "###### DevEui:  %02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X\r\n",
-           HEX8(CommissioningParams.DevEui));
-    MW_LOG(TS_OFF, VLEVEL_M, "###### AppEui:  %02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X\r\n",
-           HEX8(CommissioningParams.JoinEui));
-    MW_LOG(TS_OFF, VLEVEL_M, "###### DevAddr: %02X:%02X:%02X:%02X\r\n",
-           (unsigned)((unsigned char *)(&CommissioningParams.DevAddr))[3],
-           (unsigned)((unsigned char *)(&CommissioningParams.DevAddr))[2],
-           (unsigned)((unsigned char *)(&CommissioningParams.DevAddr))[1],
-           (unsigned)((unsigned char *)(&CommissioningParams.DevAddr))[0]);
+//    MW_LOG(TS_OFF, VLEVEL_M, "###### DevEui:  %02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X\r\n",
+//           HEX8(CommissioningParams.DevEui));
+//    MW_LOG(TS_OFF, VLEVEL_M, "###### AppEui:  %02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X\r\n",
+//           HEX8(CommissioningParams.JoinEui));
+//    MW_LOG(TS_OFF, VLEVEL_M, "###### DevAddr: %02X:%02X:%02X:%02X\r\n",
+//           (unsigned)((unsigned char *)(&CommissioningParams.DevAddr))[3],
+//           (unsigned)((unsigned char *)(&CommissioningParams.DevAddr))[2],
+//           (unsigned)((unsigned char *)(&CommissioningParams.DevAddr))[1],
+//           (unsigned)((unsigned char *)(&CommissioningParams.DevAddr))[0]);
 
 #if (defined (LORAWAN_KMS) && (LORAWAN_KMS == 1))
-    MW_LOG(TS_OFF, VLEVEL_L, "###### KMS ENABLED \r\n");
+    //MW_LOG(TS_OFF, VLEVEL_L, "###### KMS ENABLED \r\n");
 #endif /* LORAWAN_KMS == 1 */
 
     mibReq.Type = MIB_PUBLIC_NETWORK;
@@ -471,14 +471,14 @@ void LmHandlerJoin( ActivationType_t mode )
 #if (OVER_THE_AIR_ACTIVATION == 0)
     if ( mode == ACTIVATION_TYPE_OTAA )
     {
-        MW_LOG(TS_OFF, VLEVEL_M, "ERROR: OTAA mode not implemented\r\n");
+        //MW_LOG(TS_OFF, VLEVEL_M, "ERROR: OTAA mode not implemented\r\n");
         while (1);
     }
 #endif /* OVER_THE_AIR_ACTIVATION */
 #if (ACTIVATION_BY_PERSONALIZATION == 0)
     if ( mode == ACTIVATION_TYPE_ABP )
     {
-        MW_LOG(TS_OFF, VLEVEL_M, "ERROR: ABP mode not implemented\r\n");
+        //MW_LOG(TS_OFF, VLEVEL_M, "ERROR: ABP mode not implemented\r\n");
         while (1);
     }
 #endif /* ACTIVATION_BY_PERSONALIZATION */
@@ -1914,7 +1914,7 @@ LmHandlerErrorStatus_t LmHandlerSetAppSKey( uint8_t *appSKey )
 
 static void DisplayClassUpdate(DeviceClass_t deviceClass)
 {
-    MW_LOG(TS_OFF, VLEVEL_M, "Switch to Class %c done\r\n", "ABC"[deviceClass]);
+    //MW_LOG(TS_OFF, VLEVEL_M, "Switch to Class %c done\r\n", "ABC"[deviceClass]);
 }
 
 #if ( LORAMAC_CLASSB_ENABLED == 1 )
@@ -1922,17 +1922,17 @@ static void DisplayBeaconUpdate(LmHandlerBeaconParams_t *params)
 {
     static const char *EventBeaconStateStrings[] = { "BC_ACQUIRING", "BC_LOST", "BC_RECEIVED", "BC_NOT_RECEIVED" };
 
-    MW_LOG(TS_OFF, VLEVEL_M, "\r\n###### ========== %s\r\n", EventBeaconStateStrings[params->State]);
+    //MW_LOG(TS_OFF, VLEVEL_M, "\r\n###### ========== %s\r\n", EventBeaconStateStrings[params->State]);
     if (params->State == LORAMAC_HANDLER_BEACON_RX)
     {
-        MW_LOG(TS_OFF, VLEVEL_H, "###### BTIME:%010d | GW DESC:%d | GW INFO:%02X %02X %02X %02X %02X %02X\r\n",
-               params->Info.Time.Seconds, params->Info.GwSpecific.InfoDesc,
-               params->Info.GwSpecific.Info[0], params->Info.GwSpecific.Info[1],
-               params->Info.GwSpecific.Info[2], params->Info.GwSpecific.Info[3],
-               params->Info.GwSpecific.Info[4], params->Info.GwSpecific.Info[5]);
-        MW_LOG(TS_OFF, VLEVEL_H, "###### FREQ:%d | DR:%d | RSSI:%d | SNR:%d\r\n",
-               params->Info.Frequency, params->Info.Datarate,
-               params->Info.Rssi, params->Info.Snr);
+//        MW_LOG(TS_OFF, VLEVEL_H, "###### BTIME:%010d | GW DESC:%d | GW INFO:%02X %02X %02X %02X %02X %02X\r\n",
+//               params->Info.Time.Seconds, params->Info.GwSpecific.InfoDesc,
+//               params->Info.GwSpecific.Info[0], params->Info.GwSpecific.Info[1],
+//               params->Info.GwSpecific.Info[2], params->Info.GwSpecific.Info[3],
+//               params->Info.GwSpecific.Info[4], params->Info.GwSpecific.Info[5]);
+//        MW_LOG(TS_OFF, VLEVEL_H, "###### FREQ:%d | DR:%d | RSSI:%d | SNR:%d\r\n",
+//               params->Info.Frequency, params->Info.Datarate,
+//               params->Info.Rssi, params->Info.Snr);
     }
 }
 #endif /* LORAMAC_CLASSB_ENABLED == 1 */

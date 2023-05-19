@@ -30,7 +30,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "platform.h"
 #include "stm32_mem.h"       /* RADIO_MEMSET8 def in this file */
-#include "mw_log_conf.h"     /* mw trace conf */
+//#include "mw_log_conf.h"     /* mw trace conf */
 #include "radio_board_if.h"  /* low layer api (bsp) */
 #include "utilities_def.h"  /* low layer api (bsp) */
 #include "sys_debug.h"

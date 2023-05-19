@@ -81,12 +81,12 @@ static void Gpio_PreInit(void);
   * @param buff to update with timestamp
   * @param size of updated buffer
   */
-static void TimestampNow(uint8_t *buff, uint16_t *size);
+//static void TimestampNow(uint8_t *buff, uint16_t *size);
 
 /**
   * @brief  it calls UTIL_ADV_TRACE_VSNPRINTF
   */
-static void tiny_snprintf_like(char *buf, uint32_t maxsize, const char *strFormat, ...);
+//static void tiny_snprintf_like(char *buf, uint32_t maxsize, const char *strFormat, ...);
 
 /* USER CODE BEGIN PFP */
 
@@ -164,7 +164,7 @@ void UTIL_SEQ_Idle(void)
 uint8_t GetBatteryLevel(void)
 {
   uint8_t batteryLevel = 0;
-  uint16_t batteryLevelmV;
+//  uint16_t batteryLevelmV;
 
   /* USER CODE BEGIN GetBatteryLevel_0 */
 
@@ -241,18 +241,18 @@ uint32_t GetDevAddr(void)
 
 /* Private functions ---------------------------------------------------------*/
 
-static void TimestampNow(uint8_t *buff, uint16_t *size)
-{
-  /* USER CODE BEGIN TimestampNow_1 */
+//static void TimestampNow(uint8_t *buff, uint16_t *size)
+//{
+//  /* USER CODE BEGIN TimestampNow_1 */
 
-  /* USER CODE END TimestampNow_1 */
-  SysTime_t curtime = SysTimeGet();
-  tiny_snprintf_like((char *)buff, MAX_TS_SIZE, "%ds%03d:", curtime.Seconds, curtime.SubSeconds);
-  *size = strlen((char *)buff);
-  /* USER CODE BEGIN TimestampNow_2 */
+//  /* USER CODE END TimestampNow_1 */
+//  SysTime_t curtime = SysTimeGet();
+//  tiny_snprintf_like((char *)buff, MAX_TS_SIZE, "%ds%03d:", curtime.Seconds, curtime.SubSeconds);
+//  *size = strlen((char *)buff);
+//  /* USER CODE BEGIN TimestampNow_2 */
 
-  /* USER CODE END TimestampNow_2 */
-}
+//  /* USER CODE END TimestampNow_2 */
+//}
 
 static void Gpio_PreInit(void)
 {
@@ -318,19 +318,19 @@ void UTIL_ADV_TRACE_PostSendHook(void)
   /* USER CODE END UTIL_LPM_SetStopMode_2 */
 }
 
-static void tiny_snprintf_like(char *buf, uint32_t maxsize, const char *strFormat, ...)
-{
-  /* USER CODE BEGIN tiny_snprintf_like_1 */
+//static void tiny_snprintf_like(char *buf, uint32_t maxsize, const char *strFormat, ...)
+//{
+//  /* USER CODE BEGIN tiny_snprintf_like_1 */
 
-  /* USER CODE END tiny_snprintf_like_1 */
-  va_list vaArgs;
-  va_start(vaArgs, strFormat);
-  UTIL_ADV_TRACE_VSNPRINTF(buf, maxsize, strFormat, vaArgs);
-  va_end(vaArgs);
-  /* USER CODE BEGIN tiny_snprintf_like_2 */
+//  /* USER CODE END tiny_snprintf_like_1 */
+//  va_list vaArgs;
+//  va_start(vaArgs, strFormat);
+//  UTIL_ADV_TRACE_VSNPRINTF(buf, maxsize, strFormat, vaArgs);
+//  va_end(vaArgs);
+//  /* USER CODE BEGIN tiny_snprintf_like_2 */
 
-  /* USER CODE END tiny_snprintf_like_2 */
-}
+//  /* USER CODE END tiny_snprintf_like_2 */
+//}
 
 /* USER CODE BEGIN PrFD */
 

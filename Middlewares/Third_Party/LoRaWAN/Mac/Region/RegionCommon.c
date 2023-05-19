@@ -43,7 +43,7 @@
 #include "utilities.h"
 #include "RegionCommon.h"
 #include "systime.h"
-#include "mw_log_conf.h"
+//#include "mw_log_conf.h"
 
 #define BACKOFF_DC_1_HOUR                   100
 #define BACKOFF_DC_10_HOURS                 1000
@@ -552,7 +552,7 @@ void RegionCommonRxBeaconSetup( RegionCommonRxBeaconSetupParams_t* rxBeaconSetup
 
     Radio.Rx( rxBeaconSetupParams->RxTime );
     /* ST_WORKAROUND_BEGIN: Print Beacon parameters */
-    MW_LOG(TS_ON, VLEVEL_M, "RX_BC on freq %d Hz at DR %d\r\n", rxBeaconSetupParams->Frequency, rxBeaconSetupParams->BeaconDatarate );
+    //MW_LOG(TS_ON, VLEVEL_M, "RX_BC on freq %d Hz at DR %d\r\n", rxBeaconSetupParams->Frequency, rxBeaconSetupParams->BeaconDatarate );
     /* ST_WORKAROUND_END */
 }
 
@@ -684,22 +684,22 @@ uint32_t RegionCommonGetBandwidth( uint32_t drIndex, const uint32_t* bandwidths 
 }
 
 /* ST_WORKAROUND_BEGIN: Print Tx/Rx config */
-void RegionCommonRxConfigPrint(LoRaMacRxSlot_t rxSlot, uint32_t frequency, int8_t dr)
-{
-    const char *slotStrings[] = { "1", "2", "C", "Multi_C", "P", "Multi_P" };
+//void RegionCommonRxConfigPrint(LoRaMacRxSlot_t rxSlot, uint32_t frequency, int8_t dr)
+//{
+//    const char *slotStrings[] = { "1", "2", "C", "Multi_C", "P", "Multi_P" };
 
-    if ( rxSlot < RX_SLOT_NONE )
-    {
-        MW_LOG(TS_ON, VLEVEL_M,  "RX_%s on freq %d Hz at DR %d\r\n", slotStrings[rxSlot], frequency, dr );
-    }
-    else
-    {
-        MW_LOG(TS_ON, VLEVEL_M,  "RX on freq %d Hz at DR %d\r\n", frequency, dr );
-    }
-}
+//    if ( rxSlot < RX_SLOT_NONE )
+//    {
+//        MW_LOG(TS_ON, VLEVEL_M,  "RX_%s on freq %d Hz at DR %d\r\n", slotStrings[rxSlot], frequency, dr );
+//    }
+//    else
+//    {
+//        MW_LOG(TS_ON, VLEVEL_M,  "RX on freq %d Hz at DR %d\r\n", frequency, dr );
+//    }
+//}
 
-void RegionCommonTxConfigPrint(uint32_t frequency, int8_t dr)
-{
-    MW_LOG(TS_ON, VLEVEL_M,  "TX on freq %d Hz at DR %d\r\n", frequency, dr );
-}
+//void RegionCommonTxConfigPrint(uint32_t frequency, int8_t dr)
+//{
+//    MW_LOG(TS_ON, VLEVEL_M,  "TX on freq %d Hz at DR %d\r\n", frequency, dr );
+//}
 /* ST_WORKAROUND_END */

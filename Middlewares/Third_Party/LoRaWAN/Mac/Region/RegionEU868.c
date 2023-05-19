@@ -597,7 +597,7 @@ bool RegionEU868RxConfig( RxConfigParams_t* rxConfig, int8_t* datarate )
     /* ST_WORKAROUND_END */
 
     /* ST_WORKAROUND_BEGIN: Print Rx config */
-    RegionCommonRxConfigPrint(rxConfig->RxSlot, frequency, dr);
+    //RegionCommonRxConfigPrint(rxConfig->RxSlot, frequency, dr);
     /* ST_WORKAROUND_END */
 
     *datarate = (uint8_t) dr;

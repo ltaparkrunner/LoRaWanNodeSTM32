@@ -565,7 +565,7 @@ bool RegionRU864RxConfig( RxConfigParams_t* rxConfig, int8_t* datarate )
     /* ST_WORKAROUND_END */
 
     /* ST_WORKAROUND_BEGIN: Print Rx config */
-    RegionCommonRxConfigPrint(rxConfig->RxSlot, frequency, dr);
+    //RegionCommonRxConfigPrint(rxConfig->RxSlot, frequency, dr);
     /* ST_WORKAROUND_END */
 
     *datarate = (uint8_t) dr;
@@ -601,7 +601,7 @@ bool RegionRU864TxConfig( TxConfigParams_t* txConfig, int8_t* txPower, TimerTime
         Radio.SetTxConfig( modem, phyTxPower, 0, bandwidth, phyDr, 1, 8, false, true, 0, 0, false, 4000 );
     }
     /* ST_WORKAROUND_BEGIN: Print Tx config */
-    RegionCommonTxConfigPrint(RegionNvmGroup2->Channels[txConfig->Channel].Frequency, txConfig->Datarate);
+    //RegionCommonTxConfigPrint(RegionNvmGroup2->Channels[txConfig->Channel].Frequency, txConfig->Datarate);
     /* ST_WORKAROUND_END */
 
     // Update time-on-air

@@ -138,7 +138,7 @@ static const uint32_t RADIO_DIO_MODE[RADIO_DIOn] =
 
 /* Private function prototypes -----------------------------------------------*/
 
-static void SX1276MB1MAS_RADIO_SPI_IoInit(SPI_HandleTypeDef *spiHandle);
+//static void SX1276MB1MAS_RADIO_SPI_IoInit(SPI_HandleTypeDef *spiHandle);
 static void SX1276MB1MAS_RADIO_SPI_IoDeInit(void);
 
 /* Exported functions ---------------------------------------------------------*/
@@ -389,38 +389,38 @@ uint32_t SX1276MB1MAS_RADIO_GetDio1PinState(void)
   * @param  hspi  SPI handler
   * @retval None
 */
-static void SX1276MB1MAS_RADIO_SPI_IoInit(SPI_HandleTypeDef *spiHandle)
-{
-  GPIO_InitTypeDef GPIO_InitStruct;
-  /* USER CODE BEGIN SPI2_MspInit 0 */
+//static void SX1276MB1MAS_RADIO_SPI_IoInit(SPI_HandleTypeDef *spiHandle)
+//{
+//  GPIO_InitTypeDef GPIO_InitStruct;
+//  /* USER CODE BEGIN SPI2_MspInit 0 */
 
-  /* USER CODE END SPI2_MspInit 0 */
-  /* Enable Peripheral clock */
-  RADIO_SPI_SCK_GPIO_CLK_ENABLE();
-  RADIO_SPI_MOSI_GPIO_CLK_ENABLE();
-  RADIO_SPI_MISO_GPIO_CLK_ENABLE();
+//  /* USER CODE END SPI2_MspInit 0 */
+//  /* Enable Peripheral clock */
+//  RADIO_SPI_SCK_GPIO_CLK_ENABLE();
+//  RADIO_SPI_MOSI_GPIO_CLK_ENABLE();
+//  RADIO_SPI_MISO_GPIO_CLK_ENABLE();
 
-  /**SPI2 GPIO Configuration
-  PB10     ------> SPI2_SCK
-  PC2     ------> SPI2_MISO
-  PC3     ------> SPI2_MOSI
-    */
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;//GPIO_PULLDOWN;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+//  /**SPI2 GPIO Configuration
+//  PB10     ------> SPI2_SCK
+//  PC2     ------> SPI2_MISO
+//  PC3     ------> SPI2_MOSI
+//    */
+//  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+//  GPIO_InitStruct.Pull = GPIO_NOPULL;//GPIO_PULLDOWN;
+//  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
 
-  GPIO_InitStruct.Alternate = MU_SPI2_MOSI_GPIO_AF;//RADIO_SPI_MOSI_GPIO_AF;
-  GPIO_InitStruct.Pin = MU_SPI2_MOSI_GPIO_PIN;//RADIO_SPI_MOSI_GPIO_PIN;
-  HAL_GPIO_Init(MU_SPI2_MOSI_GPIO_PORT/*RADIO_SPI_MOSI_GPIO_PORT*/, &GPIO_InitStruct);
-	
-  GPIO_InitStruct.Alternate = MU_SPI2_MISO_GPIO_AF;//RADIO_SPI_MISO_GPIO_AF;
-  GPIO_InitStruct.Pin = MU_SPI2_MISO_GPIO_PIN;//RADIO_SPI_MISO_GPIO_PIN;
-  HAL_GPIO_Init(MU_SPI2_MISO_GPIO_PORT,/*RADIO_SPI_MISO_GPIO_PORT,*/ &GPIO_InitStruct);
-	
-  GPIO_InitStruct.Alternate = MU_SPI2_SCK_GPIO_AF;//RADIO_SPI_SCK_GPIO_AF;
-  GPIO_InitStruct.Pin = MU_SPI2_SCK_GPIO_PIN;//RADIO_SPI_SCK_GPIO_PIN;
-  HAL_GPIO_Init(MU_SPI2_SCK_GPIO_PORT, /*RADIO_SPI_SCK_GPIO_PORT,*/ &GPIO_InitStruct);
-}
+//  GPIO_InitStruct.Alternate = MU_SPI2_MOSI_GPIO_AF;//RADIO_SPI_MOSI_GPIO_AF;
+//  GPIO_InitStruct.Pin = MU_SPI2_MOSI_GPIO_PIN;//RADIO_SPI_MOSI_GPIO_PIN;
+//  HAL_GPIO_Init(MU_SPI2_MOSI_GPIO_PORT/*RADIO_SPI_MOSI_GPIO_PORT*/, &GPIO_InitStruct);
+//	
+//  GPIO_InitStruct.Alternate = MU_SPI2_MISO_GPIO_AF;//RADIO_SPI_MISO_GPIO_AF;
+//  GPIO_InitStruct.Pin = MU_SPI2_MISO_GPIO_PIN;//RADIO_SPI_MISO_GPIO_PIN;
+//  HAL_GPIO_Init(MU_SPI2_MISO_GPIO_PORT,/*RADIO_SPI_MISO_GPIO_PORT,*/ &GPIO_InitStruct);
+//	
+//  GPIO_InitStruct.Alternate = MU_SPI2_SCK_GPIO_AF;//RADIO_SPI_SCK_GPIO_AF;
+//  GPIO_InitStruct.Pin = MU_SPI2_SCK_GPIO_PIN;//RADIO_SPI_SCK_GPIO_PIN;
+//  HAL_GPIO_Init(MU_SPI2_SCK_GPIO_PORT, /*RADIO_SPI_SCK_GPIO_PORT,*/ &GPIO_InitStruct);
+//}
 
 /**
   * @brief  DeInitializes SPI MSP.
