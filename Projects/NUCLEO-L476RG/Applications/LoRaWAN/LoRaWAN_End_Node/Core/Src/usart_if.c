@@ -229,20 +229,20 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart3)
   /* USER CODE END HAL_UART_TxCpltCallback_2 */
 }
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart3)
-{
-  /* USER CODE BEGIN HAL_UART_RxCpltCallback_1 */
+//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart3)
+//{
+//  /* USER CODE BEGIN HAL_UART_RxCpltCallback_1 */
 
-  /* USER CODE END HAL_UART_RxCpltCallback_1 */
-  if ((NULL != RxCpltCallback) && (HAL_UART_ERROR_NONE == huart3->ErrorCode))
-  {
-    RxCpltCallback(&charRx, 1, 0);
-  }
-  HAL_UART_Receive_IT(huart3, &charRx, 1);
-  /* USER CODE BEGIN HAL_UART_RxCpltCallback_2 */
+//  /* USER CODE END HAL_UART_RxCpltCallback_1 */
+//  if ((NULL != RxCpltCallback) && (HAL_UART_ERROR_NONE == huart3->ErrorCode))
+//  {
+//    RxCpltCallback(&charRx, 1, 0);
+//  }
+//  HAL_UART_Receive_IT(huart3, &charRx, 1);
+//  /* USER CODE BEGIN HAL_UART_RxCpltCallback_2 */
 
-  /* USER CODE END HAL_UART_RxCpltCallback_2 */
-}
+//  /* USER CODE END HAL_UART_RxCpltCallback_2 */
+//}
 
 /* USER CODE BEGIN EF */
 
