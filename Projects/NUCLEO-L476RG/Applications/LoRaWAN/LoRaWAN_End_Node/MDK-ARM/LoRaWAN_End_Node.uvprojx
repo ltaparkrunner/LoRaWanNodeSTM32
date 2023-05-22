@@ -468,6 +468,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\usart_if.c</FilePath>
             </File>
+            <File>
+              <FileName>usart_transm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\usart_transm.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1278,6 +1283,11 @@
               <FileName>usart_if.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\usart_if.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart_transm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\usart_transm.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2210,6 +2220,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\usart_if.c</FilePath>
             </File>
+            <File>
+              <FileName>usart_transm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\usart_transm.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3089,6 +3104,11 @@
               <FileName>usart_if.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\usart_if.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart_transm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\usart_transm.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4021,6 +4041,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\usart_if.c</FilePath>
             </File>
+            <File>
+              <FileName>usart_transm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\usart_transm.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4951,6 +4976,11 @@
               <FileName>usart_if.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\usart_if.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart_transm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\usart_transm.c</FilePath>
             </File>
           </Files>
         </Group>

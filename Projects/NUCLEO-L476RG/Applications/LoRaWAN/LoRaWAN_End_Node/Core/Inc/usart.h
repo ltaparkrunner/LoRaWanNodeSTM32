@@ -40,7 +40,7 @@ extern UART_HandleTypeDef huart3;
 void MX_USART3_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void USART_transm_Init(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

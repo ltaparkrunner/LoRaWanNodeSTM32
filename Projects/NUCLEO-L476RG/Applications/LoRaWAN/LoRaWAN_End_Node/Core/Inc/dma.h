@@ -34,7 +34,8 @@ extern "C" {
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
-
+#define RXBuffLength				200
+#define RXBUFFERSIZE				200
 /* USER CODE END Private defines */
 
 void MX_DMA_Init(void);

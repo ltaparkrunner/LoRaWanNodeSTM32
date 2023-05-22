@@ -25,6 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "settings_json.h"
 #include "tiny-json.h"
 #include "string.h"
 #include "usart.h"
@@ -96,7 +97,7 @@ int main(void)
 	
 	MX_DMA_Init();
   MX_USART3_UART_Init();
-#define Num_Field 70
+
 	json_t pool[ Num_Field ];
 	json_t const *settings = json_create(set_JSON, pool, Num_Field);
 	if (settings == NULL) return -1;
