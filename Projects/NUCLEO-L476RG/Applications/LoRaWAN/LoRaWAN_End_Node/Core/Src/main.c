@@ -51,6 +51,7 @@
 /* USER CODE BEGIN PV */
 extern char set_JSON[];
 extern UART_HandleTypeDef huart3;
+uint8_t aRxBuffer[RXBUFFERSIZE];
 uint32_t RxReady = 0;
 /* USER CODE END PV */
 
@@ -120,7 +121,6 @@ int main(void)
 	}
 	HAL_Delay(700);
 
-	uint8_t aRxBuffer[RXBUFFERSIZE];
 	RxReady = 0;
 	if(HAL_UART_Receive_DMA(&huart3, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
 	{

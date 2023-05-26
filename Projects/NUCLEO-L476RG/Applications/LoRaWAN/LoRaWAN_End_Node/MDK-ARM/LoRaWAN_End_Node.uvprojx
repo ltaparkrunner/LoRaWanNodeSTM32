@@ -818,6 +818,11 @@
               <FileType>1</FileType>
               <FilePath>.\fillBuff.c</FilePath>
             </File>
+            <File>
+              <FileName>tiny-json_extra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\tiny-json_extra.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -1754,6 +1759,11 @@
               <FileType>1</FileType>
               <FilePath>.\fillBuff.c</FilePath>
             </File>
+            <File>
+              <FileName>tiny-json_extra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\tiny-json_extra.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -2638,6 +2648,11 @@
               <FileName>fillBuff.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\fillBuff.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json_extra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\tiny-json_extra.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3575,6 +3590,11 @@
               <FileType>1</FileType>
               <FilePath>.\fillBuff.c</FilePath>
             </File>
+            <File>
+              <FileName>tiny-json_extra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\tiny-json_extra.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -4511,6 +4531,11 @@
               <FileType>1</FileType>
               <FilePath>.\fillBuff.c</FilePath>
             </File>
+            <File>
+              <FileName>tiny-json_extra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\tiny-json_extra.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -5446,6 +5471,11 @@
               <FileName>fillBuff.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\fillBuff.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json_extra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\tiny-json_extra.c</FilePath>
             </File>
           </Files>
         </Group>

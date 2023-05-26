@@ -8,7 +8,7 @@
 extern DMA_HandleTypeDef hdma_usart3_rx;
 extern uint8_t aRxBuffer[RXBUFFERSIZE];
 
-uint32_t Message_parsing(uint32_t length);
+int32_t Message_parsing(uint32_t length);
 	
 void USART_transm_Init(void)
 {
@@ -29,7 +29,7 @@ void USART_receive_func(void)
 	}
 }
 #include "tiny-json.h"
-uint32_t Message_parsing(uint32_t length)
+int32_t Message_parsing(uint32_t length)
 {
 	json_t pool[ Num_Field ];
 	json_t const *settings = json_create((char*)aRxBuffer, pool, Num_Field);
@@ -46,10 +46,10 @@ uint32_t Message_parsing(uint32_t length)
 
   strcpy(name2, namevalue);
 	
-	
+	return 0;
 }
 
 int32_t parseStruct(void)
 {
-	
+	return 0;
 }
