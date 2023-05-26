@@ -8,12 +8,113 @@ struct node{
 	int32_t level;
 };
 
+struct field{
+	char name[20];
+	uint64_t min;
+	uint64_t max;
+	uint32_t bytes;
+	int level;
+	jsonType_t ty;
+};
+
+//extern struct field JSON_arr[Json_Descript_Length];
+extern char sets_JSON[];
 struct node props[Num_Field];
 int32_t props_pointer = 0;
 const json_t* stack[Num_Field];			///????
 int32_t stack_pointer = 0;
+uint8_t buff[Buff_Len];
+uint32_t stack2[Json_Descript_Length];
+uint32_t stack2_pointer = 0;
 
-void createStack()
+struct field JSON_arr[Json_Descript_Length] = {
+															{"LoRa_settings",0,0,0,0,JSON_OBJ},
+																{"DEVEUI",0,0xffffffffffff,8,1,JSON_INTEGER},
+																{"APPKEY",0,0xffffffffff,8,1,JSON_INTEGER},
+																{"FREQ",86400000,87000000,4,1,JSON_INTEGER},
+																{"FR",4,12,1,1,JSON_INTEGER},
+															{"UART3",0,0,1,0,JSON_BOOLEAN},
+															
+															{"LED2",0,0,0,0,JSON_OBJ},
+																{"USB",0,0,0,1,JSON_OBJ},
+																	{"sec",0,60,1,2,JSON_INTEGER},
+																	{"min",0,60,1,2,JSON_INTEGER},
+																	{"hour",0,24,1,2,JSON_INTEGER},
+																	{"days",0,1000,2,2,JSON_INTEGER},
+																	{"work",0,1000,2,2,JSON_BOOLEAN},
+																{"battery",0,0,0,1,JSON_OBJ},
+																	{"sec",0,60,1,2,JSON_INTEGER},
+																	{"min",0,60,1,2,JSON_INTEGER},
+																	{"hour",0,24,1,2,JSON_INTEGER},
+																	{"days",0,1000,2,2,JSON_INTEGER},
+																	{"work",0,1000,2,2,JSON_BOOLEAN},
+																	
+															{"LED1",0,0,0,0,JSON_OBJ},
+																{"USB",0,0,0,1,JSON_OBJ},
+																	{"blinks",0,0,0,2,JSON_OBJ},
+																		{"msec",0,100,1,3,JSON_INTEGER},
+																		{"times",0,100,1,3,JSON_INTEGER},		
+																	{"battery",0,0,0,2,JSON_OBJ},
+																		{"sec",0,60,1,3,JSON_INTEGER},
+																		{"min",0,60,1,3,JSON_INTEGER},
+																		{"hour",0,24,1,3,JSON_INTEGER},
+																		{"days",0,1000,2,3,JSON_INTEGER},
+																		{"work",0,1000,1,3,JSON_BOOLEAN},
+																{"LoRa",0,0,0,1,JSON_OBJ},
+																	{"blinks",0,0,0,2,JSON_OBJ},
+																		{"msec",0,100,1,3,JSON_INTEGER},
+																		{"times",0,100,1,3,JSON_INTEGER},		
+																	{"battery",0,0,0,2,JSON_OBJ},
+																		{"sec",0,60,1,3,JSON_INTEGER},
+																		{"min",0,60,1,3,JSON_INTEGER},
+																		{"hour",0,24,1,3,JSON_INTEGER},
+																		{"days",0,1000,2,3,JSON_INTEGER},
+																		{"work",0,1000,1,3,JSON_BOOLEAN},
+																{"period_LoRa",0,0,0,1,JSON_OBJ},
+																	{"sec",0,60,1,2,JSON_INTEGER},
+																	{"min",0,60,1,2,JSON_INTEGER},
+																	{"hour",0,24,1,2,JSON_INTEGER},
+																	{"days",0,1000,2,2,JSON_INTEGER},
+																	{"work",0,1000,2,2,JSON_BOOLEAN},
+															{"LoRa_text",0,0,34,0,JSON_TEXT},
+															{"LoRa_Data",0,0,5,0,JSON_ARRAY},
+															{"Command",0,0,1,0,JSON_BOOLEAN}
+															//	\"LoRa_Data\": [\"AD1\", \"INP1\", \"INP3\", \"AD4\", \"text\"],
+};
+
+void initStack2(void)
+{
+	stack2_pointer = 0;
+}
+int32_t stack2IsEmpty()
+{
+	if( stack2_pointer == 0 ) return 1;
+	else return 0;
+}
+int32_t push2(uint32_t indx)
+{
+	if(stack2_pointer <= Num_Field)
+	{
+		stack2[stack2_pointer] = indx;
+		stack2_pointer++;
+		return 0;
+	}
+	else return -1;
+}
+int32_t pop2(void)
+{
+	int32_t retvalue;
+	if(stack2_pointer > 0)
+	{
+		retvalue = stack2[stack2_pointer];
+		stack2_pointer--;
+		return retvalue;
+	}
+	else return NULL; // or JSON_NULL
+}
+
+
+void initStack()
 {
 	stack_pointer = 0;
 }
@@ -59,6 +160,16 @@ const json_t* pop(void)
 	}
 	else return NULL; // or JSON_NULL
 }
+static void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
 ///* Search a property by its name in a JSON object. */
 //json_t const* json_getProperty( json_t const* obj, char const* property ) {
 //    json_t const* sibling;
@@ -72,7 +183,7 @@ const json_t* pop(void)
 struct node* json_allProperties( json_t const* obj, char const* property ) {
     json_t const* sibling = obj->u.c.child;
 	 int32_t level = 0;
-	createStack();
+	initStack();
 	while(sibling && stackIsEmpty())
 	{
 		to_list(sibling, level);
@@ -92,4 +203,66 @@ struct node* json_allProperties( json_t const* obj, char const* property ) {
 			if(sibling == NULL) break;
 	}
 	return props;
+}
+int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty)
+{
+//	json_t pool[ qty ];
+	json_t const *js_sets = json_create(str, mem, qty);
+	uint32_t buff_len = 0;
+	uint32_t buff_ptr = 0;
+	uint64_t tempI;
+	uint8_t tempB;
+	const char* tempT;
+	int32_t j2 = 0;
+	int32_t len = 0;
+	
+	for(int i = 0; i < Json_Descript_Length; i++)
+	{
+		buff_len += JSON_arr[i].bytes;
+	}
+	
+	initStack();
+	const json_t* js_ptr = json_getChild(js_sets);
+	
+	//for(int i = 0; i < Json_Descript_Length; i++)
+	while(js_ptr != NULL  ||  !stackIsEmpty())
+	{						
+				if(js_ptr->name == JSON_arr[j2].name){
+					switch(js_ptr->type){
+					case JSON_OBJ:
+						push(js_ptr); // or push(js_ptr->sibling)
+						js_ptr = json_getChild(js_ptr);	
+					break;
+					case JSON_INTEGER:
+						tempI = json_getInteger(js_ptr);
+						for(int i2=0; JSON_arr[j2].bytes; i2++)
+						{
+							buff[buff_ptr++] = (uint8_t)tempI & 0xff;
+							tempI >>= 1;
+						}
+						js_ptr = js_ptr->sibling;
+						break;
+					case JSON_BOOLEAN:
+						tempB = json_getBoolean(js_ptr);
+						buff[buff_ptr++] = tempB;
+						js_ptr = js_ptr->sibling;
+						break;
+					case JSON_TEXT:
+						tempT = json_getValue(js_ptr);
+						//len = len
+						for(int i2=0; JSON_arr[j2].bytes; i2++)
+							buff[buff_ptr++] = tempT[i2];
+						js_ptr = js_ptr->sibling;
+						break;
+					default: Error_Handler();
+					}
+				}
+				else   Error_Handler();
+				
+				while(js_ptr == NULL && !stackIsEmpty())
+					js_ptr = pop()->sibling;
+
+				if(js_ptr == NULL && stackIsEmpty()) break;	
+	}
+	return 0;
 }

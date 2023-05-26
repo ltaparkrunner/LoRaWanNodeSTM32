@@ -49,7 +49,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-extern char set_JSON[];
+extern char sets_JSON[];
 extern UART_HandleTypeDef huart3;
 uint8_t aRxBuffer[RXBUFFERSIZE];
 uint32_t RxReady = 0;
@@ -100,7 +100,7 @@ int main(void)
   MX_USART3_UART_Init();
 
 	json_t pool[ Num_Field ];
-	json_t const *settings = json_create(set_JSON, pool, Num_Field);
+	json_t const *settings = json_create(sets_JSON, pool, Num_Field);
 	if (settings == NULL) return -1;
 	
 	///////////////

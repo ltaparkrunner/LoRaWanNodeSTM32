@@ -4,7 +4,7 @@
 #include "tiny-json.h"
 #include "settings_json.h"
 
-extern char set_JSON[];
+extern char sets_JSON[];
 extern json_t pool[ Num_Field ];
 extern json_t const *settings;
 extern json_t const* namefield;
@@ -12,7 +12,7 @@ extern char const* namevalue;
 static char name2[] = "Soon as early Dawn appeared";
 int32_t fetch_text()
 {
-	settings = json_create(set_JSON, pool, Num_Field);
+	settings = json_create(sets_JSON, pool, Num_Field);
 	if (settings == NULL) return -1;
 	
 	///////////////
