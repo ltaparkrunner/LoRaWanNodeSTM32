@@ -1,4 +1,5 @@
 #include "tiny-json.h"
+#include "tiny-json_extra.h"
 #include <string.h>
 #include "settings_json.h"
 
@@ -17,7 +18,7 @@ struct field{
 	jsonType_t ty;
 };
 
-//extern struct field JSON_arr[Json_Descript_Length];
+//extern struct field json_descr[Json_Descript_Length];
 extern char sets_JSON[];
 struct node props[Num_Field];
 int32_t props_pointer = 0;
@@ -27,14 +28,14 @@ uint8_t buff[Buff_Len];
 uint32_t stack2[Json_Descript_Length];
 uint32_t stack2_pointer = 0;
 
-struct field JSON_arr[Json_Descript_Length] = {
+struct field json_descr[Json_Descript_Length] = {
 															{"LoRa_settings",0,0,0,0,JSON_OBJ},
 																{"DEVEUI",0,0xffffffffffff,8,1,JSON_INTEGER},
 																{"APPKEY",0,0xffffffffff,8,1,JSON_INTEGER},
 																{"FREQ",86400000,87000000,4,1,JSON_INTEGER},
 																{"FR",4,12,1,1,JSON_INTEGER},
 															{"UART3",0,0,1,0,JSON_BOOLEAN},
-															
+
 															{"LED2",0,0,0,0,JSON_OBJ},
 																{"USB",0,0,0,1,JSON_OBJ},
 																	{"sec",0,60,1,2,JSON_INTEGER},
@@ -54,7 +55,7 @@ struct field JSON_arr[Json_Descript_Length] = {
 																	{"blinks",0,0,0,2,JSON_OBJ},
 																		{"msec",0,100,1,3,JSON_INTEGER},
 																		{"times",0,100,1,3,JSON_INTEGER},		
-																	{"battery",0,0,0,2,JSON_OBJ},
+																	{"period",0,0,0,2,JSON_OBJ},
 																		{"sec",0,60,1,3,JSON_INTEGER},
 																		{"min",0,60,1,3,JSON_INTEGER},
 																		{"hour",0,24,1,3,JSON_INTEGER},
@@ -64,19 +65,21 @@ struct field JSON_arr[Json_Descript_Length] = {
 																	{"blinks",0,0,0,2,JSON_OBJ},
 																		{"msec",0,100,1,3,JSON_INTEGER},
 																		{"times",0,100,1,3,JSON_INTEGER},		
-																	{"battery",0,0,0,2,JSON_OBJ},
+																	{"period",0,0,0,2,JSON_OBJ},
 																		{"sec",0,60,1,3,JSON_INTEGER},
 																		{"min",0,60,1,3,JSON_INTEGER},
 																		{"hour",0,24,1,3,JSON_INTEGER},
 																		{"days",0,1000,2,3,JSON_INTEGER},
-																		{"work",0,1000,1,3,JSON_BOOLEAN},
+																	{"work",0,1000,1,3,JSON_BOOLEAN},
 																{"period_LoRa",0,0,0,1,JSON_OBJ},
+
 																	{"sec",0,60,1,2,JSON_INTEGER},
 																	{"min",0,60,1,2,JSON_INTEGER},
 																	{"hour",0,24,1,2,JSON_INTEGER},
 																	{"days",0,1000,2,2,JSON_INTEGER},
-																	{"work",0,1000,2,2,JSON_BOOLEAN},
+
 															{"LoRa_text",0,0,34,0,JSON_TEXT},
+															{"LoRa_Data2",0,0,5,0,JSON_ARRAY},
 															{"LoRa_Data",0,0,5,0,JSON_ARRAY},
 															{"Command",0,0,1,0,JSON_BOOLEAN}
 															//	\"LoRa_Data\": [\"AD1\", \"INP1\", \"INP3\", \"AD4\", \"text\"],
@@ -154,11 +157,43 @@ const json_t* pop(void)
 	const json_t* retvalue;
 	if(stack_pointer > 0)
 	{
-		retvalue = stack[stack_pointer];
+		retvalue = (const json_t*) stack[stack_pointer - 1];
 		stack_pointer--;
 		return retvalue;
 	}
 	else return NULL; // or JSON_NULL
+}
+
+int32_t parse_array(const json_t* json_ptr, uint32_t* buff_ptr, int32_t j2)
+{
+// "ADC1\", \"INP1\", \"INP3\", \"ADC4\", \"TEXT\"	
+	//static char curEl[100];
+	const char* val = json_getValue(json_ptr);
+	const char* nm = json_getPropertyValue(json_ptr, json_descr[j2].name);
+	const char* nm2 = json_getPropertyValue(json_ptr, "LoRa_Data2");
+	json_t const* curEl = json_getChild( json_ptr );
+	const char* val2 = json_getValue(curEl);
+	char pool[10];
+	strncpy(pool, nm, 5);
+	strncpy(pool, nm2, 5);
+	strncpy(pool, val, 5);
+	strncpy(pool, val2, 5);
+	
+	//curEl = json_getText(json_ptr);
+	//curEl = objValue(json_ptr->u, pool);
+	for(int i2 = 0; i2<json_descr[j2].bytes; i2++)
+	{
+		if(strlen(curEl->name) == arrElLen)
+		{
+			if(strncmp(curEl->name, "AD_1", arrElLen)) buff[(*buff_ptr)++] = AD_1;
+			if(strncmp(curEl->name, "ADC4", arrElLen)) buff[(*buff_ptr)++] = ADC4;
+			if(strncmp(curEl->name, "INP1", arrElLen)) buff[(*buff_ptr)++] = INP1;
+			if(strncmp(curEl->name, "INP3", arrElLen)) buff[(*buff_ptr)++] = INP3;
+			if(strncmp(curEl->name, "TEXT", arrElLen)) buff[(*buff_ptr)++] = TEXT;
+		}
+		curEl = curEl -> sibling;
+	}
+	return json_descr[j2].bytes;
 }
 static void Error_Handler(void)
 {
@@ -204,65 +239,78 @@ struct node* json_allProperties( json_t const* obj, char const* property ) {
 	}
 	return props;
 }
+
 int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty)
 {
 //	json_t pool[ qty ];
-	json_t const *js_sets = json_create(str, mem, qty);
+	json_t const *json_sets = json_create(str, mem, qty);
 	uint32_t buff_len = 0;
 	uint32_t buff_ptr = 0;
-	uint64_t tempI;
-	uint8_t tempB;
-	const char* tempT;
-	int32_t j2 = 0;
+	static uint64_t tempI;
+	static uint8_t tempB;
+	static const char* tempT;
+	static int32_t j2 = 0;
 	int32_t len = 0;
 	
 	for(int i = 0; i < Json_Descript_Length; i++)
 	{
-		buff_len += JSON_arr[i].bytes;
+		buff_len += json_descr[i].bytes;
 	}
 	
 	initStack();
-	const json_t* js_ptr = json_getChild(js_sets);
+	const json_t* json_ptr = json_getChild(json_sets);
 	
 	//for(int i = 0; i < Json_Descript_Length; i++)
-	while(js_ptr != NULL  ||  !stackIsEmpty())
-	{						
-				if(js_ptr->name == JSON_arr[j2].name){
-					switch(js_ptr->type){
+	while(json_ptr != NULL  ||  !stackIsEmpty())
+	{				
+				len = strlen(json_descr[j2].name);
+				//int strncmp(const char * /*s1*/, const char * /*s2*/, size_t /*n*/)
+				int8_t rez = strncmp(json_ptr->name, json_descr[j2].name, len);
+				if(rez == 0){
+					switch(json_ptr->type){
 					case JSON_OBJ:
-						push(js_ptr); // or push(js_ptr->sibling)
-						js_ptr = json_getChild(js_ptr);	
+						push(json_ptr); // or push(json_ptr->sibling)
+						json_ptr = json_getChild(json_ptr);	
 					break;
 					case JSON_INTEGER:
-						tempI = json_getInteger(js_ptr);
-						for(int i2=0; JSON_arr[j2].bytes; i2++)
+						tempI = json_getInteger(json_ptr);
+						for(int i2=0; i2<json_descr[j2].bytes; i2++)
 						{
 							buff[buff_ptr++] = (uint8_t)tempI & 0xff;
 							tempI >>= 1;
 						}
-						js_ptr = js_ptr->sibling;
+						json_ptr = json_ptr->sibling;
 						break;
 					case JSON_BOOLEAN:
-						tempB = json_getBoolean(js_ptr);
+						tempB = json_getBoolean(json_ptr);
 						buff[buff_ptr++] = tempB;
-						js_ptr = js_ptr->sibling;
+						json_ptr = json_ptr->sibling;
 						break;
 					case JSON_TEXT:
-						tempT = json_getValue(js_ptr);
+						tempT = json_getValue(json_ptr);
 						//len = len
-						for(int i2=0; JSON_arr[j2].bytes; i2++)
+						for(int i2=0; i2<json_descr[j2].bytes; i2++)
 							buff[buff_ptr++] = tempT[i2];
-						js_ptr = js_ptr->sibling;
+						json_ptr = json_ptr->sibling;
 						break;
+					case JSON_ARRAY: 
+						//for(int i2=0; i2<json_descr[j2].bytes; i2++)
+							parse_array(json_ptr, &buff_ptr, j2);
+						json_ptr = json_ptr->sibling;
+						
 					default: Error_Handler();
 					}
 				}
 				else   Error_Handler();
 				
-				while(js_ptr == NULL && !stackIsEmpty())
-					js_ptr = pop()->sibling;
+				while(json_ptr == NULL && !stackIsEmpty())
+				{
+					json_ptr = pop();
+					json_ptr = json_ptr->sibling;
+				}
 
-				if(js_ptr == NULL && stackIsEmpty()) break;	
+				if(json_ptr == NULL && stackIsEmpty()) break;
+				j2++;
 	}
-	return 0;
+	return buff_ptr;
 }

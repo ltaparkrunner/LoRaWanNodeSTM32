@@ -8,7 +8,7 @@ char sets_JSON[] = "{\
 		\"DEVEUI\": 111101011010,\
 		\"APPKEY\": 1698162386,\
 		\"FREQ\": 86800000,\
-		\"fr\": 129374907\
+		\"FR\": 129374907\
 	},\
 	\"UART3\": \"on\",\
 	\"LED2\": {\
@@ -62,7 +62,8 @@ char sets_JSON[] = "{\
 		\"days\": 0	\
 	},\
 	\"LoRa_text\": \"Soon as early Dawn appeared, the rosy-fingered, up from his bed arose the dear son of Odysseus and put on his clothing.\",\
-	\"LoRa_Data\": [\"AD1\", \"INP1\", \"INP3\", \"AD4\", \"text\"],\
+	\"LoRa_Data2\": [5, 10, 2, 3, 1],\
+	\"LoRa_Data\": [\"AD_1\", \"INP1\", \"INP3\", \"ADC4\", \"TEXT\"],\
 	\"Command\": \"read_settings\"\
 }";
 

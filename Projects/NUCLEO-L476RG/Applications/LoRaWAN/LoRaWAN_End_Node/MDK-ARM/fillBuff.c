@@ -16,6 +16,7 @@ int32_t fetch_text()
 	if (settings == NULL) return -1;
 	
 	///////////////
+	
 	namefield = json_getProperty(settings, "LoRa_text");
 	if (namefield == NULL) return -1;
 	if (json_getType(namefield) != JSON_TEXT) return -1;
