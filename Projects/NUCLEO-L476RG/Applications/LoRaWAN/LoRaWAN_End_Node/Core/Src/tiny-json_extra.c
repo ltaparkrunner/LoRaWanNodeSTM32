@@ -79,8 +79,12 @@ struct field json_descr[Json_Descript_Length] = {
 																	{"days",0,1000,2,2,JSON_INTEGER},
 
 															{"LoRa_text",0,0,34,0,JSON_TEXT},
-															{"LoRa_Data2",0,0,5,0,JSON_ARRAY},
 															{"LoRa_Data",0,0,5,0,JSON_ARRAY},
+																{"AD_1", 0,0,1,1,JSON_TEXT},
+																{"INP1", 0,0,1,1,JSON_TEXT},
+																{"INP3", 0,0,1,1,JSON_TEXT},
+																{"AD_4", 0,0,1,1,JSON_TEXT},
+																{"TEXT", 0,0,1,1,JSON_TEXT},
 															{"Command",0,0,1,0,JSON_BOOLEAN}
 															//	\"LoRa_Data\": [\"AD1\", \"INP1\", \"INP3\", \"AD4\", \"text\"],
 };
@@ -168,16 +172,28 @@ int32_t parse_array(const json_t* json_ptr, uint32_t* buff_ptr, int32_t j2)
 {
 // "ADC1\", \"INP1\", \"INP3\", \"ADC4\", \"TEXT\"	
 	//static char curEl[100];
-	const char* val = json_getValue(json_ptr);
-	const char* nm = json_getPropertyValue(json_ptr, json_descr[j2].name);
-	const char* nm2 = json_getPropertyValue(json_ptr, "LoRa_Data2");
+	//const char* val = json_getValue(json_ptr);
+	//const char* nm = json_getPropertyValue(json_ptr, json_descr[j2].name);
+	//const char* nm2 = json_getPropertyValue(json_ptr, "LoRa_Data2");
+	
 	json_t const* curEl = json_getChild( json_ptr );
-	const char* val2 = json_getValue(curEl);
-	char pool[10];
-	strncpy(pool, nm, 5);
-	strncpy(pool, nm2, 5);
-	strncpy(pool, val, 5);
-	strncpy(pool, val2, 5);
+	const char* val2 = json_getPropertyValue(curEl, "AD_1");
+	bool val21 = json_getBoolean(curEl);
+	json_t const* curEl2 = json_getSibling( curEl );
+	const char* val3 = json_getPropertyValue(curEl2, "INP1");
+
+	bool val31 = json_getBoolean(curEl2);
+
+	if(val2) buff[(*buff_ptr)++] = AD_1;
+	else buff[(*buff_ptr)++] = 0;
+	if(val3) buff[(*buff_ptr)++] = INP1;
+	else buff[(*buff_ptr)++] = 0;	
+	
+//	char pool[10];
+//	strncpy(pool, val2, 5);
+//	strncpy(pool, val3, 5);
+//	strncpy(pool, val, 5);
+//	strncpy(pool, val2, 5);
 	
 	//curEl = json_getText(json_ptr);
 	//curEl = objValue(json_ptr->u, pool);

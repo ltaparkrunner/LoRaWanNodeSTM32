@@ -62,13 +62,12 @@ char sets_JSON[] = "{\
 		\"days\": 0	\
 	},\
 	\"LoRa_text\": \"Soon as early Dawn appeared, the rosy-fingered, up from his bed arose the dear son of Odysseus and put on his clothing.\",\
-	\"LoRa_Data2\": [5, 10, 2, 3, 1],\
-	\"LoRa_Data\": [\"AD_1\", \"INP1\", \"INP3\", \"ADC4\", \"TEXT\"],\
+	\"LoRa_Data\": [{\"AD_1\":true}, {\"INP1\":false}, {\"INP3\":false}, {\"AD_4\":true}, {\"TEXT\":false}],\
 	\"Command\": \"read_settings\"\
 }";
 
-
-
+//	\"LoRa_Data\": [{\"AD_1\":\"true\"}, {\"INP1\":\"false\"}],\
+//, {\"INP1\":true}, {\"INP3\":f}, {\"AD_4\":f}, {\"TEXT\":f}
 //struct node props[Num_Field];typedef enum {
 //    JSON_OBJ, JSON_ARRAY, JSON_TEXT, JSON_BOOLEAN,
 //    JSON_INTEGER, JSON_REAL, JSON_NULL

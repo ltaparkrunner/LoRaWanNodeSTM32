@@ -152,9 +152,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>315</LineNumber>
+          <LineNumber>310</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134283050</Address>
+          <Address>134283226</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -163,14 +163,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\Core\Src\tiny-json_extra.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../Core/Src/tiny-json_extra.c\315</Expression>
+          <Expression>\\sx1276mb1mas\../Core/Src/tiny-json_extra.c\310</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>304</LineNumber>
+          <LineNumber>177</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134282986</Address>
+          <Address>134285422</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -179,55 +179,39 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\Core\Src\tiny-json_extra.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../Core/Src/tiny-json_extra.c\304</Expression>
+          <Expression>\\sx1276mb1mas\../Core/Src/tiny-json_extra.c\177</Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>301</LineNumber>
+          <LineNumber>181</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134282978</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
+          <BreakIfRCount>0</BreakIfRCount>
           <Filename>..\Core\Src\tiny-json_extra.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../Core/Src/tiny-json_extra.c\301</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>298</LineNumber>
+          <LineNumber>314</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134282964</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
+          <BreakIfRCount>0</BreakIfRCount>
           <Filename>..\Core\Src\tiny-json_extra.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../Core/Src/tiny-json_extra.c\298</Expression>
-        </Bp>
-        <Bp>
-          <Number>4</Number>
-          <Type>0</Type>
-          <LineNumber>174</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134285172</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Core\Src\tiny-json_extra.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../Core/Src/tiny-json_extra.c\174</Expression>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -249,84 +233,59 @@
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>json_ptr-&gt;name[0]</ItemText>
+          <ItemText>curEl</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>json_ptr-&gt;name[1]</ItemText>
+          <ItemText>phone</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>json_ptr-&gt;name[2]</ItemText>
+          <ItemText>phoneNumber</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>json_ptr-&gt;u</ItemText>
+          <ItemText>val2</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
           <WinNumber>1</WinNumber>
-          <ItemText>json_ptr-&gt;name[4]</ItemText>
+          <ItemText>val3</ItemText>
         </Ww>
         <Ww>
           <count>8</count>
           <WinNumber>1</WinNumber>
-          <ItemText>curEl</ItemText>
+          <ItemText>pool</ItemText>
         </Ww>
         <Ww>
           <count>9</count>
           <WinNumber>1</WinNumber>
-          <ItemText>nm[0]</ItemText>
+          <ItemText>val31</ItemText>
         </Ww>
         <Ww>
           <count>10</count>
           <WinNumber>1</WinNumber>
-          <ItemText>nm[1]</ItemText>
+          <ItemText>val21</ItemText>
         </Ww>
         <Ww>
           <count>11</count>
           <WinNumber>1</WinNumber>
-          <ItemText>nm[2]</ItemText>
+          <ItemText>property-&gt;u.value[0]</ItemText>
         </Ww>
         <Ww>
           <count>12</count>
           <WinNumber>1</WinNumber>
-          <ItemText>nm2[0]</ItemText>
-        </Ww>
-        <Ww>
-          <count>13</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>j2</ItemText>
-        </Ww>
-        <Ww>
-          <count>14</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>JSON_arr[j2].name</ItemText>
-        </Ww>
-        <Ww>
-          <count>15</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>nm2[1]</ItemText>
-        </Ww>
-        <Ww>
-          <count>16</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>val</ItemText>
-        </Ww>
-        <Ww>
-          <count>17</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>val2</ItemText>
+          <ItemText>property-&gt;u.value[1]</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
         <Mm>
           <WinNumber>1</WinNumber>
           <SubType>0</SubType>
-          <ItemText>0x20003194</ItemText>
+          <ItemText>0x200004ce</ItemText>
           <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow1>
@@ -2187,6 +2146,18 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\Core\Src\tiny-json_extra.c</PathWithFileName>
       <FilenameWithoutPath>tiny-json_extra.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>17</GroupNumber>
+      <FileNumber>73</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Core\Src\example01.c</PathWithFileName>
+      <FilenameWithoutPath>example01.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

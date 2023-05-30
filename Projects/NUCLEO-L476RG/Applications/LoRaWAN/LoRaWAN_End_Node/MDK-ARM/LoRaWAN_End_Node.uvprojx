@@ -823,6 +823,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\tiny-json_extra.c</FilePath>
             </File>
+            <File>
+              <FileName>example01.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\example01.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -1764,6 +1769,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\tiny-json_extra.c</FilePath>
             </File>
+            <File>
+              <FileName>example01.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\example01.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -2653,6 +2663,11 @@
               <FileName>tiny-json_extra.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\tiny-json_extra.c</FilePath>
+            </File>
+            <File>
+              <FileName>example01.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\example01.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3595,6 +3610,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\tiny-json_extra.c</FilePath>
             </File>
+            <File>
+              <FileName>example01.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\example01.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -4536,6 +4556,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\tiny-json_extra.c</FilePath>
             </File>
+            <File>
+              <FileName>example01.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\example01.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -5476,6 +5501,11 @@
               <FileName>tiny-json_extra.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\tiny-json_extra.c</FilePath>
+            </File>
+            <File>
+              <FileName>example01.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\example01.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -99,6 +99,8 @@ int main(void)
 	
 	MX_DMA_Init();
   MX_USART3_UART_Init();
+	
+	check();
 	json_t pool[ Num_Field ];
 	
 	json_to_buffer(sets_JSON, pool, Num_Field);
