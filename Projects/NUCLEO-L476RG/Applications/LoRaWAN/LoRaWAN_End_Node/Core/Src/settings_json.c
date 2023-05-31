@@ -63,7 +63,7 @@ char sets_JSON[] = "{\
 	},\
 	\"LoRa_text\": \"Soon as early Dawn appeared, the rosy-fingered, up from his bed arose the dear son of Odysseus and put on his clothing.\",\
 	\"LoRa_Data\": [{\"AD_1\":true}, {\"INP1\":false}, {\"INP3\":false}, {\"AD_4\":true}, {\"TEXT\":false}],\
-	\"Command\": \"read_settings\"\
+	\"Command\": true\
 }";
 
 //	\"LoRa_Data\": [{\"AD_1\":\"true\"}, {\"INP1\":\"false\"}],\
@@ -72,7 +72,7 @@ char sets_JSON[] = "{\
 //    JSON_OBJ, JSON_ARRAY, JSON_TEXT, JSON_BOOLEAN,
 //    JSON_INTEGER, JSON_REAL, JSON_NULL
 //} jsonType_t;
-
+// \"read_settings\"
 
 
 json_t pool[ Num_Field ];

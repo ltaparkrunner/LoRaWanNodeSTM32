@@ -80,11 +80,11 @@ struct field json_descr[Json_Descript_Length] = {
 
 															{"LoRa_text",0,0,34,0,JSON_TEXT},
 															{"LoRa_Data",0,0,5,0,JSON_ARRAY},
-																{"AD_1", 0,0,1,1,JSON_TEXT},
-																{"INP1", 0,0,1,1,JSON_TEXT},
-																{"INP3", 0,0,1,1,JSON_TEXT},
-																{"AD_4", 0,0,1,1,JSON_TEXT},
-																{"TEXT", 0,0,1,1,JSON_TEXT},
+																{"AD_1", 0,0,1,1,JSON_BOOLEAN},
+																{"INP1", 0,0,1,1,JSON_BOOLEAN},
+																{"INP3", 0,0,1,1,JSON_BOOLEAN},
+																{"AD_4", 0,0,1,1,JSON_BOOLEAN},
+																{"TEXT", 0,0,1,1,JSON_BOOLEAN},
 															{"Command",0,0,1,0,JSON_BOOLEAN}
 															//	\"LoRa_Data\": [\"AD1\", \"INP1\", \"INP3\", \"AD4\", \"text\"],
 };
@@ -168,49 +168,21 @@ const json_t* pop(void)
 	else return NULL; // or JSON_NULL
 }
 
-int32_t parse_array(const json_t* json_ptr, uint32_t* buff_ptr, int32_t j2)
+const uint8_t datLora[datLoraNum] = {AD_1, INP1, INP3, AD_4, TEXT};
+int32_t parse_array(const json_t* json_ptr, uint32_t* buff_ptr, int32_t* descrCnt)
 {
-// "ADC1\", \"INP1\", \"INP3\", \"ADC4\", \"TEXT\"	
-	//static char curEl[100];
-	//const char* val = json_getValue(json_ptr);
-	//const char* nm = json_getPropertyValue(json_ptr, json_descr[j2].name);
-	//const char* nm2 = json_getPropertyValue(json_ptr, "LoRa_Data2");
-	
-	json_t const* curEl = json_getChild( json_ptr );
-	const char* val2 = json_getPropertyValue(curEl, "AD_1");
-	bool val21 = json_getBoolean(curEl);
-	json_t const* curEl2 = json_getSibling( curEl );
-	const char* val3 = json_getPropertyValue(curEl2, "INP1");
-
-	bool val31 = json_getBoolean(curEl2);
-
-	if(val2) buff[(*buff_ptr)++] = AD_1;
-	else buff[(*buff_ptr)++] = 0;
-	if(val3) buff[(*buff_ptr)++] = INP1;
-	else buff[(*buff_ptr)++] = 0;	
-	
-//	char pool[10];
-//	strncpy(pool, val2, 5);
-//	strncpy(pool, val3, 5);
-//	strncpy(pool, val, 5);
-//	strncpy(pool, val2, 5);
-	
-	//curEl = json_getText(json_ptr);
-	//curEl = objValue(json_ptr->u, pool);
-	for(int i2 = 0; i2<json_descr[j2].bytes; i2++)
+	const char* Elval;
+	uint32_t j3 = 0;
+	for(json_t const* curEl = json_getChild( json_ptr );
+	curEl; curEl = json_getSibling( curEl ))
 	{
-		if(strlen(curEl->name) == arrElLen)
-		{
-			if(strncmp(curEl->name, "AD_1", arrElLen)) buff[(*buff_ptr)++] = AD_1;
-			if(strncmp(curEl->name, "ADC4", arrElLen)) buff[(*buff_ptr)++] = ADC4;
-			if(strncmp(curEl->name, "INP1", arrElLen)) buff[(*buff_ptr)++] = INP1;
-			if(strncmp(curEl->name, "INP3", arrElLen)) buff[(*buff_ptr)++] = INP3;
-			if(strncmp(curEl->name, "TEXT", arrElLen)) buff[(*buff_ptr)++] = TEXT;
-		}
-		curEl = curEl -> sibling;
+		Elval = json_getPropertyValue(curEl, json_descr[++(*descrCnt)].name);
+		if(Elval[0] == 't') buff[(*buff_ptr)++] = datLora[j3++];
+		else buff[(*buff_ptr)++] = 0;
 	}
-	return json_descr[j2].bytes;
+	return j3;
 }
+
 static void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
@@ -311,10 +283,10 @@ int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty)
 						break;
 					case JSON_ARRAY: 
 						//for(int i2=0; i2<json_descr[j2].bytes; i2++)
-							parse_array(json_ptr, &buff_ptr, j2);
+							parse_array(json_ptr, &buff_ptr, &j2);
 						json_ptr = json_ptr->sibling;
-						
-					default: Error_Handler();
+						break;
+					default: Error_Handler(); break;
 					}
 				}
 				else   Error_Handler();
