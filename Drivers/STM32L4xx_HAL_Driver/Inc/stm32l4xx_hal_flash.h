@@ -844,6 +844,13 @@ HAL_StatusTypeDef FLASH_WaitForLastOperation(uint32_t Timeout);
 #if defined (STM32L471xx) || defined (STM32L475xx) || defined (STM32L476xx) || defined (STM32L485xx) || defined (STM32L486xx) || \
     defined (STM32L496xx) || defined (STM32L4A6xx) || defined (STM32L4P5xx) || defined (STM32L4Q5xx) || defined (STM32L4R5xx) || \
     defined (STM32L4R7xx) || defined (STM32L4R9xx) || defined (STM32L4S5xx) || defined (STM32L4S7xx) || defined (STM32L4S9xx)
+
+#define FLASH_SIZE_DATA_REGISTER ((uint32_t)0x1FFF75E0)
+
+#define FLASH_SIZE               (((((*((uint32_t *)FLASH_SIZE_DATA_REGISTER)) & (0x0000FFFFU))== 0x0000FFFFU)) ? (0x400U << 10U) : \
+                                  (((*((uint32_t *)FLASH_SIZE_DATA_REGISTER)) & (0x0000FFFFU)) << 10U))
+
+
 #define FLASH_BANK_SIZE                    (FLASH_SIZE >> 1U)
 #else
 #define FLASH_BANK_SIZE                    (FLASH_SIZE)

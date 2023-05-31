@@ -16,76 +16,78 @@ struct field{
 	uint32_t bytes;
 	int level;
 	jsonType_t ty;
+	uint32_t pos;
+	uint32_t changed;
 };
 
 //extern struct field json_descr[Json_Descript_Length];
 extern char sets_JSON[];
 struct node props[Num_Field];
 int32_t props_pointer = 0;
-const json_t* stack[Num_Field];			///????
+const json_t* stackf[Num_Field];			///????
 int32_t stack_pointer = 0;
-uint8_t buff[Buff_Len];
+//uint8_t buff[Buff_Len];
 uint32_t stack2[Json_Descript_Length];
 uint32_t stack2_pointer = 0;
 
 struct field json_descr[Json_Descript_Length] = {
-															{"LoRa_settings",0,0,0,0,JSON_OBJ},
-																{"DEVEUI",0,0xffffffffffff,8,1,JSON_INTEGER},
-																{"APPKEY",0,0xffffffffff,8,1,JSON_INTEGER},
-																{"FREQ",86400000,87000000,4,1,JSON_INTEGER},
-																{"FR",4,12,1,1,JSON_INTEGER},
-															{"UART3",0,0,1,0,JSON_BOOLEAN},
+															{"LoRa_settings",0,0,0,0,JSON_OBJ,0,0},
+																{"DEVEUI",0,0xffffffffffff,8,1,JSON_INTEGER,0,0},
+																{"APPKEY",0,0xffffffffff,8,1,JSON_INTEGER,8,0},
+																{"FREQ",86400000,87000000,4,1,JSON_INTEGER,16,0},
+																{"FR",4,12,1,1,JSON_INTEGER,20,0},
+															{"UART3",0,0,1,0,JSON_BOOLEAN,21,0},
 
-															{"LED2",0,0,0,0,JSON_OBJ},
-																{"USB",0,0,0,1,JSON_OBJ},
-																	{"sec",0,60,1,2,JSON_INTEGER},
-																	{"min",0,60,1,2,JSON_INTEGER},
-																	{"hour",0,24,1,2,JSON_INTEGER},
-																	{"days",0,1000,2,2,JSON_INTEGER},
-																	{"work",0,1000,2,2,JSON_BOOLEAN},
-																{"battery",0,0,0,1,JSON_OBJ},
-																	{"sec",0,60,1,2,JSON_INTEGER},
-																	{"min",0,60,1,2,JSON_INTEGER},
-																	{"hour",0,24,1,2,JSON_INTEGER},
-																	{"days",0,1000,2,2,JSON_INTEGER},
-																	{"work",0,1000,2,2,JSON_BOOLEAN},
+															{"LED2",0,0,0,0,JSON_OBJ,22,0},
+																{"USB",0,0,0,1,JSON_OBJ,22, 0},
+																	{"sec",0,60,1,2,JSON_INTEGER,22,0},
+																	{"min",0,60,1,2,JSON_INTEGER,23,0},
+																	{"hour",0,24,1,2,JSON_INTEGER,24,0},
+																	{"days",0,1000,2,2,JSON_INTEGER,25,0},
+																	{"work",0,1000,2,2,JSON_BOOLEAN,27,0},
+																{"battery",0,0,0,1,JSON_OBJ,29,0},
+																	{"sec",0,60,1,2,JSON_INTEGER,29,0},
+																	{"min",0,60,1,2,JSON_INTEGER,30,0},
+																	{"hour",0,24,1,2,JSON_INTEGER,31,0},
+																	{"days",0,1000,2,2,JSON_INTEGER,32,0},
+																	{"work",0,1000,2,2,JSON_BOOLEAN,34,0},
 																	
-															{"LED1",0,0,0,0,JSON_OBJ},
-																{"USB",0,0,0,1,JSON_OBJ},
-																	{"blinks",0,0,0,2,JSON_OBJ},
-																		{"msec",0,100,1,3,JSON_INTEGER},
-																		{"times",0,100,1,3,JSON_INTEGER},		
-																	{"period",0,0,0,2,JSON_OBJ},
-																		{"sec",0,60,1,3,JSON_INTEGER},
-																		{"min",0,60,1,3,JSON_INTEGER},
-																		{"hour",0,24,1,3,JSON_INTEGER},
-																		{"days",0,1000,2,3,JSON_INTEGER},
-																		{"work",0,1000,1,3,JSON_BOOLEAN},
-																{"LoRa",0,0,0,1,JSON_OBJ},
-																	{"blinks",0,0,0,2,JSON_OBJ},
-																		{"msec",0,100,1,3,JSON_INTEGER},
-																		{"times",0,100,1,3,JSON_INTEGER},		
-																	{"period",0,0,0,2,JSON_OBJ},
-																		{"sec",0,60,1,3,JSON_INTEGER},
-																		{"min",0,60,1,3,JSON_INTEGER},
-																		{"hour",0,24,1,3,JSON_INTEGER},
-																		{"days",0,1000,2,3,JSON_INTEGER},
-																	{"work",0,1000,1,3,JSON_BOOLEAN},
-																{"period_LoRa",0,0,0,1,JSON_OBJ},
+															{"LED1",0,0,0,0,JSON_OBJ,36,0},
+																{"USB",0,0,0,1,JSON_OBJ,36,0},
+																	{"blinks",0,0,0,2,JSON_OBJ,36,0},
+																		{"msec",0,100,1,3,JSON_INTEGER,36,0},
+																		{"times",0,100,1,3,JSON_INTEGER,37,0},		
+																	{"period",0,0,0,2,JSON_OBJ,38,0},
+																		{"sec",0,60,1,3,JSON_INTEGER,38,0},
+																		{"min",0,60,1,3,JSON_INTEGER,39,0},
+																		{"hour",0,24,1,3,JSON_INTEGER,40,0},
+																		{"days",0,1000,2,3,JSON_INTEGER,41,0},
+																		{"work",0,1000,1,3,JSON_BOOLEAN,43,0},
+																{"LoRa",0,0,0,1,JSON_OBJ,44,0},
+																	{"blinks",0,0,0,2,JSON_OBJ,44,0},
+																		{"msec",0,100,1,3,JSON_INTEGER,44,0},
+																		{"times",0,100,1,3,JSON_INTEGER,45,0},		
+																	{"period",0,0,0,2,JSON_OBJ,46,0},
+																		{"sec",0,60,1,3,JSON_INTEGER,46,0},
+																		{"min",0,60,1,3,JSON_INTEGER,47,0},
+																		{"hour",0,24,1,3,JSON_INTEGER,48,0},
+																		{"days",0,1000,2,3,JSON_INTEGER,49,0},
+																	{"work",0,1000,1,3,JSON_BOOLEAN,51,0},
+																	
+																{"period_LoRa",0,0,0,1,JSON_OBJ,52,0},
+																	{"sec",0,60,1,2,JSON_INTEGER,52,0},
+																	{"min",0,60,1,2,JSON_INTEGER,53,0},
+																	{"hour",0,24,1,2,JSON_INTEGER,54,0},
+																	{"days",0,1000,2,2,JSON_INTEGER,55,0},
 
-																	{"sec",0,60,1,2,JSON_INTEGER},
-																	{"min",0,60,1,2,JSON_INTEGER},
-																	{"hour",0,24,1,2,JSON_INTEGER},
-																	{"days",0,1000,2,2,JSON_INTEGER},
-
-															{"LoRa_text",0,0,34,0,JSON_TEXT},
-															{"LoRa_Data",0,0,5,0,JSON_ARRAY},
-																{"AD_1", 0,0,1,1,JSON_BOOLEAN},
-																{"INP1", 0,0,1,1,JSON_BOOLEAN},
-																{"INP3", 0,0,1,1,JSON_BOOLEAN},
-																{"AD_4", 0,0,1,1,JSON_BOOLEAN},
-																{"TEXT", 0,0,1,1,JSON_BOOLEAN},
-															{"Command",0,0,1,0,JSON_BOOLEAN}
+															{"LoRa_text",0,0,34,0,JSON_TEXT,57,0},
+															{"LoRa_Data",0,0,5,0,JSON_ARRAY,91,0},
+																{"AD_1", 0,0,1,1,JSON_BOOLEAN,91,0},
+																{"INP1", 0,0,1,1,JSON_BOOLEAN,92,0},
+																{"INP3", 0,0,1,1,JSON_BOOLEAN,93,0},
+																{"AD_4", 0,0,1,1,JSON_BOOLEAN,94,0},
+																{"TEXT", 0,0,1,1,JSON_BOOLEAN,95,0},
+															{"Command",0,0,1,0,JSON_BOOLEAN,96,0}
 															//	\"LoRa_Data\": [\"AD1\", \"INP1\", \"INP3\", \"AD4\", \"text\"],
 };
 
@@ -149,7 +151,7 @@ int32_t push(const json_t* node)
 {
 	if(stack_pointer <= Num_Field)
 	{
-		stack[stack_pointer] = node;
+		stackf[stack_pointer] = node;
 		stack_pointer++;
 		return 0;
 	}
@@ -161,7 +163,7 @@ const json_t* pop(void)
 	const json_t* retvalue;
 	if(stack_pointer > 0)
 	{
-		retvalue = (const json_t*) stack[stack_pointer - 1];
+		retvalue = (const json_t*) stackf[stack_pointer - 1];
 		stack_pointer--;
 		return retvalue;
 	}
@@ -169,7 +171,7 @@ const json_t* pop(void)
 }
 
 const uint8_t datLora[datLoraNum] = {AD_1, INP1, INP3, AD_4, TEXT};
-int32_t parse_array(const json_t* json_ptr, uint32_t* buff_ptr, int32_t* descrCnt)
+int32_t parse_array(const json_t* json_ptr, uint32_t* buff_ptr, int32_t* descrCnt, uint8_t buff[], uint32_t len)
 {
 	const char* Elval;
 	uint32_t j3 = 0;
@@ -178,7 +180,10 @@ int32_t parse_array(const json_t* json_ptr, uint32_t* buff_ptr, int32_t* descrCn
 	{
 		Elval = json_getPropertyValue(curEl, json_descr[++(*descrCnt)].name);
 		if(Elval[0] == 't') buff[(*buff_ptr)++] = datLora[j3++];
-		else buff[(*buff_ptr)++] = 0;
+		else {
+			buff[(*buff_ptr)++] = 0;
+			j3++;
+		}
 	}
 	return j3;
 }
@@ -228,17 +233,17 @@ struct node* json_allProperties( json_t const* obj, char const* property ) {
 	return props;
 }
 
-int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty)
+int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buff[], uint32_t len)
 {
 //	json_t pool[ qty ];
 	json_t const *json_sets = json_create(str, mem, qty);
-	uint32_t buff_len = 0;
+	static uint32_t buff_len = 0;
 	uint32_t buff_ptr = 0;
 	static uint64_t tempI;
 	static uint8_t tempB;
 	static const char* tempT;
 	static int32_t j2 = 0;
-	int32_t len = 0;
+	int32_t slen = 0;
 	
 	for(int i = 0; i < Json_Descript_Length; i++)
 	{
@@ -251,9 +256,9 @@ int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty)
 	//for(int i = 0; i < Json_Descript_Length; i++)
 	while(json_ptr != NULL  ||  !stackIsEmpty())
 	{				
-				len = strlen(json_descr[j2].name);
+				slen = strlen(json_descr[j2].name);
 				//int strncmp(const char * /*s1*/, const char * /*s2*/, size_t /*n*/)
-				int8_t rez = strncmp(json_ptr->name, json_descr[j2].name, len);
+				int8_t rez = strncmp(json_ptr->name, json_descr[j2].name, slen);
 				if(rez == 0){
 					switch(json_ptr->type){
 					case JSON_OBJ:
@@ -276,14 +281,13 @@ int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty)
 						break;
 					case JSON_TEXT:
 						tempT = json_getValue(json_ptr);
-						//len = len
 						for(int i2=0; i2<json_descr[j2].bytes; i2++)
 							buff[buff_ptr++] = tempT[i2];
 						json_ptr = json_ptr->sibling;
 						break;
 					case JSON_ARRAY: 
 						//for(int i2=0; i2<json_descr[j2].bytes; i2++)
-							parse_array(json_ptr, &buff_ptr, &j2);
+							parse_array(json_ptr, &buff_ptr, &j2, buff, len);
 						json_ptr = json_ptr->sibling;
 						break;
 					default: Error_Handler(); break;
@@ -300,5 +304,5 @@ int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty)
 				if(json_ptr == NULL && stackIsEmpty()) break;
 				j2++;
 	}
-	return buff_ptr;
+	return buff_ptr+1;
 }

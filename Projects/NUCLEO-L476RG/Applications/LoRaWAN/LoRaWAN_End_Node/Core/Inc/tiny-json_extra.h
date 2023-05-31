@@ -14,5 +14,5 @@
 
 #define datLoraNum 5
 #define arrElLen		4
-int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty);
+int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buff[], uint32_t len);
 int check( void );

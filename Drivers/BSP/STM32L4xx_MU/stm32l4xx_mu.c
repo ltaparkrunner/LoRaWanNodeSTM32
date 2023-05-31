@@ -119,6 +119,25 @@ void MU_LED_Init(Led_TypeDef Led)
 		HAL_GPIO_Init(LED_GPIO_PORT[Led], &GPIO_InitStruct);
 	}
 }
+
+void MU_board_LEDs_Init(void)
+{
+  GPIO_InitTypeDef  GPIO_InitStruct = {0};
+
+  /* Enable the GPIOLED Clock */
+  __HAL_RCC_GPIOE_CLK_ENABLE();
+	{
+  /* Configure the GPIO_LED pin */
+		GPIO_InitStruct.Pin   = HL3Sign_Pin | HL2Sign_Pin | HL1Sign_Pin;
+		GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
+		GPIO_InitStruct.Pull  = GPIO_PULLDOWN;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_WritePin(HL1Sign_GPIO_Port, HL3Sign_Pin | HL2Sign_Pin | HL1Sign_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_Init(HL1Sign_GPIO_Port, &GPIO_InitStruct);
+	}
+}
+
+
 void MU_Sound_Init(void)
 {
 	GPIO_InitTypeDef  GPIO_InitStruct = {0};

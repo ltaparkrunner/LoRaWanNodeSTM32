@@ -473,6 +473,11 @@
               <FileType>1</FileType>
               <FilePath>.\usart_transm.c</FilePath>
             </File>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\flash_mem.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -617,6 +622,21 @@
               <FileName>stm32l4xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash_ramfunc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash_ramfunc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1299,6 +1319,11 @@
               <FileType>1</FileType>
               <FilePath>.\usart_transm.c</FilePath>
             </File>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\flash_mem.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1512,6 +1537,21 @@
               <FileName>stm32l4xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash_ramfunc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash_ramfunc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2245,6 +2285,11 @@
               <FileType>1</FileType>
               <FilePath>.\usart_transm.c</FilePath>
             </File>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\flash_mem.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2458,6 +2503,21 @@
               <FileName>stm32l4xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash_ramfunc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash_ramfunc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3140,6 +3200,11 @@
               <FileType>1</FileType>
               <FilePath>.\usart_transm.c</FilePath>
             </File>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\flash_mem.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3353,6 +3418,21 @@
               <FileName>stm32l4xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash_ramfunc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash_ramfunc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4086,6 +4166,11 @@
               <FileType>1</FileType>
               <FilePath>.\usart_transm.c</FilePath>
             </File>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\flash_mem.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4299,6 +4384,21 @@
               <FileName>stm32l4xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash_ramfunc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash_ramfunc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5032,6 +5132,11 @@
               <FileType>1</FileType>
               <FilePath>.\usart_transm.c</FilePath>
             </File>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\flash_mem.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5245,6 +5350,21 @@
               <FileName>stm32l4xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_flash_ramfunc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Drivers\STM32L4xx_HAL_Driver\Src\stm32l4xx_hal_flash_ramfunc.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -31,6 +31,7 @@
 #include "string.h"
 #include "usart.h"
 #include "dma.h"
+#include "flash_mem.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -83,7 +84,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+	MU_board_LEDs_Init();
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -102,26 +103,28 @@ int main(void)
 	
 	check();
 	json_t pool[ Num_Field ];
+	uint8_t buff[Buff_Len];
 	
-	json_to_buffer(sets_JSON, pool, Num_Field);
-
-
-	json_t const *settings = json_create(sets_JSON, pool, Num_Field);
-	if (settings == NULL) return -1;
+	json_to_buffer(sets_JSON, pool, Num_Field, buff, Buff_Len);
 	
-	///////////////
-	json_t const* namefield = json_getProperty(settings, "LoRa_text");
-	if (namefield == NULL) return -1;
-	if (json_getType(namefield) != JSON_TEXT) return -1;
 	
-	//////////////////
-	char const* namevalue = json_getValue(namefield);
-	static char name2[150];
 
-  strcpy(name2, namevalue);
+//	json_t const *settings = json_create(sets_JSON, pool, Num_Field);
+//	if (settings == NULL) return -1;
+//	
+//	///////////////
+//	json_t const* namefield = json_getProperty(settings, "LoRa_text");
+//	if (namefield == NULL) return -1;
+//	if (json_getType(namefield) != JSON_TEXT) return -1;
+//	
+//	//////////////////
+//	char const* namevalue = json_getValue(namefield);
+//	static char name2[150];
+
+//  strcpy(name2, namevalue);
 
 	//HAL_UART_Transmit(&huart3, (uint8_t *)name2, 100, 800);
-	if(HAL_UART_Transmit_DMA(&huart3, (uint8_t *)name2, 100) != HAL_OK)
+	if(HAL_UART_Transmit_DMA(&huart3, (uint8_t *)"forever", 100) != HAL_OK)
 	{
 		Error_Handler();
 	}
@@ -133,14 +136,17 @@ int main(void)
 		Error_Handler();
 	}
 	
-	while(RxReady != 1)
-	{
-	}
+//	while(RxReady != 1)
+//	{
+//	}
 	//strcpy(
 	//printf("%s%s%s", "LoRa_text: '", namevalue, "'.\n");
 	//printf(namevalue);
 	//printf("forever");
 	//printf(
+	
+		HAL_Init_Flash();
+		write_read_flash();
   /* USER CODE END 2 */
 
   /* Infinite loop */

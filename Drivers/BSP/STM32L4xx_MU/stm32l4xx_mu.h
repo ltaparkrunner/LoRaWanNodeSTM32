@@ -59,13 +59,15 @@ extern "C" {
 
 #define SoundSign_Pin GPIO_PIN_7      // ?инамик на плате пульта
 #define SoundSign_GPIO_Port GPIOE
-/*
+
 #define HL3Sign_Pin GPIO_PIN_4				// Чветодиоды 3 шт. на плате пульта
 #define HL3Sign_GPIO_Port GPIOE
 #define HL2Sign_Pin GPIO_PIN_5
 #define HL2Sign_GPIO_Port GPIOE
 #define HL1Sign_Pin GPIO_PIN_6
 #define HL1Sign_GPIO_Port GPIOE
+
+/*
 #define button_Pin GPIO_PIN_4					// Эт кнопок на LED_Shield 
 #define button_GPIO_Port GPIOC				// один аналоговый сигнал на 5 кнопок 
 																			// SELECT, LEFT, UP, DOWN, RIGHT
@@ -224,6 +226,8 @@ void             MU_LED_On(Led_TypeDef Led);
 void             MU_LED_Off(Led_TypeDef Led);
 void             MU_LED_Toggle(Led_TypeDef Led);
 void MU_Sound_Init(void);
+void MU_board_LEDs_Init(void);
+	
 /**
   * @}
   */
