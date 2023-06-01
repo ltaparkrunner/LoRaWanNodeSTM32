@@ -1,5 +1,8 @@
-#include "stm32l4xx_hal.h"
+//#include "stm32l4xx_hal.h"
+#include <stdint.h>
+#include "stm32l4xx_hal_def.h"
 
+#define ADDR_FLASH_PAGE_0    	((uint32_t)0x08000000) /* Base @ of Page 0, 2 Kbytes */
 #define ADDR_FLASH_PAGE_16    ((uint32_t)0x08008000) /* Base @ of Page 16, 2 Kbytes */
 #define ADDR_FLASH_PAGE_17    ((uint32_t)0x08008800) /* Base @ of Page 17, 2 Kbytes */
 #define ADDR_FLASH_PAGE_18    ((uint32_t)0x08009000) /* Base @ of Page 18, 2 Kbytes */
@@ -25,6 +28,7 @@
 #define DATA_64                 ((uint64_t)0x1234567812345678)
 
 #define FLASH_ROW_SIZE          32
+#define FLASH_PAGE_FOR_SETTINGS	220
 
 /* !!! Be careful the user area should be in another bank than the code !!! */
 //#define FLASH_USER_START_ADDR   ADDR_FLASH_PAGE_384   /* Start @ of user Flash area */
@@ -37,3 +41,84 @@ uint32_t GetPage(uint32_t Addr);
 uint32_t GetBank(uint32_t Address);
 HAL_StatusTypeDef HAL_Init_Flash(void);
 void write_read_flash(void);
+int32_t readflash(uint32_t numpage, uint32_t buf[], uint32_t len);
+int32_t change_buf(uint32_t numelmt, uint32_t subst[], uint32_t buf[], uint32_t len);
+int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len);
+
+#define WRTN_CHECK 0x99
+
+
+struct json_arr{
+	struct LoRa_settings{
+		uint64_t deveui;
+		uint64_t appkey;
+		uint32_t freq;
+		uint8_t fr;
+	}LoRa_settings_t;
+	uint8_t uart3;
+	struct led2{
+		struct usb{
+			uint8_t sec;
+			uint8_t min;
+			uint8_t hour;
+			uint8_t days;
+			uint8_t	work;
+		}period_t;
+		struct battery{
+			uint8_t sec;
+			uint8_t min;
+			uint8_t hour;
+			uint8_t days;
+			uint8_t	work;
+		}period2_t;
+	}led2_t;
+	struct led1{
+		struct usb1{
+			struct blinks{
+				uint8_t msec;
+				uint8_t times;
+			}blinks_t;
+			struct period{
+				uint8_t sec;
+				uint8_t min;
+				uint8_t hour;
+				uint8_t days;
+				uint8_t	work;
+			}period_t;
+		}usb1_t;
+	}led1_t;
+		struct LoRa{
+			struct blinksL{
+				uint8_t msec;
+				uint8_t times;
+			}blinks_t;
+			struct periodL{
+				uint8_t sec;
+				uint8_t min;
+				uint8_t hour;
+				uint8_t days;
+				uint8_t	work;
+			}period_t;
+		}LoRa_t;
+		struct period_LoRa{
+			struct periodLoRa{
+				uint8_t sec;
+				uint8_t min;
+				uint8_t hour;
+				uint8_t days;
+				uint8_t	work;
+			}period_t; 
+		}period_LoRa_t;
+		uint8_t LoRa_text[34];
+		struct LoRa_Data{
+			uint8_t ad_1;
+			uint8_t inp1;
+			uint8_t inp3;
+			uint8_t ad_4;
+			uint8_t text;
+		}LoRa_Data_t;
+		uint8_t command;
+		uint8_t wrtn;
+		uint8_t devEuiVal;
+		uint8_t appKeyVal;
+};

@@ -478,7 +478,8 @@ static SecureElementStatus_t ComputeCmac( uint8_t* micBxBuffer, uint8_t* buffer,
 
 
 /* Exported functions ---------------------------------------------------------*/
-
+#include "flash_mem.h"
+extern struct json_arr *jsonarrflash;
 /*
  * API functions
  */
@@ -505,7 +506,16 @@ SecureElementStatus_t SecureElementInit( SecureElementNvmData_t *nvm, SecureElem
         .KeyList = SOFT_SE_KEY_LIST
     };
 
-
+		if(jsonarrflash -> appKeyVal == 0x66)
+		{
+			uint64_t tmp = jsonarrflash->LoRa_settings_t.appkey;
+			for(int8_t i=0; i<8; i++)
+			{
+				seNvmInit.JoinEui[i] = (uint8_t)tmp;
+				tmp>>=1;
+			}
+		}
+		
     if( nvm == NULL )
     {
         return SECURE_ELEMENT_ERROR_NPE;

@@ -1,6 +1,11 @@
 #include "flash_mem.h"
 #include "stm32l4xx_mu.h"
+#include "settings_json.h"
+#include "tiny-json.h"
+#include "tiny-json_extra.h"
 
+void Error_Handler(void);
+int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len);
 /**
   * @brief  Gets the page of a given address
   * @param  Addr: Address of the FLASH Memory
@@ -166,16 +171,7 @@ void write_read_flash(void)
     }
    else
     {
-      /* Error occurred while writing data in Flash memory.
-         User can add here some code to deal with this error */
-      while (1)
-      {
-        /* Make HL2 blink (100ms on, 2s off) to indicate error in Write operation */
-        MU_LED_On(LED2);
-        HAL_Delay(100);
-        MU_LED_Off(LED2);
-        HAL_Delay(2000);
-      }
+			Error_Handler();
     }
   }
 	errplace = 9;
@@ -208,33 +204,105 @@ void write_read_flash(void)
   }
   else
   {
-    /* Error detected. HL2 will blink with 1s period */
-    while (1)
-    {
-      MU_LED_On(LED2);
-			
-      HAL_Delay(1000);
-      MU_LED_Off(LED2);
-      HAL_Delay(1000);
-    }
+    Error_Handler();
   }
 
 }
 
 // read_erase_change_write_verify_repeat
-int32_t readflash(uint32_t numpage, uint8_t buf[], uint32_t len)
+//Flash Bank2 mapped at 0x08000000 (and aliased @0x00000000)
+//*         and Flash Bank1 mapped at 0x08100000 (and aliased at 0x00100000)
+extern json_t pool[ Num_Field ];
+extern char sets_JSON[];
+uint8_t buff[Buff_Len];
+struct json_arr *jsonarrflash, *jsonarrmem ;
+
+int32_t init_flash(uint32_t numpage, uint32_t buf[], uint32_t len)
 {
-	return len;
+	uint32_t addr = ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	uint32_t i;
+	jsonarrflash = (struct json_arr*)addr; 
+	if(jsonarrflash -> wrtn != WRTN_CHECK)
+	{
+		uint32_t lenR = json_to_buffer(sets_JSON, pool, Num_Field, buff, Buff_Len);
+		rewriteflash(numpage, buff, lenR);
+	}
 }
 
-int32_t change_buf(uint32_t numelmt, uint8_t subst[], uint8_t buf[], uint32_t len)
+int32_t readflash(uint32_t numpage, uint32_t buf[], uint32_t len)
+{
+	uint32_t addr = ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	uint32_t i;	
+	for(i = 0; i < len; i++)
+	{
+		buf[i] = *(__IO uint32_t *)Address;
+	}
+	return i;
+}
+
+int32_t change_buf(uint32_t numelmt, uint32_t subst[], uint32_t buf[], uint32_t len)
 { 
-	return len;
+	uint32_t i;
+	for(i = 0; i < len; i++)
+	{
+		buf[i] = subst[i];
+	}
+	return i;
 }
 
 
 int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len)
 { 
+	uint32_t addr = ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	
+	  /* Clear OPTVERR bit set on virgin samples */
+  __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_OPTVERR);
+	__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_PGAERR); 
+	__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_PGSERR); 
+  /* Get the 1st page to erase */
+  FirstPage = GetPage(addr);
+  /* Get the number of pages to erase from 1st page */
+  NbOfPages = GetPage(addr + len) - FirstPage + 1;
+  /* Get the bank */
+  BankNumber = GetBank(addr);
+  /* Fill EraseInit structure*/
+  EraseInitStruct.TypeErase   = FLASH_TYPEERASE_PAGES;
+  EraseInitStruct.Banks       = BankNumber;
+  EraseInitStruct.Page        = FirstPage;
+  EraseInitStruct.NbPages     = NbOfPages;
+	errplace = 7;
+  /* Note: If an erase operation in Flash memory also concerns data in the data or instruction cache,
+     you have to make sure that these data are rewritten before they are accessed during code
+     execution. If this cannot be done safely, it is recommended to flush the caches by setting the
+     DCRST and ICRST bits in the FLASH_CR register. */
+		 
+  if (HAL_FLASHEx_Erase(&EraseInitStruct, &PAGEError) != HAL_OK)
+  {
+    Error_Handler();
+  }
+	
+	  /* Program the user Flash area word by word
+    (area defined by FLASH_USER_START_ADDR and FLASH_USER_END_ADDR) ***********/
+
+  addr = ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	uint32_t addrEnd = ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage + len;
+
+  while (addr < addrEnd)
+  {
+    if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, Address, DATA_64) == HAL_OK)
+    {
+      Address = Address + 8;
+			HAL_Delay(2);
+    }
+   else
+    {
+			Error_Handler();
+    }
+  }
+  /* Lock the Flash to disable the flash control register access (recommended
+     to protect the FLASH memory against possible unwanted operation) *********/
+  HAL_FLASH_Lock();
+	
 	return len;
 }
 

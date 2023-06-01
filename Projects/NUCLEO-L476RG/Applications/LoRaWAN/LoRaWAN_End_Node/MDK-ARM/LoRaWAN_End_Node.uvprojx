@@ -478,6 +478,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\flash_mem.c</FilePath>
             </File>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\flash_work.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1323,6 +1328,11 @@
               <FileName>flash_mem.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\flash_mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\flash_work.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2290,6 +2300,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\flash_mem.c</FilePath>
             </File>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\flash_work.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3204,6 +3219,11 @@
               <FileName>flash_mem.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\flash_mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\flash_work.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4171,6 +4191,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\flash_mem.c</FilePath>
             </File>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\flash_work.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5136,6 +5161,11 @@
               <FileName>flash_mem.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\flash_mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\flash_work.c</FilePath>
             </File>
           </Files>
         </Group>

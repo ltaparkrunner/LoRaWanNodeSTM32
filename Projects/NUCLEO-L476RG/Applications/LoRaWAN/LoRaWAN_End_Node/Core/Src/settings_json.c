@@ -10,21 +10,21 @@ char sets_JSON[] = "{\
 		\"FREQ\": 86800000,\
 		\"FR\": 129374907\
 	},\
-	\"UART3\": \"on\",\
+	\"UART3\": true,\
 	\"LED2\": {\
 		\"USB\": {\
 			\"sec\": 10,\
 			\"min\": 2,\
 			\"hour\": 0,\
 			\"days\": 0,\
-			\"work\": 1\
+			\"work\": true\
 		},\
 		\"battery\": {\
 			\"sec\": 0,\
 			\"min\": 3,\
 			\"hour\": 0,\
 			\"days\": 0,\
-			\"work\": 1\
+			\"work\": true\
 		}\
 	},\
 	\"LED1\": {\
@@ -38,7 +38,7 @@ char sets_JSON[] = "{\
 				\"min\": 2,\
 				\"hour\": 0,\
 				\"days\": 0,\
-				\"work\": 1\
+				\"work\": false,\
 			},\
 		},\
 		\"LoRa\": {\
@@ -51,8 +51,8 @@ char sets_JSON[] = "{\
 				\"min\": 2,\
 				\"hour\": 0,\
 				\"days\": 0\
+				\"work\": true\
 			},\
-			\"work\": 1\
 		}\
 	},\
 	\"period_LoRa\": {\
@@ -60,10 +60,14 @@ char sets_JSON[] = "{\
 		\"min\": 2,\
 		\"hour\": 0,\
 		\"days\": 0	\
+		\"work\": true\
 	},\
 	\"LoRa_text\": \"Soon as early Dawn appeared, the rosy-fingered, up from his bed arose the dear son of Odysseus and put on his clothing.\",\
 	\"LoRa_Data\": [{\"AD_1\":true}, {\"INP1\":false}, {\"INP3\":false}, {\"AD_4\":true}, {\"TEXT\":false}],\
-	\"Command\": true\
+	\"Command\": true,\
+	\"WRTN\": 153,\
+	\"DevEuiValid\":true,\
+	\"AppKeyValid\":true\
 }";
 
 //	\"LoRa_Data\": [{\"AD_1\":\"true\"}, {\"INP1\":\"false\"}],\

@@ -2,7 +2,7 @@
 #include "tiny-json_extra.h"
 #include <string.h>
 #include "settings_json.h"
-
+void Error_Handler(void);
 struct node{
 	//char prop[70];
 	const json_t* prop;
@@ -44,50 +44,54 @@ struct field json_descr[Json_Descript_Length] = {
 																	{"min",0,60,1,2,JSON_INTEGER,23,0},
 																	{"hour",0,24,1,2,JSON_INTEGER,24,0},
 																	{"days",0,1000,2,2,JSON_INTEGER,25,0},
-																	{"work",0,1000,2,2,JSON_BOOLEAN,27,0},
-																{"battery",0,0,0,1,JSON_OBJ,29,0},
-																	{"sec",0,60,1,2,JSON_INTEGER,29,0},
-																	{"min",0,60,1,2,JSON_INTEGER,30,0},
-																	{"hour",0,24,1,2,JSON_INTEGER,31,0},
-																	{"days",0,1000,2,2,JSON_INTEGER,32,0},
-																	{"work",0,1000,2,2,JSON_BOOLEAN,34,0},
+																	{"work",0,1000,1,2,JSON_BOOLEAN,27,0},
+																{"battery",0,0,0,1,JSON_OBJ,28,0},
+																	{"sec",0,60,1,2,JSON_INTEGER,28,0},
+																	{"min",0,60,1,2,JSON_INTEGER,29,0},
+																	{"hour",0,24,1,2,JSON_INTEGER,30,0},
+																	{"days",0,1000,2,2,JSON_INTEGER,31,0},
+																	{"work",0,1000,1,2,JSON_BOOLEAN,33,0},
 																	
-															{"LED1",0,0,0,0,JSON_OBJ,36,0},
-																{"USB",0,0,0,1,JSON_OBJ,36,0},
-																	{"blinks",0,0,0,2,JSON_OBJ,36,0},
-																		{"msec",0,100,1,3,JSON_INTEGER,36,0},
-																		{"times",0,100,1,3,JSON_INTEGER,37,0},		
-																	{"period",0,0,0,2,JSON_OBJ,38,0},
-																		{"sec",0,60,1,3,JSON_INTEGER,38,0},
-																		{"min",0,60,1,3,JSON_INTEGER,39,0},
-																		{"hour",0,24,1,3,JSON_INTEGER,40,0},
-																		{"days",0,1000,2,3,JSON_INTEGER,41,0},
-																		{"work",0,1000,1,3,JSON_BOOLEAN,43,0},
-																{"LoRa",0,0,0,1,JSON_OBJ,44,0},
-																	{"blinks",0,0,0,2,JSON_OBJ,44,0},
-																		{"msec",0,100,1,3,JSON_INTEGER,44,0},
-																		{"times",0,100,1,3,JSON_INTEGER,45,0},		
-																	{"period",0,0,0,2,JSON_OBJ,46,0},
-																		{"sec",0,60,1,3,JSON_INTEGER,46,0},
-																		{"min",0,60,1,3,JSON_INTEGER,47,0},
-																		{"hour",0,24,1,3,JSON_INTEGER,48,0},
-																		{"days",0,1000,2,3,JSON_INTEGER,49,0},
-																	{"work",0,1000,1,3,JSON_BOOLEAN,51,0},
+															{"LED1",0,0,0,0,JSON_OBJ,34,0},
+																{"USB",0,0,0,1,JSON_OBJ,34,0},
+																	{"blinks",0,0,0,2,JSON_OBJ,34,0},
+																		{"msec",0,100,1,3,JSON_INTEGER,34,0},
+																		{"times",0,100,1,3,JSON_INTEGER,35,0},		
+																	{"period",0,0,0,2,JSON_OBJ,36,0},
+																		{"sec",0,60,1,3,JSON_INTEGER,36,0},
+																		{"min",0,60,1,3,JSON_INTEGER,37,0},
+																		{"hour",0,24,1,3,JSON_INTEGER,38,0},
+																		{"days",0,1000,2,3,JSON_INTEGER,39,0},
+																		{"work",0,1000,1,3,JSON_BOOLEAN,41,0},
+																{"LoRa",0,0,0,1,JSON_OBJ,42,0},
+																	{"blinks",0,0,0,2,JSON_OBJ,42,0},
+																		{"msec",0,100,1,3,JSON_INTEGER,42,0},
+																		{"times",0,100,1,3,JSON_INTEGER,43,0},		
+																	{"period",0,0,0,2,JSON_OBJ,44,0},
+																		{"sec",0,60,1,3,JSON_INTEGER,44,0},
+																		{"min",0,60,1,3,JSON_INTEGER,45,0},
+																		{"hour",0,24,1,3,JSON_INTEGER,46,0},
+																		{"days",0,1000,2,3,JSON_INTEGER,47,0},
+																		{"work",0,1000,1,3,JSON_BOOLEAN,49,0},
 																	
-																{"period_LoRa",0,0,0,1,JSON_OBJ,52,0},
-																	{"sec",0,60,1,2,JSON_INTEGER,52,0},
-																	{"min",0,60,1,2,JSON_INTEGER,53,0},
-																	{"hour",0,24,1,2,JSON_INTEGER,54,0},
-																	{"days",0,1000,2,2,JSON_INTEGER,55,0},
+																{"period_LoRa",0,0,0,0,JSON_OBJ,50,0},
+																	{"sec",0,60,1,1,JSON_INTEGER,50,0},
+																	{"min",0,60,1,1,JSON_INTEGER,51,0},
+																	{"hour",0,24,1,1,JSON_INTEGER,52,0},
+																	{"days",0,1000,2,1,JSON_INTEGER,53,0},
+																	{"work",0,1000,1,3,JSON_BOOLEAN,55,0},
 
-															{"LoRa_text",0,0,34,0,JSON_TEXT,57,0},
-															{"LoRa_Data",0,0,5,0,JSON_ARRAY,91,0},
-																{"AD_1", 0,0,1,1,JSON_BOOLEAN,91,0},
-																{"INP1", 0,0,1,1,JSON_BOOLEAN,92,0},
-																{"INP3", 0,0,1,1,JSON_BOOLEAN,93,0},
-																{"AD_4", 0,0,1,1,JSON_BOOLEAN,94,0},
-																{"TEXT", 0,0,1,1,JSON_BOOLEAN,95,0},
-															{"Command",0,0,1,0,JSON_BOOLEAN,96,0}
+															{"LoRa_text",0,0,34,0,JSON_TEXT,56,0},
+															{"LoRa_Data",0,0,5,0,JSON_ARRAY,90,0},
+																{"AD_1", 0,0,1,1,JSON_BOOLEAN,90,0},
+																{"INP1", 0,0,1,1,JSON_BOOLEAN,91,0},
+																{"INP3", 0,0,1,1,JSON_BOOLEAN,92,0},
+																{"AD_4", 0,0,1,1,JSON_BOOLEAN,93,0},
+																{"TEXT", 0,0,1,1,JSON_BOOLEAN,94,0},
+															{"Command",0,0,1,0,JSON_BOOLEAN,95,0},
+															{"WRTN",0,0x99,1,0,JSON_INTEGER,96,0},
+															{"DevEuiVal",0,0,1,0,JSON_BOOLEAN,97,0}
+															
 															//	\"LoRa_Data\": [\"AD1\", \"INP1\", \"INP3\", \"AD4\", \"text\"],
 };
 
@@ -188,16 +192,16 @@ int32_t parse_array(const json_t* json_ptr, uint32_t* buff_ptr, int32_t* descrCn
 	return j3;
 }
 
-static void Error_Handler(void)
-{
-  /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
-  /* USER CODE END Error_Handler_Debug */
-}
+//static void Error_Handler(void)
+//{
+//  /* USER CODE BEGIN Error_Handler_Debug */
+//  /* User can add his own implementation to report the HAL error return state */
+//  __disable_irq();
+//  while (1)
+//  {
+//  }
+//  /* USER CODE END Error_Handler_Debug */
+//}
 ///* Search a property by its name in a JSON object. */
 //json_t const* json_getProperty( json_t const* obj, char const* property ) {
 //    json_t const* sibling;
@@ -276,7 +280,8 @@ int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buff[]
 						break;
 					case JSON_BOOLEAN:
 						tempB = json_getBoolean(json_ptr);
-						buff[buff_ptr++] = tempB;
+						if(tempB)	buff[buff_ptr++] = truefl;	// true
+						else buff[buff_ptr++] = falsefl;			// false
 						json_ptr = json_ptr->sibling;
 						break;
 					case JSON_TEXT:

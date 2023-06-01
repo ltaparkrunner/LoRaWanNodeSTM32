@@ -207,11 +207,13 @@ uint16_t GetTemperatureLevel(void)
   /* USER CODE END GetTemperatureLevel */
   return temperatureLevel;
 }
-
+#include "flash_mem.h"
+extern struct json_arr *jsonarrflash;
 void GetUniqueId(uint8_t *id)
 {
   /* USER CODE BEGIN GetUniqueId_1 */
-
+	if(jsonarrflash ->devEuiVal == 0x66)
+	{
   /* USER CODE END GetUniqueId_1 */
   uint32_t ID_1_3_val = HAL_GetUIDw0() + HAL_GetUIDw2();
   uint32_t ID_2_val = HAL_GetUIDw1();
@@ -226,7 +228,16 @@ void GetUniqueId(uint8_t *id)
   id[0] = (ID_2_val);
 
   /* USER CODE BEGIN GetUniqueId_2 */
-
+	}
+	else 
+	{
+		uint64_t tmp = jsonarrflash->LoRa_settings_t.deveui;
+		for(int8_t i=0; i<8; i++)
+		{
+			id[i] = (uint8_t)tmp;
+			tmp>>=1;
+		}
+	}
   /* USER CODE END GetUniqueId_2 */
 }
 
