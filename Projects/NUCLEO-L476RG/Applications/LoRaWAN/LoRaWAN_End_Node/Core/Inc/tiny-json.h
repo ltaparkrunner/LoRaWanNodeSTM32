@@ -48,7 +48,7 @@ extern "C" {
 /** Enumeration of codes of supported JSON properties types. */
 typedef enum {
     JSON_OBJ, JSON_ARRAY, JSON_TEXT, JSON_BOOLEAN,
-    JSON_INTEGER, JSON_REAL, JSON_NULL
+    JSON_INTEGER, JSON_REAL, JSON_NULL, JSON_HEX
 } jsonType_t;
 
 /** Structure to handle JSON properties. */
@@ -141,6 +141,10 @@ static inline bool json_getBoolean( json_t const* property ) {
   * @return The value stdint. */
 static inline int64_t json_getInteger( json_t const* property ) {
   return strtoll( property->u.value,(char**)NULL, 10);
+}
+
+static inline int64_t json_gethexInteger( json_t const* property ) {
+  return strtoll( property->u.value,(char**)NULL, 16);
 }
 
 /** Get the value of a json real property.

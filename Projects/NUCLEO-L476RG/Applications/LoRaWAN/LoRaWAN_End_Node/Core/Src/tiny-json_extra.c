@@ -295,6 +295,15 @@ int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buff[]
 							parse_array(json_ptr, &buff_ptr, &j2, buff, len);
 						json_ptr = json_ptr->sibling;
 						break;
+					case JSON_HEX:
+						tempI = json_gethexInteger(json_ptr);
+						for(int i2=0; i2<json_descr[j2].bytes; i2++)
+						{
+							buff[buff_ptr++] = (uint8_t)tempI & 0xff;
+							tempI >>= 8;
+						}
+						json_ptr = json_ptr->sibling;
+						break;
 					default: Error_Handler(); break;
 					}
 				}

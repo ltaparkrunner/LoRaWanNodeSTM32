@@ -60,6 +60,7 @@ char const* json_getPropertyValue( json_t const* obj, char const* property ) {
 /* Internal prototypes: */
 static char* goBlank( char* str );
 static char* goNum( char* str );
+static char* gohexNum( char* str );
 static json_t* poolInit( jsonPool_t* pool );
 static json_t* poolAlloc( jsonPool_t* pool );
 static char* objValue( char* ptr, json_t* obj, jsonPool_t* pool );
@@ -246,6 +247,44 @@ static char* expValue( char* ptr ) {
     ptr = goNum( ++ptr );
     return ptr;
 }
+bool ishexdigit(int c)
+{
+	switch(c){
+		case '0':
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
+		case 'a':
+		case 'b':
+		case 'c':
+		case 'd':
+		case 'e':
+		case 'f':
+		case 'A':
+		case 'B':
+		case 'C':
+		case 'D':
+		case 'E':
+		case 'F': return true; break;
+		default: return false; break;
+	}
+}
+/** Analyze the exponential part of a real number.
+  * @param ptr Pointer to first character.
+  * @retval Pointer to first non numerical after the string. If success.
+  * @retval Null pointer if any error occur. */
+static char* expHexValue( char* ptr ) {
+    if ( *ptr == '-' || *ptr == '+' ) ++ptr;
+    if ( !ishexdigit( (int)(*ptr) ) ) return 0;
+    ptr = gohexNum( ++ptr );
+    return ptr;
+}
 
 /** Analyze the decimal part of a real number.
   * @param ptr Pointer to first character.
@@ -273,6 +312,11 @@ static char* numValue( char* ptr, json_t* property ) {
     }
     else if ( isdigit( (int)(*++ptr) ) ) return 0;
     property->type = JSON_INTEGER;
+		if ( *ptr == 'x' || *ptr == 'X' ) {
+				ptr = gohexNum( ++ptr );
+        if ( !ptr ) return 0;
+				property->type = JSON_HEX;
+		}
     if ( *ptr == '.' ) {
         ptr = fraqValue( ++ptr );
         if ( !ptr ) return 0;
@@ -283,12 +327,33 @@ static char* numValue( char* ptr, json_t* property ) {
         if ( !ptr ) return 0;
         property->type = JSON_REAL;
     }
+//		if ( *ptr == 'x' || *ptr == 'X' ) {
+//				ptr = expHexValue( ++ptr );
+//				if ( !ptr ) return 0;
+//        property->type = JSON_INTEGER;
+//		}
     if ( !isEndOfPrimitive( *ptr ) ) return 0;
     if ( JSON_INTEGER == property->type ) {
         char const* value = property->u.value;
         bool const negative = *value == '-';
         static char const min[] = "-9223372036854775808";
         static char const max[] = "9223372036854775807";
+        unsigned int const maxdigits = ( negative? sizeof min: sizeof max ) - 1;
+        unsigned int const len = ( unsigned int const ) ( ptr - value );
+        if ( len > maxdigits ) return 0;
+        if ( len == maxdigits ) {
+            char const tmp = *ptr;
+            *ptr = '\0';
+            char const* const threshold = negative ? min: max;
+            if ( 0 > strcmp( threshold, value ) ) return 0;
+            *ptr = tmp;
+        }
+    }
+		if ( JSON_HEX == property->type ) {
+        char const* value = property->u.value;
+        bool const negative = *value == '-';
+        static char const min[] = "-8000000000000000";
+        static char const max[] = "7FFFFFFFFFFFFFFF";
         unsigned int const maxdigits = ( negative? sizeof min: sizeof max ) - 1;
         unsigned int const len = ( unsigned int const ) ( ptr - value );
         if ( len > maxdigits ) return 0;
@@ -444,6 +509,13 @@ static char* goNum( char* str ) {
     return 0;
 }
 
+static char* gohexNum( char* str ) {
+    for( ; *str != '\0'; ++str ) {
+        if ( !ishexdigit( (int)(*str) ) )
+            return str;
+    }
+    return 0;
+}
 /** Set of characters that defines the end of an array or a JSON object. */
 static char const* const endofblock = "}]";
 
