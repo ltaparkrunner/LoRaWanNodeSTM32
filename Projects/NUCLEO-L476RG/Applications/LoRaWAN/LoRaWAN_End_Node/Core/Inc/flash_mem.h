@@ -22,6 +22,11 @@
 #define ADDR_FLASH_PAGE_390   ((uint32_t)0x080c3000) /* Base @ of Page 390, 2 Kbytes */
 #define ADDR_FLASH_PAGE_391   ((uint32_t)0x080c3800) /* Base @ of Page 391, 2 Kbytes */
 #define ADDR_FLASH_PAGE_392   ((uint32_t)0x080c4000) /* Base @ of Page 392, 2 Kbytes */
+
+#define ADDR_FLASH_PAGE_401   ((uint32_t)0x080c8800) /* Base @ of Page 392, 2 Kbytes */
+#define ADDR_FLASH_PAGE_402   ((uint32_t)0x080c9000) /* Base @ of Page 392, 2 Kbytes */
+#define ADDR_FLASH_PAGE_403   ((uint32_t)0x080c9800) /* Base @ of Page 392, 2 Kbytes */
+
 #define ADDR_FLASH_PAGE_511   ((uint32_t)0x080ff800) /* Base @ of Page 511, 2 Kbytes */
 
 #define DATA_32                 ((uint32_t)0x12345678)
@@ -37,10 +42,15 @@
 #define FLASH_USER_START_ADDR   ADDR_FLASH_PAGE_389   /* Start @ of user Flash area */
 #define FLASH_USER_END_ADDR     ADDR_FLASH_PAGE_392 + FLASH_PAGE_SIZE - 1   /* End @ of user Flash area */
 
+#define FLASH_USER_START_ADDR2   ADDR_FLASH_PAGE_401   /* Start @ of user Flash area */
+#define FLASH_USER_END_ADDR2     ADDR_FLASH_PAGE_401 + FLASH_PAGE_SIZE - 1   /* End @ of user Flash area */
+
+
 uint32_t GetPage(uint32_t Addr);
 uint32_t GetBank(uint32_t Address);
 HAL_StatusTypeDef HAL_Init_Flash(void);
 void write_read_flash(void);
+int32_t init_flash(uint32_t numpage, uint8_t buf[], uint32_t len);
 int32_t readflash(uint32_t numpage, uint32_t buf[], uint32_t len);
 int32_t change_buf(uint32_t numelmt, uint32_t subst[], uint32_t buf[], uint32_t len);
 int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len);

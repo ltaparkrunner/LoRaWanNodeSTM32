@@ -25,7 +25,8 @@
 #include "sys_app.h"
 #include "stm32_seq.h"
 /* USER CODE BEGIN Includes */
-
+#include "flash_mem.h"
+#include "settings_json.h"
 /* USER CODE END Includes */
 
 /* External variables ---------------------------------------------------------*/
@@ -69,7 +70,11 @@ void MX_LoRaWAN_Init(void)
   /* USER CODE END MX_LoRaWAN_Init_1 */
   SystemApp_Init();
   /* USER CODE BEGIN MX_LoRaWAN_Init_2 */
+	uint8_t buff[Buff_Len];
 
+	HAL_Init_Flash();
+
+	init_flash(FLASH_PAGE_FOR_SETTINGS, buff, Buff_Len);
   /* USER CODE END MX_LoRaWAN_Init_2 */
   LoRaWAN_Init();
   /* USER CODE BEGIN MX_LoRaWAN_Init_3 */

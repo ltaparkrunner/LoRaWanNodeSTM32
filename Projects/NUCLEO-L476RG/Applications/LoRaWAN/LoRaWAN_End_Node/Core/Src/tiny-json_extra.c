@@ -90,8 +90,8 @@ struct field json_descr[Json_Descript_Length] = {
 																{"TEXT", 0,0,1,1,JSON_BOOLEAN,94,0},
 															{"Command",0,0,1,0,JSON_BOOLEAN,95,0},
 															{"WRTN",0,0x99,1,0,JSON_INTEGER,96,0},
-															{"DevEuiVal",0,0,1,0,JSON_BOOLEAN,97,0}
-															
+															{"DevEuiVal",0,0,1,0,JSON_BOOLEAN,97,0},
+															{"AppKeyValid",0,0,1,0,JSON_BOOLEAN,98,0}
 															//	\"LoRa_Data\": [\"AD1\", \"INP1\", \"INP3\", \"AD4\", \"text\"],
 };
 
@@ -241,12 +241,12 @@ int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buff[]
 {
 //	json_t pool[ qty ];
 	json_t const *json_sets = json_create(str, mem, qty);
-	static uint32_t buff_len = 0;
+	uint32_t buff_len = 0;
 	uint32_t buff_ptr = 0;
 	static uint64_t tempI;
 	static uint8_t tempB;
 	static const char* tempT;
-	static int32_t j2 = 0;
+	int32_t j2 = 0;
 	int32_t slen = 0;
 	
 	for(int i = 0; i < Json_Descript_Length; i++)
@@ -274,7 +274,7 @@ int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buff[]
 						for(int i2=0; i2<json_descr[j2].bytes; i2++)
 						{
 							buff[buff_ptr++] = (uint8_t)tempI & 0xff;
-							tempI >>= 1;
+							tempI >>= 8;
 						}
 						json_ptr = json_ptr->sibling;
 						break;

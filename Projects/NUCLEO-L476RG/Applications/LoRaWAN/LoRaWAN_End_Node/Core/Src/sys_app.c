@@ -35,7 +35,7 @@
 #include "defaults.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "settings_json.h"
 /* USER CODE END Includes */
 
 /* External variables ---------------------------------------------------------*/
@@ -212,7 +212,7 @@ extern struct json_arr *jsonarrflash;
 void GetUniqueId(uint8_t *id)
 {
   /* USER CODE BEGIN GetUniqueId_1 */
-	if(jsonarrflash ->devEuiVal == 0x66)
+	if(jsonarrflash ->devEuiVal == truefl)
 	{
   /* USER CODE END GetUniqueId_1 */
   uint32_t ID_1_3_val = HAL_GetUIDw0() + HAL_GetUIDw2();
@@ -235,7 +235,7 @@ void GetUniqueId(uint8_t *id)
 		for(int8_t i=0; i<8; i++)
 		{
 			id[i] = (uint8_t)tmp;
-			tmp>>=1;
+			tmp>>=8;
 		}
 	}
   /* USER CODE END GetUniqueId_2 */

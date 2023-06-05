@@ -92,43 +92,45 @@ HAL_StatusTypeDef HAL_Init_Flash()
 
 /* USER CODE BEGIN PV */
 uint32_t FirstPage = 0, NbOfPages = 0, BankNumber = 0;
-uint32_t Address = 0, PAGEError = 0;
+uint32_t /*Address = 0,*/ PAGEError = 0;
 __IO uint32_t data32 = 0 , MemoryProgramStatus = 0;
 
 /*Variable used for Erase procedure*/
 static FLASH_EraseInitTypeDef EraseInitStruct;
 /* USER CODE END PV */
 
-int32_t errplace = 0;
+
 void write_read_flash(void)
 {
+	int32_t errplace = 0;
+	uint32_t Address = 0;
 	  /* Unlock the Flash to enable the flash control register access *************/
   HAL_FLASH_Unlock();
 	errplace = 6;
 			MU_LED_Off(LED2);
-      MU_LED_On(LED2);
-      HAL_Delay(700);
-      MU_LED_Off(LED2);
-      HAL_Delay(700);
+//      MU_LED_On(LED2);
+//      HAL_Delay(700);
+//      MU_LED_Off(LED2);
+      HAL_Delay(300);
 			MU_LED_On(LED2);
-      HAL_Delay(700);
-      MU_LED_Off(LED2);
-			
+//      HAL_Delay(700);
+//      MU_LED_Off(LED2);
+//			
   /* Erase the user Flash area
     (area defined by FLASH_USER_START_ADDR and FLASH_USER_END_ADDR) ***********/
 
   /* Clear OPTVERR bit set on virgin samples */
   __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_OPTVERR);
-	__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_PGAERR); 
-	__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_PGSERR); 
+	//__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_PGAERR); 
+	//__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_PGSERR); 
   /* Get the 1st page to erase */
-  FirstPage = GetPage(FLASH_USER_START_ADDR);
+  FirstPage = GetPage(FLASH_USER_START_ADDR2);
   /* Get the number of pages to erase from 1st page */
-  NbOfPages = GetPage(FLASH_USER_END_ADDR) - FirstPage + 1;
+  NbOfPages = GetPage(FLASH_USER_END_ADDR2) - FirstPage + 1;
   /* Get the bank */
-  BankNumber = GetBank(FLASH_USER_START_ADDR);
+  BankNumber = GetBank(FLASH_USER_START_ADDR2);
   /* Fill EraseInit structure*/
-  EraseInitStruct.TypeErase   = FLASH_TYPEERASE_PAGES;
+  EraseInitStruct.TypeErase   = FLASH_TYPEERASE_PAGES;//FLASH_TYPEERASE_MASSERASE;//FLASH_TYPEERASE_PAGES;
   EraseInitStruct.Banks       = BankNumber;
   EraseInitStruct.Page        = FirstPage;
   EraseInitStruct.NbPages     = NbOfPages;
@@ -150,24 +152,25 @@ void write_read_flash(void)
     while (1)
     {
       /* Make HL2 blink (100ms on, 2s off) to indicate error in Erase operation */
-      MU_LED_On(LED2);
-      HAL_Delay(100);
-      MU_LED_Off(LED2);
-      HAL_Delay(2000);
+//      MU_LED_On(LED2);
+//      HAL_Delay(100);
+//      MU_LED_Off(LED2);
+//      HAL_Delay(2000);
+			Error_Handler();
     }
   }
 	errplace = 8;
   /* Program the user Flash area word by word
     (area defined by FLASH_USER_START_ADDR and FLASH_USER_END_ADDR) ***********/
 
-  Address = FLASH_USER_START_ADDR;
+  Address = FLASH_USER_START_ADDR2;
 
-  while (Address < FLASH_USER_END_ADDR)
+  while (Address < FLASH_USER_END_ADDR2)
   {
     if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, Address, DATA_64) == HAL_OK)
     {
       Address = Address + 8;
-			HAL_Delay(20);
+			HAL_Delay(2);
     }
    else
     {
@@ -182,7 +185,7 @@ void write_read_flash(void)
   /* Check if the programmed data is OK
       MemoryProgramStatus = 0: data programmed correctly
       MemoryProgramStatus != 0: number of words not programmed correctly ******/
-  Address = FLASH_USER_START_ADDR;
+  Address = FLASH_USER_START_ADDR2;
   MemoryProgramStatus = 0x0;
 	errplace = 10;
   while (Address < FLASH_USER_END_ADDR)
@@ -217,9 +220,9 @@ extern char sets_JSON[];
 uint8_t buff[Buff_Len];
 struct json_arr *jsonarrflash, *jsonarrmem ;
 
-int32_t init_flash(uint32_t numpage, uint32_t buf[], uint32_t len)
+int32_t init_flash(uint32_t numpage, uint8_t buf[], uint32_t len)
 {
-	uint32_t addr = ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	uint32_t addr = FLASH_USER_START_ADDR2;// ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
 	uint32_t i;
 	jsonarrflash = (struct json_arr*)addr; 
 	if(jsonarrflash -> wrtn != WRTN_CHECK)
@@ -235,7 +238,7 @@ int32_t readflash(uint32_t numpage, uint32_t buf[], uint32_t len)
 	uint32_t i;	
 	for(i = 0; i < len; i++)
 	{
-		buf[i] = *(__IO uint32_t *)Address;
+		buf[i] = *(__IO uint32_t *)addr;
 	}
 	return i;
 }
@@ -253,8 +256,9 @@ int32_t change_buf(uint32_t numelmt, uint32_t subst[], uint32_t buf[], uint32_t 
 
 int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len)
 { 
-	uint32_t addr = ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	uint32_t addr = FLASH_USER_START_ADDR2;	//ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
 	
+	HAL_FLASH_Unlock();
 	  /* Clear OPTVERR bit set on virgin samples */
   __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_OPTVERR);
 	__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_PGAERR); 
@@ -270,7 +274,7 @@ int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len)
   EraseInitStruct.Banks       = BankNumber;
   EraseInitStruct.Page        = FirstPage;
   EraseInitStruct.NbPages     = NbOfPages;
-	errplace = 7;
+	//errplace = 7;
   /* Note: If an erase operation in Flash memory also concerns data in the data or instruction cache,
      you have to make sure that these data are rewritten before they are accessed during code
      execution. If this cannot be done safely, it is recommended to flush the caches by setting the
@@ -284,14 +288,17 @@ int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len)
 	  /* Program the user Flash area word by word
     (area defined by FLASH_USER_START_ADDR and FLASH_USER_END_ADDR) ***********/
 
-  addr = ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
-	uint32_t addrEnd = ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage + len;
-
+  addr = FLASH_USER_START_ADDR2;//ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	uint32_t addrEnd = FLASH_USER_START_ADDR2 + len; //ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage + len;
+	uint32_t i = 0;
+	static uint64_t tmp;
   while (addr < addrEnd)
   {
-    if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, Address, DATA_64) == HAL_OK)
+		tmp = *(__IO uint64_t *)buf;
+    if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, addr, tmp) == HAL_OK)
     {
-      Address = Address + 8;
+      addr = addr + 8;
+			buf +=8;
 			HAL_Delay(2);
     }
    else

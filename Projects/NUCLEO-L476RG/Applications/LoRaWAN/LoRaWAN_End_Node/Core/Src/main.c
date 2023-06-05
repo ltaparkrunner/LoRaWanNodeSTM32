@@ -32,6 +32,7 @@
 #include "usart.h"
 #include "dma.h"
 #include "flash_mem.h"
+//#include "sys_app.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,7 +50,8 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-
+json_t pool2[Num_Field ];
+uint8_t buff2[Buff_Len];
 /* USER CODE BEGIN PV */
 extern char sets_JSON[];
 extern UART_HandleTypeDef huart3;
@@ -91,7 +93,14 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
+	//SystemApp_Init();
+//		json_t pool[ Num_Field ];
+//	uint8_t buff[Buff_Len];
 
+//	HAL_Init_Flash();
+
+//	init_flash(FLASH_PAGE_FOR_SETTINGS, buff, Buff_Len);
+	
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -101,13 +110,8 @@ int main(void)
 	MX_DMA_Init();
   MX_USART3_UART_Init();
 	
-	check();
-	json_t pool[ Num_Field ];
-	uint8_t buff[Buff_Len];
-	
-	json_to_buffer(sets_JSON, pool, Num_Field, buff, Buff_Len);
-	
-	
+	//check();
+
 
 //	json_t const *settings = json_create(sets_JSON, pool, Num_Field);
 //	if (settings == NULL) return -1;
@@ -128,7 +132,7 @@ int main(void)
 	{
 		Error_Handler();
 	}
-	HAL_Delay(700);
+	HAL_Delay(100);
 
 	RxReady = 0;
 	if(HAL_UART_Receive_DMA(&huart3, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
@@ -145,8 +149,8 @@ int main(void)
 	//printf("forever");
 	//printf(
 	
-		HAL_Init_Flash();
-		write_read_flash();
+
+//		write_read_flash();
   /* USER CODE END 2 */
 
   /* Infinite loop */
