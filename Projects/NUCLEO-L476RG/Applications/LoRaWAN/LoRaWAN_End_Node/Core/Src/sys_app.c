@@ -36,6 +36,7 @@
 
 /* USER CODE BEGIN Includes */
 #include "settings_json.h"
+#include "flash_mem.h"
 /* USER CODE END Includes */
 
 /* External variables ---------------------------------------------------------*/
@@ -207,7 +208,7 @@ uint16_t GetTemperatureLevel(void)
   /* USER CODE END GetTemperatureLevel */
   return temperatureLevel;
 }
-#include "flash_mem.h"
+
 extern struct json_arr *jsonarrflash;
 void GetUniqueId(uint8_t *id)
 {

@@ -1,10 +1,11 @@
-#include "flash_mem.h"
 #include "stm32l4xx_mu.h"
 
 #include "tiny-json.h"
 #include "tiny-json_extra.h"
 #include <string.h>
 #include "settings_json.h"
+
+#include "flash_mem.h"
 
 struct json_arr json_buff, *pjson_buff = &json_buff;
 

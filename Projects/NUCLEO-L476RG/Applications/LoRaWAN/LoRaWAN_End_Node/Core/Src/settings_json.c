@@ -16,7 +16,7 @@ char sets_JSON[] = "{\
 			\"sec\": 10,\
 			\"min\": 2,\
 			\"hour\": 0,\
-			\"days\": 0,\
+			rget\"days\": 0,\
 			\"work\": true\
 		},\
 		\"battery\": {\

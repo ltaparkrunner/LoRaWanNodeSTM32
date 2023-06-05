@@ -479,8 +479,8 @@ static SecureElementStatus_t ComputeCmac( uint8_t* micBxBuffer, uint8_t* buffer,
 
 /* Exported functions ---------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "flash_mem.h"
 #include "settings_json.h"
+#include "flash_mem.h"
 /* USER CODE END Includes */
 extern struct json_arr *jsonarrflash;
 /*

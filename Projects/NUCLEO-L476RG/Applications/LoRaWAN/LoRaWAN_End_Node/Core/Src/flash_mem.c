@@ -1,8 +1,9 @@
-#include "flash_mem.h"
+
 #include "stm32l4xx_mu.h"
 #include "settings_json.h"
 #include "tiny-json.h"
 #include "tiny-json_extra.h"
+#include "flash_mem.h"
 
 void Error_Handler(void);
 int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len);

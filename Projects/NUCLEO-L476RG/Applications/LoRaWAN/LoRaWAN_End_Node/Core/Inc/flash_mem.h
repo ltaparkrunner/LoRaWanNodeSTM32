@@ -1,6 +1,9 @@
-//#include "stm32l4xx_hal.h"
+#ifndef FLASH_MEM_H
+#define FLASH_MEM_H
+
+//#include "stm32l4xx_hal_def.h"
 #include <stdint.h>
-#include "stm32l4xx_hal_def.h"
+//
 
 #define ADDR_FLASH_PAGE_0    	((uint32_t)0x08000000) /* Base @ of Page 0, 2 Kbytes */
 #define ADDR_FLASH_PAGE_16    ((uint32_t)0x08008000) /* Base @ of Page 16, 2 Kbytes */
@@ -132,3 +135,5 @@ struct json_arr{
 		uint8_t devEuiVal;
 		uint8_t appKeyVal;
 };
+
+#endif /* FLASH_MEM_H */
