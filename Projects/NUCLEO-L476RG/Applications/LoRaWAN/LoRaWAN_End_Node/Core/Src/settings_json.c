@@ -16,7 +16,7 @@ char sets_JSON[] = "{\
 			\"sec\": 10,\
 			\"min\": 2,\
 			\"hour\": 0,\
-			rget\"days\": 0,\
+			\"days\": 0,\
 			\"work\": true\
 		},\
 		\"battery\": {\
@@ -50,7 +50,7 @@ char sets_JSON[] = "{\
 				\"sec\": 1,\
 				\"min\": 2,\
 				\"hour\": 0,\
-				\"days\": 0\
+				\"days\": 0,\
 				\"work\": true\
 			},\
 		}\
@@ -59,7 +59,7 @@ char sets_JSON[] = "{\
 		\"sec\": 1,\
 		\"min\": 2,\
 		\"hour\": 0,\
-		\"days\": 0	\
+		\"days\": 0,\
 		\"work\": true\
 	},\
 	\"LoRa_text\": \"Soon as early Dawn appeared, the rosy-fingered, up from his bed arose the dear son of Odysseus and put on his clothing.\",\

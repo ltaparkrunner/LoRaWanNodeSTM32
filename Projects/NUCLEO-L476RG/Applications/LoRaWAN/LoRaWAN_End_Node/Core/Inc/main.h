@@ -101,6 +101,8 @@ void Error_Handler(void);
 #define USARTx_RX_AF                     GPIO_AF7_USART3
 
 /* USER CODE BEGIN Private defines */
+#define Vbus_DET_Pin GPIO_PIN_13
+#define Vbus_DET_GPIO_Port GPIOE
 
 /* USER CODE END Private defines */
 
