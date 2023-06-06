@@ -26,6 +26,7 @@
 #include "sys_app.h"
 #include "stm32_seq.h"
 /* USER CODE BEGIN Includes */
+
 #include "settings_json.h"
 #include "flash_mem.h"
 /* USER CODE END Includes */

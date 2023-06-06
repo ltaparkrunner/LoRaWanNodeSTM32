@@ -2,7 +2,8 @@
 #define FLASH_MEM_H
 
 //#include "stm32l4xx_hal_def.h"
-#include <stdint.h>
+#include "stm32l4xx_mu.h"
+//#include <stdint.h>
 //
 
 #define ADDR_FLASH_PAGE_0    	((uint32_t)0x08000000) /* Base @ of Page 0, 2 Kbytes */

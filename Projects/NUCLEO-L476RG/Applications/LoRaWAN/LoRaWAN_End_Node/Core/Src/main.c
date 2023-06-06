@@ -21,7 +21,7 @@
 #include "main.h"
 #include "app_lorawan.h"
 // TODO: erase below
-#include "stm32l4xx_mu.h"
+//#include "stm32l4xx_mu.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -32,6 +32,8 @@
 #include "usart.h"
 #include "dma.h"
 #include "flash_mem.h"
+#include "usb_device.h"
+#include "usbd_cdc_if.h"
 //#include "sys_app.h"
 /* USER CODE END Includes */
 
@@ -106,10 +108,10 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_LoRaWAN_Init();
   /* USER CODE BEGIN 2 */
-	
+
 	MX_DMA_Init();
   MX_USART3_UART_Init();
-	
+	MX_USB_DEVICE_Init();
 	//check();
 
 
@@ -165,7 +167,11 @@ int main(void)
   }
   /* USER CODE END 3 */
 }
-
+void USBClock_Config(void)
+{
+	  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+		
+}
 /**
   * @brief System Clock Configuration
   * @retval None
