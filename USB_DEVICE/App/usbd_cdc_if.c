@@ -103,9 +103,9 @@ uint8_t UserRxBufferFS[APP_RX_DATA_SIZE];
 uint8_t UserTxBufferFS[APP_TX_DATA_SIZE];
 
 /* USER CODE BEGIN PRIVATE_VARIABLES */
-uint16_t SumRecordLength = 0;
-uint16_t RingBufferBegin = 0;
-uint16_t RingBufferEnd = 0;
+int16_t SumRecordLength = 0;
+int16_t RingBufferBegin = 0;
+int16_t RingBufferEnd = 0;
 /* USER CODE END PRIVATE_VARIABLES */
 
 /**
@@ -373,14 +373,32 @@ uint8_t CheckTransmit()
 	
 	uint8_t result = USBD_OK;
 	/* проверка, что не занято и отработка ошибок  USBD_BUSY*/
-	if (SumRecordLength >= LengthToSend)	//CDC_DATA_HS_MAX_PACKET_SIZE)	//16)//
+	if (SumRecordLength >= 1)//LengthToSend)	//CDC_DATA_HS_MAX_PACKET_SIZE)	//16)//
 	{
-		result = CDC_Transmit_FS(&UserRxBufferFS[RingBufferBegin], LengthToSend);	//CDC_DATA_HS_MAX_PACKET_SIZE/2);	//16);//
-		if (result == USBD_OK)
+		if(UserRxBufferFS[RingBufferBegin] == 10 || UserRxBufferFS[RingBufferBegin] == 13){
+			//for(int i = 1; i<32; i++){
+			static uint8_t CRbuf[2] = {10,13}; 
+			//UserRxBufferFS[RingBufferBegin+1] = 11;
+			//UserRxBufferFS[RingBufferBegin+1] = 13;
+			
+			//}
+			result = CDC_Transmit_FS(CRbuf, 2);
+			if (result == USBD_OK)
+			{
+				RingBufferBegin += 1;//LengthToSend;		//16;	//
+				if (RingBufferBegin >= BufferLast256) RingBufferBegin = 0;
+				SumRecordLength -= 1;//LengthToSend;		//16;//
+			}
+		}
+		else	
 		{
-			RingBufferBegin += LengthToSend;		//16;	//
-			if (RingBufferBegin >= BufferLast256) RingBufferBegin = 0;
-			SumRecordLength -= LengthToSend;		//16;//
+			result = CDC_Transmit_FS(&UserRxBufferFS[RingBufferBegin], LengthToSend);	//CDC_DATA_HS_MAX_PACKET_SIZE/2);	//16);//
+			if (result == USBD_OK)
+			{
+				RingBufferBegin += 1;//LengthToSend;		//16;	//
+				if (RingBufferBegin >= BufferLast256) RingBufferBegin = 0;
+				SumRecordLength -= 1;//LengthToSend;		//16;//
+			}
 		}
 	}
 
