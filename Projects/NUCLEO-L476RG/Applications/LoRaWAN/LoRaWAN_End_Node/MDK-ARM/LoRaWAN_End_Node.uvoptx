@@ -152,23 +152,7 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>293</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\..\..\..\..\..\USB_DEVICE\App\usbd_cdc_if.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>291</LineNumber>
+          <LineNumber>290</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>134220878</Address>
           <ByteObject>0</ByteObject>
@@ -179,7 +163,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\..\..\..\..\..\USB_DEVICE\App\usbd_cdc_if.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../../../../../../USB_DEVICE/App/usbd_cdc_if.c\291</Expression>
+          <Expression>\\sx1276mb1mas\../../../../../../USB_DEVICE/App/usbd_cdc_if.c\290</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -1122,7 +1106,7 @@
 
   <Group>
     <GroupName>Application/Core</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

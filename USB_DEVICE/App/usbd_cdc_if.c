@@ -23,7 +23,7 @@
 #include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include <string.h>
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -104,9 +104,10 @@ uint8_t UserTxBufferFS[APP_TX_DATA_SIZE];
 
 /* USER CODE BEGIN PRIVATE_VARIABLES */
 int32_t LengthToSend = 0;
+int32_t receivedLen = 0;
 int16_t SumRecordLength = 0;
-int16_t RingBufferBegin = 0;
-int16_t RingBufferEnd = 0;
+//int16_t RingBufferBegin = 0;
+//int16_t RingBufferEnd = 0;
 /* USER CODE END PRIVATE_VARIABLES */
 
 /**
@@ -286,31 +287,15 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
-	//uint8_t* bufPoint;
-	
-	//bufPoint = Buf + *Len; /* Конец буфера мб -1 */
-	LengthToSend = *Len;
-	RingBufferEnd += *Len;
-	SumRecordLength += *Len;
-	if (RingBufferEnd >= BufferLast256) /* буфер близок к переполнению */
-	{
-			if(RingBufferBegin > (RingBufferEnd - BufferLast256))	/* и есть свободное место в начале*/
-			{
-					memcpy(&UserRxBufferFS[0], &UserRxBufferFS[BufferLast256], RingBufferEnd - BufferLast256); 
-					RingBufferEnd = RingBufferEnd - BufferLast256;
-			}
-			else return USBD_FAIL;	/* буфер переполнен и места в начале нет */
-	}
-	//////////////
-	//RingBufferEnd = APP_RX_DATA_SIZE -15;
-	////////////
-	if (RingBufferEnd > RingBufferBegin) USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &UserRxBufferFS[RingBufferEnd]); // новое сообщение пишем в конец буфера
-	else if ((RingBufferBegin - RingBufferEnd) > CDC_DATA_HS_MAX_PACKET_SIZE) USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &UserRxBufferFS[RingBufferEnd]);
-				else return USBD_FAIL;	/* буфер переполнен */
+	if(*Len > APP_RX_DATA_SIZE) return USBD_FAIL;
+	else {
+		receivedLen = *Len;
+		USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
 
-  //USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
-  USBD_CDC_ReceivePacket(&hUsbDeviceFS);
-  return (USBD_OK);
+		//USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
+		USBD_CDC_ReceivePacket(&hUsbDeviceFS);
+		return (USBD_OK);
+	}
   /* USER CODE END 6 */
 }
 
@@ -372,39 +357,40 @@ static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_IMPLEMENTATION */
 uint8_t CheckTransmit()
 {
-	
 	uint8_t result = USBD_OK;
 	/* проверка, что не занято и отработка ошибок  USBD_BUSY*/
-	if (SumRecordLength >= 1)//LengthToSend)	//CDC_DATA_HS_MAX_PACKET_SIZE)	//16)//
+	if (receivedLen == 1)//LengthToSend)	//CDC_DATA_HS_MAX_PACKET_SIZE)	//16)//
 	{
-		if(UserRxBufferFS[RingBufferBegin] == 10 || UserRxBufferFS[RingBufferBegin] == 13){
-			//for(int i = 1; i<32; i++){
+		if(UserRxBufferFS[0] == 10 || UserRxBufferFS[0] == 13){
 			static uint8_t CRbuf[2] = {10,13}; 
-			//UserRxBufferFS[RingBufferBegin+1] = 11;
-			//UserRxBufferFS[RingBufferBegin+1] = 13;
-			
-			//}
 			result = CDC_Transmit_FS(CRbuf, 2);
-			if (result == USBD_OK)
-			{
-				RingBufferBegin += 1;//LengthToSend;		//16;	//
-				if (RingBufferBegin >= BufferLast256) RingBufferBegin = 0;
-				SumRecordLength -= 1;//LengthToSend;		//16;//
-			}
+			// Здесь запустить разбор и выполнение команды
+			// launchJsonCommand = 1;
+//			if (result == USBD_OK)
+//			{
+//				RingBufferBegin += 1;//LengthToSend;		//16;	//
+//				if (RingBufferBegin >= BufferLast256) RingBufferBegin = 0;
+//				SumRecordLength -= 1;//LengthToSend;		//16;//
+//			}
 		}
 		else	
 		{
-			
-			result = CDC_Transmit_FS(&UserRxBufferFS[RingBufferBegin], LengthToSend);	//CDC_DATA_HS_MAX_PACKET_SIZE/2);	//16);//
-			if (result == USBD_OK)
-			{
-				RingBufferBegin += LengthToSend;//LengthToSend;		//16;	//
-				if (RingBufferBegin >= BufferLast256) RingBufferBegin = 0;
-				SumRecordLength -= LengthToSend;//LengthToSend;		//16;//
-			}
+			result = CDC_Transmit_FS(UserRxBufferFS, receivedLen);
 		}
+		receivedLen = 0;
 	}
-
+	else {
+		static char str[APP_RX_DATA_SIZE + APP_RX_DATA_SIZE/3];
+		int32_t len = outpStr(UserRxBufferFS, str);
+		if( len>0 ) result = CDC_Transmit_FS(UserRxBufferFS, receivedLen);
+		else{}
+		
+		// вывести пачку 
+		// сначала разобрать. в другой буфер, затем вывести этот другой буфер. в отдельную функцию
+		
+		
+		return USBD_FAIL;
+	}
 	return result;
 }
 /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */
