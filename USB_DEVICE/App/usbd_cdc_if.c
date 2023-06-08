@@ -30,7 +30,7 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 #define BufferLast256								(APP_RX_DATA_SIZE - CDC_DATA_HS_MAX_PACKET_SIZE)
-#define LengthToSend								32
+//#define LengthToSend								32
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 USBD_CDC_LineCodingTypeDef LineCoding =
@@ -103,6 +103,7 @@ uint8_t UserRxBufferFS[APP_RX_DATA_SIZE];
 uint8_t UserTxBufferFS[APP_TX_DATA_SIZE];
 
 /* USER CODE BEGIN PRIVATE_VARIABLES */
+int32_t LengthToSend = 0;
 int16_t SumRecordLength = 0;
 int16_t RingBufferBegin = 0;
 int16_t RingBufferEnd = 0;
@@ -288,6 +289,7 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 	//uint8_t* bufPoint;
 	
 	//bufPoint = Buf + *Len; /* Конец буфера мб -1 */
+	LengthToSend = *Len;
 	RingBufferEnd += *Len;
 	SumRecordLength += *Len;
 	if (RingBufferEnd >= BufferLast256) /* буфер близок к переполнению */
@@ -392,12 +394,13 @@ uint8_t CheckTransmit()
 		}
 		else	
 		{
+			
 			result = CDC_Transmit_FS(&UserRxBufferFS[RingBufferBegin], LengthToSend);	//CDC_DATA_HS_MAX_PACKET_SIZE/2);	//16);//
 			if (result == USBD_OK)
 			{
-				RingBufferBegin += 1;//LengthToSend;		//16;	//
+				RingBufferBegin += LengthToSend;//LengthToSend;		//16;	//
 				if (RingBufferBegin >= BufferLast256) RingBufferBegin = 0;
-				SumRecordLength -= 1;//LengthToSend;		//16;//
+				SumRecordLength -= LengthToSend;//LengthToSend;		//16;//
 			}
 		}
 	}
