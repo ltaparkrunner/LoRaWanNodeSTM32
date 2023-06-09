@@ -868,6 +868,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\example01.c</FilePath>
             </File>
+            <File>
+              <FileName>parseMessages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\parseMessages.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1909,6 +1914,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\example01.c</FilePath>
             </File>
+            <File>
+              <FileName>parseMessages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\parseMessages.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2898,6 +2908,11 @@
               <FileName>example01.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\example01.c</FilePath>
+            </File>
+            <File>
+              <FileName>parseMessages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\parseMessages.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3940,6 +3955,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\example01.c</FilePath>
             </File>
+            <File>
+              <FileName>parseMessages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\parseMessages.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4981,6 +5001,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\example01.c</FilePath>
             </File>
+            <File>
+              <FileName>parseMessages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\parseMessages.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -6021,6 +6046,11 @@
               <FileName>example01.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\example01.c</FilePath>
+            </File>
+            <File>
+              <FileName>parseMessages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\parseMessages.c</FilePath>
             </File>
           </Files>
         </Group>

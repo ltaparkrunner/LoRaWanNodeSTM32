@@ -24,6 +24,7 @@
 
 /* USER CODE BEGIN INCLUDE */
 #include <string.h>
+#include "parseMessage.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -286,16 +287,25 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
   */
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
+	
   /* USER CODE BEGIN 6 */
-	if(*Len > APP_RX_DATA_SIZE) return USBD_FAIL;
-	else {
+	static uint32_t length = 0;
+	static uint8_t bufc[APP_STR_SIZE] = {0};
+//	if(*Len > APP_RX_DATA_SIZE) return USBD_FAIL;
+//	else {
 		receivedLen = *Len;
+		if(length < APP_STR_SIZE - 64)
+		memcpy(&bufc[length], Buf, *Len);
+		length += *Len;
+		
+		
 		USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
 
-		//USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
+//		//USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
 		USBD_CDC_ReceivePacket(&hUsbDeviceFS);
 		return (USBD_OK);
-	}
+//	}
+
   /* USER CODE END 6 */
 }
 
@@ -355,10 +365,13 @@ static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
 }
 
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_IMPLEMENTATION */
+
 uint8_t CheckTransmit()
 {
 	uint8_t result = USBD_OK;
 	/* проверка, что не занято и отработка ошибок  USBD_BUSY*/
+//	if (receivedLen > 0) 
+//		HAL_Delay(1);
 	if (receivedLen == 1)//LengthToSend)	//CDC_DATA_HS_MAX_PACKET_SIZE)	//16)//
 	{
 		if(UserRxBufferFS[0] == 10 || UserRxBufferFS[0] == 13){
@@ -372,6 +385,7 @@ uint8_t CheckTransmit()
 //				if (RingBufferBegin >= BufferLast256) RingBufferBegin = 0;
 //				SumRecordLength -= 1;//LengthToSend;		//16;//
 //			}
+			receivedLen = 0;
 		}
 		else	
 		{
@@ -379,18 +393,16 @@ uint8_t CheckTransmit()
 		}
 		receivedLen = 0;
 	}
-	else {
-		static char str[APP_RX_DATA_SIZE + APP_RX_DATA_SIZE/3];
-		int32_t len = outpStr(UserRxBufferFS, str);
-		if( len>0 ) result = CDC_Transmit_FS(UserRxBufferFS, receivedLen);
-		else{}
-		
-		// вывести пачку 
-		// сначала разобрать. в другой буфер, затем вывести этот другой буфер. в отдельную функцию
-		
-		
-		return USBD_FAIL;
-	}
+	else if (receivedLen > 1) {
+//			static uint8_t str[APP_STR_SIZE];
+//			int32_t len = outpStr(UserRxBufferFS, str, APP_RX_DATA_SIZE, APP_STR_SIZE);
+//			receivedLen = 0;
+//			if( len>0 ) result = CDC_Transmit_FS(str, len);
+//			else	return USBD_FAIL;
+//			if ( result == USBD_BUSY )
+//					HAL_Delay(1);
+		}
+
 	return result;
 }
 /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */
