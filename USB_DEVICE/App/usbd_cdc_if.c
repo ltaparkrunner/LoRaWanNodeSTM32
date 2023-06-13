@@ -42,6 +42,15 @@ USBD_CDC_LineCodingTypeDef LineCoding =
     0x08    /* nb. of bits 8*/
   };
 
+//static uint8_t bufc[APP_STR_SIZE] = {0};
+struct bufc_t{
+	uint8_t array[APP_STR_SIZE];
+	uint32_t length;
+	uint32_t head;
+	uint32_t tail;
+};
+struct bufc_t bufc ={{0}, APP_STR_SIZE, 0 ,0};
+static uint32_t length = 0;
 /* USER CODE END PV */
 
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
@@ -289,19 +298,34 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
 	
   /* USER CODE BEGIN 6 */
-	static uint32_t length = 0;
-	static uint8_t bufc[APP_STR_SIZE] = {0};
+
+
 //	if(*Len > APP_RX_DATA_SIZE) return USBD_FAIL;
 //	else {
-		receivedLen = *Len;
-		if(length < APP_STR_SIZE - 64)
-		memcpy(&bufc[length], Buf, *Len);
-		length += *Len;
-		
-		
-		USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
+//		receivedLen = *Len;
+//		if(length < APP_STR_SIZE - 64)
+//		memcpy(&bufc[length], Buf, *Len);
+//		length += *Len;
+		bufc.head = bufc.tail;
+		if((bufc.head + *Len) < bufc.length){ //-1)
+			memcpy(&bufc.array[bufc.head], Buf, *Len);
+			bufc.tail += *Len;
+		}
+		else if((bufc.head + *Len) == bufc.length){
+			memcpy(&bufc.array[bufc.head], Buf, *Len);
+			bufc.tail = 0;
+		}
+		else {
+			memcpy(&bufc.array[bufc.head], Buf, bufc.length - bufc.head);
+			//bufc.head = 0;
+			memcpy(bufc.array, &Buf[bufc.length - bufc.head], *Len - (bufc.length - bufc.head));
+			bufc.tail = *Len - (bufc.length - bufc.head);
+		}
+		if( bufc.head > bufc.length) bufc.head = 0;
+		if( bufc.tail > bufc.length) bufc.tail = 0;
+		//USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
 
-//		//USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
+		USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
 		USBD_CDC_ReceivePacket(&hUsbDeviceFS);
 		return (USBD_OK);
 //	}
@@ -369,12 +393,14 @@ static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
 uint8_t CheckTransmit()
 {
 	uint8_t result = USBD_OK;
+	static uint8_t str[APP_STR_SIZE];
 	/* проверка, что не занято и отработка ошибок  USBD_BUSY*/
 //	if (receivedLen > 0) 
 //		HAL_Delay(1);
-	if (receivedLen == 1)//LengthToSend)	//CDC_DATA_HS_MAX_PACKET_SIZE)	//16)//
+	if ((bufc.tail - bufc.head) == 1 || (bufc.tail == 0 && bufc.head == (bufc.length - 1)))//LengthToSend)	//CDC_DATA_HS_MAX_PACKET_SIZE)	//16)//
 	{
-		if(UserRxBufferFS[0] == 10 || UserRxBufferFS[0] == 13){
+		//if(UserRxBufferFS[0] == 10 || UserRxBufferFS[0] == 13){
+		if(bufc.array[bufc.head] == 10 || bufc.array[bufc.head] == 13){
 			static uint8_t CRbuf[2] = {10,13}; 
 			result = CDC_Transmit_FS(CRbuf, 2);
 			// Здесь запустить разбор и выполнение команды
@@ -385,22 +411,23 @@ uint8_t CheckTransmit()
 //				if (RingBufferBegin >= BufferLast256) RingBufferBegin = 0;
 //				SumRecordLength -= 1;//LengthToSend;		//16;//
 //			}
-			receivedLen = 0;
+			//receivedLen = 0;
 		}
 		else	
 		{
-			result = CDC_Transmit_FS(UserRxBufferFS, receivedLen);
+			result = CDC_Transmit_FS(UserRxBufferFS, 1);//receivedLen);
 		}
-		receivedLen = 0;
+		//receivedLen = 0;
 	}
-	else if (receivedLen > 1) {
-//			static uint8_t str[APP_STR_SIZE];
-//			int32_t len = outpStr(UserRxBufferFS, str, APP_RX_DATA_SIZE, APP_STR_SIZE);
-//			receivedLen = 0;
-//			if( len>0 ) result = CDC_Transmit_FS(str, len);
-//			else	return USBD_FAIL;
-//			if ( result == USBD_BUSY )
-//					HAL_Delay(1);
+	else if ((bufc.tail - bufc.head) > 1){
+			int32_t len = outpStr(&bufc.array[bufc.head], str, APP_RX_DATA_SIZE, APP_STR_SIZE);
+			//receivedLen = 0;
+			if( len>0 ) result = CDC_Transmit_FS(str, len);
+			else	return USBD_FAIL;
+		}
+	else if ((bufc.tail - bufc.head) < -1){
+			
+
 		}
 
 	return result;

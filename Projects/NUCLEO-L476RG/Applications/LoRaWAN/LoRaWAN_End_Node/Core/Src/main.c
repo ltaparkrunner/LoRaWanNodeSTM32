@@ -54,11 +54,15 @@
 /* Private variables ---------------------------------------------------------*/
 json_t pool2[Num_Field ];
 uint8_t buff2[Buff_Len];
+
+
 /* USER CODE BEGIN PV */
 extern char sets_JSON[];
 extern UART_HandleTypeDef huart3;
 uint8_t aRxBuffer[RXBUFFERSIZE];
 uint32_t RxReady = 0;
+
+//TIM_HandleTypeDef htim3;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

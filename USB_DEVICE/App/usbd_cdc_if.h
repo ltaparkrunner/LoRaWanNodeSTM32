@@ -53,7 +53,7 @@
 /* It's up to user to redefine and/or remove those define */
 #define APP_RX_DATA_SIZE  2048
 #define APP_TX_DATA_SIZE  2048
-#define APP_STR_SIZE APP_RX_DATA_SIZE + APP_RX_DATA_SIZE/3
+//#define APP_STR_SIZE APP_RX_DATA_SIZE + APP_RX_DATA_SIZE/3
 
 /* USER CODE END EXPORTED_DEFINES */
 
