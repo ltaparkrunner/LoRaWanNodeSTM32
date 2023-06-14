@@ -43,12 +43,7 @@ USBD_CDC_LineCodingTypeDef LineCoding =
   };
 
 //static uint8_t bufc[APP_STR_SIZE] = {0};
-struct bufc_t{
-	uint8_t array[APP_STR_SIZE];
-	uint32_t length;
-	uint32_t head;
-	uint32_t tail;
-};
+
 struct bufc_t bufc ={{0}, APP_STR_SIZE, 0 ,0};
 static uint32_t length = 0;
 /* USER CODE END PV */
@@ -411,25 +406,29 @@ uint8_t CheckTransmit()
 //				if (RingBufferBegin >= BufferLast256) RingBufferBegin = 0;
 //				SumRecordLength -= 1;//LengthToSend;		//16;//
 //			}
-			//receivedLen = 0;
+			bufc.head = bufc.tail;
 		}
 		else	
 		{
 			result = CDC_Transmit_FS(UserRxBufferFS, 1);//receivedLen);
+			bufc.head = bufc.tail;
 		}
-		//receivedLen = 0;
 	}
 	else if ((bufc.tail - bufc.head) > 1){
-			int32_t len = outpStr(&bufc.array[bufc.head], str, APP_RX_DATA_SIZE, APP_STR_SIZE);
+			int32_t len = outpStr(&bufc, str, APP_RX_DATA_SIZE, APP_STR_SIZE);
 			//receivedLen = 0;
+			bufc.head = bufc.tail;
 			if( len>0 ) result = CDC_Transmit_FS(str, len);
 			else	return USBD_FAIL;
 		}
-	else if ((bufc.tail - bufc.head) < -1){
-			
-
+	else if ((bufc.tail - bufc.head) < 0){
+			int32_t len = outpStr(&bufc, str, APP_RX_DATA_SIZE, APP_STR_SIZE);
+			//len += outpStr(&bufc, str, APP_RX_DATA_SIZE, APP_STR_SIZE);
+			bufc.head = bufc.tail;
+			if( len>0 ) result = CDC_Transmit_FS(str, len);
+			else	return USBD_FAIL;
 		}
-
+		//bufc.head = bufc.tail;
 	return result;
 }
 /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */
