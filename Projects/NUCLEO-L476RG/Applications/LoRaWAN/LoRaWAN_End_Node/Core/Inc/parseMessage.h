@@ -3,9 +3,15 @@
 #define APP_STR_SIZE APP_RX_DATA_SIZE + APP_RX_DATA_SIZE/3
 
 struct bufc_t{
-	uint8_t array[APP_STR_SIZE];
 	int32_t length;
+	int32_t head_proc;
 	int32_t head;
 	int32_t tail;
+	uint8_t array[APP_RX_DATA_SIZE];
 };
-int32_t outpStr(struct bufc_t* bufc, uint8_t* str, uint32_t lenbuf, uint32_t lenstr);
+struct strc_t{
+	int32_t length;
+	uint8_t array[APP_STR_SIZE];
+};
+int32_t outpStr(struct bufc_t* bufc, struct strc_t* str);
+int32_t outpStr2(struct bufc_t* bufc, struct strc_t* str);
