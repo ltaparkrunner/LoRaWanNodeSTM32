@@ -5,4 +5,9 @@
 
 #define truefl	0x99
 #define falsefl 0xf0
+
+struct json_sets_t{
+	char* p;
+	int32_t length;
+};
 uint32_t fillBuff(uint8_t* buff);

@@ -70,6 +70,10 @@ char sets_JSON[] = "{\
 	\"AppKeyValid\":true\
 }";
 
+struct json_sets_t json_sets = {
+	.p =sets_JSON, .length = 0
+};
+
 //	\"LoRa_Data\": [{\"AD_1\":\"true\"}, {\"INP1\":\"false\"}],\
 //, {\"INP1\":true}, {\"INP3\":f}, {\"AD_4\":f}, {\"TEXT\":f}
 //struct node props[Num_Field];typedef enum {

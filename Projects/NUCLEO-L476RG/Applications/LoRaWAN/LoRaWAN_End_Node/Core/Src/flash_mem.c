@@ -103,11 +103,11 @@ static FLASH_EraseInitTypeDef EraseInitStruct;
 
 void write_read_flash(void)
 {
-	int32_t errplace = 0;
+//	int32_t errplace = 0;
 	uint32_t Address = 0;
 	  /* Unlock the Flash to enable the flash control register access *************/
   HAL_FLASH_Unlock();
-	errplace = 6;
+//	errplace = 6;
 			MU_LED_Off(LED2);
 //      MU_LED_On(LED2);
 //      HAL_Delay(700);
@@ -135,7 +135,7 @@ void write_read_flash(void)
   EraseInitStruct.Banks       = BankNumber;
   EraseInitStruct.Page        = FirstPage;
   EraseInitStruct.NbPages     = NbOfPages;
-	errplace = 7;
+//	errplace = 7;
   /* Note: If an erase operation in Flash memory also concerns data in the data or instruction cache,
      you have to make sure that these data are rewritten before they are accessed during code
      execution. If this cannot be done safely, it is recommended to flush the caches by setting the
@@ -160,7 +160,7 @@ void write_read_flash(void)
 			Error_Handler();
     }
   }
-	errplace = 8;
+//	errplace = 8;
   /* Program the user Flash area word by word
     (area defined by FLASH_USER_START_ADDR and FLASH_USER_END_ADDR) ***********/
 
@@ -178,7 +178,7 @@ void write_read_flash(void)
 			Error_Handler();
     }
   }
-	errplace = 9;
+//	errplace = 9;
   /* Lock the Flash to disable the flash control register access (recommended
      to protect the FLASH memory against possible unwanted operation) *********/
   HAL_FLASH_Lock();
@@ -188,7 +188,7 @@ void write_read_flash(void)
       MemoryProgramStatus != 0: number of words not programmed correctly ******/
   Address = FLASH_USER_START_ADDR2;
   MemoryProgramStatus = 0x0;
-	errplace = 10;
+//	errplace = 10;
   while (Address < FLASH_USER_END_ADDR)
   {
     data32 = *(__IO uint32_t *)Address;
@@ -199,7 +199,7 @@ void write_read_flash(void)
     }
     Address = Address + 4;
   }
-	errplace = 11;
+//	errplace = 11;
   /*Check if there is an issue to program data*/
   if (MemoryProgramStatus == 0)
   {
@@ -224,13 +224,14 @@ struct json_arr *jsonarrflash, *jsonarrmem ;
 int32_t init_flash(uint32_t numpage, uint8_t buf[], uint32_t len)
 {
 	uint32_t addr = FLASH_USER_START_ADDR2;// ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
-	uint32_t i;
+	//uint32_t i;
 	jsonarrflash = (struct json_arr*)addr; 
 	if(jsonarrflash -> wrtn != WRTN_CHECK)
 	{
 		uint32_t lenR = json_to_buffer(sets_JSON, pool, Num_Field, buff, Buff_Len);
 		rewriteflash(numpage, buff, lenR);
 	}
+	return 0;
 }
 
 int32_t readflash(uint32_t numpage, uint32_t buf[], uint32_t len)
@@ -291,7 +292,7 @@ int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len)
 
   addr = FLASH_USER_START_ADDR2;//ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
 	uint32_t addrEnd = FLASH_USER_START_ADDR2 + len; //ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage + len;
-	uint32_t i = 0;
+	//uint32_t i = 0;
 	static uint64_t tmp;
   while (addr < addrEnd)
   {

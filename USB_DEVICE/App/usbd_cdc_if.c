@@ -44,7 +44,7 @@ USBD_CDC_LineCodingTypeDef LineCoding =
 
 //static uint8_t bufc[APP_STR_SIZE] = {0};
 
-struct bufc_t bufc ={APP_RX_DATA_SIZE, 0,0,0, {0}};
+struct bufc_t bufc ={APP_RX_DATA_SIZE, 0,0,0,0, {0}};
 struct strc_t  str = {APP_STR_SIZE, {0}};
 //static uint32_t length = 0;
 /* USER CODE END PV */
@@ -389,59 +389,36 @@ static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
 
 uint8_t CheckTransmit()
 {
-	uint8_t result = USBD_OK;
-
-	/* проверка, что не занято и отработка ошибок  USBD_BUSY*/
-//	if (receivedLen > 0) 
-//		HAL_Delay(1);
-	if ((bufc.tail - bufc.head_proc) == 1 || (bufc.tail == 0 && bufc.head_proc == (bufc.length - 1)))//LengthToSend)	//CDC_DATA_HS_MAX_PACKET_SIZE)	//16)//
+	static uint8_t result = USBD_OK;
+	if(result == USBD_OK || result == 4) bufc.head_proc = bufc.tail_proc;
+	bufc.tail_proc = bufc.tail;
+	if ((bufc.tail_proc - bufc.head_proc) == 1 || (bufc.tail_proc == 0 && bufc.head_proc == (bufc.length - 1)))//LengthToSend)	//CDC_DATA_HS_MAX_PACKET_SIZE)	//16)//
 	{
-		//if(UserRxBufferFS[0] == 10 || UserRxBufferFS[0] == 13){
 		if(bufc.array[bufc.head_proc] == 10 || bufc.array[bufc.head_proc] == 13){
 			static uint8_t CRbuf[2] = {10,13}; 
 			result = CDC_Transmit_FS(CRbuf, 2);
-			// Здесь запустить разбор и выполнение команды
-			// launchJsonCommand = 1;
-//			if (result == USBD_OK)
-//			{
-//				RingBufferBegin += 1;//LengthToSend;		//16;	//
-//				if (RingBufferBegin >= BufferLast256) RingBufferBegin = 0;
-//				SumRecordLength -= 1;//LengthToSend;		//16;//
-//			}
-			bufc.head_proc = bufc.tail;
 		}
 		else	
 		{
 			result = CDC_Transmit_FS(UserRxBufferFS, 1);//receivedLen);
-			bufc.head_proc = bufc.tail;
 		}
 	}
-	else if ((bufc.tail - bufc.head_proc) > 1){
-			static int32_t len;
-			
-			//HAL_Delay(100);
-			len = outpStr(&bufc, &str);
-			//receivedLen = 0;
-			bufc.head_proc = bufc.tail;
+	else if ((bufc.tail_proc - bufc.head_proc) > 1){
+			int32_t len = outpStr(&bufc, &str);
 			if( len>0 )	{	
 				result = CDC_Transmit_FS(str.array, len);
-				HAL_Delay(1);	
 			}
-			else	return USBD_FAIL;
+			else{
+				result = PARSE_ZERO_LEN;//result = 4;
+			}	
 		}
-	else if ((bufc.tail - bufc.head_proc) < 0){
-			static int32_t len;
-			HAL_Delay(100);
-			len = outpStr(&bufc, &str);
-			//len += outpStr(&bufc, str, APP_RX_DATA_SIZE, APP_STR_SIZE);
-			bufc.head_proc = bufc.tail;
+	else if ((bufc.tail_proc - bufc.head_proc) < 0) {
+			int32_t len = outpStr(&bufc, &str);
 			if( len>0 ) {
 				result = CDC_Transmit_FS(str.array, len);
-				HAL_Delay(1);	
 			}
-			else	return USBD_FAIL;
+			else	result = PARSE_ZERO_LEN;//return USBD_FAIL;
 		}
-		//bufc.head = bufc.tail;
 	return result;
 }
 /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */

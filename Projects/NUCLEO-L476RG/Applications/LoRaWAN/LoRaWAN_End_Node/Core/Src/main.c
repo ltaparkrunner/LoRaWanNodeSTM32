@@ -58,9 +58,12 @@ uint8_t buff2[Buff_Len];
 
 /* USER CODE BEGIN PV */
 extern char sets_JSON[];
+extern struct json_sets_t json_sets;
 extern UART_HandleTypeDef huart3;
 uint8_t aRxBuffer[RXBUFFERSIZE];
 uint32_t RxReady = 0;
+
+
 
 //TIM_HandleTypeDef htim3;
 /* USER CODE END PV */
@@ -83,7 +86,7 @@ static void MX_GPIO_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	json_sets.length = strlen(json_sets.p);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -158,15 +161,22 @@ int main(void)
 	
 
 //		write_read_flash();
+	uint8_t result = USBD_OK;
   /* USER CODE END 2 */
-
+	
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
 //    MX_LoRaWAN_Process();
-		CheckTransmit();
+		result = CheckTransmit();
+		if(result == USBD_FAIL)
+		{
+			MX_USB_DEVICE_Init();
+		}
+		
+		//push_settings();
 		//MU_LED_Toggle(1);
 		//HAL_Delay(400);
     /* USER CODE BEGIN 3 */
