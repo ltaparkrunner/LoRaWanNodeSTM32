@@ -34,6 +34,7 @@
 #include "flash_mem.h"
 #include "usb_device.h"
 #include "usbd_cdc_if.h"
+#include "parseMessage.h"
 //#include "sys_app.h"
 /* USER CODE END Includes */
 
@@ -162,6 +163,7 @@ int main(void)
 
 //		write_read_flash();
 	uint8_t result = USBD_OK;
+	uint8_t result2 = PARSE_JSON_OK;
   /* USER CODE END 2 */
 	
   /* Infinite loop */
@@ -175,7 +177,7 @@ int main(void)
 		{
 			MX_USB_DEVICE_Init();
 		}
-		
+		result2 = ExtractJson();
 		//push_settings();
 		//MU_LED_Toggle(1);
 		//HAL_Delay(400);

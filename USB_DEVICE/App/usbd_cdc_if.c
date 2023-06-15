@@ -44,7 +44,7 @@ USBD_CDC_LineCodingTypeDef LineCoding =
 
 //static uint8_t bufc[APP_STR_SIZE] = {0};
 
-struct bufc_t bufc ={APP_RX_DATA_SIZE, 0,0,0,0, {0}};
+struct bufc_t bufc ={APP_RX_DATA_SIZE, 0,0,0,0,0,0, {0}};
 struct strc_t  str = {APP_STR_SIZE, {0}};
 //static uint32_t length = 0;
 /* USER CODE END PV */
@@ -390,20 +390,9 @@ static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
 uint8_t CheckTransmit()
 {
 	static uint8_t result = USBD_OK;
-	if(result == USBD_OK || result == 4) bufc.head_proc = bufc.tail_proc;
-	bufc.tail_proc = bufc.tail;
-	if ((bufc.tail_proc - bufc.head_proc) == 1 || (bufc.tail_proc == 0 && bufc.head_proc == (bufc.length - 1)))//LengthToSend)	//CDC_DATA_HS_MAX_PACKET_SIZE)	//16)//
-	{
-		if(bufc.array[bufc.head_proc] == 10 || bufc.array[bufc.head_proc] == 13){
-			static uint8_t CRbuf[2] = {10,13}; 
-			result = CDC_Transmit_FS(CRbuf, 2);
-		}
-		else	
-		{
-			result = CDC_Transmit_FS(UserRxBufferFS, 1);//receivedLen);
-		}
-	}
-	else if ((bufc.tail_proc - bufc.head_proc) > 1){
+	if(result == USBD_OK || result == 4) bufc.head_outp = bufc.tail_outp;
+	bufc.tail_outp = bufc.tail;
+	if ((bufc.tail_outp - bufc.head_outp) != 0)	{
 			int32_t len = outpStr(&bufc, &str);
 			if( len>0 )	{	
 				result = CDC_Transmit_FS(str.array, len);
@@ -411,14 +400,7 @@ uint8_t CheckTransmit()
 			else{
 				result = PARSE_ZERO_LEN;//result = 4;
 			}	
-		}
-	else if ((bufc.tail_proc - bufc.head_proc) < 0) {
-			int32_t len = outpStr(&bufc, &str);
-			if( len>0 ) {
-				result = CDC_Transmit_FS(str.array, len);
-			}
-			else	result = PARSE_ZERO_LEN;//return USBD_FAIL;
-		}
+	}
 	return result;
 }
 /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */

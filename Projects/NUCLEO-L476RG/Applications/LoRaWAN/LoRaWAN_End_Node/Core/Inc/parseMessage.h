@@ -4,9 +4,11 @@
 
 struct bufc_t{
 	int32_t length;
-	int32_t head_proc;
+	int32_t head_outp;
+	int32_t head_json;
 	int32_t head;
-	int32_t tail_proc;
+	int32_t tail_outp;
+	int32_t tail_json;
 	int32_t tail;
 	uint8_t array[APP_RX_DATA_SIZE];
 };
@@ -21,4 +23,19 @@ typedef enum
 {
   PARSE_ZERO_LEN = 4U,
 
-} parse_StatusTypeDef;
+}ParseOut_StatusTypeDef;
+
+typedef enum
+{
+  PARSE_JSON_OK = 5U,
+	PARSE_JSON_FAIL
+
+}ParseJson_StatusTypeDef;
+
+struct jsonmsg_t{
+	int32_t length;
+	int32_t ready;
+	uint8_t array[APP_RX_DATA_SIZE];
+};
+uint8_t ExtractJson(void);
+int32_t FetchJson(struct bufc_t* bufc, struct jsonmsg_t* jsonmsg);
