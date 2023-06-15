@@ -177,7 +177,7 @@ int main(void)
 		{
 			MX_USB_DEVICE_Init();
 		}
-		result2 = ExtractJson();
+		result2 = ParseJsonMessage();
 		//push_settings();
 		//MU_LED_Toggle(1);
 		//HAL_Delay(400);

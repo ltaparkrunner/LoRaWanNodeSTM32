@@ -46,6 +46,7 @@ USBD_CDC_LineCodingTypeDef LineCoding =
 
 struct bufc_t bufc ={APP_RX_DATA_SIZE, 0,0,0,0,0,0, {0}};
 struct strc_t  str = {APP_STR_SIZE, {0}};
+struct parentharray_t pararr = {0};
 //static uint32_t length = 0;
 /* USER CODE END PV */
 
@@ -393,7 +394,7 @@ uint8_t CheckTransmit()
 	if(result == USBD_OK || result == 4) bufc.head_outp = bufc.tail_outp;
 	bufc.tail_outp = bufc.tail;
 	if ((bufc.tail_outp - bufc.head_outp) != 0)	{
-			int32_t len = outpStr(&bufc, &str);
+			int32_t len = outpStr(&bufc, &str, &pararr);
 			if( len>0 )	{	
 				result = CDC_Transmit_FS(str.array, len);
 			}
