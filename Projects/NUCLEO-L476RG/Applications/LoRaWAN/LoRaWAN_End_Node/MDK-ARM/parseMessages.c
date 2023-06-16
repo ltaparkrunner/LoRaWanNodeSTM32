@@ -3,6 +3,7 @@
 #include "parseMessage.h"
 #include "settings_json.h"
 #include "tiny-json.h"
+#include "tiny-json_extra.h"
 
 extern struct json_sets_t json_sets;
 struct jsonmsg_t jsonmsg;
@@ -147,20 +148,74 @@ int32_t FetchJson(struct bufc_t* bufc, struct jsonmsg_t* jsonmsg)
 }
 
 extern struct parentharray_t pararr;
-
+const json_t* stackf2[Num_Field];			///????
+int32_t stack_pointer_pm = 0;
 uint8_t ParseJsonMessage(void)
 {
 	if(FetchJsonSettings(&bufc, &pararr, &jsonmsg) > 0) return PARSE_JSON_OK;
 	else return PARSE_JSON_FAIL;
 }
+void initStack_pm()
+{
+	stack_pointer_pm = 0;
+}
+
+int32_t stackIsEmpty_pm()
+{
+	if( stack_pointer_pm == 0 ) return 1;
+	else return 0;
+}
+
+int32_t push_pm(const json_t* node)
+{
+	if(stack_pointer_pm <= Num_Field)
+	{
+		stackf2[stack_pointer_pm] = node;
+		stack_pointer_pm++;
+		return 0;
+	}
+	else return -1;
+}
+
+const json_t* pop_pm(void)
+{
+	const json_t* retvalue;
+	if(stack_pointer_pm > 0)
+	{
+		retvalue = (const json_t*) stackf2[stack_pointer_pm - 1];
+		stack_pointer_pm--;
+		return retvalue;
+	}
+	else return NULL; // or JSON_NULL
+}
+
+int32_t find_coincid(const json_t* json_ptr, int32_t level, struct field_json json_descr[])
+{
+	static int32_t nm = 0;
+	int32_t ret = -1;
+	int32_t ln = strlen(json_ptr->name);
+	for(; nm< Json_Descript_Length; nm++)
+		if(	strncmp(json_ptr->name, json_descr[nm].name, ln)) 
+		{
+			ret = nm;
+			break;
+		}
+	return ret;
+}
+
+extern struct field_json json_descr[Json_Descript_Length];
 
 int32_t FetchJsonSettings(struct bufc_t* bufc, struct parentharray_t* pararr, struct jsonmsg_t* jsonmsg)
 {
 	const char str[APP_RX_DATA_SIZE] = {0};
 	static json_t pool2[Num_Field ];
-	static uint8_t buff2[Buff_Len];
+	static uint8_t buff[Buff_Len];
+	//static uint8_t buff[]
 	int32_t i1;
 	int32_t i2;
+	static uint64_t tempI;
+	static uint8_t tempB;
+	static const char* tempT;
 	if( (pararr->parth[pararr->wrkng].exists == 1) &&
 		(pararr->parth[pararr->length].opening <= pararr->parth[pararr->length].closing))
 	{
@@ -169,7 +224,77 @@ int32_t FetchJsonSettings(struct bufc_t* bufc, struct parentharray_t* pararr, st
 		strncpy((char*)jsonmsg->array, (const char*)&bufc->array[i1], i2);
 		strncpy((char*)&jsonmsg->array[i2], str, APP_RX_DATA_SIZE - i2);
 		
-		json_t const *settings = json_create((char*)jsonmsg->array, pool2, Num_Field);
+		json_t const *json_sets = json_create((char*)jsonmsg->array, pool2, Num_Field);
+		// here compare to struct field json_descr[Json_Descript_Length]
+		// looking for coincidence between received json message and fields of structure json_descr
+		if(json_sets != NULL) {
+			//uint32_t i=0;
+			int32_t level = 0;
+//			int32_t slen = 0;
+			const json_t* json_ptr = json_getChild(json_sets);
+			initStack_pm();
+			while(json_ptr != NULL  ||  !stackIsEmpty_pm())
+			{
+				//slen = strlen(json_ptr->name);  // это в функцию find_coincid
+				int32_t num = find_coincid(json_ptr, level, json_descr);
+				
+				if(num > 0 && (json_descr[num].ty == json_ptr->type)) {
+					switch(json_descr[num].ty){
+					case JSON_OBJ:
+						push_pm(json_ptr); // or push(json_ptr->sibling)
+						json_ptr = json_getChild(json_ptr);	
+					break;
+					case JSON_INTEGER:
+						tempI = json_getInteger(json_ptr);
+						for(int i2=0; i2<json_descr[num].bytes; i2++)
+						{
+							buff[json_descr[num].pos + i2] = (uint8_t)tempI & 0xff;
+							tempI >>= 8;
+						}
+						json_ptr = json_getSibling(json_ptr);
+						break;
+					case JSON_BOOLEAN:
+						tempB = json_getBoolean(json_ptr);
+						if(tempB)	buff[json_descr[num].pos] = truefl;	// true
+						else buff[json_descr[num].pos] = falsefl;			// false
+						json_ptr = json_getSibling(json_ptr);
+						break;
+					case JSON_TEXT:
+						tempT = json_getValue(json_ptr);
+						for(int i2=0; i2<json_descr[num].bytes; i2++)
+							buff[json_descr[num].pos + i2] = tempT[i2];
+						json_ptr = json_getSibling(json_ptr);
+						break;
+					case JSON_ARRAY:
+						{						
+						//for(int i2=0; i2<json_descr[j2].bytes; i2++)
+							int32_t len = Buff_Len - json_descr[num].pos;
+							parse_array(json_ptr, &json_descr[num].pos, &num, buff, len);
+							json_ptr = json_getSibling(json_ptr);
+						}
+						break;
+					case JSON_HEX:
+						tempI = json_gethexInteger(json_ptr);
+						for(int i2=0; i2<json_descr[num].bytes; i2++)
+						{
+							buff[json_descr[num].pos + i2] = (uint8_t)tempI & 0xff;
+							tempI >>= 8;
+						}
+						json_ptr = json_getSibling(json_ptr);
+						break;
+					default: json_ptr = json_getSibling(json_ptr); break;
+					}
+				}
+				else json_ptr = json_getSibling(json_ptr);
+				while(json_ptr == NULL && !stackIsEmpty_pm())
+				{
+					json_ptr = pop_pm();
+					json_ptr = json_getSibling(json_ptr);
+				}
+				if(json_ptr == NULL && stackIsEmpty_pm()) break;
+			}
+			// record to flash
+		}
 		pararr->wrkng++;
 	}
 	return 0;

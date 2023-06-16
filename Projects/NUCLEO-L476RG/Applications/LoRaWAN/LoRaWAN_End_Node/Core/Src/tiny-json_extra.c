@@ -9,17 +9,6 @@ struct node{
 	int32_t level;
 };
 
-struct field{
-	char name[20];
-	uint64_t min;
-	uint64_t max;
-	uint32_t bytes;
-	int level;
-	jsonType_t ty;
-	uint32_t pos;
-	uint32_t changed;
-};
-
 //extern struct field json_descr[Json_Descript_Length];
 extern char sets_JSON[];
 struct node props[Num_Field];
@@ -30,7 +19,7 @@ int32_t stack_pointer = 0;
 uint32_t stack2[Json_Descript_Length];
 uint32_t stack2_pointer = 0;
 
-struct field json_descr[Json_Descript_Length] = {
+struct field_json json_descr[Json_Descript_Length] = {
 															{"LoRa_settings",0,0,0,0,JSON_OBJ,0,0},
 																{"DEVEUI",0,0xffffffffffff,8,1,JSON_INTEGER,0,0},
 																{"APPKEY",0,0xffffffffff,8,1,JSON_INTEGER,8,0},

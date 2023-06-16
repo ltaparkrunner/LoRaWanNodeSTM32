@@ -1,11 +1,4 @@
-//enum arrLR_t{
-//	ADC1,
-//	INP1,
-//	INP3,
-//	ADC4,
-//	TEXT
-//};
-
+#include <stdint.h>
 #define	AD_1 0x11
 #define	INP1 0x22
 #define	INP3 0x33
@@ -15,7 +8,21 @@
 #define datLoraNum 5
 #define arrElLen		4
 int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buff[], uint32_t len);
+int32_t parse_array(const json_t* json_ptr, uint32_t* buff_ptr, int32_t* descrCnt, uint8_t buff[], uint32_t len);
 int check( void );
 
+
+struct field_json{
+	char name[20];
+	uint64_t min;
+	uint64_t max;
+	uint32_t bytes;
+	int level;
+	jsonType_t ty;
+	uint32_t pos;
+	uint32_t changed;
+};
+
+//void initStack(void);
 //#define truefl	0x99
 //#define falsefl 0xf0
