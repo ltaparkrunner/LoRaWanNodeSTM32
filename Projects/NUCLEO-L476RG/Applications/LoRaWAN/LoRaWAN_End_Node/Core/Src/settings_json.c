@@ -5,7 +5,7 @@
 
 char sets_JSON[] = "{\
 	\"LoRa_settings\": {\
-		\"DEVEUI\": 11101011010,\
+		\"DEVEUI\": 0x11101011010,\
 		\"APPKEY\": 0x1b6c162386,\
 		\"FREQ\": 86800000,\
 		\"FR\": 129374907\

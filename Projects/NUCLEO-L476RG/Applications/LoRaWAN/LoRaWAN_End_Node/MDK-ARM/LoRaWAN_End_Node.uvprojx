@@ -473,16 +473,6 @@
               <FileType>1</FileType>
               <FilePath>.\usart_transm.c</FilePath>
             </File>
-            <File>
-              <FileName>flash_mem.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\flash_mem.c</FilePath>
-            </File>
-            <File>
-              <FileName>flash_work.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\flash_work.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -927,6 +917,21 @@
               <FileName>usbd_cdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Flash_Writting</GroupName>
+          <Files>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\flash_work.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\flash_mem.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1399,16 +1404,6 @@
               <FileType>1</FileType>
               <FilePath>.\usart_transm.c</FilePath>
             </File>
-            <File>
-              <FileName>flash_mem.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\flash_mem.c</FilePath>
-            </File>
-            <File>
-              <FileName>flash_work.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\flash_work.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -1973,6 +1968,21 @@
               <FileName>usbd_cdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Flash_Writting</GroupName>
+          <Files>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\flash_work.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\flash_mem.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2445,16 +2455,6 @@
               <FileType>1</FileType>
               <FilePath>.\usart_transm.c</FilePath>
             </File>
-            <File>
-              <FileName>flash_mem.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\flash_mem.c</FilePath>
-            </File>
-            <File>
-              <FileName>flash_work.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\flash_work.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -2968,6 +2968,21 @@
               <FileName>usbd_cdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Flash_Writting</GroupName>
+          <Files>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\flash_work.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\flash_mem.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3440,16 +3455,6 @@
               <FileType>1</FileType>
               <FilePath>.\usart_transm.c</FilePath>
             </File>
-            <File>
-              <FileName>flash_mem.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\flash_mem.c</FilePath>
-            </File>
-            <File>
-              <FileName>flash_work.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\flash_work.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -4014,6 +4019,21 @@
               <FileName>usbd_cdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Flash_Writting</GroupName>
+          <Files>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\flash_work.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\flash_mem.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4486,16 +4506,6 @@
               <FileType>1</FileType>
               <FilePath>.\usart_transm.c</FilePath>
             </File>
-            <File>
-              <FileName>flash_mem.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\flash_mem.c</FilePath>
-            </File>
-            <File>
-              <FileName>flash_work.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\flash_work.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -5060,6 +5070,21 @@
               <FileName>usbd_cdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Flash_Writting</GroupName>
+          <Files>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\flash_work.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\flash_mem.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5532,16 +5557,6 @@
               <FileType>1</FileType>
               <FilePath>.\usart_transm.c</FilePath>
             </File>
-            <File>
-              <FileName>flash_mem.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\flash_mem.c</FilePath>
-            </File>
-            <File>
-              <FileName>flash_work.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\flash_work.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -6106,6 +6121,21 @@
               <FileName>usbd_cdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Flash_Writting</GroupName>
+          <Files>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\flash_work.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\flash_mem.c</FilePath>
             </File>
           </Files>
         </Group>

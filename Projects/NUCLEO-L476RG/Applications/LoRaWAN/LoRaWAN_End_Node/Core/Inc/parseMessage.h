@@ -1,4 +1,8 @@
+#ifndef PARSE_MESSAGE_H
+#define PARSE_MESSAGE_H
+
 #include <stdint.h>
+#include "flash_mem.h"
 #define APP_RX_DATA_SIZE  2048
 #define APP_STR_SIZE APP_RX_DATA_SIZE + APP_RX_DATA_SIZE/3
 #define JSON_MESS_NUM 20
@@ -50,13 +54,15 @@ typedef enum
 
 typedef enum
 {
-  PARSE_JSON_OK = 5U,
-	PARSE_JSON_FAIL
-
-}ParseJson_StatusTypeDef;
+  PARSED_JSON_OK = 10U,
+	NO_PARSED_JSON,
+	PARSED_JSON_FAIL
+}ParsedJson_StatusTypeDef;
 
 uint8_t ExtractJson(void);
 int32_t FetchJson(struct bufc_t* bufc, struct jsonmsg_t* jsonmsg);
 
-uint8_t ParseJsonMessage(void);
-int32_t FetchJsonSettings(struct bufc_t* bufc, struct parentharray_t* pararr, struct jsonmsg_t* jsonmsg);
+uint8_t JsonSettingsToBuffer_wrap(void);
+int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr, struct jsonmsg_t* jsonmsg, struct buffer_t* buff);
+
+#endif /* PARSE_MESSAGE_H */

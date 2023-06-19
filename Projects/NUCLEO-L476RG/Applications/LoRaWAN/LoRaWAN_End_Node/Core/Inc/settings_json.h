@@ -1,3 +1,6 @@
+#ifndef SETTINGS_JSON_H
+#define SETTINGS_JSON_H
+
 #include <stdint.h>
 #define Num_Field 70
 #define Buff_Len	512
@@ -11,3 +14,5 @@ struct json_sets_t{
 	int32_t length;
 };
 uint32_t fillBuff(uint8_t* buff);
+
+#endif /* SETTINGS_JSON_H */

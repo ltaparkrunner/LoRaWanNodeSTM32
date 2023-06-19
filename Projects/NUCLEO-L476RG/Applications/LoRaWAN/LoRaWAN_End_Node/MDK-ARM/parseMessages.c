@@ -4,6 +4,7 @@
 #include "settings_json.h"
 #include "tiny-json.h"
 #include "tiny-json_extra.h"
+#include "flash_mem.h"
 
 extern struct json_sets_t json_sets;
 struct jsonmsg_t jsonmsg;
@@ -104,14 +105,14 @@ extern struct bufc_t bufc;
 
 uint8_t ExtractJson(void)
 {
-	if(FetchJson(&bufc, &jsonmsg) > 0) return PARSE_JSON_OK;
-	else return PARSE_JSON_FAIL;
+	if(FetchJson(&bufc, &jsonmsg) > 0) return PARSED_JSON_OK;
+	else return PARSED_JSON_FAIL;
 }
 
 int32_t FetchJson(struct bufc_t* bufc, struct jsonmsg_t* jsonmsg) 
 {
-	static uint8_t result = PARSE_JSON_OK;
-	if(result == PARSE_JSON_OK) bufc->head_json = bufc->tail_json;
+	static uint8_t result = PARSED_JSON_OK;
+	if(result == PARSED_JSON_OK) bufc->head_json = bufc->tail_json;
 	bufc->tail_json = bufc->tail;
 	int32_t i1 = bufc->head_json;
 	static struct parenthesis_t parenthesis = {0,0,0,0,0};
@@ -150,10 +151,14 @@ int32_t FetchJson(struct bufc_t* bufc, struct jsonmsg_t* jsonmsg)
 extern struct parentharray_t pararr;
 const json_t* stackf2[Num_Field];			///????
 int32_t stack_pointer_pm = 0;
-uint8_t ParseJsonMessage(void)
+//extern uint8_t buff[Buff_Len];
+extern struct buffer_t buff;
+uint8_t JsonSettingsToBuffer_wrap(void)
 {
-	if(FetchJsonSettings(&bufc, &pararr, &jsonmsg) > 0) return PARSE_JSON_OK;
-	else return PARSE_JSON_FAIL;
+	int32_t res = JsonSettingsToBuffer(&bufc, &pararr, &jsonmsg, &buff);
+	if(res > 0) return PARSED_JSON_OK;
+	else if (res > 0) return NO_PARSED_JSON;
+	else return PARSED_JSON_FAIL;
 }
 void initStack_pm()
 {
@@ -205,11 +210,11 @@ int32_t find_coincid(const json_t* json_ptr, int32_t level, struct field_json js
 
 extern struct field_json json_descr[Json_Descript_Length];
 
-int32_t FetchJsonSettings(struct bufc_t* bufc, struct parentharray_t* pararr, struct jsonmsg_t* jsonmsg)
+int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr, struct jsonmsg_t* jsonmsg, struct buffer_t* buff)
 {
 	const char str[APP_RX_DATA_SIZE] = {0};
 	static json_t pool2[Num_Field ];
-	static uint8_t buff[Buff_Len];
+
 	//static uint8_t buff[]
 	int32_t i1;
 	int32_t i2;
@@ -248,28 +253,32 @@ int32_t FetchJsonSettings(struct bufc_t* bufc, struct parentharray_t* pararr, st
 						tempI = json_getInteger(json_ptr);
 						for(int i2=0; i2<json_descr[num].bytes; i2++)
 						{
-							buff[json_descr[num].pos + i2] = (uint8_t)tempI & 0xff;
+							buff->array[json_descr[num].pos + i2] = (uint8_t)tempI & 0xff;
+							buff->changed[json_descr[num].pos + i2] = 1;
 							tempI >>= 8;
 						}
 						json_ptr = json_getSibling(json_ptr);
 						break;
 					case JSON_BOOLEAN:
 						tempB = json_getBoolean(json_ptr);
-						if(tempB)	buff[json_descr[num].pos] = truefl;	// true
-						else buff[json_descr[num].pos] = falsefl;			// false
+						if(tempB)	buff->array[json_descr[num].pos] = truefl;	// true
+						else buff->array[json_descr[num].pos] = falsefl;
+						buff->changed[json_descr[num].pos] = 1;					// false
 						json_ptr = json_getSibling(json_ptr);
 						break;
 					case JSON_TEXT:
 						tempT = json_getValue(json_ptr);
-						for(int i2=0; i2<json_descr[num].bytes; i2++)
-							buff[json_descr[num].pos + i2] = tempT[i2];
+						for(int i2=0; i2<json_descr[num].bytes; i2++){
+							buff->array[json_descr[num].pos + i2] = tempT[i2];
+							buff->changed[json_descr[num].pos + i2] = 1;
+						}
 						json_ptr = json_getSibling(json_ptr);
 						break;
 					case JSON_ARRAY:
 						{						
 						//for(int i2=0; i2<json_descr[j2].bytes; i2++)
 							int32_t len = Buff_Len - json_descr[num].pos;
-							parse_array(json_ptr, &json_descr[num].pos, &num, buff, len);
+							parse_array2(json_ptr, &json_descr[num].pos, &num, buff, len);
 							json_ptr = json_getSibling(json_ptr);
 						}
 						break;
@@ -277,7 +286,8 @@ int32_t FetchJsonSettings(struct bufc_t* bufc, struct parentharray_t* pararr, st
 						tempI = json_gethexInteger(json_ptr);
 						for(int i2=0; i2<json_descr[num].bytes; i2++)
 						{
-							buff[json_descr[num].pos + i2] = (uint8_t)tempI & 0xff;
+							buff->array[json_descr[num].pos + i2] = (uint8_t)tempI & 0xff;
+							buff->changed[json_descr[num].pos + i2] = 1;
 							tempI >>= 8;
 						}
 						json_ptr = json_getSibling(json_ptr);
@@ -298,4 +308,42 @@ int32_t FetchJsonSettings(struct bufc_t* bufc, struct parentharray_t* pararr, st
 		pararr->wrkng++;
 	}
 	return 0;
+}
+
+#define bufUSBlen 2048
+struct bufUSB_t{
+	uint8_t array[bufUSBlen];
+	int32_t len;
+};
+
+//struct field_json json_descr[Json_Descript_Length]
+int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, struct bufUSB_t* bufUSB, struct field_json* json_descr)
+{
+	char* str;
+	for(int32_t i1=0; i1<Json_Descript_Length; i1++)
+	{
+			// find the position of feature not 
+			if( json_descr[i1].ty == JSON_BOOLEAN || json_descr[i1].ty == JSON_INTEGER ||
+					json_descr[i1].ty == JSON_TEXT || json_descr[i1].ty == JSON_HEX){
+				str = strstr((const char*)(json_sets->p), json_descr[i1].name);
+			// seeking for "\":" it's better to add to upper oper-r, and miss spaces
+				str = strstr((const char*)(json_sets->p), "\":");
+				while(*str == ' ') str++; // the point to insert
+				char* str2 = "           ";
+				int32_t ln= 0;
+				// if digit transform to string
+				
+				switch(json_descr[i1].ty){
+					case JSON_BOOLEAN: //boolean to string 
+						break;
+					case JSON_INTEGER: // integer to string
+						break;
+					case JSON_HEX: // hex to string
+						break;
+					default: break;	
+				}
+				strncpy(str, str2, ln);
+		}
+	}
+	return strlen(json_sets->p);
 }

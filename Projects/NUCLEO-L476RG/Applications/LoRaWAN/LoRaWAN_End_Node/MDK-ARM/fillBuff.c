@@ -29,6 +29,7 @@ int32_t fetch_text()
 	//HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pHAL_UART_Transmit(&huart3, (uint8_t *)name2, 100, 800);
 	return 0;
 }
+
 uint32_t fillBuff(uint8_t* buff)
 {
 	//fetch_text();

@@ -2,6 +2,7 @@
 #include "tiny-json_extra.h"
 #include <string.h>
 #include "settings_json.h"
+#include "flash_mem.h"
 void Error_Handler(void);
 struct node{
 	//char prop[70];
@@ -181,6 +182,24 @@ int32_t parse_array(const json_t* json_ptr, uint32_t* buff_ptr, int32_t* descrCn
 	return j3;
 }
 
+int32_t parse_array2(const json_t* json_ptr, uint32_t* buff_ptr, int32_t* descrCnt, struct buffer_t* buff, uint32_t len)
+{
+	const char* Elval;
+	uint32_t j3 = 0;
+	for(json_t const* curEl = json_getChild( json_ptr );
+	curEl; curEl = json_getSibling( curEl ))
+	{
+		Elval = json_getPropertyValue(curEl, json_descr[++(*descrCnt)].name);
+		if(Elval[0] == 't') buff->array[*buff_ptr] = datLora[j3++];
+		else {
+			buff->array[*buff_ptr] = 0;
+			j3++;
+		}
+		buff->changed[(*buff_ptr)++] = 1;
+	}
+	return j3;
+}
+
 //static void Error_Handler(void)
 //{
 //  /* USER CODE BEGIN Error_Handler_Debug */
@@ -226,7 +245,7 @@ struct node* json_allProperties( json_t const* obj, char const* property ) {
 	return props;
 }
 
-int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buff[], uint32_t len)
+int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buffer[], uint32_t len)
 {
 //	json_t pool[ qty ];
 	json_t const *json_sets = json_create(str, mem, qty);
@@ -262,33 +281,33 @@ int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buff[]
 						tempI = json_getInteger(json_ptr);
 						for(int i2=0; i2<json_descr[j2].bytes; i2++)
 						{
-							buff[buff_ptr++] = (uint8_t)tempI & 0xff;
+							buffer[buff_ptr++] = (uint8_t)tempI & 0xff;
 							tempI >>= 8;
 						}
 						json_ptr = json_ptr->sibling;
 						break;
 					case JSON_BOOLEAN:
 						tempB = json_getBoolean(json_ptr);
-						if(tempB)	buff[buff_ptr++] = truefl;	// true
-						else buff[buff_ptr++] = falsefl;			// false
+						if(tempB)	buffer[buff_ptr++] = truefl;	// true
+						else buffer[buff_ptr++] = falsefl;			// false
 						json_ptr = json_ptr->sibling;
 						break;
 					case JSON_TEXT:
 						tempT = json_getValue(json_ptr);
 						for(int i2=0; i2<json_descr[j2].bytes; i2++)
-							buff[buff_ptr++] = tempT[i2];
+							buffer[buff_ptr++] = tempT[i2];
 						json_ptr = json_ptr->sibling;
 						break;
 					case JSON_ARRAY: 
 						//for(int i2=0; i2<json_descr[j2].bytes; i2++)
-							parse_array(json_ptr, &buff_ptr, &j2, buff, len);
+							parse_array(json_ptr, &buff_ptr, &j2, buffer, len);
 						json_ptr = json_ptr->sibling;
 						break;
 					case JSON_HEX:
 						tempI = json_gethexInteger(json_ptr);
 						for(int i2=0; i2<json_descr[j2].bytes; i2++)
 						{
-							buff[buff_ptr++] = (uint8_t)tempI & 0xff;
+							buffer[buff_ptr++] = (uint8_t)tempI & 0xff;
 							tempI >>= 8;
 						}
 						json_ptr = json_ptr->sibling;

@@ -3,6 +3,7 @@
 
 //#include "stm32l4xx_hal_def.h"
 #include "stm32l4xx_mu.h"
+#include "settings_json.h"
 //#include <stdint.h>
 //
 
@@ -46,9 +47,32 @@
 #define FLASH_USER_START_ADDR   ADDR_FLASH_PAGE_389   /* Start @ of user Flash area */
 #define FLASH_USER_END_ADDR     ADDR_FLASH_PAGE_392 + FLASH_PAGE_SIZE - 1   /* End @ of user Flash area */
 
-#define FLASH_USER_START_ADDR2   ADDR_FLASH_PAGE_401   /* Start @ of user Flash area */
-#define FLASH_USER_END_ADDR2     ADDR_FLASH_PAGE_401 + FLASH_PAGE_SIZE - 1   /* End @ of user Flash area */
+#define FLASH_USER_START_ADDR1   ADDR_FLASH_PAGE_401   /* Start @ of user Flash area */
+#define FLASH_USER_END_ADDR1     ADDR_FLASH_PAGE_401 + FLASH_PAGE_SIZE - 1   /* End @ of user Flash area */
+#define FLASH_USER_START_ADDR2   ADDR_FLASH_PAGE_402   /* Start @ of user Flash area */
+#define FLASH_USER_END_ADDR2     ADDR_FLASH_PAGE_402 + FLASH_PAGE_SIZE - 1   /* End @ of user Flash area */
 
+
+typedef enum
+{
+  WRITTEN_FLASH_OK = 20U,
+	WRITTEN_FLASH_FAIL,
+	ERASED_FLASH,
+	WRITTEN_FLASH_1_OK = 30U,
+	WRITTEN_FLASH_1_FAIL,
+	ERASED_FLASH_1,
+	WRITTEN_FLASH_2_OK = 40U,
+	WRITTEN_FLASH_2_FAIL,
+	ERASED_FLASH_2,
+	NOTHING_TO_WRITE
+}WrittenFlash_StatusTypeDef;
+
+
+struct buffer_t{
+	uint8_t array[Buff_Len];
+	int8_t changed[Buff_Len];
+	int32_t written;
+};
 
 uint32_t GetPage(uint32_t Addr);
 uint32_t GetBank(uint32_t Address);
@@ -59,7 +83,14 @@ int32_t readflash(uint32_t numpage, uint32_t buf[], uint32_t len);
 int32_t change_buf(uint32_t numelmt, uint32_t subst[], uint32_t buf[], uint32_t len);
 int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len);
 
+uint8_t WriteBufferToFlash_wrap(uint8_t json_res);
+int32_t WriteBufferToFlash(struct buffer_t* buff);
+int32_t FinilizeWriteBufferToFlash(struct buffer_t* buff);
+int32_t CancelJSONChanges(struct buffer_t* buff);
+
+
 #define WRTN_CHECK 0x99
+#define WRTN_OFFSET 96
 
 
 struct json_arr{

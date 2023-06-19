@@ -1,4 +1,3 @@
-
 //#include "stm32l4xx_mu.h"
 #include "settings_json.h"
 #include "tiny-json.h"
@@ -218,18 +217,19 @@ void write_read_flash(void)
 //*         and Flash Bank1 mapped at 0x08100000 (and aliased at 0x00100000)
 extern json_t pool[ Num_Field ];
 extern char sets_JSON[];
-uint8_t buff[Buff_Len];
+//uint8_t buff[Buff_Len];
+struct buffer_t buff;
 struct json_arr *jsonarrflash, *jsonarrmem ;
 
-int32_t init_flash(uint32_t numpage, uint8_t buf[], uint32_t len)
+int32_t init_flash(uint32_t numpage, uint8_t buffer[], uint32_t len)
 {
 	uint32_t addr = FLASH_USER_START_ADDR2;// ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
 	//uint32_t i;
 	jsonarrflash = (struct json_arr*)addr; 
 	if(jsonarrflash -> wrtn != WRTN_CHECK)
 	{
-		uint32_t lenR = json_to_buffer(sets_JSON, pool, Num_Field, buff, Buff_Len);
-		rewriteflash(numpage, buff, lenR);
+		uint32_t lenR = json_to_buffer(sets_JSON, pool, Num_Field, buffer, Buff_Len);
+		rewriteflash(numpage, buffer, lenR);
 	}
 	return 0;
 }

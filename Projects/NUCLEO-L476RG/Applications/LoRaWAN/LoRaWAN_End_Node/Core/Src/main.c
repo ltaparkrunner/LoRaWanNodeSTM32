@@ -163,7 +163,8 @@ int main(void)
 
 //		write_read_flash();
 	uint8_t result = USBD_OK;
-	uint8_t result2 = PARSE_JSON_OK;
+	uint8_t result2 = PARSED_JSON_OK;
+	uint8_t result3 = WRITTEN_FLASH_OK;
   /* USER CODE END 2 */
 	
   /* Infinite loop */
@@ -177,10 +178,9 @@ int main(void)
 		{
 			MX_USB_DEVICE_Init();
 		}
-		result2 = ParseJsonMessage();
-		//push_settings();
-		//MU_LED_Toggle(1);
-		//HAL_Delay(400);
+		result2 = JsonSettingsToBuffer_wrap();
+		result3 = WriteBufferToFlash_wrap(result2);
+		
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
