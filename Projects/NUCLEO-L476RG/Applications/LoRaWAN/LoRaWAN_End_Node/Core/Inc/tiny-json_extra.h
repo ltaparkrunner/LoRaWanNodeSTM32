@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "flash_mem.h"
+#include "tiny-json.h"
 #define	AD_1 0x11
 #define	INP1 0x22
 #define	INP3 0x33
@@ -24,8 +25,13 @@ struct field_json{
 	uint32_t bytes;
 	int level;
 	jsonType_t ty;
-	uint32_t pos;
+	uint32_t offset;
 	uint32_t changed;
+};
+
+struct json_desc_t{
+	struct field_json* descr[];
+	int32_t len;
 };
 
 //void initStack(void);

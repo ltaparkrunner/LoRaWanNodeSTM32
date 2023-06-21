@@ -88,6 +88,9 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	json_sets.length = strlen(json_sets.p);
+//	if(json_sets.array != 0) 
+	json_sets.outplen = FormOutpJson(&json_sets);
+	//memcpy(json_sets.array, json_sets.p, json_sets.length);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -169,16 +172,21 @@ int main(void)
 	
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+	uint8_t cmd = NO_CMD;
   while (1)
   {
+
     /* USER CODE END WHILE */
 //    MX_LoRaWAN_Process();
-		result = CheckTransmit();
+		result = CheckTransmit(cmd);
 		if(result == USBD_FAIL)
 		{
 			MX_USB_DEVICE_Init();
 		}
-		result2 = JsonSettingsToBuffer_wrap();
+		else if(result == USBD_OK)
+			cmd = NO_CMD;
+		result2 = JsonSettingsToBuffer_wrap(&cmd);
+
 		result3 = WriteBufferToFlash_wrap(result2);
 		
     /* USER CODE BEGIN 3 */

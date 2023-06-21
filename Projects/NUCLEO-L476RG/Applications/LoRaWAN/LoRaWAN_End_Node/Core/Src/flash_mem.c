@@ -5,7 +5,7 @@
 #include "flash_mem.h"
 
 void Error_Handler(void);
-int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len);
+//int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len);
 /**
   * @brief  Gets the page of a given address
   * @param  Addr: Address of the FLASH Memory
@@ -221,22 +221,23 @@ extern char sets_JSON[];
 struct buffer_t buff;
 struct json_arr *jsonarrflash, *jsonarrmem ;
 
-int32_t init_flash(uint32_t numpage, uint8_t buffer[], uint32_t len)
+int32_t init_flash(uint32_t adr, uint8_t buffer[], uint32_t len)
 {
-	uint32_t addr = FLASH_USER_START_ADDR2;// ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	uint32_t addr = adr;//LASH_USER_START_ADDR2;// ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
 	//uint32_t i;
 	jsonarrflash = (struct json_arr*)addr; 
 	if(jsonarrflash -> wrtn != WRTN_CHECK)
 	{
 		uint32_t lenR = json_to_buffer(sets_JSON, pool, Num_Field, buffer, Buff_Len);
-		rewriteflash(numpage, buffer, lenR);
+		rewriteflash(adr, buffer, lenR);
 	}
 	return 0;
 }
 
-int32_t readflash(uint32_t numpage, uint32_t buf[], uint32_t len)
+int32_t readflash(uint32_t adr, uint32_t buf[], uint32_t len)
 {
-	uint32_t addr = ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	//uint32_t addr = ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	uint32_t addr = adr;
 	uint32_t i;	
 	for(i = 0; i < len; i++)
 	{
@@ -245,7 +246,7 @@ int32_t readflash(uint32_t numpage, uint32_t buf[], uint32_t len)
 	return i;
 }
 
-int32_t change_buf(uint32_t numelmt, uint32_t subst[], uint32_t buf[], uint32_t len)
+int32_t change_buf(uint32_t adr, uint32_t subst[], uint32_t buf[], uint32_t len)
 { 
 	uint32_t i;
 	for(i = 0; i < len; i++)
@@ -256,9 +257,9 @@ int32_t change_buf(uint32_t numelmt, uint32_t subst[], uint32_t buf[], uint32_t 
 }
 
 
-int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len)
+int32_t rewriteflash(uint32_t adr, uint8_t buf[], uint32_t len)
 { 
-	uint32_t addr = FLASH_USER_START_ADDR2;	//ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	uint32_t addr = adr;//FLASH_USER_START_ADDR2;	//ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
 	
 	HAL_FLASH_Unlock();
 	  /* Clear OPTVERR bit set on virgin samples */
@@ -290,8 +291,8 @@ int32_t rewriteflash(uint32_t numpage, uint8_t buf[], uint32_t len)
 	  /* Program the user Flash area word by word
     (area defined by FLASH_USER_START_ADDR and FLASH_USER_END_ADDR) ***********/
 
-  addr = FLASH_USER_START_ADDR2;//ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
-	uint32_t addrEnd = FLASH_USER_START_ADDR2 + len; //ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage + len;
+  addr = adr; // FLASH_USER_START_ADDR2;//ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	uint32_t addrEnd = adr + len; //FLASH_USER_START_ADDR2 + len; //ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage + len;
 	//uint32_t i = 0;
 	static uint64_t tmp;
   while (addr < addrEnd)

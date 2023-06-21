@@ -50,15 +50,16 @@ int32_t WriteBufferToFlash(struct buffer_t* buff)
 	int32_t changed = 0;
 	
 	// Read the number WRTN to understand what the record on flash have been made later? 
-	uint32_t Address_w = FLASH_USER_START_ADDR1;
-	uint8_t wrtn1 = *(__IO uint8_t *)(Address_w + WRTN_OFFSET);
-	uint32_t Address_r = FLASH_USER_START_ADDR2;
-	uint8_t wrtn2 = *(__IO uint8_t *)(Address_r + WRTN_OFFSET);
-	if(wrtn2 != 0xff && wrtn2 > wrtn1) {
-		Address_w = FLASH_USER_START_ADDR2;
-		Address_r = FLASH_USER_START_ADDR1;
-	}
-	
+//	uint32_t Address_w = FLASH_USER_START_ADDR1;
+//	uint8_t wrtn1 = *(__IO uint8_t *)(Address_w + WRTN_OFFSET);
+//	uint32_t Address_r = FLASH_USER_START_ADDR2;
+//	uint8_t wrtn2 = *(__IO uint8_t *)(Address_r + WRTN_OFFSET);
+//	if(wrtn2 != 0xff && wrtn2 < wrtn1) {
+//		Address_w = FLASH_USER_START_ADDR2;
+//		Address_r = FLASH_USER_START_ADDR1;
+//	}
+	uint32_t Address_w;
+	uint32_t Address_r = ChooseReadFlashBank(&Address_w);
 	for(int32_t i1 = 0; i1 < Buff_Len; i1++) {
 		if(buff->changed[i1] == 1) {
 			buffer2[i1] = buff->array[i1];
@@ -89,5 +90,22 @@ int32_t CancelJSONChanges(struct buffer_t* buff)
 {
 	for(int32_t i1 = 0; i1 < Buff_Len; i1++) {
 		buff->changed[i1] = 0;
+	}
+	return 0;
+}
+
+uint32_t ChooseReadFlashBank(uint32_t* Addr_w)
+{
+	uint32_t Address_w = FLASH_USER_START_ADDR1;
+	uint8_t wrtn1 = *(__IO uint8_t *)(Address_w + WRTN_OFFSET);
+	uint32_t Address_r = FLASH_USER_START_ADDR2;
+	uint8_t wrtn2 = *(__IO uint8_t *)(Address_r + WRTN_OFFSET);
+	if(wrtn2 != 0xff && wrtn2 < wrtn1) {
+		if(Addr_w) *Addr_w = FLASH_USER_START_ADDR2;
+		return (uint32_t) FLASH_USER_START_ADDR1;
+	}
+	else{
+		if(Addr_w) *Addr_w = FLASH_USER_START_ADDR1;
+		return (uint32_t) FLASH_USER_START_ADDR2;
 	}
 }

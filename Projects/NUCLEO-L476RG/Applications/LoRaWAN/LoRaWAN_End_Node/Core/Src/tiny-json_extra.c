@@ -28,7 +28,7 @@ struct field_json json_descr[Json_Descript_Length] = {
 																{"FR",4,12,1,1,JSON_INTEGER,20,0},
 															{"UART3",0,0,1,0,JSON_BOOLEAN,21,0},
 
-															{"LED2",0,0,0,0,JSON_OBJ,22,0},
+															{"LED2",0,0,0,0,JSON_OBJ,22,0},							//6
 																{"USB",0,0,0,1,JSON_OBJ,22, 0},
 																	{"sec",0,60,1,2,JSON_INTEGER,22,0},
 																	{"min",0,60,1,2,JSON_INTEGER,23,0},
@@ -42,7 +42,7 @@ struct field_json json_descr[Json_Descript_Length] = {
 																	{"days",0,1000,2,2,JSON_INTEGER,31,0},
 																	{"work",0,1000,1,2,JSON_BOOLEAN,33,0},
 																	
-															{"LED1",0,0,0,0,JSON_OBJ,34,0},
+															{"LED1",0,0,0,0,JSON_OBJ,34,0},								//19
 																{"USB",0,0,0,1,JSON_OBJ,34,0},
 																	{"blinks",0,0,0,2,JSON_OBJ,34,0},
 																		{"msec",0,100,1,3,JSON_INTEGER,34,0},
@@ -64,25 +64,36 @@ struct field_json json_descr[Json_Descript_Length] = {
 																		{"days",0,1000,2,3,JSON_INTEGER,47,0},
 																		{"work",0,1000,1,3,JSON_BOOLEAN,49,0},
 																	
-																{"period_LoRa",0,0,0,0,JSON_OBJ,50,0},
+																{"period_LoRa",0,0,0,0,JSON_OBJ,50,0},			//40
 																	{"sec",0,60,1,1,JSON_INTEGER,50,0},
 																	{"min",0,60,1,1,JSON_INTEGER,51,0},
 																	{"hour",0,24,1,1,JSON_INTEGER,52,0},
 																	{"days",0,1000,2,1,JSON_INTEGER,53,0},
 																	{"work",0,1000,1,3,JSON_BOOLEAN,55,0},
 
-															{"LoRa_text",0,0,34,0,JSON_TEXT,56,0},
+															{"LoRa_text",0,0,34,0,JSON_TEXT,56,0},				//46
 															{"LoRa_Data",0,0,5,0,JSON_ARRAY,90,0},
 																{"AD_1", 0,0,1,1,JSON_BOOLEAN,90,0},
 																{"INP1", 0,0,1,1,JSON_BOOLEAN,91,0},
 																{"INP3", 0,0,1,1,JSON_BOOLEAN,92,0},
 																{"AD_4", 0,0,1,1,JSON_BOOLEAN,93,0},
 																{"TEXT", 0,0,1,1,JSON_BOOLEAN,94,0},
-															{"Command",0,0,1,0,JSON_BOOLEAN,95,0},
-															{"WRTN",0,0x99,1,0,JSON_INTEGER,96,0},
-															{"DevEuiVal",0,0,1,0,JSON_BOOLEAN,97,0},
-															{"AppKeyValid",0,0,1,0,JSON_BOOLEAN,98,0}
+															//{"Command",0,0,1,0,JSON_BOOLEAN,95,0},
+															{"Command",0,0,13,0,JSON_TEXT,95,0},					//53
+															{"WRTN",0,0x99,1,0,JSON_INTEGER,108,0},
+															{"DevEuiVal",0,0,1,0,JSON_BOOLEAN,109,0},
+															{"AppKeyValid",0,0,1,0,JSON_BOOLEAN,110,0}
 															//	\"LoRa_Data\": [\"AD1\", \"INP1\", \"INP3\", \"AD4\", \"text\"],
+};
+
+//struct json_desc_t{
+//	struct field_json* descr[];
+//	int32_t len;
+//};
+
+struct json_desc_t json_d = {
+	.descr =  json_descr, 
+	.len = Json_Descript_Length
 };
 
 void initStack2(void)
@@ -248,7 +259,7 @@ struct node* json_allProperties( json_t const* obj, char const* property ) {
 int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buffer[], uint32_t len)
 {
 //	json_t pool[ qty ];
-	json_t const *json_sets = json_create(str, mem, qty);
+	json_t const *json_sets_l = json_create(str, mem, qty);
 	uint32_t buff_len = 0;
 	uint32_t buff_ptr = 0;
 	static uint64_t tempI;
@@ -263,7 +274,7 @@ int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buffer
 	}
 	
 	initStack();
-	const json_t* json_ptr = json_getChild(json_sets);
+	const json_t* json_ptr = json_getChild(json_sets_l);
 	
 	//for(int i = 0; i < Json_Descript_Length; i++)
 	while(json_ptr != NULL  ||  !stackIsEmpty())

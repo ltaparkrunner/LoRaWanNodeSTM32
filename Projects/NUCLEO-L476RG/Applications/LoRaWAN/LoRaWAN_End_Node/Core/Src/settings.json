@@ -60,3 +60,7 @@
 	"LoRa_Data": ["AD1", "INP1", "INP3", "AD4", "text"],
 	"Command": "read_settings"
 }
+{
+ "Command": "read settings" 
+}  
+

@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 #include "flash_mem.h"
+#include "tiny-json.h"
+#include "tiny-json_extra.h"
 #define APP_RX_DATA_SIZE  2048
 #define APP_STR_SIZE APP_RX_DATA_SIZE + APP_RX_DATA_SIZE/3
 #define JSON_MESS_NUM 20
@@ -59,10 +61,27 @@ typedef enum
 	PARSED_JSON_FAIL
 }ParsedJson_StatusTypeDef;
 
+typedef enum
+{ 
+	NO_CMD = 60U,
+	CMD_READ_SETTINGS = 61U,
+	CMD_READ_SETTINGS_RET = 0xC00
+}cmd_TypeDef;
 uint8_t ExtractJson(void);
 int32_t FetchJson(struct bufc_t* bufc, struct jsonmsg_t* jsonmsg);
 
-uint8_t JsonSettingsToBuffer_wrap(void);
-int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr, struct jsonmsg_t* jsonmsg, struct buffer_t* buff);
 
+//#define bufUSBlen 2048
+//struct bufUSB_t{
+//	uint8_t array[bufUSBlen];
+//	int32_t len;
+//};
+
+
+//uint8_t JsonSettingsToBuffer_wrap(void);
+uint8_t JsonSettingsToBuffer_wrap(uint8_t* cmd);
+int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr, struct jsonmsg_t* jsonmsg, struct buffer_t* buff);
+//int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, struct bufUSB_t* bufUSB, struct field_json* json_descr);
+int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct bufUSB_t* bufUSB,*/ struct field_json* json_descr);
+int32_t  FormOutpJson(struct json_sets_t* json_sets);
 #endif /* PARSE_MESSAGE_H */

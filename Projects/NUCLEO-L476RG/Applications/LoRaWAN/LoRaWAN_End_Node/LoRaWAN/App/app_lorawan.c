@@ -77,7 +77,7 @@ void MX_LoRaWAN_Init(void)
 	
 	HAL_Init_Flash();
 
-	init_flash(FLASH_PAGE_FOR_SETTINGS, buff.array, Buff_Len);
+	init_flash(FLASH_USER_START_ADDR1, buff.array, Buff_Len);
   /* USER CODE END MX_LoRaWAN_Init_2 */
   LoRaWAN_Init();
   /* USER CODE BEGIN MX_LoRaWAN_Init_3 */

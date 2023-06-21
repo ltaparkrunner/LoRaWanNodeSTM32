@@ -25,6 +25,7 @@
 /* USER CODE BEGIN INCLUDE */
 #include <string.h>
 #include "parseMessage.h"
+#include "tiny-json_extra.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -387,10 +388,12 @@ static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
 }
 
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_IMPLEMENTATION */
-
-uint8_t CheckTransmit()
+extern struct json_sets_t json_sets;
+extern struct field_json json_descr[];
+uint8_t CheckTransmit(uint8_t cmd)
 {
 	static uint8_t result = USBD_OK;
+	//static struct bufUSB_t bufUSB;
 	if(result == USBD_OK || result == 4) bufc.head_outp = bufc.tail_outp;
 	bufc.tail_outp = bufc.tail;
 	if ((bufc.tail_outp - bufc.head_outp) != 0)	{
@@ -400,7 +403,20 @@ uint8_t CheckTransmit()
 			}
 			else{
 				result = PARSE_ZERO_LEN;//result = 4;
-			}	
+			}
+//			if(	result == USBD_OK ) 
+//				cmd = NO_CMD;
+	}
+	else 
+		if(cmd == CMD_READ_SETTINGS)
+		/*if(bufc.tail_outp == bufc.head_outp)*/ {
+		// int32_t AssembleFullJSONStringForUSB(&json_sets, struct bufUSB_t* bufUSB, struct field_json* json_descr)
+		int32_t len = 20;//AssembleFullJSONStringForUSB(&json_sets, /*&bufUSB,*/ json_descr);
+		if( len>0 )	{	
+				result = CDC_Transmit_FS((uint8_t*)json_sets.array, json_sets.outplen);// json_sets.length);
+		}
+		if(result == USBD_OK) 
+			cmd = NO_CMD;
 	}
 	return result;
 }
