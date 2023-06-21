@@ -350,7 +350,8 @@ int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct buf
 						json_descr[i1].ty == JSON_TEXT || json_descr[i1].ty == JSON_HEX){
 					str = strstr((const char*)(json_sets->array), json_descr[i1].name);
 				// seeking for "\":" it's better to add to upper oper-r, and miss spaces
-					str = strstr((const char*)(json_sets->array), "\":");
+					str = strstr(str, "\":");
+					str += 2;
 					while(*str == ' ' || *str == '\t' || *str == 10 || *str == 13 || *str == '\"') str++; // the point to insert
 					//char* str2 = "           ";
 					//int32_t ln= 0;
@@ -368,27 +369,27 @@ int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct buf
 							{
 								int64_t i64 = 0;
 								for(int32_t i2=json_descr[i1].offset; i2<json_descr[i1].bytes + json_descr[i1].offset; i2++) {
-									i64 = temp_buff[i2]; i64 <<= 1;
+									i64 <<= 8;	i64 += temp_buff[i2]; 
 								}
 								switch(json_descr[i1].bytes){
 									case 8:
 									{
 										char ch8[20];
-										sprintf(ch8, "%20lld", i64);
+										sprintf(ch8, "%-20lld", i64);
 										strncpy(str, ch8, 20);
 									}
 									break;
 									case 4:
 									{
 										char ch8[10];
-										sprintf(ch8, "%10d", (int32_t)i64);
+										sprintf(ch8, "%-10d", (int32_t)i64);
 										strncpy(str, ch8, 10);
 									}
 									break;
 									case 2:
 									{
 										char ch8[5];
-										sprintf(ch8, "%5d", (int16_t)i64);
+										sprintf(ch8, "%-5d", (int16_t)i64);
 										strncpy(str, ch8, 5);
 									}
 									break;
@@ -396,7 +397,7 @@ int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct buf
 									default:
 									{
 										char ch8[3];
-										sprintf(ch8, "%3d", (int8_t)i64);
+										sprintf(ch8, "%-3d", (int8_t)i64);
 										strncpy(str, ch8, 3);
 									}
 								}
@@ -406,27 +407,28 @@ int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct buf
 							{
 								int64_t i64 = 0;
 								for(int32_t i2=json_descr[i1].offset; i2<json_descr[i1].bytes + json_descr[i1].offset; i2++) {
-									i64 = temp_buff[i2]; i64 <<= 1;
+									i64 <<= 8;	i64 += temp_buff[i2];
 								}
 								switch(json_descr[i1].bytes){
 									case 8:
 									{
 										char ch8[18];
-										sprintf(ch8, "0x%16llx", i64);
+										//lltoa(
+										sprintf(ch8, "0x%016llx", i64);
 										strncpy(str, ch8, 18);
 									}
 									break;
 									case 4:
 									{
 										char ch8[10];
-										sprintf(ch8, "0x%8x", (int32_t)i64);
+										sprintf(ch8, "0x%08x", (int32_t)i64);
 										strncpy(str, ch8, 10);
 									}
 									break;
 									case 2:
 									{
 										char ch8[6];
-										sprintf(ch8, "0x%4x", (int16_t)i64);
+										sprintf(ch8, "0x%04x", (int16_t)i64);
 										strncpy(str, ch8, 6);
 									}
 									break;
@@ -434,7 +436,7 @@ int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct buf
 									default:
 									{
 										char ch8[4];
-										sprintf(ch8, "0x%2x", (int8_t)i64);
+										sprintf(ch8, "0x%02x", (int8_t)i64);
 										strncpy(str, ch8, 4);
 									}
 								}

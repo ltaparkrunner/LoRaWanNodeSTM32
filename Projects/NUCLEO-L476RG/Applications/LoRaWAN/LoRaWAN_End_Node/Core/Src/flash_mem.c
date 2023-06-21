@@ -221,15 +221,17 @@ extern char sets_JSON[];
 struct buffer_t buff;
 struct json_arr *jsonarrflash, *jsonarrmem ;
 
-int32_t init_flash(uint32_t adr, uint8_t buffer[], uint32_t len)
+int32_t init_flash(uint8_t buffer[], uint32_t len)
 {
-	uint32_t addr = adr;//LASH_USER_START_ADDR2;// ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
-	//uint32_t i;
+//	uint32_t addr_w;
+//	uint32_t addr_r = ChooseReadFlashBank(&addr_w);
+	uint32_t addr = FLASH_USER_START_ADDR1;//FLASH_USER_START_ADDR2;// ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	uint32_t i;
 	jsonarrflash = (struct json_arr*)addr; 
 	if(jsonarrflash -> wrtn != WRTN_CHECK)
 	{
 		uint32_t lenR = json_to_buffer(sets_JSON, pool, Num_Field, buffer, Buff_Len);
-		rewriteflash(adr, buffer, lenR);
+		rewriteflash(addr, buffer, lenR);
 	}
 	return 0;
 }
