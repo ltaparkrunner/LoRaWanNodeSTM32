@@ -30,7 +30,7 @@ struct field_json{
 };
 
 struct json_desc_t{
-	struct field_json* descr[];
+	struct field_json* descr[Json_Descript_Length];
 	int32_t len;
 };
 

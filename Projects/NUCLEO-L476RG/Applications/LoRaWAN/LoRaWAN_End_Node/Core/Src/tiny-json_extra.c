@@ -22,8 +22,8 @@ uint32_t stack2_pointer = 0;
 
 struct field_json json_descr[Json_Descript_Length] = {
 															{"LoRa_settings",0,0,0,0,JSON_OBJ,0,0},
-																{"DEVEUI",0,0xffffffffffff,8,1,JSON_INTEGER,0,0},
-																{"APPKEY",0,0xffffffffff,8,1,JSON_INTEGER,8,0},
+																{"DEVEUI",0,0xffffffffffff,8,1,JSON_HEX,0,0},
+																{"APPKEY",0,0xffffffffff,8,1,JSON_HEX,8,0},
 																{"FREQ",86400000,87000000,4,1,JSON_INTEGER,16,0},
 																{"FR",4,12,1,1,JSON_INTEGER,20,0},
 															{"UART3",0,0,1,0,JSON_BOOLEAN,21,0},
@@ -91,10 +91,10 @@ struct field_json json_descr[Json_Descript_Length] = {
 //	int32_t len;
 //};
 
-struct json_desc_t json_d = {
-	.descr =  json_descr, 
-	.len = Json_Descript_Length
-};
+//struct json_desc_t json_d = {
+//	.descr =  &json_descr, 
+//	.len = Json_Descript_Length
+//};
 
 void initStack2(void)
 {

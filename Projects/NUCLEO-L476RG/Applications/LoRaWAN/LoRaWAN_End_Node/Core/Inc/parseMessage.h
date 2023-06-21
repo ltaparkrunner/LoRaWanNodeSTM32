@@ -82,6 +82,7 @@ int32_t FetchJson(struct bufc_t* bufc, struct jsonmsg_t* jsonmsg);
 uint8_t JsonSettingsToBuffer_wrap(uint8_t* cmd);
 int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr, struct jsonmsg_t* jsonmsg, struct buffer_t* buff);
 //int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, struct bufUSB_t* bufUSB, struct field_json* json_descr);
-int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct bufUSB_t* bufUSB,*/ struct field_json* json_descr);
+int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct bufUSB_t* bufUSB,*/ struct field_json json_descr[]);
+//int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct bufUSB_t* bufUSB,*/ struct json_desc_t* desc_d);
 int32_t  FormOutpJson(struct json_sets_t* json_sets);
 #endif /* PARSE_MESSAGE_H */

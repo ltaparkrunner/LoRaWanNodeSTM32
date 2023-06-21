@@ -234,14 +234,14 @@ int32_t init_flash(uint32_t adr, uint8_t buffer[], uint32_t len)
 	return 0;
 }
 
-int32_t readflash(uint32_t adr, uint32_t buf[], uint32_t len)
+int32_t readflash(uint32_t adr, uint8_t buf[], uint32_t len)
 {
 	//uint32_t addr = ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
-	uint32_t addr = adr;
+	uint8_t addr = adr;
 	uint32_t i;	
 	for(i = 0; i < len; i++)
 	{
-		buf[i] = *(__IO uint32_t *)addr;
+		buf[i] = *(__IO uint8_t *)addr++;
 	}
 	return i;
 }

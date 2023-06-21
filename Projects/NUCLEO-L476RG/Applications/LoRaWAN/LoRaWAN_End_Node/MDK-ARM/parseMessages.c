@@ -342,7 +342,7 @@ int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct buf
 	static uint8_t temp_buff[FlashBuffLen];
 	uint32_t addr_w;
 	uint32_t addr_r = ChooseReadFlashBank(&addr_w); 
-	if(readflash(addr_r, (uint32_t*)temp_buff, FlashBuffLen) > 0) {
+	if(readflash(addr_r, (uint8_t*)temp_buff, FlashBuffLen) > 0) {
 		for(int32_t i1=0; i1<Json_Descript_Length; i1++)
 		{
 				// find the position of feature not 
@@ -351,7 +351,7 @@ int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct buf
 					str = strstr((const char*)(json_sets->array), json_descr[i1].name);
 				// seeking for "\":" it's better to add to upper oper-r, and miss spaces
 					str = strstr((const char*)(json_sets->array), "\":");
-					while(*str == ' ') str++; // the point to insert
+					while(*str == ' ' || *str == '\t' || *str == 10 || *str == 13 || *str == '\"') str++; // the point to insert
 					//char* str2 = "           ";
 					//int32_t ln= 0;
 					// if digit transform to string

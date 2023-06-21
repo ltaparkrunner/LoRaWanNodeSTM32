@@ -79,7 +79,7 @@ uint32_t GetBank(uint32_t Address);
 HAL_StatusTypeDef HAL_Init_Flash(void);
 void write_read_flash(void);
 int32_t init_flash(uint32_t adr, uint8_t buf[], uint32_t len);
-int32_t readflash(uint32_t adr, uint32_t buf[], uint32_t len);
+int32_t readflash(uint32_t adr, uint8_t buf[], uint32_t len);
 int32_t change_buf(uint32_t adr, uint32_t subst[], uint32_t buf[], uint32_t len);
 int32_t rewriteflash(uint32_t adr, uint8_t buf[], uint32_t len);
 
