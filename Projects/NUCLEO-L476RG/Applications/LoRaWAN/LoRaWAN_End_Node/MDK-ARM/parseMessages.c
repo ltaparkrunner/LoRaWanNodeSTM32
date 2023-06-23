@@ -204,11 +204,11 @@ const json_t* pop_pm(void)
 
 int32_t find_coincid(const json_t* json_ptr, int32_t level, struct field_json json_descr[])
 {
-	static int32_t nm = 0;
+	int32_t nm = 0;
 	int32_t ret = -1;
 	int32_t ln = strlen(json_ptr->name);
 	for(; nm< Json_Descript_Length; nm++)
-		if(	strncmp(json_ptr->name, json_descr[nm].name, ln) == 0) 
+		if(	strncmp(json_ptr->name, json_descr[nm].name, ln+1) == 0) 
 		{
 			ret = nm;
 			break;
@@ -247,7 +247,7 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 			//uint32_t i=0;
 			int32_t level = 0;
 //			int32_t slen = 0;
-			const json_t* json_ptr = json_getChild(json_sets_l);
+			const json_t* json_ptr;  json_ptr = json_getChild(json_sets_l);
 			initStack_pm();
 			while(json_ptr != NULL  ||  !stackIsEmpty_pm())
 			{
@@ -335,39 +335,71 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 }
 
 #define FlashBuffLen Buff_Len
+#define TEXT_LEN 34
 //struct field_json json_descr[Json_Descript_Length]
 int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct bufUSB_t* bufUSB,*/ struct field_json json_descr[])
 {
-	char* str;
+	char* str_sh, *str_st, *str_dh;
 	static uint8_t temp_buff[FlashBuffLen];
 	uint32_t addr_w;
 	uint32_t addr_r = ChooseReadFlashBank(&addr_w); 
 	if(readflash(addr_r, (uint8_t*)temp_buff, FlashBuffLen) > 0) {
+		str_sh = json_sets->array; 
+		str_dh = json_sets->array2;
 		for(int32_t i1=0; i1<Json_Descript_Length; i1++)
 		{
 				// find the position of feature not 
 				if( json_descr[i1].ty == JSON_BOOLEAN || json_descr[i1].ty == JSON_INTEGER ||
 						json_descr[i1].ty == JSON_TEXT || json_descr[i1].ty == JSON_HEX){
-					str = strstr((const char*)(json_sets->array), json_descr[i1].name);
+					str_st = strstr((const char*)(str_sh), json_descr[i1].name);
+					if(str_st == NULL) break;
 				// seeking for "\":" it's better to add to upper oper-r, and miss spaces
-					str = strstr(str, "\":");
-					str += 2;
-					while(*str == ' ' || *str == '\t' || *str == 10 || *str == 13 || *str == '\"') str++; // the point to insert
+					str_st = strstr(str_st, "\":");
+					str_st += 2;
+					
+					strncpy(str_dh, str_sh,	str_st - str_sh);
+					str_dh += (str_st - str_sh);
+					*str_dh++ = ' ';
+					//while(*str == ' ' || *str == '\t' || *str == 10 || *str == 13 || *str == '\"') str++; // the point to insert
 					//char* str2 = "           ";
 					//int32_t ln= 0;
 					// if digit transform to string
 					// reading the flash memory
 					switch(json_descr[i1].ty){
+						case JSON_TEXT:
+							{ 
+								*str_dh++ = '"';
+								for(int32_t i2 = json_descr[i1].offset; i2 < (json_descr[i1].bytes + json_descr[i1].offset); i2++) {
+									if(temp_buff[i2]	< 0x20) {
+										*str_dh++ = 0x20;
+									}
+									else *str_dh++ = temp_buff[i2];
+								}
+								*str_dh++ = '"';
+//								*str_dh++ = 10;
+//								*str_dh++ = 13;
+							}
+							break;
 						case JSON_BOOLEAN: //boolean to string 
 							{
-								if(temp_buff[json_descr[i1].offset] == truefl)
-									strncpy(str, "true ", 5);
-								else strncpy(str, "false", 4);
+								if(temp_buff[json_descr[i1].offset] == truefl){
+									strncpy(str_dh, "true", 4);
+									str_dh +=4;
+
+								}
+								else {strncpy(str_dh, "false", 5);
+									str_dh +=5;
+								}
+//									while(*str_sh != '}' && *str_sh != ',') str_sh++;
+//									while(*str_st != '"' && *str_st != '{') str_st++;
+//									strncpy(str_dh, str_sh,	str_st - str_sh);
+//									str_dh += (str_st - str_sh);
+//									*str_dh++ = ' ';
 							}
 							break;
 						case JSON_INTEGER: // integer to string
 							{
-								int64_t i64 = 0;
+								uint64_t i64 = 0;
 								for(int32_t i2=json_descr[i1].offset; i2<json_descr[i1].bytes + json_descr[i1].offset; i2++) {
 									i64 <<= 8;	i64 += temp_buff[i2]; 
 								}
@@ -376,29 +408,33 @@ int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct buf
 									{
 										char ch8[20];
 										sprintf(ch8, "%-20lld", i64);
-										strncpy(str, ch8, 20);
+										strncpy(str_dh, ch8, 20);
+										str_dh +=20;
 									}
 									break;
 									case 4:
 									{
 										char ch8[10];
-										sprintf(ch8, "%-10d", (int32_t)i64);
-										strncpy(str, ch8, 10);
+										sprintf(ch8, "%10lld", i64);
+										strncpy(str_dh, ch8, 10);
+										str_dh +=10;
 									}
 									break;
 									case 2:
 									{
 										char ch8[5];
-										sprintf(ch8, "%-5d", (int16_t)i64);
-										strncpy(str, ch8, 5);
+										sprintf(ch8, "%-5lld", i64);
+										strncpy(str_dh, ch8, 5);
+										str_dh +=5;
 									}
 									break;
 									case 1:
 									default:
 									{
 										char ch8[3];
-										sprintf(ch8, "%-3d", (int8_t)i64);
-										strncpy(str, ch8, 3);
+										sprintf(ch8, "%-3lld", i64);
+										strncpy(str_dh, ch8, 3);
+										str_dh +=3;
 									}
 								}
 							}
@@ -415,40 +451,67 @@ int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct buf
 										char ch8[18];
 										//lltoa(
 										sprintf(ch8, "0x%016llx", i64);
-										strncpy(str, ch8, 18);
+										strncpy(str_dh, ch8, 18);
+										str_dh +=18;
 									}
 									break;
 									case 4:
 									{
 										char ch8[10];
-										sprintf(ch8, "0x%08x", (int32_t)i64);
-										strncpy(str, ch8, 10);
+										sprintf(ch8, "0x%08llx", i64);
+										strncpy(str_dh, ch8, 10);
+										str_dh +=10;
 									}
 									break;
 									case 2:
 									{
 										char ch8[6];
-										sprintf(ch8, "0x%04x", (int16_t)i64);
-										strncpy(str, ch8, 6);
+										sprintf(ch8, "0x%04llx", i64);
+										strncpy(str_dh, ch8, 6);
+										str_dh +=6;
 									}
 									break;
 									case 1:
 									default:
 									{
 										char ch8[4];
-										sprintf(ch8, "0x%02x", (int8_t)i64);
-										strncpy(str, ch8, 4);
+										sprintf(ch8, "0x%02llx", i64);
+										strncpy(str_dh, ch8, 4);
+										str_dh += 4;
 									}
 								}
 							}
 							break;
 						default: break;	
+							
 					}
 					//strncpy(str, str2, ln);
+					//strpbrk(str_st, "/t");
+//					while(*str_st != '\t' && *str_st != 0 && *str_st != '{' ) str_st++;
+//					if( *str_st == 0 )break;
+									str_sh = str_st;
+									while(*str_sh != '}' && *str_sh != ',') str_sh++;
+									while(*str_st != '"' && *str_st != '{') str_st++;
+//									strncpy(str_dh, str_sh,	str_st - str_sh);
+//									str_dh += (str_st - str_sh);
+//									*str_dh++ = ' ';
 			}
+			//else if(json_descr[i1].ty == JSON_ARRAY){
+				// продвинуться до открывающей скобки
+				// 
+				//while(*str_st != '{' && *str_st != 0 ) str_st++;
+				//str_sh = str_st;
+				//strncpy(str_dh, " { \n\r", 5);
+				//str_dh += 5;
+			//}
 		}
+		*str_dh++ = 10;
+		*str_dh++ = 13;
+		*str_dh++ = '}';
+		*str_dh++ = 10;
+		*str_dh++ = 13;
 	}
-	return strlen(json_sets->array);
+	return strlen(json_sets->array2);
 }
 
 int32_t  FormOutpJson(struct json_sets_t* json_sets)

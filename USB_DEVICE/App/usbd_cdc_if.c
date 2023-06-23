@@ -412,9 +412,9 @@ uint8_t CheckTransmit(uint8_t cmd)
 		if(cmd == CMD_READ_SETTINGS)
 		/*if(bufc.tail_outp == bufc.head_outp)*/ {
 		//int32_t AssembleFullJSONStringForUSB(&json_sets, struct bufUSB_t* bufUSB, struct field_json* json_descr)
-		int32_t len = AssembleFullJSONStringForUSB(&json_sets, /*&bufUSB,*/ json_descr);
+		int32_t len = /*1100;*/AssembleFullJSONStringForUSB(&json_sets, /*&bufUSB,*/ json_descr);
 		if( len>0 )	{	
-				result = CDC_Transmit_FS((uint8_t*)json_sets.array, len);//json_sets.outplen);// json_sets.length);
+				result = CDC_Transmit_FS((uint8_t*)json_sets.array2, len);//json_sets.outplen);// json_sets.length);
 		}
 		if(result == USBD_OK) 
 			cmd = NO_CMD;

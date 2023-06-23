@@ -351,16 +351,16 @@ static char* numValue( char* ptr, json_t* property ) {
     }
 		if ( JSON_HEX == property->type ) {
         char const* value = property->u.value;
-        bool const negative = *value == '-';
-        static char const min[] = "-8000000000000000";
-        static char const max[] = "7FFFFFFFFFFFFFFF";
-        unsigned int const maxdigits = ( negative? sizeof min: sizeof max ) - 1;
+        //bool const negative = *value == '-';
+        static char const min[] = "0x0000000000000000";
+        static char const max[] = "0xFFFFFFFFFFFFFFFF";
+        unsigned int const maxdigits = 0x12;///*( negative? sizeof min: */sizeof max;// ) - 1;
         unsigned int const len = ( unsigned int const ) ( ptr - value );
         if ( len > maxdigits ) return 0;
         if ( len == maxdigits ) {
             char const tmp = *ptr;
             *ptr = '\0';
-            char const* const threshold = negative ? min: max;
+            char const* const threshold = /*negative ? min:*/ max;
             if ( 0 > strcmp( threshold, value ) ) return 0;
             *ptr = tmp;
         }

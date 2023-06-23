@@ -12,6 +12,7 @@
 struct json_sets_t{
 	char* p;
 	char array[SETTINGS_MAX_LEN];
+	char array2[SETTINGS_MAX_LEN];
 	int32_t length;
 	int32_t outplen;
 };

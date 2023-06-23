@@ -219,16 +219,17 @@ extern json_t pool[ Num_Field ];
 extern char sets_JSON[];
 //uint8_t buff[Buff_Len];
 struct buffer_t buff;
-struct json_arr *jsonarrflash, *jsonarrmem ;
+struct json_arr *jsonarrflash_1, *jsonarrflash_2;//*jsonarrmem ;
 
 int32_t init_flash(uint8_t buffer[], uint32_t len)
 {
 //	uint32_t addr_w;
 //	uint32_t addr_r = ChooseReadFlashBank(&addr_w);
 	uint32_t addr = FLASH_USER_START_ADDR1;//FLASH_USER_START_ADDR2;// ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
-	uint32_t i;
-	jsonarrflash = (struct json_arr*)addr; 
-	if(jsonarrflash -> wrtn != WRTN_CHECK)
+//	uint32_t i;
+	jsonarrflash_1 = (struct json_arr*)addr; 
+	jsonarrflash_2 = (struct json_arr*)FLASH_USER_START_ADDR2;
+	if(jsonarrflash_1 -> wrtn != WRTN_CHECK)
 	{
 		uint32_t lenR = json_to_buffer(sets_JSON, pool, Num_Field, buffer, Buff_Len);
 		rewriteflash(addr, buffer, lenR);
@@ -239,13 +240,16 @@ int32_t init_flash(uint8_t buffer[], uint32_t len)
 int32_t readflash(uint32_t adr, uint8_t buf[], uint32_t len)
 {
 	//uint32_t addr = ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
-	uint8_t addr = adr;
-	uint32_t i;	
-	for(i = 0; i < len; i++)
-	{
-		buf[i] = *(__IO uint8_t *)addr++;
-	}
-	return i;
+	uint32_t addr = adr;
+	uint32_t addrEnd = adr + len;	
+
+  while (addr < addrEnd)
+  {
+		*(__IO uint64_t *)buf = *(__IO uint64_t *)addr;
+      addr = addr + 8;
+			buf +=8;
+  }
+	return len;
 }
 
 int32_t change_buf(uint32_t adr, uint32_t subst[], uint32_t buf[], uint32_t len)
@@ -262,7 +266,7 @@ int32_t change_buf(uint32_t adr, uint32_t subst[], uint32_t buf[], uint32_t len)
 int32_t rewriteflash(uint32_t adr, uint8_t buf[], uint32_t len)
 { 
 	uint32_t addr = adr;//FLASH_USER_START_ADDR2;	//ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
-	
+	uint8_t *buf_p = buf;
 	HAL_FLASH_Unlock();
 	  /* Clear OPTVERR bit set on virgin samples */
   __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_OPTVERR);
@@ -315,6 +319,26 @@ int32_t rewriteflash(uint32_t adr, uint8_t buf[], uint32_t len)
      to protect the FLASH memory against possible unwanted operation) *********/
   HAL_FLASH_Lock();
 	
+	
+			addr = adr; // FLASH_USER_START_ADDR2;//ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	addrEnd = adr + len; //FLASH_USER_START_ADDR2 + len; //ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage + len;
+	buf = buf_p;
+  for(int32_t i2 = 0; i2 < len ; i2+= 8)
+  {
+		*(__IO uint64_t *)buf = 0;
+			buf +=8;
+  }
+	
+	addr = adr; // FLASH_USER_START_ADDR2;//ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
+	addrEnd = adr + len; //FLASH_USER_START_ADDR2 + len; //ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage + len;
+	buf = buf_p;
+  while (addr < addrEnd)
+  {
+		*(__IO uint64_t *)buf = *(__IO uint64_t *)addr;
+      addr = addr + 8;
+			buf +=8;
+  }
+
 	return len;
 }
 
