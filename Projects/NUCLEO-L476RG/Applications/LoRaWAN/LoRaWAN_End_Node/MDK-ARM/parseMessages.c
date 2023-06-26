@@ -202,9 +202,11 @@ const json_t* pop_pm(void)
 	else return NULL; // or JSON_NULL
 }
 
-int32_t find_coincid(const json_t* json_ptr, int32_t level, struct field_json json_descr[])
+int32_t find_coincid(const json_t* json_ptr, /* int32_t level, */ int32_t num, struct field_json json_descr[])
 {
-	int32_t nm = 0;
+	int32_t nm = num;
+	//static int32_t lvl = 0;
+	//nm = num; 
 	int32_t ret = -1;
 	int32_t ln = strlen(json_ptr->name);
 	for(; nm< Json_Descript_Length; nm++)
@@ -246,19 +248,21 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 		if(json_sets_l != NULL) {
 			//uint32_t i=0;
 			int32_t level = 0;
+			int32_t num =0;
 //			int32_t slen = 0;
 			const json_t* json_ptr;  json_ptr = json_getChild(json_sets_l);
 			initStack_pm();
 			while(json_ptr != NULL  ||  !stackIsEmpty_pm())
 			{
 				//slen = strlen(json_ptr->name);  // это в функцию find_coincid
-				int32_t num = find_coincid(json_ptr, level, json_descr);
+				num = find_coincid(json_ptr, /*level,*/ num, json_descr);
 				
 				if(num > 0 && (json_descr[num].ty == json_ptr->type)) {
 					switch(json_descr[num].ty){
 					case JSON_OBJ:
 						push_pm(json_ptr); // or push(json_ptr->sibling)
-						json_ptr = json_getChild(json_ptr);	
+						json_ptr = json_getChild(json_ptr);
+						level++;				
 					break;
 					case JSON_INTEGER:
 						tempI = json_getInteger(json_ptr);
@@ -322,6 +326,8 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 				while(json_ptr == NULL && !stackIsEmpty_pm())
 				{
 					json_ptr = pop_pm();
+					level--;
+					if(level<0) level = 0;
 					json_ptr = json_getSibling(json_ptr);
 				}
 				if(json_ptr == NULL && stackIsEmpty_pm()) break;

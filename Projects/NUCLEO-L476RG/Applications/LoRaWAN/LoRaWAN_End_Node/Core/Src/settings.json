@@ -144,13 +144,13 @@
         "LoRa_settings": { "FR": 55 }
 }
 {
-        "LED2": {
+        "HL1": {
                 "USB": {
-                        "sec": 10,
-                        "min": 2,
-                        "hour": 0,
-                        "days": 0,
-                        "work": true
+                        "sec": 50,
+                        "min": 20,
+                        "hour": 2,
+                        "days": 1,
+                        "work": false
 				}
 		}
 }
@@ -159,10 +159,28 @@
 0x20006660
 0x20006660
 
+ {       "LoRa_text": "Forever young, I want to be forever" }
+ {       "LoRa_text": "Everybody, need somebody. You you you," }
 
 
-
-
-
-
+{
+ "Command": "read settings"
+} 
+{
+        "HL2": {
+                "LoRa": {
+                        "blinks":{
+                                "msec": 150,
+                                "times": 1
+                        },
+                        "period":{
+                                "sec": 10,
+                                "min": 1,
+                                "hour": 1,
+                                "days": 2,
+                                "work": true
+                        },
+                }
+        }
+}
 

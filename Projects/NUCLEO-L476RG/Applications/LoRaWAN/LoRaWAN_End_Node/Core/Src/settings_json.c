@@ -11,7 +11,7 @@ char sets_JSON[] = "{\
 		\"FR\": 129374907\
 	},\
 	\"UART3\": true ,\
-	\"LED2\": {\
+	\"HL1\": {\
 		\"USB\": {\
 			\"sec\": 10 ,\
 			\"min\": 2 ,\
@@ -27,7 +27,7 @@ char sets_JSON[] = "{\
 			\"work\": true \
 		}\
 	},\
-	\"LED1\": {\
+	\"HL2\": {\
 		\"USB\": {\
 			\"blinks\":{\
 				\"msec\": 100,\
@@ -62,10 +62,10 @@ char sets_JSON[] = "{\
 		\"days\": 0  ,\
 		\"work\": true \
 	},\
-	\"LoRa_text\": \"Soon as early Dawn appeared, the rosy-fingered, up from his bed arose the dear son of Odysseus and put on his clothing.\",\
+	\"LoRa_text\": \"Soon as early Dawn appeared, the \",\
 	\"LoRa_Data\": [{\"AD_1\": true }, {\"INP1\": false}, {\"INP3\": false}, {\"AD_4\": true }, {\"TEXT\": false}],\
 	\"Command\": \"              \",\
-	\"WRTN\": 153,\
+	\"WRTN\": 2,\
 	\"DevEuiValid\": true ,\
 	\"AppKeyValid\": true \
 }";

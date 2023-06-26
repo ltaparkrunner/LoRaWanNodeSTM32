@@ -28,7 +28,7 @@ struct field_json json_descr[Json_Descript_Length] = {
 																{"FR",4,12,1,1,JSON_INTEGER,20,0},
 															{"UART3",0,0,1,0,JSON_BOOLEAN,21,0},
 
-															{"LED2",0,0,0,0,JSON_OBJ,22,0},							//6
+															{"HL1",0,0,0,0,JSON_OBJ,22,0},							//6
 																{"USB",0,0,0,1,JSON_OBJ,22, 0},
 																	{"sec",0,60,1,2,JSON_INTEGER,22,0},
 																	{"min",0,60,1,2,JSON_INTEGER,23,0},
@@ -42,7 +42,7 @@ struct field_json json_descr[Json_Descript_Length] = {
 																	{"days",0,1000,2,2,JSON_INTEGER,31,0},
 																	{"work",0,1000,1,2,JSON_BOOLEAN,33,0},
 																	
-															{"LED1",0,0,0,0,JSON_OBJ,34,0},								//19
+															{"HL2",0,0,0,0,JSON_OBJ,34,0},								//19
 																{"USB",0,0,0,1,JSON_OBJ,34,0},
 																	{"blinks",0,0,0,2,JSON_OBJ,34,0},
 																		{"msec",0,100,1,3,JSON_INTEGER,34,0},

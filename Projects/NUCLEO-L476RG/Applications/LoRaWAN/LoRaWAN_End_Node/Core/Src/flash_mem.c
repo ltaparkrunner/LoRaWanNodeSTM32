@@ -342,3 +342,9 @@ int32_t rewriteflash(uint32_t adr, uint8_t buf[], uint32_t len)
 	return len;
 }
 
+struct json_arr* GetJsonFlash(void)
+{
+	uint32_t addr_w;
+	uint32_t addr_r = ChooseReadFlashBank(&addr_w);
+	return (struct json_arr*)addr_r;
+}

@@ -89,6 +89,7 @@ int32_t WriteBufferToFlash(struct buffer_t* buff);
 int32_t FinilizeWriteBufferToFlash(struct buffer_t* buff);
 int32_t CancelJSONChanges(struct buffer_t* buff);
 uint32_t ChooseReadFlashBank(uint32_t* Addr_w);
+struct json_arr* GetJsonFlash(void);
 
 #define WRTN_CHECK 0x99
 #define WRTN_OFFSET 108//96
@@ -102,23 +103,23 @@ struct json_arr{
 		uint8_t fr;
 	}LoRa_settings_t;
 	uint8_t uart3;
-	struct led2{
+	struct hl1{
 		struct usb{
 			uint8_t sec;
 			uint8_t min;
 			uint8_t hour;
-			uint8_t days;
+			uint16_t days;
 			uint8_t	work;
 		}period_t;
 		struct battery{
 			uint8_t sec;
 			uint8_t min;
 			uint8_t hour;
-			uint8_t days;
+			uint16_t days;
 			uint8_t	work;
 		}period2_t;
 	}led2_t;
-	struct led1{
+	struct hl2{
 		struct usb1{
 			struct blinks{
 				uint8_t msec;
@@ -128,7 +129,7 @@ struct json_arr{
 				uint8_t sec;
 				uint8_t min;
 				uint8_t hour;
-				uint8_t days;
+				uint16_t days;
 				uint8_t	work;
 			}period_t;
 		}usb1_t;
@@ -142,7 +143,7 @@ struct json_arr{
 				uint8_t sec;
 				uint8_t min;
 				uint8_t hour;
-				uint8_t days;
+				uint16_t days;
 				uint8_t	work;
 			}period_t;
 		}LoRa_t;
@@ -151,7 +152,7 @@ struct json_arr{
 				uint8_t sec;
 				uint8_t min;
 				uint8_t hour;
-				uint8_t days;
+				uint16_t days;
 				uint8_t	work;
 			}period_t; 
 		}period_LoRa_t;
@@ -163,7 +164,7 @@ struct json_arr{
 			uint8_t ad_4;
 			uint8_t text;
 		}LoRa_Data_t;
-		uint8_t command;
+		uint8_t command[13];
 		uint8_t wrtn;
 		uint8_t devEuiVal;
 		uint8_t appKeyVal;

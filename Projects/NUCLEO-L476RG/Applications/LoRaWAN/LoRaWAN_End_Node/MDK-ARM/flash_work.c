@@ -61,7 +61,7 @@ int32_t WriteBufferToFlash(struct buffer_t* buff)
 //	}
 	uint32_t Address_w;
 	uint32_t Address_r = ChooseReadFlashBank(&Address_w);
-	struct json_arr *jsonarrflash_r, *jsonarrflash_w;
+//	struct json_arr *jsonarrflash_r, *jsonarrflash_w;
 	//////////////////////////
 	//jsonarrflash_r = (struct json_arr*)Address_r; 
 	//jsonarrflash_w = (struct json_arr*)Address_w;
@@ -73,14 +73,17 @@ int32_t WriteBufferToFlash(struct buffer_t* buff)
 			changed = 1;
 		}
 		else {
-			buffer2[i1] = *(__IO uint8_t *)(Address_r++);
+			buffer2[i1] = *(__IO uint8_t *)(Address_r+i1);
 		}
 	}
 	
 	if(changed == 1){
-		if(buff->array[WRTN_OFFSET] > 0x7F || buff->array[WRTN_OFFSET] < 0)
+//		if(buff->array[WRTN_OFFSET] > 0x7F ) //|| buff->array[WRTN_OFFSET] < 0)
+//			buffer2[WRTN_OFFSET] = 0;
+//		else  buffer2[WRTN_OFFSET] = buff->array[WRTN_OFFSET] + 1;
+		if(buffer2[WRTN_OFFSET] > 0x7F ) //|| buff->array[WRTN_OFFSET] < 0)
 			buffer2[WRTN_OFFSET] = 0;
-		else  buffer2[WRTN_OFFSET] = buff->array[WRTN_OFFSET] + 1;
+		else  buffer2[WRTN_OFFSET]++;
 		return rewriteflash(Address_w, buffer2, Buff_Len);
 	}
 	else return 0;
@@ -112,7 +115,7 @@ uint32_t ChooseReadFlashBank(uint32_t* Addr_w)
 	uint8_t wrtn1 = *(__IO uint8_t *)(Address_w + WRTN_OFFSET);
 	uint32_t Address_r = FLASH_USER_START_ADDR2;
 	uint8_t wrtn2 = *(__IO uint8_t *)(Address_r + WRTN_OFFSET);
-	if(wrtn1 == 0xff || wrtn2 > wrtn1) {
+	if((wrtn1 >= 0x7f) || (wrtn2 > wrtn1 && wrtn2 <0x7f )) /*|| (wrtn2 == 0 && wrtn1 >=0x7f)*/ { //|| wrtn2 < 0) {
 		if(Addr_w) *Addr_w = FLASH_USER_START_ADDR1;
 		return (uint32_t) FLASH_USER_START_ADDR2;
 	}
