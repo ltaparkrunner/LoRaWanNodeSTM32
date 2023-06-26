@@ -31,7 +31,7 @@ int32_t outpStr(struct bufc_t* bufc, struct strc_t* str, struct parentharray_t* 
 			}
 			else {
 				if(bufc->array[i1] == '{') {
-					pararr->parth[pararr->length].first_opening = i1;
+					//pararr->parth[pararr->length].first_opening = i1;
 					pararr->parth[pararr->length].opening++;
 				}
 				if(bufc->array[i1] == '}') {
@@ -257,7 +257,7 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 				//slen = strlen(json_ptr->name);  // это в функцию find_coincid
 				num = find_coincid(json_ptr, /*level,*/ num, json_descr);
 				
-				if(num > 0 && (json_descr[num].ty == json_ptr->type)) {
+				if(num > -1 && (json_descr[num].ty == json_ptr->type)) {
 					switch(json_descr[num].ty){
 					case JSON_OBJ:
 						push_pm(json_ptr); // or push(json_ptr->sibling)
@@ -266,7 +266,8 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 					break;
 					case JSON_INTEGER:
 						tempI = json_getInteger(json_ptr);
-						for(int i2=0; i2<json_descr[num].bytes; i2++)
+						//for(int i2=0; i2<json_descr[num].bytes; i2++)
+						for(int i2=json_descr[num].bytes-1; i2>=0; i2--)
 						{
 							buff->array[json_descr[num].offset + i2] = (uint8_t)tempI & 0xff;
 							buff->changed[json_descr[num].offset + i2] = 1;
@@ -310,7 +311,8 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 						break;
 					case JSON_HEX:
 						tempI = json_gethexInteger(json_ptr);
-						for(int i2=0; i2<json_descr[num].bytes; i2++)
+						//for(int i2=0; i2<json_descr[num].bytes; i2++)
+						for(int i2=json_descr[num].bytes-1; i2>=0; i2--)
 						{
 							buff->array[json_descr[num].offset + i2] = (uint8_t)tempI & 0xff;
 							buff->changed[json_descr[num].offset + i2] = 1;
@@ -349,7 +351,8 @@ int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct buf
 	static uint8_t temp_buff[FlashBuffLen];
 	uint32_t addr_w;
 	uint32_t addr_r = ChooseReadFlashBank(&addr_w); 
-	if(readflash(addr_r, (uint8_t*)temp_buff, FlashBuffLen) > 0) {
+//	if(readflash(addr_r, (uint8_t*)temp_buff, FlashBuffLen) > 0) {
+		if(readflash_8b(addr_r, (uint8_t*)temp_buff, FlashBuffLen) > 0) {
 		str_sh = json_sets->array; 
 		str_dh = json_sets->array2;
 		for(int32_t i1=0; i1<Json_Descript_Length; i1++)

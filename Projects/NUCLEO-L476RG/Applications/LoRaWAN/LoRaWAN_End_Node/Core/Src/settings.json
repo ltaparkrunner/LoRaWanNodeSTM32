@@ -166,6 +166,10 @@
 {
  "Command": "read settings"
 } 
+
+В обратную сторону сзаду наперед класть.
+
+
 {
         "HL2": {
                 "LoRa": {
@@ -184,3 +188,83 @@
         }
 }
 
+{
+        "LoRa_settings": {
+                "DEVEUI": 0x1234567890123456}
+}
+
+
+{
+        "LoRa_settings": {
+                "APPKEY": 0x9876543210987654}
+				}
+				
+	{
+        "LoRa_settings": {
+                "DEVEUI": 0x1234567890123456,
+                "APPKEY": 0x9876543210987654,
+                "FREQ": 2155228165,
+                "FR": 187},
+        "UART3": true,
+        "HL1": {
+                "USB": {
+                        "sec": 10 ,
+                        "min": 1  ,
+                        "hour": 1  ,
+                        "days": 512  ,
+                        "work": true},
+                "battery": {
+                        "sec": 0  ,
+                        "min": 3  ,
+                        "hour": 0  ,
+                        "days": 0    ,
+                        "work": true}
+        },
+        "HL2": {
+                "USB": {
+                        "blinks":{
+                                "msec": 100,
+                                "times": 3  },
+                        "period":{
+                                "sec": 1  ,
+                                "min": 2  ,
+                                "hour": 0  ,
+                                "days": 0    ,
+                                "work": false,
+                        },
+                },
+                "LoRa": {
+                        "blinks":{
+                                "msec": 150,
+                                "times": 1  },
+                        "period":{
+                                "sec": 10 ,
+                                "min": 1  ,
+                                "hour": 1  ,
+                                "days": 512  ,
+                                "work": true},
+                }
+        },
+        "period_LoRa": {
+                "sec": 1  ,
+                "min": 2  ,
+                "hour": 0  ,
+                "days": 0    ,
+                "work": true},
+        "LoRa_text": "Forever young, I want to be foreve", the ",
+        "LoRa_Data": [{"AD_1": false}, {"INP1": false}, {"INP3": false}, {"AD_4": false}, {"TEXT": false}],
+        "Command": "             ",
+        "WRTN": 21 ,
+        "DevEuiValid": true,
+        "AppKeyValid": true
+}
+		
+{
+        "period_LoRa": {
+                "sec": 25  ,
+                "min": 3  ,
+                "hour": 2  ,
+                "days": 3    ,
+                "work": false},
+}
+			

@@ -144,7 +144,8 @@ static inline int64_t json_getInteger( json_t const* property ) {
 }
 
 static inline int64_t json_gethexInteger( json_t const* property ) {
-  return strtoll( property->u.value,(char**)NULL, 16);
+	
+	return	strtoull( property->u.value,(char**)NULL, 16);
 }
 
 /** Get the value of a json real property.

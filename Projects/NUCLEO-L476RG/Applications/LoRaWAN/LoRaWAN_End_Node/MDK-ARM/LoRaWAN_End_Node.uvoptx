@@ -152,50 +152,50 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>351</LineNumber>
+          <LineNumber>398</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134220730</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\parseMessages.c</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>../Core/Src/main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\parseMessages.c\351</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>80</LineNumber>
+          <LineNumber>240</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134299396</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\flash_work.c</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\parseMessages.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\flash_work.c\80</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>63</LineNumber>
+          <LineNumber>323</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134299350</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\flash_work.c</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\parseMessages.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\flash_work.c\63</Expression>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -207,27 +207,32 @@
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>json_ptr</ItemText>
+          <ItemText>Address_r</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>buffer2[WRTN_OFFSET]</ItemText>
+          <ItemText>buffer2</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>WRTN_OFFSET</ItemText>
+          <ItemText>buff</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>buffer2</ItemText>
+          <ItemText>json_ptr</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Address_r</ItemText>
+          <ItemText>property-&gt;u.value</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>tempI</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
