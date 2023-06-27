@@ -107,12 +107,12 @@ void write_read_flash(void)
 	  /* Unlock the Flash to enable the flash control register access *************/
   HAL_FLASH_Unlock();
 //	errplace = 6;
-			MU_LED_Off(LED2);
+			MU_LED_Off(HL2);
 //      MU_LED_On(LED2);
 //      HAL_Delay(700);
 //      MU_LED_Off(LED2);
       HAL_Delay(300);
-			MU_LED_On(LED2);
+			MU_LED_On(HL2);
 //      HAL_Delay(700);
 //      MU_LED_Off(LED2);
 //			
@@ -203,7 +203,7 @@ void write_read_flash(void)
   if (MemoryProgramStatus == 0)
   {
     /* No error detected. Switch on HL2*/
-		MU_LED_On(LED2);
+		MU_LED_On(HL2);
   }
   else
   {

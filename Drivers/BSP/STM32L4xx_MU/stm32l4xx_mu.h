@@ -133,8 +133,8 @@ extern "C" {
 #define LED2_GPIO_CLK_ENABLE()             __HAL_RCC_GPIOE_CLK_ENABLE()
 #define LED2_GPIO_CLK_DISABLE()            __HAL_RCC_GPIOE_CLK_DISABLE()
 
-#define LEDx_GPIO_CLK_ENABLE(__LED__)      do { if((__LED__) == LED1) { LED1_GPIO_CLK_ENABLE();  } if((__LED__) == LED2) { LED2_GPIO_CLK_ENABLE();  }} while(0)
-#define LEDx_GPIO_CLK_DISABLE(__LED__)     do { if((__LED__) == LED1) { LED1_GPIO_CLK_DISABLE(); } if((__LED__) == LED2) { LED2_GPIO_CLK_DISABLE(); }} while(0)
+#define LEDx_GPIO_CLK_ENABLE(__LED__)      do { if((__LED__) == HL1) { LED1_GPIO_CLK_ENABLE();  } if((__LED__) == HL2) { LED2_GPIO_CLK_ENABLE();  }} while(0)
+#define LEDx_GPIO_CLK_DISABLE(__LED__)     do { if((__LED__) == HL1) { LED1_GPIO_CLK_DISABLE(); } if((__LED__) == HL2) { LED2_GPIO_CLK_DISABLE(); }} while(0)
 
 /**
   * @}
@@ -216,8 +216,10 @@ extern "C" {
 	
 typedef enum
 {
-  LED1,
-  LED2
+//  LED1,
+//  LED2
+		HL1,
+		HL2
 } Led_TypeDef;
 
 void             MU_LED_Init(Led_TypeDef Led);

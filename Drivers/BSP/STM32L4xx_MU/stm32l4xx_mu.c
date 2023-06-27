@@ -110,7 +110,7 @@ void MU_LED_Init(Led_TypeDef Led)
 
   /* Enable the GPIO_LED Clock */
   LEDx_GPIO_CLK_ENABLE(Led);
-	if(Led == LED1 || Led == LED2){
+	if(Led == HL1 || Led == HL2){
   /* Configure the GPIO_LED pin */
 		GPIO_InitStruct.Pin   = LED_GPIO_PIN[Led];
 		GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
@@ -178,7 +178,7 @@ void MU_LED_DeInit(Led_TypeDef Led)
   */
 void MU_LED_On(Led_TypeDef Led)
 {
-  HAL_GPIO_WritePin(LED_GPIO_PORT[Led], LED_GPIO_PIN[Led], GPIO_PIN_SET);
+  HAL_GPIO_WritePin(LED_GPIO_PORT[Led], LED_GPIO_PIN[Led], GPIO_PIN_RESET);
 }
 
 /**
@@ -190,7 +190,7 @@ void MU_LED_On(Led_TypeDef Led)
   */
 void MU_LED_Off(Led_TypeDef Led)
 {
-  HAL_GPIO_WritePin(LED_GPIO_PORT[Led], LED_GPIO_PIN[Led], GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LED_GPIO_PORT[Led], LED_GPIO_PIN[Led], GPIO_PIN_SET);
 }
 
 /**

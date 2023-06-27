@@ -177,7 +177,7 @@ int main(void)
   {
 
     /* USER CODE END WHILE */
-//    MX_LoRaWAN_Process();
+    MX_LoRaWAN_Process();
 		result = CheckTransmit(cmd);
 		if(result == USBD_FAIL)
 		{

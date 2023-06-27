@@ -263,7 +263,7 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 						push_pm(json_ptr); // or push(json_ptr->sibling)
 						json_ptr = json_getChild(json_ptr);
 						level++;				
-					break;
+						break;
 					case JSON_INTEGER:
 						tempI = json_getInteger(json_ptr);
 						//for(int i2=0; i2<json_descr[num].bytes; i2++)

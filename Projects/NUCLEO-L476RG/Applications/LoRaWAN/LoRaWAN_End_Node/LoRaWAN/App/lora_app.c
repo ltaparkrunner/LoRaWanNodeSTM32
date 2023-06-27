@@ -137,7 +137,11 @@ static void OnRxTimerLedEvent(void *context);
   * @brief  LED Join timer callback function
   * @param  context ptr of LED context
   */
-static void OnJoinTimerLedEvent(void *context);
+//static void OnJoinTimerLedEvent(void *context);
+static void OnPowerGreenLedOnEvent(void *context);
+static void OnPowerGreenLedOffEvent(void *context);
+static void OnPowerYellowLedOnEvent(void *context);
+static void OnPowerYellowLedOffEvent(void *context);
 
 //static void ledSwitch1(void);
 //static void ledSwitch2(void);
@@ -213,6 +217,10 @@ static UTIL_TIMER_Object_t RxLedTimer;
   * @brief Timer to handle the application Join Led to toggle
   */
 static UTIL_TIMER_Object_t JoinLedTimer;
+static UTIL_TIMER_Object_t PowerGreenLedOnTimer;
+static UTIL_TIMER_Object_t PowerGreenLedOffTimer;
+static UTIL_TIMER_Object_t PowerYellowLedOnTimer;
+static UTIL_TIMER_Object_t PowerYellowLedOffTimer;
 
 /* USER CODE END PV */
 
@@ -226,9 +234,11 @@ void LoRaWAN_Init(void)
   /* USER CODE BEGIN LoRaWAN_Init_1 */
 
 
-	MU_LED_Init(LED1);
-
-	MU_LED_Init(LED2);
+	MU_LED_Init(HL1);
+	MU_LED_Off(HL1);
+	MU_LED_Init(HL2);
+	MU_LED_Off(HL2);	
+	
 	MU_Sound_Init();
 
   /* Get LoRa APP version*/
@@ -251,11 +261,19 @@ void LoRaWAN_Init(void)
 
   UTIL_TIMER_Create(&TxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnTxTimerLedEvent, NULL);
   UTIL_TIMER_Create(&RxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnRxTimerLedEvent, NULL);
-  UTIL_TIMER_Create(&JoinLedTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnJoinTimerLedEvent, NULL);
+//  UTIL_TIMER_Create(&JoinLedTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnJoinTimerLedEvent, NULL);
+	UTIL_TIMER_Create(&PowerGreenLedOnTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerGreenLedOnEvent, NULL);
+	UTIL_TIMER_Create(&PowerGreenLedOffTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerGreenLedOffEvent, NULL);
+	
+	UTIL_TIMER_Create(&PowerYellowLedOnTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerYellowLedOnEvent, NULL);
+	UTIL_TIMER_Create(&PowerYellowLedOffTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerYellowLedOffEvent, NULL);
   UTIL_TIMER_SetPeriod(&TxLedTimer, 1500);
   UTIL_TIMER_SetPeriod(&RxLedTimer, 500);
-  UTIL_TIMER_SetPeriod(&JoinLedTimer, 500);
-
+//  UTIL_TIMER_SetPeriod(&JoinLedTimer, 30000);
+	UTIL_TIMER_SetPeriod(&PowerGreenLedOnTimer, 30000);
+	UTIL_TIMER_SetPeriod(&PowerGreenLedOffTimer, 100);
+	UTIL_TIMER_SetPeriod(&PowerYellowLedOnTimer, 20000);
+	UTIL_TIMER_SetPeriod(&PowerYellowLedOffTimer, 200);
   /* USER CODE END LoRaWAN_Init_1 */
 
 	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
@@ -272,8 +290,9 @@ void LoRaWAN_Init(void)
 
   /* USER CODE BEGIN LoRaWAN_Init_2 */
 	//UTIL_TIMER_Start(&TxLedTimer);
-  UTIL_TIMER_Start(&JoinLedTimer);
-
+//  UTIL_TIMER_Start(&JoinLedTimer);
+	UTIL_TIMER_Start(&PowerGreenLedOnTimer);
+	UTIL_TIMER_Start(&PowerYellowLedOnTimer);
   /* USER CODE END LoRaWAN_Init_2 */
 
   LmHandlerJoin(ActivationType);
@@ -530,12 +549,34 @@ static void OnRxTimerLedEvent(void *context)
 //  LED_Off(LED_BLUE) ;
 }
 
-static void OnJoinTimerLedEvent(void *context)
-{
+//static void OnJoinTimerLedEvent(void *context)
+//{
 //  LED_Toggle(LED_RED1) ;
 //	MU_LED_Toggle(LED2);
+//}
+static void OnPowerGreenLedOnEvent(void *context)
+{
+	MU_LED_On(HL1);
+	UTIL_TIMER_Start(&PowerGreenLedOffTimer);
 }
 
+static void OnPowerGreenLedOffEvent(void *context)
+{
+	MU_LED_Off(HL1);
+	UTIL_TIMER_Stop(&PowerGreenLedOffTimer);
+}
+
+static void OnPowerYellowLedOnEvent(void *context)
+{
+	MU_LED_On(HL2);
+	UTIL_TIMER_Start(&PowerYellowLedOffTimer);
+}
+
+static void OnPowerYellowLedOffEvent(void *context)
+{
+	MU_LED_Off(HL2);
+	UTIL_TIMER_Stop(&PowerYellowLedOffTimer);
+}
 /* USER CODE END PrFD_LedEvents */
 
 static void OnTxData(LmHandlerTxParams_t *params)
