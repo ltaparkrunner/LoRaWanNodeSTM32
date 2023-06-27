@@ -138,8 +138,21 @@ void PWR_ExitStopMode(void)
     HAL_RCC_GetOscConfig(&RCC_OscInitStruct);
 
     /* Enable PLL */
-    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_NONE;
-    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+//    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_NONE;
+//    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+		
+		//////////////////////////////////////////////////////
+		  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_LSE;
+			RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+			RCC_OscInitStruct.LSEState = RCC_LSE_ON;
+			RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+			RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+			RCC_OscInitStruct.PLL.PLLM = 4;
+			RCC_OscInitStruct.PLL.PLLN = 8;
+			RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
+			RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
+			RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
+	////////////////////////////////////////////////////
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
     {
       while (1);
