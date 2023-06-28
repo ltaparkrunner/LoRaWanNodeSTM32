@@ -352,9 +352,9 @@ static char* numValue( char* ptr, json_t* property ) {
 		if ( JSON_HEX == property->type ) {
         char const* value = property->u.value;
         //bool const negative = *value == '-';
-        static char const min[] = "0x0000000000000000";
-        static char const max[] = "0xFFFFFFFFFFFFFFFF";
-        unsigned int const maxdigits = 0x12;///*( negative? sizeof min: */sizeof max;// ) - 1;
+        static char const min[] = "0x00000000000000000000000000000000";
+        static char const max[] = "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
+        unsigned int const maxdigits = 34;///*( negative? sizeof min: */sizeof max;// ) - 1;
         unsigned int const len = ( unsigned int const ) ( ptr - value );
         if ( len > maxdigits ) return 0;
         if ( len == maxdigits ) {

@@ -377,7 +377,7 @@
  }
 
 {
-	"LoRa_Data": [{"AD_1": false}, {"INP1": true}, {"INP3": false}, {"AD_4": false}, {"TEXT": true}],
+	"LoRa_Data": [{"AD_1": false}, {"INP1": false}, {"INP3": false}, {"AD_4": false}, {"TEXT": true}],
 }
  
 {
@@ -388,3 +388,74 @@
  "AppKeyValid": true
  }
  
+  {
+        "LoRa_settings": {
+                "DEVEUI": 0x1234567890123456,
+				
+				}
+				}
+ 
+ {
+        "LoRa_settings": {
+                "DEVEUI": 0x1234567890123456,
+                "APPKEY": 0x80,
+                "FREQ":   16908441,
+                "FR": 0  },
+        "UART3": false,
+        "HL1": {
+                "USB": {
+                        "sec": 0  ,
+                        "min": 0  ,
+                        "hour": 0  ,
+                        "days": 39268,
+                        "work": false},
+                "battery": {
+                        "sec": 1  ,
+                        "min": 2  ,
+                        "hour": 0  ,
+                        "days": 0    ,
+                        "work": false}
+        },
+        "HL2": {
+                "USB": {
+                        "blinks":{
+                                "msec": 150,
+                                "times": 1  },
+                        "period":{
+                                "sec": 10 ,
+                                "min": 1  ,
+                                "hour": 1  ,
+                                "days": 512  ,
+                                "work": true,
+                        },
+                },
+                "LoRa": {
+                        "blinks":{
+                                "msec": 25 ,
+                                "times": 3  },
+                        "period":{
+                                "sec": 2  ,
+                                "min": 0  ,
+                                "hour": 3  ,
+                                "days": 61510,
+                                "work": false},
+                }
+        },
+        "period_LoRa": {
+                "sec": 114,
+                "min": 101,
+                "hour": 118,
+                "days": 25970,
+                "work": false},
+        "LoRa_text": "I want to be forever young",
+        "LoRa_Data": [{"AD_1": true},  {"AD_2": false}, {"INP1": true}, {"INP2": false}, {"TEXT": true}],
+        "Command": "           ",
+        "WRTN": 240,
+        "DevEuiValid": true,
+        "AppKeyValid": true
+}
+
+{
+"FREQ":   86700000
+}
+

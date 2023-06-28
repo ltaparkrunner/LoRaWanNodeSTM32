@@ -6,7 +6,7 @@
 char sets_JSON[] = "{\
 	\"LoRa_settings\": {\
 		\"DEVEUI\": 0x111010110100202C,\
-		\"APPKEY\": 0x1b6c1623865fffff,\
+		\"APPKEY\": 0x35ad814f4236eb0d7ebc74f27a1ad5bb,\
 		\"FREQ\": 86800000  ,\
 		\"FR\": 129374907\
 	},\
@@ -63,7 +63,7 @@ char sets_JSON[] = "{\
 		\"work\": true \
 	},\
 	\"LoRa_text\": \"Soon as early Dawn appeared, the \",\
-	\"LoRa_Data\": [{\"AD_1\": true }, {\"INP1\": false}, {\"INP3\": false}, {\"AD_4\": true }, {\"TEXT\": false}],\
+	\"LoRa_Data\": [{\"AD_1\": false },  {\"AD_2\": false }, {\"INP1\": false}, {\"INP2\": false}, {\"TEXT\": true}],\
 	\"Command\": \"              \",\
 	\"WRTN\": 2,\
 	\"DevEuiValid\": true ,\

@@ -231,10 +231,11 @@ int32_t init_flash(uint8_t buffer[], uint32_t len)
 	int32_t wrtn2 = *(__IO uint8_t*)(FLASH_USER_START_ADDR2 + WRTN_OFFSET);
 //	jsonarrflash_1 = (struct json_arr*)addr; 
 //	jsonarrflash_2 = (struct json_arr*)FLASH_USER_START_ADDR2;
-	if(wrtn1 > 0x7f && wrtn2 > 0x7f )//WRTN_CHECK)
+//	if(wrtn1 > 0x7f && wrtn2 > 0x7f )//WRTN_CHECK)
 	{
 		uint32_t lenR = json_to_buffer(sets_JSON, pool, Num_Field, buffer, Buff_Len);
 		rewriteflash(addr, buffer, lenR);
+		rewriteflash(FLASH_USER_START_ADDR2, buffer, lenR);
 	}
 	return 0;
 }

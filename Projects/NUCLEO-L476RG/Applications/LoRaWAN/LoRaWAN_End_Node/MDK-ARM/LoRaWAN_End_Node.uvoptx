@@ -152,66 +152,106 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>307</LineNumber>
+          <LineNumber>342</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134243850</Address>
+          <Address>134305818</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\parseMessages.c</Filename>
+          <Filename>..\Core\Src\tiny-json_extra.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\parseMessages.c\307</Expression>
+          <Expression>\\sx1276mb1mas\../Core/Src/tiny-json_extra.c\342</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>308</LineNumber>
+          <LineNumber>236</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134304810</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\parseMessages.c</Filename>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Core\Src\flash_mem.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\sx1276mb1mas\../Core/Src/flash_mem.c\236</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Elval</ItemText>
+          <ItemText>j2</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>buff</ItemText>
+          <ItemText>tempI</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>*buff_ptr</ItemText>
+          <ItemText>buffer</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>num</ItemText>
+          <ItemText>buffer[1]</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>json_descr[47].offset</ItemText>
+          <ItemText>buffer[2]</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>json_descr</ItemText>
+          <ItemText>buffer[3]</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>buffer[4]</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>buffer[5]</ItemText>
+        </Ww>
+        <Ww>
+          <count>8</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>buffer[6]</ItemText>
+        </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>buffer[7]</ItemText>
+        </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>json_descr[j2].offset</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>buffer[10]</ItemText>
+        </Ww>
+        <Ww>
+          <count>12</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>buffer[55]</ItemText>
+        </Ww>
+        <Ww>
+          <count>13</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>buffer[100]</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -1084,7 +1124,7 @@
 
   <Group>
     <GroupName>Application/App</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1140,7 +1180,7 @@
 
   <Group>
     <GroupName>Application/Core</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -2180,7 +2220,7 @@
 
   <Group>
     <GroupName>Application/USB_DEVICE/App</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

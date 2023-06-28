@@ -447,49 +447,68 @@ int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct buf
 										str_dh +=3;
 									}
 								}
+								
 							}
 							break;
 						case JSON_HEX: // hex to string
 							{
 								int64_t i64 = 0;
-								for(int32_t i2=json_descr[i1].offset; i2<json_descr[i1].bytes + json_descr[i1].offset; i2++) {
-									i64 <<= 8;	i64 += temp_buff[i2];
+								if(json_descr[i1].bytes <= 8){
+									for(int32_t i2=json_descr[i1].offset; i2<json_descr[i1].bytes + json_descr[i1].offset; i2++) {
+										i64 <<= 8;	i64 += temp_buff[i2];
+									}
+									switch(json_descr[i1].bytes){
+										case 8:
+										{
+											char ch8[18];
+											//lltoa(
+											sprintf(ch8, "0x%016llx", i64);
+											strncpy(str_dh, ch8, 18);
+											str_dh +=18;
+										}
+										break;
+										case 4:
+										{
+											char ch8[10];
+											sprintf(ch8, "0x%08llx", i64);
+											strncpy(str_dh, ch8, 10);
+											str_dh +=10;
+										}
+										break;
+										case 2:
+										{
+											char ch8[6];
+											sprintf(ch8, "0x%04llx", i64);
+											strncpy(str_dh, ch8, 6);
+											str_dh +=6;
+										}
+										break;
+										case 1:
+										default:
+										{
+											char ch8[4];
+											sprintf(ch8, "0x%02llx", i64);
+											strncpy(str_dh, ch8, 4);
+											str_dh += 4;
+										}
+									}
 								}
-								switch(json_descr[i1].bytes){
-									case 8:
-									{
-										char ch8[18];
-										//lltoa(
-										sprintf(ch8, "0x%016llx", i64);
-										strncpy(str_dh, ch8, 18);
-										str_dh +=18;
+								else{
+									int64_t i64l = 0, i64h = 0;
+									for(int32_t i2=json_descr[i1].offset; i2<json_descr[i1].bytes - 8 + json_descr[i1].offset; i2++) {
+										i64h <<= 8;	i64h += temp_buff[i2];
 									}
-									break;
-									case 4:
-									{
-										char ch8[10];
-										sprintf(ch8, "0x%08llx", i64);
-										strncpy(str_dh, ch8, 10);
-										str_dh +=10;
+									for(int32_t i2=json_descr[i1].bytes - 8 + json_descr[i1].offset; i2<json_descr[i1].bytes + json_descr[i1].offset; i2++) {
+										i64l <<= 8;	i64l += temp_buff[i2];
 									}
-									break;
-									case 2:
-									{
-										char ch8[6];
-										sprintf(ch8, "0x%04llx", i64);
-										strncpy(str_dh, ch8, 6);
-										str_dh +=6;
-									}
-									break;
-									case 1:
-									default:
-									{
-										char ch8[4];
-										sprintf(ch8, "0x%02llx", i64);
-										strncpy(str_dh, ch8, 4);
-										str_dh += 4;
-									}
+											char ch8[34];
+											//lltoa(
+											sprintf(ch8, "0x%016llx%016llx", i64h, i64l);
+											strncpy(str_dh, ch8, 34);
+											str_dh +=34;
+									
 								}
+								
 							}
 							break;
 						default: break;	
