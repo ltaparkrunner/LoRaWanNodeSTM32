@@ -41,7 +41,7 @@
 #include "defaults.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "usb_device.h"
 /* USER CODE END Includes */
 
 /* External variables ---------------------------------------------------------*/
@@ -143,6 +143,7 @@ static void OnPowerGreenLedOffEvent(void *context);
 static void OnPowerYellowLedOnEvent(void *context);
 static void OnPowerYellowLedOffEvent(void *context);
 
+static void USBReset(void);
 //static void ledSwitch1(void);
 //static void ledSwitch2(void);
 /* USER CODE END PFP */
@@ -278,6 +279,8 @@ void LoRaWAN_Init(void)
 
 	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
 	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerEvent), UTIL_SEQ_RFU, SendTxData);
+	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_USBPlugInEvent), UTIL_SEQ_RFU, USBReset);
+	
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, ledSwitch2);
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerEvent), UTIL_SEQ_RFU, ledSwitch1);
   /* Init Info table used by LmHandler*/
@@ -520,6 +523,24 @@ static void SendTxData(void)
   }
 
   /* USER CODE END SendTxData_1 */
+}
+
+void onUSBPlugIn(void)
+{
+	UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_USBPlugInEvent), CFG_SEQ_Prio_0);
+}
+
+//#include "usb_device.h"
+//#include "usbd_core.h"
+//extern USBD_HandleTypeDef hUsbDeviceFS;
+//extern USBD_DescriptorsTypeDef FS_Desc;
+static void USBReset(void)
+{
+	//MX_USB_DEVICE_Init();
+//	if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK)
+//  {
+//    Error_Handler();
+//  }
 }
 
 static void OnTxTimerEvent(void *context)

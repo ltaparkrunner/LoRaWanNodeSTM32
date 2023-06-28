@@ -304,7 +304,8 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 						{						
 						//for(int i2=0; i2<json_descr[j2].bytes; i2++)
 							int32_t len = Buff_Len - json_descr[num].offset;
-							parse_array2(json_ptr, &json_descr[num].offset, &num, buff, len);
+							//int32_t offt = 
+							parse_array2(json_ptr, json_descr[num].offset, &num, buff, len);
 							json_ptr = json_getSibling(json_ptr);
 							ret++;
 						}

@@ -80,7 +80,7 @@ typedef enum
   CFG_SEQ_Task_LmHandlerProcess,
   CFG_SEQ_Task_LoRaSendOnTxTimerEvent,
   /* USER CODE BEGIN CFG_SEQ_Task_Id_t */
-
+	CFG_SEQ_Task_USBPlugInEvent,
   /* USER CODE END CFG_SEQ_Task_Id_t */
   CFG_SEQ_Task_NBR
 } CFG_SEQ_Task_Id_t;

@@ -25,6 +25,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stm32l4xx_mu.h"
+#include "lora_app.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -249,17 +250,11 @@ void EXTI4_IRQHandler(void)
 
 void EXTI9_5_IRQHandler(void)
 {
-//	if (HAL_GPIO_ReadPin(SHIELD_RST_GPIO_PORT, SHIELD_RST_PIN) == GPIO_PIN_RESET)
+	if (HAL_GPIO_ReadPin(USB_VBUS_Port, USB_VBUS_Pin) == GPIO_PIN_SET)
 	{
-		//CallbackRSTButton();
-		//HAL_GPIO_EXTI_Callback(USER_BUTTON_PIN);
-		//HAL_EXTI_IRQHandler(&H_EXTI_7);
-//		if(__HAL_GPIO_EXTI_GET_IT(SHIELD_RST_PIN) != RESET)
-//		{
-//			__HAL_GPIO_EXTI_CLEAR_IT(SHIELD_RST_PIN);
-//			if (HAL_GPIO_ReadPin(SHIELD_RST_GPIO_PORT, SHIELD_RST_PIN) == GPIO_PIN_RESET)
-//			HAL_GPIO_EXTI_Callback(USER_BUTTON_PIN);
-//		}
+		__HAL_GPIO_EXTI_CLEAR_IT(USB_VBUS_Pin);
+		//MX_USB_DEVICE_Init();
+		onUSBPlugIn();
 	}
 /*
 #if (defined(SX1276MB1MAS) | defined(SX1276MB1LAS) | defined(SX1272MB2DAS))
@@ -275,7 +270,11 @@ void EXTI15_10_IRQHandler(void)
   HAL_EXTI_IRQHandler(&H_EXTI_10);
 #endif
 */
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
+//	if(HAL_GPIO_ReadPin(VBUS_DET_Port, VBUS_DET_Pin) == GPIO_PIN_SET) {
+//		__HAL_GPIO_EXTI_CLEAR_IT(VBUS_DET_Pin);
+//		MX_USB_DEVICE_Init();
+//	}
+//  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
 }
 
 //void DMA1_Channel7_IRQHandler(void)

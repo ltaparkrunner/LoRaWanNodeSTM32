@@ -179,7 +179,11 @@ void PWR_ExitStopMode(void)
 
   UTILS_EXIT_CRITICAL_SECTION();
   /* USER CODE BEGIN ExitStopMode_2 */
-
+//	{
+//		PCD_HandleTypeDef pcdHandle;
+//		pcdHandle.Instance = USB_OTG_FS;
+//		HAL_PCD_MspInit(&pcdHandle);
+//	}
   /* USER CODE END ExitStopMode_2 */
 }
 

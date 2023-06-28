@@ -67,6 +67,13 @@ extern "C" {
 #define HL1Sign_Pin GPIO_PIN_6
 #define HL1Sign_GPIO_Port GPIOE
 
+#define USB_VBUS_Pin	GPIO_PIN_9
+#define USB_VBUS_Port GPIOA
+#define USB_VBUS_EXTI_IRQn EXTI9_5_IRQn
+//#define VBUS_DET_Pin	GPIO_PIN_13
+//#define VBUS_DET_Port GPIOE
+//#define VBUS_DET_EXTI_IRQn EXTI15_10_IRQn
+
 /*
 #define button_Pin GPIO_PIN_4					// ќт кнопок на LED_Shield 
 #define button_GPIO_Port GPIOC				// один аналоговый сигнал на 5 кнопок 
@@ -229,6 +236,7 @@ void             MU_LED_Off(Led_TypeDef Led);
 void             MU_LED_Toggle(Led_TypeDef Led);
 void MU_Sound_Init(void);
 void MU_board_LEDs_Init(void);
+void MU_board_USB_detect_Init(void);
 	
 /**
   * @}

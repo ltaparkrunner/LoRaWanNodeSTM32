@@ -193,7 +193,7 @@ int32_t parse_array(const json_t* json_ptr, uint32_t* buff_ptr, int32_t* descrCn
 	return j3;
 }
 
-int32_t parse_array2(const json_t* json_ptr, uint32_t* buff_ptr, int32_t* descrCnt, struct buffer_t* buff, uint32_t len)
+int32_t parse_array2(const json_t* json_ptr, uint32_t buff_ptr, int32_t* descrCnt, struct buffer_t* buff, uint32_t len)
 {
 	const char* Elval;
 	uint32_t j3 = 0;
@@ -201,12 +201,12 @@ int32_t parse_array2(const json_t* json_ptr, uint32_t* buff_ptr, int32_t* descrC
 	curEl; curEl = json_getSibling( curEl ))
 	{
 		Elval = json_getPropertyValue(curEl, json_descr[++(*descrCnt)].name);
-		if(Elval[0] == 't') buff->array[*buff_ptr] = datLora[j3++];
+		if(Elval[0] == 't') buff->array[buff_ptr] = truefl; //datLora[j3++];
 		else {
-			buff->array[*buff_ptr] = 0;
+			buff->array[buff_ptr] = falsefl;
 			j3++;
 		}
-		buff->changed[(*buff_ptr)++] = 1;
+		buff->changed[(buff_ptr)++] = 1;
 	}
 	return j3;
 }

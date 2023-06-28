@@ -137,6 +137,40 @@ void MU_board_LEDs_Init(void)
 	}
 }
 
+void MU_board_USB_detect_Init(void)
+{
+	GPIO_InitTypeDef  GPIO_InitStruct = {0};
+
+  /* Enable the USB detect pin */
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+	{
+  /* Configure the GPIO_LED pin 1*/
+		GPIO_InitStruct.Pin   = USB_VBUS_Pin;
+		GPIO_InitStruct.Mode  = GPIO_MODE_IT_RISING;
+		GPIO_InitStruct.Pull  = GPIO_PULLDOWN;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_Init(USB_VBUS_Port, &GPIO_InitStruct);
+		/* Enable and set VBUS_DET EXTI Interrupt to the lowest priority */
+    HAL_NVIC_SetPriority(USB_VBUS_EXTI_IRQn, /*0x0F*/0, 0);
+    HAL_NVIC_EnableIRQ(USB_VBUS_EXTI_IRQn);
+	}
+	
+	  /* Enable the USB detect pin 2*/
+//  __HAL_RCC_GPIOE_CLK_ENABLE();
+//	{
+//  /* Configure the GPIO_LED pin */
+//		GPIO_InitStruct.Pin   = VBUS_DET_Pin;
+//		//GPIO_InitStruct.Mode  = GPIO_MODE_INPUT;
+//		GPIO_InitStruct.Mode   = GPIO_MODE_IT_RISING;
+//		GPIO_InitStruct.Pull  = GPIO_PULLDOWN;
+//		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+//		HAL_GPIO_Init(VBUS_DET_Port, &GPIO_InitStruct);
+//    /* Enable and set VBUS_DET EXTI Interrupt to the lowest priority */
+//    HAL_NVIC_SetPriority(VBUS_DET_EXTI_IRQn, 0x0F, 0);
+//    HAL_NVIC_EnableIRQ(VBUS_DET_EXTI_IRQn);
+//	}
+
+}
 
 void MU_Sound_Init(void)
 {
