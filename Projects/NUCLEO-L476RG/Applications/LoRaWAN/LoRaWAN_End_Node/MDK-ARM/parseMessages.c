@@ -220,6 +220,9 @@ int32_t find_coincid(const json_t* json_ptr, /* int32_t level, */ int32_t num, s
 
 extern struct field_json json_descr[Json_Descript_Length];
 #define CMD_OFFSET 53
+//struct hex128_t{
+//	uint64_t i64l, i64h;
+//} ;
 int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr, struct jsonmsg_t* jsonmsg, struct buffer_t* buff)
 {
 	const char str[APP_RX_DATA_SIZE] = {0};
@@ -273,6 +276,7 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 							buff->changed[json_descr[num].offset + i2] = 1;
 							tempI >>= 8;
 						}
+						//buff->block_changed[json_descr[num].block] = 1;
 						json_ptr = json_getSibling(json_ptr);
 						ret++;
 						break;
@@ -281,6 +285,7 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 						if(tempB)	buff->array[json_descr[num].offset] = truefl;	// true
 						else buff->array[json_descr[num].offset] = falsefl;
 						buff->changed[json_descr[num].offset] = 1;					// false
+						//buff->block_changed[json_descr[num].block] = 1;
 						json_ptr = json_getSibling(json_ptr);
 						ret++;
 						break;
@@ -295,6 +300,7 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 									buff->array[json_descr[num].offset + i2] = tempT[i2];
 									buff->changed[json_descr[num].offset + i2] = 1;
 								}
+								//buff->block_changed[json_descr[num].block] = 1;
 								ret++;
 							}
 						}
@@ -306,21 +312,43 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 							int32_t len = Buff_Len - json_descr[num].offset;
 							//int32_t offt = 
 							parse_array2(json_ptr, json_descr[num].offset, &num, buff, len);
+							//buff->block_changed[json_descr[num].block] = 1;
 							json_ptr = json_getSibling(json_ptr);
 							ret++;
 						}
 						break;
 					case JSON_HEX:
-						tempI = json_gethexInteger(json_ptr);
-						//for(int i2=0; i2<json_descr[num].bytes; i2++)
-						for(int i2=json_descr[num].bytes-1; i2>=0; i2--)
-						{
-							buff->array[json_descr[num].offset + i2] = (uint8_t)tempI & 0xff;
-							buff->changed[json_descr[num].offset + i2] = 1;
-							tempI >>= 8;
+						if(json_descr[num].bytes <= 8){
+							tempI = json_gethexInteger(json_ptr);
+							//for(int i2=0; i2<json_descr[num].bytes; i2++)
+							for(int i2=json_descr[num].bytes-1; i2>=0; i2--)
+							{
+								buff->array[json_descr[num].offset + i2] = (uint8_t)tempI & 0xff;
+								buff->changed[json_descr[num].offset + i2] = 1;
+								tempI >>= 8;
+							}
 						}
+						else{
+							//struct hex128_t hex128;
+							tempI = json_getLow128hexInteger(json_ptr);
+							for(int i2=json_descr[num].bytes-1; i2>=json_descr[num].bytes/2; i2--)
+							{
+								buff->array[json_descr[num].offset + i2] = (uint8_t)tempI & 0xff;
+								buff->changed[json_descr[num].offset + i2] = 1;
+								tempI >>= 8;
+							}
+							tempI = json_getHigh128hexInteger(json_ptr);
+							for(int i2=json_descr[num].bytes/2-1; i2>=0; i2--)
+							{
+								buff->array[json_descr[num].offset + i2] = (uint8_t)tempI & 0xff;
+								buff->changed[json_descr[num].offset + i2] = 1;
+								tempI >>= 8;
+							}
+						}
+						//buff->block_changed[json_descr[num].block] = 1;
 						json_ptr = json_getSibling(json_ptr);
 						ret++;
+					
 						break;
 					default: json_ptr = json_getSibling(json_ptr); break;
 					}
@@ -341,6 +369,20 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 	}
 	//return 0;
 	return ret;
+}
+
+
+uint64_t json_getHigh128hexInteger( json_t const* property ) {
+	char ch[19]; 
+	//(property->u.value[17]) = 0;
+	strncpy(ch, property->u.value, 18);
+	return	strtoull( ch,(char**)NULL, 16);
+}
+
+uint64_t json_getLow128hexInteger( json_t const* property ) {
+	char ch[19] = {'0', 'x'}; 
+	strncpy(&ch[2], &property->u.value[18], 16);
+	return	strtoull( ch,(char**)NULL, 16);
 }
 
 #define FlashBuffLen Buff_Len

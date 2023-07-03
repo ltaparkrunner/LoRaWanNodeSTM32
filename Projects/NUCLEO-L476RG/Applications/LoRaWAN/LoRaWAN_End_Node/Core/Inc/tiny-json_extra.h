@@ -27,6 +27,7 @@ struct field_json{
 	jsonType_t ty;
 	uint32_t offset;
 	uint32_t changed;
+	//int32_t block;
 };
 
 struct json_desc_t{

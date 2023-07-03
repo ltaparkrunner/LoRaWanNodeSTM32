@@ -29,7 +29,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdint.h>
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -120,7 +120,18 @@ extern "C" {
 void LoRaWAN_Init(void);
 
 /* USER CODE BEGIN EFP */
+
 void onUSBPlugIn(void);
+int32_t Change_power_blink(uint32_t interval);
+//int32_t ChangeBat_power_blink(uint32_t interval);
+int32_t ChangeUSB_transm_blink(uint32_t interval);
+int32_t ChangeLORA_transm_blink(uint32_t interval);
+int32_t ChangeLORA_transm_period(uint32_t interval);
+void YellowLedOn_USB(void *context);
+void YellowLedOn_LoRa(void *context);
+uint32_t Set_yellow_blink(int32_t ch);
+//#include "stm32l476xx.h"
+int32_t Set_Green_Led_Period(void);
 /* USER CODE END EFP */
 
 #ifdef __cplusplus

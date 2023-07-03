@@ -26,6 +26,7 @@
 #include <string.h>
 #include "parseMessage.h"
 #include "tiny-json_extra.h"
+#include "lora_app.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -305,6 +306,7 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 //		if(length < APP_STR_SIZE - 64)
 //		memcpy(&bufc[length], Buf, *Len);
 //		length += *Len;
+		YellowLedOn_USB(NULL);
 		bufc.head = bufc.tail;
 		if((bufc.head + *Len) < bufc.length){ //-1)
 			memcpy(&bufc.array[bufc.head], Buf, *Len);

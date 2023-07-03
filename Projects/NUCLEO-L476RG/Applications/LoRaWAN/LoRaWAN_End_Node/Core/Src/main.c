@@ -117,7 +117,7 @@ int main(void)
 //	init_flash(FLASH_PAGE_FOR_SETTINGS, buff, Buff_Len);
 	
   /* USER CODE END SysInit */
-
+	//HAL_Delay(10000);
   /* Initialize all configured peripherals */
   MX_LoRaWAN_Init();
   /* USER CODE BEGIN 2 */
@@ -187,6 +187,10 @@ int main(void)
 		else if(result == USBD_OK)
 			cmd = NO_CMD;
 		result2 = JsonSettingsToBuffer_wrap(&cmd);
+		
+//		result4 = ChangeProbesSettings();
+//		result5 = ChangeTimingSettings();
+//		result6 = ChangeLoraSettings();
 
 		result3 = WriteBufferToFlash_wrap(result2);
 		

@@ -5,6 +5,8 @@
 
 #include "flash_mem.h"
 #include "parseMessage.h"
+#include "realise_settings.h"
+
 
 struct json_arr json_buff, *pjson_buff = &json_buff;
 
@@ -26,6 +28,7 @@ uint8_t WriteBufferToFlash_wrap(uint8_t json_res)
 	if(json_res == PARSED_JSON_OK){
 		res = WriteBufferToFlash(&buff);
 		if(res > 0) {
+			RealiseSettings(&buff);
 			CancelJSONChanges(&buff);
 			return WRITTEN_FLASH_OK;
 		}
@@ -34,6 +37,7 @@ uint8_t WriteBufferToFlash_wrap(uint8_t json_res)
 	else if(json_res == NO_PARSED_JSON && res <= 0){
 		res = FinilizeWriteBufferToFlash(&buff);
 		if(res > 0){
+			RealiseSettings(&buff);
 			CancelJSONChanges(&buff);
 			return WRITTEN_FLASH_OK;
 		}
@@ -125,3 +129,4 @@ uint32_t ChooseReadFlashBank(uint32_t* Addr_w)
 	}
 			
 }
+

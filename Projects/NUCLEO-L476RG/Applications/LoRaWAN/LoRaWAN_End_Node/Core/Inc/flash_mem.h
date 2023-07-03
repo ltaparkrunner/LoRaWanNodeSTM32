@@ -67,11 +67,12 @@ typedef enum
 	NOTHING_TO_WRITE
 }WrittenFlash_StatusTypeDef;
 
-
+#define blk_num 16
 struct buffer_t{
 	uint8_t array[Buff_Len];
 	int8_t changed[Buff_Len];
 	int32_t written;
+	//int32_t	block_changed[blk_num];
 };
 
 uint32_t GetPage(uint32_t Addr);
@@ -90,6 +91,7 @@ int32_t WriteBufferToFlash(struct buffer_t* buff);
 int32_t FinilizeWriteBufferToFlash(struct buffer_t* buff);
 int32_t CancelJSONChanges(struct buffer_t* buff);
 uint32_t ChooseReadFlashBank(uint32_t* Addr_w);
+
 struct json_arr* GetJsonFlash(void);
 
 #define WRTN_CHECK 0x99

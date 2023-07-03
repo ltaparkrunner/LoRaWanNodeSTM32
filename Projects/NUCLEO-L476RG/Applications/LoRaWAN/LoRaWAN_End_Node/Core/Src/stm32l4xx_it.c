@@ -247,15 +247,14 @@ void EXTI4_IRQHandler(void)
 {
   //HAL_EXTI_IRQHandler(&H_EXTI_4);
 }
-
+//#include "stm32l4xx_mu.h"
 void EXTI9_5_IRQHandler(void)
 {
-	if (HAL_GPIO_ReadPin(USB_VBUS_Port, USB_VBUS_Pin) == GPIO_PIN_SET)
-	{
-		__HAL_GPIO_EXTI_CLEAR_IT(USB_VBUS_Pin);
+  __HAL_GPIO_EXTI_CLEAR_IT(USB_VBUS_Pin);
+	Set_Green_Led_Period();
+		
 		//MX_USB_DEVICE_Init();
-		onUSBPlugIn();
-	}
+		//onUSBPlugIn();
 /*
 #if (defined(SX1276MB1MAS) | defined(SX1276MB1LAS) | defined(SX1272MB2DAS))
   HAL_EXTI_IRQHandler(&H_EXTI_5);

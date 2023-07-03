@@ -225,17 +225,18 @@ int32_t init_flash(uint8_t buffer[], uint32_t len)
 {
 //	uint32_t addr_w;
 //	uint32_t addr_r = ChooseReadFlashBank(&addr_w);
+	//static uint8_t bf[Buff_Len];
 	uint32_t addr = FLASH_USER_START_ADDR1;//FLASH_USER_START_ADDR2;// ADDR_FLASH_PAGE_0 + FLASH_PAGE_SIZE * numpage;
 //	uint32_t i;
 	int32_t wrtn1 = *(__IO uint8_t*)(FLASH_USER_START_ADDR1 + WRTN_OFFSET);
 	int32_t wrtn2 = *(__IO uint8_t*)(FLASH_USER_START_ADDR2 + WRTN_OFFSET);
 //	jsonarrflash_1 = (struct json_arr*)addr; 
 //	jsonarrflash_2 = (struct json_arr*)FLASH_USER_START_ADDR2;
-//	if(wrtn1 > 0x7f && wrtn2 > 0x7f )//WRTN_CHECK)
+	if(wrtn1 > 0x7f && wrtn2 > 0x7f )//WRTN_CHECK)
 	{
-		uint32_t lenR = json_to_buffer(sets_JSON, pool, Num_Field, buffer, Buff_Len);
-		rewriteflash(addr, buffer, lenR);
-		rewriteflash(FLASH_USER_START_ADDR2, buffer, lenR);
+		uint32_t lenR = json_to_buffer(sets_JSON, pool, Num_Field, /*bf*/buffer, Buff_Len);
+		rewriteflash(addr, /*bf*/buffer, lenR);
+		rewriteflash(FLASH_USER_START_ADDR2,/*bf*/ buffer, lenR);
 	}
 	return 0;
 }

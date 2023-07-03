@@ -42,6 +42,7 @@
 
 /* USER CODE BEGIN Includes */
 #include "usb_device.h"
+#include "realise_settings.h"
 /* USER CODE END Includes */
 
 /* External variables ---------------------------------------------------------*/
@@ -140,7 +141,8 @@ static void OnRxTimerLedEvent(void *context);
 //static void OnJoinTimerLedEvent(void *context);
 static void OnPowerGreenLedOnEvent(void *context);
 static void OnPowerGreenLedOffEvent(void *context);
-static void OnPowerYellowLedOnEvent(void *context);
+//static void OnPowerYellowLedOnEvent_USB(void *context);
+//static void OnPowerYellowLedOnEvent_LoRa(void *context);
 static void OnPowerYellowLedOffEvent(void *context);
 
 static void USBReset(void);
@@ -220,8 +222,9 @@ static UTIL_TIMER_Object_t RxLedTimer;
 static UTIL_TIMER_Object_t JoinLedTimer;
 static UTIL_TIMER_Object_t PowerGreenLedOnTimer;
 static UTIL_TIMER_Object_t PowerGreenLedOffTimer;
-static UTIL_TIMER_Object_t PowerYellowLedOnTimer;
-static UTIL_TIMER_Object_t PowerYellowLedOffTimer;
+//static UTIL_TIMER_Object_t PowerYellowLedOnTimer;
+static UTIL_TIMER_Object_t YellowLedOffTimer_USB;
+static UTIL_TIMER_Object_t YellowLedOffTimer_LORA;
 
 /* USER CODE END PV */
 
@@ -265,16 +268,20 @@ void LoRaWAN_Init(void)
 //  UTIL_TIMER_Create(&JoinLedTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnJoinTimerLedEvent, NULL);
 	UTIL_TIMER_Create(&PowerGreenLedOnTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerGreenLedOnEvent, NULL);
 	UTIL_TIMER_Create(&PowerGreenLedOffTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerGreenLedOffEvent, NULL);
+//	UTIL_TIMER_Create(&YellowLedOffTimer_LORA, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerGreenLedOffEvent, NULL);
 	
-	UTIL_TIMER_Create(&PowerYellowLedOnTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerYellowLedOnEvent, NULL);
-	UTIL_TIMER_Create(&PowerYellowLedOffTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerYellowLedOffEvent, NULL);
+//	UTIL_TIMER_Create(&PowerYellowLedOnTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerYellowLedOnEvent, NULL);
+	UTIL_TIMER_Create(&YellowLedOffTimer_USB, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerYellowLedOffEvent, NULL);
+	UTIL_TIMER_Create(&YellowLedOffTimer_LORA, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerYellowLedOffEvent, NULL);
   UTIL_TIMER_SetPeriod(&TxLedTimer, 1500);
   UTIL_TIMER_SetPeriod(&RxLedTimer, 500);
 //  UTIL_TIMER_SetPeriod(&JoinLedTimer, 30000);
-	UTIL_TIMER_SetPeriod(&PowerGreenLedOnTimer, 30000);
+//	UTIL_TIMER_SetPeriod(&PowerGreenLedOnTimer, 30000);
 	UTIL_TIMER_SetPeriod(&PowerGreenLedOffTimer, 100);
-	UTIL_TIMER_SetPeriod(&PowerYellowLedOnTimer, 20000);
-	UTIL_TIMER_SetPeriod(&PowerYellowLedOffTimer, 200);
+//	UTIL_TIMER_SetPeriod(&PowerYellowLedOnTimer, 20000);
+//	UTIL_TIMER_SetPeriod(&YellowLedOffTimer_USB, 500);
+//	UTIL_TIMER_SetPeriod(&YellowLedOffTimer_LORA, 200);
+	
   /* USER CODE END LoRaWAN_Init_1 */
 
 	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
@@ -292,10 +299,13 @@ void LoRaWAN_Init(void)
   LmHandlerConfigure(&LmHandlerParams);
 
   /* USER CODE BEGIN LoRaWAN_Init_2 */
+	Set_Green_Led_Period();
+	Set_yellow_blink(0);
+	Set_yellow_blink(1);
 	//UTIL_TIMER_Start(&TxLedTimer);
 //  UTIL_TIMER_Start(&JoinLedTimer);
-	UTIL_TIMER_Start(&PowerGreenLedOnTimer);
-	UTIL_TIMER_Start(&PowerYellowLedOnTimer);
+//	UTIL_TIMER_Start(&PowerGreenLedOnTimer);
+//	UTIL_TIMER_Start(&PowerYellowLedOnTimer);
   /* USER CODE END LoRaWAN_Init_2 */
 
   LmHandlerJoin(ActivationType);
@@ -416,102 +426,20 @@ static void OnRxData(LmHandlerAppData_t *appData, LmHandlerRxParams_t *params)
   }
   /* USER CODE END OnRxData_1 */
 }
-//static void ledSwitch1(void)
-//{
-////	MU_LED_Toggle(1);
-//	MU_LED_Toggle(LED1);
-//}
 
-//static void ledSwitch2(void)
-//{
-//	MU_LED_Toggle(LED2);
-////	MU_LED_Toggle(0);
-//}
 #include "settings_json.h"
+#include "sensors.h"
 static void SendTxData(void)
 {
   /* USER CODE BEGIN SendTxData_1 */
-//  uint16_t pressure = 0;
-//  int16_t temperature = 0;
-//  sensor_t sensor_data;
+	YellowLedOn_LoRa(NULL);
   UTIL_TIMER_Time_t nextTxIn = 0;
 
-#ifdef CAYENNE_LPP
-  uint8_t channel = 0;
-#else
-//  uint16_t humidity = 0;
-  uint32_t i = 0;
-  int32_t latitude = 0;
-//  int32_t longitude = 0;
-//  uint16_t altitudeGps = 0;
-#endif /* CAYENNE_LPP */
-	/*
-  EnvSensors_Read(&sensor_data);
-
-#if defined (SENSOR_ENABLED) && (SENSOR_ENABLED == 1)
-//  temperature = (int16_t) sensor_data.temperature;
-#else
-//  temperature = (SYS_GetTemperatureLevel() >> 8);
-#endif */ /* SENSOR_ENABLED */
-//  pressure    = (uint16_t)(sensor_data.pressure * 100 / 10);      /* in hPa / 10 */
-
   AppData.Port = LORAWAN_USER_APP_PORT;
+	AppData.BufferSize = CollectData(&AppData);
 
-#ifdef CAYENNE_LPP
-  CayenneLppReset();
-  CayenneLppAddBarometricPressure(channel++, pressure);
-  CayenneLppAddTemperature(channel++, temperature);
-  CayenneLppAddRelativeHumidity(channel++, (uint16_t)(sensor_data.humidity));
+  //AppData.BufferSize = i;
 
-  if ((LmHandlerParams.ActiveRegion != LORAMAC_REGION_US915) && (LmHandlerParams.ActiveRegion != LORAMAC_REGION_AU915)
-      && (LmHandlerParams.ActiveRegion != LORAMAC_REGION_AS923))
-  {
-    CayenneLppAddDigitalInput(channel++, GetBatteryLevel());
-    CayenneLppAddDigitalOutput(channel++, AppLedStateOn);
-  }
-
-  CayenneLppCopy(AppData.Buffer);
-  AppData.BufferSize = CayenneLppGetSize();
-#else  /* not CAYENNE_LPP */
-//  humidity    = HUMIDITY_DEFAULT_VAL;//(uint16_t)(sensor_data.humidity * 10);            /* in %*10     */
-//	temperature = TEMPERATURE_DEFAULT_VAL;
-//	pressure	= PRESSURE_DEFAULT_VAL;
-	
-  AppData.Buffer[i++] = AppLedStateOn;
-//  AppData.Buffer[i++] = (uint8_t)((pressure >> 8) & 0xFF);
-//  AppData.Buffer[i++] = (uint8_t)(pressure & 0xFF);
-//  AppData.Buffer[i++] = (uint8_t)(temperature & 0xFF);
-//  AppData.Buffer[i++] = (uint8_t)((humidity >> 8) & 0xFF);
-//  AppData.Buffer[i++] = (uint8_t)(humidity & 0xFF);
-	i += fillBuff(&(AppData.Buffer[i]));	
-	
-  if ((LmHandlerParams.ActiveRegion == LORAMAC_REGION_US915) || (LmHandlerParams.ActiveRegion == LORAMAC_REGION_AU915)
-      || (LmHandlerParams.ActiveRegion == LORAMAC_REGION_AS923))
-  {
-    AppData.Buffer[i++] = 0;
-    AppData.Buffer[i++] = 0;
-    AppData.Buffer[i++] = 0;
-    AppData.Buffer[i++] = 0;
-  }
-  else
-  {
-    latitude = STSOP_LATTITUDE;	//sensor_data.latitude;
-//    longitude = STSOP_LONGITUDE;	//sensor_data.longitude;
-//		altitudeGps = ALTITUDE_GPS;		// 
-		
-    AppData.Buffer[i++] = 220;	//GetBatteryLevel();        /* 1 (very low) to 254 (fully charged) */
-    AppData.Buffer[i++] = (uint8_t)((latitude >> 16) & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)((latitude >> 8) & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)(latitude & 0xFF);
-/*    AppData.Buffer[i++] = (uint8_t)((longitude >> 16) & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)((longitude >> 8) & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)(longitude & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)((altitudeGps >> 8) & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)(altitudeGps & 0xFF);
-*/  }
-
-  AppData.BufferSize = i;
-#endif /* CAYENNE_LPP */
 
   if (LORAMAC_HANDLER_SUCCESS == LmHandlerSend(&AppData, LORAWAN_DEFAULT_CONFIRMED_MSG_STATE, &nextTxIn, false))
   {
@@ -575,6 +503,32 @@ static void OnRxTimerLedEvent(void *context)
 //  LED_Toggle(LED_RED1) ;
 //	MU_LED_Toggle(LED2);
 //}
+
+int32_t Set_Green_Led_Period(void)
+{
+	uint32_t interval = 0;
+	if( HAL_GPIO_ReadPin(USB_VBUS_Port, USB_VBUS_Pin) == GPIO_PIN_SET) 
+		interval = ReadInterval(0);
+	else interval = ReadInterval(1);
+	Change_power_blink(interval);
+	return interval;
+}
+
+int32_t Set_LoRaWAN_Period()
+{
+	uint32_t interval = ReadInterval(3);
+	ChangeLORA_transm_period(interval);
+	return interval;
+}
+
+uint32_t Set_yellow_blink(int32_t ch)
+{
+	uint32_t dur = ReadDuration(ch);
+	if(ch == 0) ChangeUSB_transm_blink(dur);
+	else ChangeLORA_transm_blink(dur);
+	return dur;
+}
+
 static void OnPowerGreenLedOnEvent(void *context)
 {
 	MU_LED_On(HL1);
@@ -587,17 +541,70 @@ static void OnPowerGreenLedOffEvent(void *context)
 	UTIL_TIMER_Stop(&PowerGreenLedOffTimer);
 }
 
-static void OnPowerYellowLedOnEvent(void *context)
+void YellowLedOn_USB(void *context)
 {
 	MU_LED_On(HL2);
-	UTIL_TIMER_Start(&PowerYellowLedOffTimer);
+	UTIL_TIMER_Start(&YellowLedOffTimer_USB);
+}
+
+void YellowLedOn_LoRa(void *context)
+{
+	MU_LED_On(HL2);
+	UTIL_TIMER_Start(&YellowLedOffTimer_LORA);
 }
 
 static void OnPowerYellowLedOffEvent(void *context)
 {
 	MU_LED_Off(HL2);
-	UTIL_TIMER_Stop(&PowerYellowLedOffTimer);
+	UTIL_TIMER_Stop(&YellowLedOffTimer_USB);
+	UTIL_TIMER_Stop(&YellowLedOffTimer_LORA);
 }
+
+int32_t Change_power_blink(uint32_t interval)
+{
+	MU_LED_On(HL1);
+	UTIL_TIMER_Start(&PowerGreenLedOffTimer);
+	
+	if(interval > 0) {
+		UTIL_TIMER_Stop(&PowerGreenLedOnTimer);
+		UTIL_TIMER_SetPeriod(&PowerGreenLedOnTimer,  interval);
+		UTIL_TIMER_Start(&PowerGreenLedOnTimer);
+	}
+	else UTIL_TIMER_Stop(&PowerGreenLedOnTimer);
+	return interval;
+}
+//int32_t ChangeBat_power_blink(uint32_t interval)
+//{
+//	return 0;
+//}
+int32_t ChangeUSB_transm_blink(uint32_t interval)
+{
+		UTIL_TIMER_SetPeriod(&YellowLedOffTimer_USB,  interval);
+	return interval;
+}
+int32_t ChangeLORA_transm_blink(uint32_t interval)
+{
+		UTIL_TIMER_SetPeriod(&YellowLedOffTimer_LORA,  interval);
+	return interval;
+}
+int32_t ChangeLORA_transm_period(uint32_t interval)
+{
+	// transmit the data
+	UTIL_TIMER_Stop(&TxTimer);
+	UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerEvent), CFG_SEQ_Prio_0);
+	
+	if(interval > 0) {
+		UTIL_TIMER_SetPeriod(&TxTimer,  interval);
+		UTIL_TIMER_Start(&TxTimer);
+	}
+	else UTIL_TIMER_Stop(&TxTimer);
+	return interval;
+}
+
+
+//		UTIL_TIMER_Create(&TxTimer,  0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnTxTimerEvent, NULL);
+//    UTIL_TIMER_SetPeriod(&TxTimer,  APP_TX_DUTYCYCLE);
+//    UTIL_TIMER_Start(&TxTimer);
 /* USER CODE END PrFD_LedEvents */
 
 static void OnTxData(LmHandlerTxParams_t *params)

@@ -21,68 +21,68 @@ uint32_t stack2[Json_Descript_Length];
 uint32_t stack2_pointer = 0;
 
 struct field_json json_descr[Json_Descript_Length] = {
-															{"LoRa_settings",0,0,0,0,JSON_OBJ,0,0},
-																{"DEVEUI",0,0xffffffffffff,8,1,JSON_HEX,0,0},
-																{"APPKEY",0,0xffffffffff,16,1,JSON_HEX,8,0},
-																{"FREQ",86400000,87000000,4,1,JSON_INTEGER,24,0},
-																{"FR",4,12,1,1,JSON_INTEGER,28,0},
-															{"UART3",0,0,1,0,JSON_BOOLEAN,29,0},
+															{"LoRa_settings",0,0,0,0,JSON_OBJ,0,0},//0},
+																{"DEVEUI",0,0xffffffffffff,8,1,JSON_HEX,0,0},//0},
+																{"APPKEY",0,0xffffffffff,16,1,JSON_HEX,8,0},//1},
+																{"FREQ",86400000,87000000,4,1,JSON_INTEGER,24,0},//2},
+																{"FR",4,12,1,1,JSON_INTEGER,28,0},//3},
+															{"UART3",0,0,1,0,JSON_BOOLEAN,29,0},//4},
 
-															{"HL1",0,0,0,0,JSON_OBJ,30,0},							//6
-																{"USB",0,0,0,1,JSON_OBJ,30, 0},
-																	{"sec",0,60,1,2,JSON_INTEGER,30,0},
-																	{"min",0,60,1,2,JSON_INTEGER,31,0},
-																	{"hour",0,24,1,2,JSON_INTEGER,32,0},
-																	{"days",0,1000,2,2,JSON_INTEGER,33,0},
-																	{"work",0,1000,1,2,JSON_BOOLEAN,35,0},
-																{"battery",0,0,0,1,JSON_OBJ,36,0},
-																	{"sec",0,60,1,2,JSON_INTEGER,36,0},
-																	{"min",0,60,1,2,JSON_INTEGER,37,0},
-																	{"hour",0,24,1,2,JSON_INTEGER,38,0},
-																	{"days",0,1000,2,2,JSON_INTEGER,39,0},
-																	{"work",0,1000,1,2,JSON_BOOLEAN,41,0},
+															{"HL1",0,0,0,0,JSON_OBJ,30,0},//5},							//6
+																{"USB",0,0,0,1,JSON_OBJ,30, 0},//5},
+																	{"sec",0,60,1,2,JSON_INTEGER,30,0},  //5},
+																	{"min",0,60,1,2,JSON_INTEGER,31,0}, 	//5},
+																	{"hour",0,24,1,2,JSON_INTEGER,32,0}, 	//5},
+																	{"days",0,49,1,2,JSON_INTEGER,33,0},	// 5},
+																	{"work",0,0xf0,1,2,JSON_BOOLEAN,34,0},	// 5},
+																{"battery",0,0,0,1,JSON_OBJ,35,0},		// 6},
+																	{"sec",0,60,1,2,JSON_INTEGER,35,0},		// 6},
+																	{"min",0,60,1,2,JSON_INTEGER,36,0},	// 6},
+																	{"hour",0,24,1,2,JSON_INTEGER,37,0}, //6},
+																	{"days",0,49,1,2,JSON_INTEGER,38,0},		// 6},
+																	{"work",0,0xf0,1,2,JSON_BOOLEAN,39,0},	// 6},
 																	
-															{"HL2",0,0,0,0,JSON_OBJ,42,0},								//19
-																{"USB",0,0,0,1,JSON_OBJ,42,0},
-																	{"blinks",0,0,0,2,JSON_OBJ,42,0},
-																		{"msec",0,100,1,3,JSON_INTEGER,42,0},
-																		{"times",0,100,1,3,JSON_INTEGER,43,0},		
-																	{"period",0,0,0,2,JSON_OBJ,44,0},
-																		{"sec",0,60,1,3,JSON_INTEGER,44,0},
-																		{"min",0,60,1,3,JSON_INTEGER,45,0},
-																		{"hour",0,24,1,3,JSON_INTEGER,46,0},
-																		{"days",0,1000,2,3,JSON_INTEGER,47,0},
-																		{"work",0,1000,1,3,JSON_BOOLEAN,49,0},
-																{"LoRa",0,0,0,1,JSON_OBJ,50,0},
-																	{"blinks",0,0,0,2,JSON_OBJ,50,0},
-																		{"msec",0,100,1,3,JSON_INTEGER,50,0},
-																		{"times",0,100,1,3,JSON_INTEGER,51,0},		
-																	{"period",0,0,0,2,JSON_OBJ,52,0},
-																		{"sec",0,60,1,3,JSON_INTEGER,52,0},
-																		{"min",0,60,1,3,JSON_INTEGER,53,0},
-																		{"hour",0,24,1,3,JSON_INTEGER,54,0},
-																		{"days",0,1000,2,3,JSON_INTEGER,55,0},
-																		{"work",0,1000,1,3,JSON_BOOLEAN,57,0},
+															{"HL2",0,0,0,0,JSON_OBJ,40,0},	// 7},								//19
+																{"USB",0,0,0,1,JSON_OBJ,40,0},	// 7},
+																	{"blinks",0,0,0,2,JSON_OBJ,40,0},	// 7},
+																		{"msec",0,1000,2,3,JSON_INTEGER,40,0},	// 7},
+																		{"times",0,100,1,3,JSON_INTEGER,42,0},	// 7},		
+																	{"period",0,0,0,2,JSON_OBJ,43,0},		// 8},
+																		{"sec",0,60,1,3,JSON_INTEGER,43,0},	// 8},
+																		{"min",0,60,1,3,JSON_INTEGER,44,0},	// 8},
+																		{"hour",0,24,1,3,JSON_INTEGER,45,0},	// 8},
+																		{"days",0,49,1,3,JSON_INTEGER,46,0},	// 8},
+																		{"work",0,0xf0,1,3,JSON_BOOLEAN,47,0},	// 8},
+																{"LoRa",0,0,0,1,JSON_OBJ,48,0},	// 9},
+																	{"blinks",0,0,0,2,JSON_OBJ,48,0},	// 9},
+																		{"msec",0,1000,2,3,JSON_INTEGER,48,0},	// 9},
+																		{"times",0,100,1,3,JSON_INTEGER,50,0},	// 9},		
+																	{"period",0,0,0,2,JSON_OBJ,51,0},		// 10},
+																		{"sec",0,60,1,3,JSON_INTEGER,51,0},	// 10},
+																		{"min",0,60,1,3,JSON_INTEGER,52,0},		// 10},
+																		{"hour",0,24,1,3,JSON_INTEGER,53,0},	// 10},
+																		{"days",0,49,1,3,JSON_INTEGER,54,0},	// 10},
+																		{"work",0,0xf0,1,3,JSON_BOOLEAN,55,0},		// 10},
 																	
-																{"period_LoRa",0,0,0,0,JSON_OBJ,58,0},			//40
-																	{"sec",0,60,1,1,JSON_INTEGER,58,0},
-																	{"min",0,60,1,1,JSON_INTEGER,59,0},
-																	{"hour",0,24,1,1,JSON_INTEGER,60,0},
-																	{"days",0,1000,2,1,JSON_INTEGER,61,0},
-																	{"work",0,1000,1,3,JSON_BOOLEAN,63,0},
+																{"period_LoRa",0,0,0,0,JSON_OBJ,56,0},	// 11},			//40
+																	{"sec",0,60,1,1,JSON_INTEGER,56,0},		// 11},
+																	{"min",0,60,1,1,JSON_INTEGER,57,0},	// 11},
+																	{"hour",0,24,1,1,JSON_INTEGER,58,0},	// 11},
+																	{"days",0,49,2,1,JSON_INTEGER,59,0}, //11},
+																	{"work",0,0xf0,1,3,JSON_BOOLEAN,60,0},	// 11},
 
-															{"LoRa_text",0,0,34,0,JSON_TEXT,64,0},				//46
-															{"LoRa_Data",0,0,5,0,JSON_ARRAY,98,0},
-																{"AD_1", 0,0,1,1,JSON_BOOLEAN,98,0},
-																{"AD_2", 0,0,1,1,JSON_BOOLEAN,99,0},
-																{"INP1", 0,0,1,1,JSON_BOOLEAN,100,0},
-																{"INP2", 0,0,1,1,JSON_BOOLEAN,101,0},
-																{"TEXT", 0,0,1,1,JSON_BOOLEAN,102,0},
+															{"LoRa_text",0,0,34,0,JSON_TEXT,61,0},	// 12},				//46
+															{"LoRa_Data",0,0,5,0,JSON_ARRAY,95,0},	// 13},
+																{"AD_1", 0,0,1,1,JSON_BOOLEAN,95,0},	// 13},
+																{"AD_2", 0,0,1,1,JSON_BOOLEAN,96,0},	// 13},
+																{"INP1", 0,0,1,1,JSON_BOOLEAN,97,0},	// 13},
+																{"INP2", 0,0,1,1,JSON_BOOLEAN,98,0},	// 13},
+																{"TEXT", 0,0,1,1,JSON_BOOLEAN,99,0},	// 13},
 															//{"Command",0,0,1,0,JSON_BOOLEAN,103,0},
-															{"Command",0,0,13,0,JSON_TEXT,103,0},					//53
-															{"WRTN",0,0x99,1,0,JSON_INTEGER,116,0},
-															{"DevEuiVal",0,0,1,0,JSON_BOOLEAN,117,0},
-															{"AppKeyValid",0,0,1,0,JSON_BOOLEAN,118,0}
+															{"Command",0,0,13,0,JSON_TEXT,100,0},		// 14},					//53
+															{"WRTN",0,0x99,1,0,JSON_INTEGER,113,0},	// 15},
+															{"DevEuiVal",0,0,1,0,JSON_BOOLEAN,114,0},		// 0},
+															{"AppKeyValid",0,0,1,0,JSON_BOOLEAN,115,0},	// 1}
 															//	\"LoRa_Data\": [\"AD1\", \"INP1\", \"INP3\", \"AD4\", \"text\"],
 };
 
@@ -261,7 +261,7 @@ int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buffer
 //	json_t pool[ qty ];
 	json_t const *json_sets_l = json_create(str, mem, qty);
 	uint32_t buff_len = 0;
-	uint32_t buff_ptr = 0;
+//	uint32_t buff_ptr = 0;
 	static uint64_t tempI;
 	static uint8_t tempB;
 	static const char* tempT;
@@ -339,5 +339,5 @@ int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buffer
 				if(json_ptr == NULL && stackIsEmpty()) break;
 				j2++;
 	}
-	return json_descr[j2].offset + json_descr[j2].bytes-1;
+	return json_descr[j2].offset + json_descr[j2].bytes;
 }

@@ -85,4 +85,6 @@ int32_t JsonSettingsToBuffer(struct bufc_t* bufc, struct parentharray_t* pararr,
 int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct bufUSB_t* bufUSB,*/ struct field_json json_descr[]);
 //int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct bufUSB_t* bufUSB,*/ struct json_desc_t* desc_d);
 int32_t  FormOutpJson(struct json_sets_t* json_sets);
+uint64_t json_getLow128hexInteger(json_t const* property);
+uint64_t json_getHigh128hexInteger(json_t const* property);
 #endif /* PARSE_MESSAGE_H */

@@ -156,9 +156,9 @@ void UTIL_SEQ_Idle(void)
   /* USER CODE BEGIN UTIL_SEQ_Idle_1 */
 
   /* USER CODE END UTIL_SEQ_Idle_1 */
-	static GPIO_PinState rez;
+//	static GPIO_PinState rez;
 //	rez = HAL_GPIO_ReadPin(VBUS_DET_Port, VBUS_DET_Pin);
-	rez = HAL_GPIO_ReadPin(USB_VBUS_Port, USB_VBUS_Pin);
+//	rez = HAL_GPIO_ReadPin(USB_VBUS_Port, USB_VBUS_Pin);
 	if(//HAL_GPIO_ReadPin(VBUS_DET_Port, VBUS_DET_Pin) == GPIO_PIN_RESET &&
 		HAL_GPIO_ReadPin(USB_VBUS_Port, USB_VBUS_Pin) == GPIO_PIN_RESET)
 		UTIL_LPM_EnterLowPower();

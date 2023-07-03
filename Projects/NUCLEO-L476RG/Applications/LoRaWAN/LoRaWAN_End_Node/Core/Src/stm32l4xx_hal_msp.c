@@ -64,7 +64,8 @@ extern UART_HandleTypeDef huart3;
 void HAL_MspInit(void)
 {
   /* USER CODE BEGIN MspInit 0 */
-
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
+//  __HAL_RCC_PWR_CLK_ENABLE();
   /* USER CODE END MspInit 0 */
 
   __HAL_RCC_PWR_CLK_ENABLE();
