@@ -3,6 +3,7 @@
 #include "tiny-json_extra.h"
 #include "realise_settings.h"
 #include "lora_app.h"
+#include "LmHandler.h"
 
 extern struct buffer_t buff;
 extern struct field_json json_descr[];
@@ -49,6 +50,7 @@ int32_t Count_Indexes(int32_t buff_i[], int32_t max_len)
 	
 	return 24;
 }
+
 int32_t Count_TChanged(int32_t tch[], struct buffer_t* buf)
 {
 	int32_t i1 = 0;
@@ -111,6 +113,21 @@ uint32_t Count_duration(int32_t indx, struct buffer_t* buf)
 	return ret;
 }
 
+uint32_t CountSecureChanged(struct buffer_t* buf)
+{
+	int32_t i1;
+	for(i1 = json_descr[DEVEUI_INDX_1].offset; i1 < json_descr[FREQ_INDX].offset + json_descr[FREQ_INDX].bytes - 1; i1++)
+	{
+		if(buf->changed[i1] == 1)
+		{
+			return 1;
+		}
+	}
+	if(buf->changed[json_descr[DEVEUI_INDX_2].offset] == 1 || buf->changed[json_descr[APPKEY_INDX_2].offset] == 1)
+		return 1;
+	return 0;
+}
+
 int32_t RealiseSettings(struct buffer_t* buff)
 {
 //	int32_t maxrec = json_descr[Json_Descript_Length - 1].offset + json_descr[Json_Descript_Length - 1].bytes -1;
@@ -154,6 +171,7 @@ int32_t RealiseSettings(struct buffer_t* buff)
 		}
 		else ChangeLORA_transm_period(0);
 	}
+	if(CountSecureChanged(buff)) LmHandlerReConfigure();
 	return 0;
 }
 
@@ -227,4 +245,70 @@ uint32_t ReadDuration(int32_t ch)
 		ret = 	((uint32_t)buf[0] + ((uint32_t)buf[1] + ((uint32_t)buf[2] +
 									 (uint32_t)buf[3] * 24) * 60) * 60) * 1000;
 	return ret;
+}
+
+int32_t ReadAppKey(uint8_t *buf, int32_t ln, uint8_t* bl)
+{
+	uint32_t addr_w;
+	uint32_t addr_r = ChooseReadFlashBank(&addr_w);
+	uint32_t offset;
+	int32_t len;
+//	uint8_t buf[10];
+//	uint32_t ret = 0;
+	
+	offset = json_descr[APPKEY_INDX_1].offset;
+	len = json_descr[APPKEY_INDX_1].bytes;
+	if(len >= ln) {
+		readflash_8b(addr_r + offset , buf, len);
+		
+		offset = json_descr[APPKEY_INDX_2].offset;
+		readflash_8b(addr_r + offset , bl, 1);
+		return len + 1;
+	}
+	else return 0;
+}
+
+int32_t ChooseChannelFreq(uint8_t enabledChannels[], uint8_t nbEnabledChannels)
+{
+	uint32_t addr_w;
+	uint32_t addr_r = ChooseReadFlashBank(&addr_w);
+	uint32_t offset;
+	int32_t len;
+	
+	offset = json_descr[FREQ_INDX].offset;
+	len = json_descr[FREQ_INDX].bytes;
+	
+	uint8_t buf[4];
+	if(len <= 4)
+		readflash_8b(addr_r + offset , buf, len);
+	
+	uint32_t tmpfreq = (((((buf[0] << 8) + buf[1]) << 8) + buf[2]) << 8) + buf[3];
+	
+	if(tmpfreq == 869100000 && nbEnabledChannels == 2) {
+		return enabledChannels[1];
+	}
+	else return enabledChannels[0];
+		
+}
+
+int32_t DevEuimem(void)
+{
+	uint32_t addr_w;
+	uint32_t addr_r = ChooseReadFlashBank(&addr_w);
+	uint32_t offset = json_descr[DEVEUI_INDX_2].offset;
+	uint8_t bl;
+	readflash_8b(addr_r + offset , &bl, 1);
+	if(bl == truefl) return 1;
+	else return 0;
+}
+
+int32_t readDevEui(uint8_t* tmp)
+{
+	uint32_t addr_w;
+	uint32_t addr_r = ChooseReadFlashBank(&addr_w);
+	uint32_t offset = json_descr[DEVEUI_INDX_1].offset;
+	uint32_t ln = json_descr[DEVEUI_INDX_1].bytes;
+
+	readflash_8b(addr_r + offset , tmp, ln);
+	return ln;
 }

@@ -2537,7 +2537,7 @@ static LoRaMacStatus_t ScheduleTx( bool allowDelayedTx )
 
     // Select channel
     status = RegionNextChannel( Nvm.MacGroup2.Region, &nextChan, &MacCtx.Channel, &MacCtx.DutyCycleWaitTime, &Nvm.MacGroup1.AggregatedTimeOff );
-
+		
     if( status != LORAMAC_STATUS_OK )
     {
         if( ( status == LORAMAC_STATUS_DUTYCYCLE_RESTRICTED ) &&
@@ -2932,7 +2932,7 @@ static LoRaMacStatus_t SendFrameOnChannel( uint8_t channel )
 
     // Send now
 		//MacCtx.PktBufferLen = 0x10;
-		HAL_Delay(1000);
+		//HAL_Delay(1000);
     Radio.Send( MacCtx.PktBuffer, MacCtx.PktBufferLen );
 		//HAL_Delay(1);
 		
@@ -3384,6 +3384,42 @@ LoRaMacStatus_t LoRaMacInitialization( LoRaMacPrimitives_t* primitives, LoRaMacC
 
     // Initialize the Secure Element driver
     if( SecureElementInit( &Nvm.SecureElement, callbacks->GetUniqueId ) != SECURE_ELEMENT_SUCCESS ) /* ST_WORKAROUND: Add unique ID callback as input parameter */
+    {
+        return LORAMAC_STATUS_CRYPTO_ERROR;
+    }
+
+    // Initialize Crypto module
+    if( LoRaMacCryptoInit( &Nvm.Crypto ) != LORAMAC_CRYPTO_SUCCESS )
+    {
+        return LORAMAC_STATUS_CRYPTO_ERROR;
+    }
+
+    // Initialize MAC commands module
+    if( LoRaMacCommandsInit( ) != LORAMAC_COMMANDS_SUCCESS )
+    {
+        return LORAMAC_STATUS_MAC_COMMAD_ERROR;
+    }
+
+    // Set multicast downlink counter reference
+    if( LoRaMacCryptoSetMulticastReference( Nvm.MacGroup2.MulticastChannelList ) != LORAMAC_CRYPTO_SUCCESS )
+    {
+        return LORAMAC_STATUS_CRYPTO_ERROR;
+    }
+
+    // Random seed initialization
+    srand1( Radio.Random( ) );
+
+    Radio.SetPublicNetwork( Nvm.MacGroup2.PublicNetwork );
+    Radio.Sleep( );
+
+    LoRaMacEnableRequests( LORAMAC_REQUEST_HANDLING_ON );
+
+    return LORAMAC_STATUS_OK;
+}
+
+LoRaMacStatus_t LoRaMacReInitialization(LoRaMacCallback_t* callbacks)
+{
+		if( SecureElementInit( &Nvm.SecureElement, callbacks->GetUniqueId ) != SECURE_ELEMENT_SUCCESS ) /* ST_WORKAROUND: Add unique ID callback as input parameter */
     {
         return LORAMAC_STATUS_CRYPTO_ERROR;
     }

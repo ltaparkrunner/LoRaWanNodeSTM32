@@ -321,6 +321,7 @@ LmHandlerErrorStatus_t LmHandlerRequestClass(DeviceClass_t newClass);
  */
 LmHandlerErrorStatus_t LmHandlerConfigure(LmHandlerParams_t *handlerParams);
 
+LmHandlerErrorStatus_t LmHandlerReConfigure(void);
 /*!
  * \brief LoRaMac handler package initialization
  *

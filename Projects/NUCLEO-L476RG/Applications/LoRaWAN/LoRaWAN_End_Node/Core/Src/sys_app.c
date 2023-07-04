@@ -215,12 +215,14 @@ uint16_t GetTemperatureLevel(void)
 }
 
 //extern struct json_arr *jsonarrflash;
+#include "realise_settings.h"
 void GetUniqueId(uint8_t *id)
 {
   /* USER CODE BEGIN GetUniqueId_1 */
 	struct json_arr *jsonarrflash_r = GetJsonFlash();
 	
-	if(jsonarrflash_r ->devEuiVal == truefl)
+//	if(jsonarrflash_r ->devEuiVal == truefl)
+	if(!DevEuimem())
 	{
   /* USER CODE END GetUniqueId_1 */
   uint32_t ID_1_3_val = HAL_GetUIDw0() + HAL_GetUIDw2();
@@ -239,11 +241,12 @@ void GetUniqueId(uint8_t *id)
 	}
 	else 
 	{
-		uint64_t tmp = jsonarrflash_r->LoRa_settings_t.deveui;
+//		uint64_t tmp = jsonarrflash_r->LoRa_settings_t.deveui;
+		uint8_t tmp[8];
+		readDevEui(tmp);
 		for(int8_t i=0; i<8; i++)
 		{
-			id[i] = (uint8_t)tmp;
-			tmp>>=8;
+			id[i] = tmp[i];
 		}
 	}
   /* USER CODE END GetUniqueId_2 */

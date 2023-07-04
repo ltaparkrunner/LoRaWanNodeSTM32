@@ -46,5 +46,9 @@ typedef enum
 int32_t RealiseSettings(struct buffer_t* buff);
 uint32_t ReadInterval(int32_t ch);
 uint32_t ReadDuration(int32_t ch);
+int32_t ReadAppKey(uint8_t *buf, int32_t ln, uint8_t* bl);
+int32_t ChooseChannelFreq(uint8_t enabledChannels[], uint8_t nbEnabledChannels);
+int32_t DevEuimem(void);
+int32_t readDevEui(uint8_t* tmp);
 #endif
 

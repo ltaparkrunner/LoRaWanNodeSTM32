@@ -429,6 +429,59 @@ LmHandlerErrorStatus_t LmHandlerConfigure( LmHandlerParams_t *handlerParams )
     return LORAMAC_HANDLER_SUCCESS;
 }
 
+LmHandlerErrorStatus_t LmHandlerReConfigure( void )
+{
+	MibRequestConfirm_t mibReq;
+	if (LoRaMacReInitialization(&LoRaMacCallbacks) != LORAMAC_STATUS_OK)
+  {
+     return LORAMAC_HANDLER_ERROR;
+  }
+	  mibReq.Type = MIB_DEV_EUI;
+    LoRaMacMibGetRequestConfirm( &mibReq );
+    memcpy1( CommissioningParams.DevEui, mibReq.Param.DevEui, 8 );
+
+    mibReq.Type = MIB_JOIN_EUI;
+    LoRaMacMibGetRequestConfirm( &mibReq );
+    memcpy1( CommissioningParams.JoinEui, mibReq.Param.JoinEui, 8 );
+
+#if ( STATIC_DEVICE_ADDRESS != 1 )
+    CommissioningParams.DevAddr = LmHandlerCallbacks->GetDevAddr();
+#endif /* STATIC_DEVICE_ADDRESS != 1 */
+
+    mibReq.Type = MIB_DEV_ADDR;
+    mibReq.Param.DevAddr = CommissioningParams.DevAddr;
+    LoRaMacMibSetRequestConfirm(&mibReq);
+
+    mibReq.Type = MIB_PUBLIC_NETWORK;
+    mibReq.Param.EnablePublicNetwork = LORAWAN_PUBLIC_NETWORK;
+    LoRaMacMibSetRequestConfirm(&mibReq);
+
+    mibReq.Type = MIB_NET_ID;
+    mibReq.Param.NetID = LORAWAN_NETWORK_ID;
+    LoRaMacMibSetRequestConfirm(&mibReq);
+
+    mibReq.Type = MIB_REPEATER_SUPPORT;
+    mibReq.Param.EnableRepeaterSupport = LORAWAN_REPEATER_SUPPORT;
+    LoRaMacMibSetRequestConfirm( &mibReq );
+
+    mibReq.Type = MIB_ADR;
+    mibReq.Param.AdrEnable = LmHandlerParams.AdrEnable;
+    LoRaMacMibSetRequestConfirm( &mibReq );
+
+    GetPhyParams_t getPhy;
+    PhyParam_t phyParam;
+    getPhy.Attribute = PHY_DUTY_CYCLE;
+    phyParam = RegionGetPhyParam( LmHandlerParams.ActiveRegion, &getPhy );
+    LmHandlerParams.DutyCycleEnabled = (bool) phyParam.Value;
+
+    LmHandlerSetSystemMaxRxError( 20 );
+
+    /* override previous value if reconfigure new region */
+    LoRaMacTestSetDutyCycleOn( LmHandlerParams.DutyCycleEnabled );
+
+    return LORAMAC_HANDLER_SUCCESS;
+}
+
 bool LmHandlerIsBusy( void )
 {
     if( LoRaMacIsBusy( ) == true )

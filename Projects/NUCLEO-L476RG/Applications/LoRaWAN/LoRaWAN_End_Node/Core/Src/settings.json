@@ -459,3 +459,75 @@
 "FREQ":   86700000
 }
 
+{
+        "LoRa_settings": {
+                "DEVEUI": 0x111010110100202c,
+                "APPKEY": 0x35ad814f4236eb0d7ebc74f27a1ad5bb,
+                "FREQ":   86800000,
+                "FR": 187},
+        "UART3": true,
+        "HL1": {
+                "USB": {
+                        "sec": 10 ,
+                        "min": 2  ,
+                        "hour": 0  ,
+                        "days": 0  ,
+                        "work": true},
+                "battery": {
+                        "sec": 0  ,
+                        "min": 3  ,
+                        "hour": 0  ,
+                        "days": 0  ,
+                        "work": true}
+        },
+        "HL2": {
+                "USB": {
+                        "blinks":{
+                                "msec": 100  ,
+                                "times": 3  },
+                        "period":{
+                                "sec": 1  ,
+                                "min": 2  ,
+                                "hour": 0  ,
+                                "days": 0  ,
+                                "work": false,
+                        },
+                },
+                "LoRa": {
+                        "blinks":{
+                                "msec": 200  ,
+                                "times": 2  },
+                        "period":{
+                                "sec": 1  ,
+                                "min": 2  ,
+                                "hour": 0  ,
+                                "days": 0  ,
+                                "work": true},
+                }
+        },
+        "period_LoRa": {
+                "sec": 1  ,
+                "min": 2  ,
+                "hour": 0  ,
+                "days": 153  ,
+                "work": true},
+        "LoRa_text": "Soon as early Dawn appeared, the  ", the ",
+        "LoRa_Data": [{"AD_1": false},  {"AD_2": false}, {"INP1": false}, {"INP2": false}, {"TEXT": true}],
+        "Command": "        (    ",
+        "WRTN": 2  ,
+        "DevEuiValid": true,
+        "AppKeyValid": true
+}
+
+
+{
+        "LoRa_settings": {
+                "DEVEUI": 0x111010110100202c}
+}
+{
+        "LoRa_settings": {
+                "APPKEY": 0x35ad814f4236eb0d7ebc74f27a1ad5bb
+				}
+}
+
+

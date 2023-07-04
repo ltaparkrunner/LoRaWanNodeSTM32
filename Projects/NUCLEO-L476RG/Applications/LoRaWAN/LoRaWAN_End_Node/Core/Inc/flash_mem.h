@@ -101,7 +101,8 @@ struct json_arr* GetJsonFlash(void);
 struct json_arr{
 	struct LoRa_settings{
 		uint64_t deveui;
-		uint64_t appkey;
+		uint64_t appkey_h;
+		uint64_t appkey_l;
 		uint32_t freq;
 		uint8_t fr;
 	}LoRa_settings_t;
@@ -111,14 +112,14 @@ struct json_arr{
 			uint8_t sec;
 			uint8_t min;
 			uint8_t hour;
-			uint16_t days;
+			uint8_t days;
 			uint8_t	work;
 		}period_t;
 		struct battery{
 			uint8_t sec;
 			uint8_t min;
 			uint8_t hour;
-			uint16_t days;
+			uint8_t days;
 			uint8_t	work;
 		}period2_t;
 	}led2_t;
@@ -132,7 +133,7 @@ struct json_arr{
 				uint8_t sec;
 				uint8_t min;
 				uint8_t hour;
-				uint16_t days;
+				uint8_t days;
 				uint8_t	work;
 			}period_t;
 		}usb1_t;
@@ -146,7 +147,7 @@ struct json_arr{
 				uint8_t sec;
 				uint8_t min;
 				uint8_t hour;
-				uint16_t days;
+				uint8_t days;
 				uint8_t	work;
 			}period_t;
 		}LoRa_t;
@@ -155,7 +156,7 @@ struct json_arr{
 				uint8_t sec;
 				uint8_t min;
 				uint8_t hour;
-				uint16_t days;
+				uint8_t days;
 				uint8_t	work;
 			}period_t; 
 		}period_LoRa_t;
