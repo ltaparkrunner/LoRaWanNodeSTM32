@@ -121,7 +121,9 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_LoRaWAN_Init();
   /* USER CODE BEGIN 2 */
-
+	HAL_SYSCFG_VREFBUF_VoltageScalingConfig(SYSCFG_VREFBUF_VOLTAGE_SCALE0);
+	HAL_SYSCFG_EnableVREFBUF();
+	HAL_SYSCFG_VREFBUF_HighImpedanceConfig(SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE);
 	MX_DMA_Init();
   MX_USART3_UART_Init();
 	MX_USB_DEVICE_Init();

@@ -479,14 +479,14 @@
               <FilePath>.\SettingsToHw.c</FilePath>
             </File>
             <File>
-              <FileName>sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\sensors.c</FilePath>
-            </File>
-            <File>
               <FileName>realiseSettings.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\realiseSettings.c</FilePath>
+            </File>
+            <File>
+              <FileName>sensors.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\sensors.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1440,14 +1440,14 @@
               <FilePath>.\SettingsToHw.c</FilePath>
             </File>
             <File>
-              <FileName>sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\sensors.c</FilePath>
-            </File>
-            <File>
               <FileName>realiseSettings.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\realiseSettings.c</FilePath>
+            </File>
+            <File>
+              <FileName>sensors.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\sensors.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2521,14 +2521,14 @@
               <FilePath>.\SettingsToHw.c</FilePath>
             </File>
             <File>
-              <FileName>sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\sensors.c</FilePath>
-            </File>
-            <File>
               <FileName>realiseSettings.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\realiseSettings.c</FilePath>
+            </File>
+            <File>
+              <FileName>sensors.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\sensors.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3551,14 +3551,14 @@
               <FilePath>.\SettingsToHw.c</FilePath>
             </File>
             <File>
-              <FileName>sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\sensors.c</FilePath>
-            </File>
-            <File>
               <FileName>realiseSettings.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\realiseSettings.c</FilePath>
+            </File>
+            <File>
+              <FileName>sensors.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\sensors.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4632,14 +4632,14 @@
               <FilePath>.\SettingsToHw.c</FilePath>
             </File>
             <File>
-              <FileName>sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\sensors.c</FilePath>
-            </File>
-            <File>
               <FileName>realiseSettings.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\realiseSettings.c</FilePath>
+            </File>
+            <File>
+              <FileName>sensors.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\sensors.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5713,14 +5713,14 @@
               <FilePath>.\SettingsToHw.c</FilePath>
             </File>
             <File>
-              <FileName>sensors.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\sensors.c</FilePath>
-            </File>
-            <File>
               <FileName>realiseSettings.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\realiseSettings.c</FilePath>
+            </File>
+            <File>
+              <FileName>sensors.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\sensors.c</FilePath>
             </File>
           </Files>
         </Group>

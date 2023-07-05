@@ -24,6 +24,7 @@
 #include "stm32_lpm_if.h"
 #include "usart_if.h"
 #include "radio_board_if.h"
+#include "main.h"
 //#include "adc.h"
 
 /* USER CODE BEGIN Includes */
@@ -134,40 +135,29 @@ void PWR_ExitStopMode(void)
     /* Enable Power Control clock */
     __HAL_RCC_PWR_CLK_ENABLE();
 
-    /* Get the Oscillators configuration according to the internal RCC registers */
-    HAL_RCC_GetOscConfig(&RCC_OscInitStruct);
+//    /* Get the Oscillators configuration according to the internal RCC registers */
+//    HAL_RCC_GetOscConfig(&RCC_OscInitStruct);
 
-    /* Enable PLL */
+//    /* Enable PLL */
 //    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_NONE;
 //    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-		
-		//////////////////////////////////////////////////////
-		  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_LSE;
-			RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-			RCC_OscInitStruct.LSEState = RCC_LSE_ON;
-			RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-			RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-			RCC_OscInitStruct.PLL.PLLM = 4;
-			RCC_OscInitStruct.PLL.PLLN = 8;
-			RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
-			RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
-			RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
-	////////////////////////////////////////////////////
-    if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-    {
-      while (1);
-    }
+//		
+//    if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+//    {
+//      while (1);
+//    }
 
-    /* Get the Clocks configuration according to the internal RCC registers */
-    HAL_RCC_GetClockConfig(&RCC_ClkInitStruct, &pFLatency);
+//    /* Get the Clocks configuration according to the internal RCC registers */
+//    HAL_RCC_GetClockConfig(&RCC_ClkInitStruct, &pFLatency);
 
-    /* Select PLL as system clock source and keep HCLK, PCLK1 and PCLK2 clocks dividers as before */
-    RCC_ClkInitStruct.ClockType     = RCC_CLOCKTYPE_SYSCLK;
-    RCC_ClkInitStruct.SYSCLKSource  = RCC_SYSCLKSOURCE_PLLCLK;
-    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, pFLatency) != HAL_OK)
-    {
-      while (1);
-    }
+//    /* Select PLL as system clock source and keep HCLK, PCLK1 and PCLK2 clocks dividers as before */
+//    RCC_ClkInitStruct.ClockType     = RCC_CLOCKTYPE_SYSCLK;
+//    RCC_ClkInitStruct.SYSCLKSource  = RCC_SYSCLKSOURCE_PLLCLK;
+//    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, pFLatency) != HAL_OK)
+//    {
+//      while (1);
+//    }
+		SystemClock_Config();
   }
   else
   {

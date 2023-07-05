@@ -148,24 +148,7 @@
           <Name>(105=500,152,1169,496,0)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>527</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134290294</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>../../../../../../Middlewares/Third_Party/LoRaWAN/Crypto/soft-se.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../../../../../../Middlewares/Third_Party/LoRaWAN/Crypto/soft-se.c\527</Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -186,6 +169,21 @@
           <count>3</count>
           <WinNumber>1</WinNumber>
           <ItemText>seNvmInit</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>channel</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>hadc2</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ADC_CHANNEL_6</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -1058,7 +1056,7 @@
 
   <Group>
     <GroupName>Application/App</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1114,7 +1112,7 @@
 
   <Group>
     <GroupName>Application/Core</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1293,8 +1291,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\sensors.c</PathWithFileName>
-      <FilenameWithoutPath>sensors.c</FilenameWithoutPath>
+      <PathWithFileName>..\Core\Src\realiseSettings.c</PathWithFileName>
+      <FilenameWithoutPath>realiseSettings.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1305,8 +1303,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Core\Src\realiseSettings.c</PathWithFileName>
-      <FilenameWithoutPath>realiseSettings.c</FilenameWithoutPath>
+      <PathWithFileName>..\Core\Src\sensors.c</PathWithFileName>
+      <FilenameWithoutPath>sensors.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1790,7 +1788,7 @@
 
   <Group>
     <GroupName>Middlewares/LoRaWAN/LmHandler</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
