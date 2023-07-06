@@ -99,9 +99,9 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-	MU_board_LEDs_Init();
-	MU_board_USB_detect_Init();
-	MX_GPIO_Init();
+//	MU_board_LEDs_Init();
+//	MU_board_USB_detect_Init();
+//	MX_GPIO_Init();
   /* USER CODE END Init */
 
   /* Configure the system clock */

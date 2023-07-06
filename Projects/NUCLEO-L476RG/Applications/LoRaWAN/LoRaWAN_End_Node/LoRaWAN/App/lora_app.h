@@ -132,6 +132,7 @@ void YellowLedOn_LoRa(void *context);
 uint32_t Set_yellow_blink(int32_t ch);
 //#include "stm32l476xx.h"
 int32_t Set_Green_Led_Period(void);
+int32_t Set_LoRaWAN_Period(void);
 /* USER CODE END EFP */
 
 #ifdef __cplusplus

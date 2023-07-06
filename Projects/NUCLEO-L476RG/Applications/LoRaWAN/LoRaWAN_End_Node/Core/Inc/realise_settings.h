@@ -21,9 +21,9 @@ typedef enum
 	FR_INDX = 			4,
 	UART3_INDX =		5,
 	
-	HL1USB_INDX_H = 6,
+	HL1USB_INDX_H = 8, //6,
 	HL1USB_INDX_T = 12,
-	HL1BAT_INDX_H = 13,
+	HL1BAT_INDX_H = 14,	//13,
 	HL1BAT_INDX_T = 18,
 	
 	HL2USB_INDX_H = 19,
@@ -31,7 +31,7 @@ typedef enum
 	HL2LORA_INDX_H = 30,
 	HL2LORA_INDX_T = 39,
 	
-	PERIODLORA_INDX_H = 40,
+	PERIODLORA_INDX_H = 41,	//40,
 	PERIODLORA_INDX_T = 45,
 	
 	LORATEXT_INDX = 	46,
@@ -44,8 +44,8 @@ typedef enum
 
 #define flash_buff_indx		32
 int32_t RealiseSettings(struct buffer_t* buff);
-uint32_t ReadInterval(int32_t ch);
-uint32_t ReadDuration(int32_t ch);
+uint32_t ReadPeriod(int32_t ch);
+uint32_t ReadBlinkPeriod(int32_t ch);
 int32_t ReadAppKey(uint8_t *buf, int32_t ln, uint8_t* bl);
 int32_t ChooseChannelFreq(uint8_t enabledChannels[], uint8_t nbEnabledChannels);
 int32_t DevEuimem(void);

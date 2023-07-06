@@ -302,6 +302,7 @@ void LoRaWAN_Init(void)
 	Set_Green_Led_Period();
 	Set_yellow_blink(0);
 	Set_yellow_blink(1);
+
 	//UTIL_TIMER_Start(&TxLedTimer);
 //  UTIL_TIMER_Start(&JoinLedTimer);
 //	UTIL_TIMER_Start(&PowerGreenLedOnTimer);
@@ -314,8 +315,9 @@ void LoRaWAN_Init(void)
   {
     /* send every time timer elapses */
     UTIL_TIMER_Create(&TxTimer,  0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnTxTimerEvent, NULL);
-    UTIL_TIMER_SetPeriod(&TxTimer,  APP_TX_DUTYCYCLE);
-    UTIL_TIMER_Start(&TxTimer);
+//    UTIL_TIMER_SetPeriod(&TxTimer,  APP_TX_DUTYCYCLE);
+//    UTIL_TIMER_Start(&TxTimer);
+			Set_LoRaWAN_Period();
   }
 //  else
   {
@@ -507,23 +509,26 @@ static void OnRxTimerLedEvent(void *context)
 int32_t Set_Green_Led_Period(void)
 {
 	uint32_t interval = 0;
+	//MU_board_USB_detect_Init();
+//	static GPIO_PinState res;
+//	res = HAL_GPIO_ReadPin(USB_VBUS_Port, USB_VBUS_Pin);
 	if( HAL_GPIO_ReadPin(USB_VBUS_Port, USB_VBUS_Pin) == GPIO_PIN_SET) 
-		interval = ReadInterval(0);
-	else interval = ReadInterval(1);
+		interval = ReadPeriod(0);
+	else interval = ReadPeriod(1);
 	Change_power_blink(interval);
 	return interval;
 }
 
-int32_t Set_LoRaWAN_Period()
+int32_t Set_LoRaWAN_Period(void)
 {
-	uint32_t interval = ReadInterval(3);
+	uint32_t interval = ReadPeriod(2);
 	ChangeLORA_transm_period(interval);
 	return interval;
 }
 
 uint32_t Set_yellow_blink(int32_t ch)
 {
-	uint32_t dur = ReadDuration(ch);
+	uint32_t dur = ReadBlinkPeriod(ch);
 	if(ch == 0) ChangeUSB_transm_blink(dur);
 	else ChangeLORA_transm_blink(dur);
 	return dur;
@@ -587,6 +592,7 @@ int32_t ChangeLORA_transm_blink(uint32_t interval)
 		UTIL_TIMER_SetPeriod(&YellowLedOffTimer_LORA,  interval);
 	return interval;
 }
+
 int32_t ChangeLORA_transm_period(uint32_t interval)
 {
 	// transmit the data

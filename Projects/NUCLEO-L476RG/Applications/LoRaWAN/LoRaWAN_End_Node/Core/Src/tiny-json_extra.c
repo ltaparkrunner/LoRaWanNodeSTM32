@@ -68,7 +68,7 @@ struct field_json json_descr[Json_Descript_Length] = {
 																	{"sec",0,60,1,1,JSON_INTEGER,56,0},		// 11},
 																	{"min",0,60,1,1,JSON_INTEGER,57,0},	// 11},
 																	{"hour",0,24,1,1,JSON_INTEGER,58,0},	// 11},
-																	{"days",0,49,2,1,JSON_INTEGER,59,0}, //11},
+																	{"days",0,49,1,1,JSON_INTEGER,59,0}, //11},
 																	{"work",0,0xf0,1,3,JSON_BOOLEAN,60,0},	// 11},
 
 															{"LoRa_text",0,0,34,0,JSON_TEXT,61,0},	// 12},				//46

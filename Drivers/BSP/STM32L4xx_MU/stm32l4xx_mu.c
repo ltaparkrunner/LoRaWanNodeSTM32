@@ -146,7 +146,7 @@ void MU_board_USB_detect_Init(void)
 	{
   /* Configure the GPIO_LED pin 1*/
 		GPIO_InitStruct.Pin   = USB_VBUS_Pin;
-		GPIO_InitStruct.Mode  = GPIO_MODE_IT_RISING;
+		GPIO_InitStruct.Mode  = GPIO_MODE_IT_RISING_FALLING;//GPIO_MODE_IT_RISING;
 		GPIO_InitStruct.Pull  = GPIO_PULLDOWN;
 		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 		HAL_GPIO_Init(USB_VBUS_Port, &GPIO_InitStruct);

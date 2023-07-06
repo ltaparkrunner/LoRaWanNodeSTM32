@@ -153,37 +153,12 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>jsonarrflash_r</ItemText>
+          <ItemText>buf</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>txConfig-&gt;Channel</ItemText>
-        </Ww>
-        <Ww>
-          <count>2</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>seNvmInit.JoinEui</ItemText>
-        </Ww>
-        <Ww>
-          <count>3</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>seNvmInit</ItemText>
-        </Ww>
-        <Ww>
-          <count>4</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>channel</ItemText>
-        </Ww>
-        <Ww>
-          <count>5</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>hadc2</ItemText>
-        </Ww>
-        <Ww>
-          <count>6</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>ADC_CHANNEL_6</ItemText>
+          <ItemText>uhADCxConvertedValue</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -1056,7 +1031,7 @@
 
   <Group>
     <GroupName>Application/App</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1267,8 +1242,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\usart_transm.c</PathWithFileName>
-      <FilenameWithoutPath>usart_transm.c</FilenameWithoutPath>
+      <PathWithFileName>..\Core\Src\realiseSettings.c</PathWithFileName>
+      <FilenameWithoutPath>realiseSettings.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1279,8 +1254,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\SettingsToHw.c</PathWithFileName>
-      <FilenameWithoutPath>SettingsToHw.c</FilenameWithoutPath>
+      <PathWithFileName>..\Core\Src\sensors.c</PathWithFileName>
+      <FilenameWithoutPath>sensors.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1291,8 +1266,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Core\Src\realiseSettings.c</PathWithFileName>
-      <FilenameWithoutPath>realiseSettings.c</FilenameWithoutPath>
+      <PathWithFileName>..\Core\Src\SettingsToHw.c</PathWithFileName>
+      <FilenameWithoutPath>SettingsToHw.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1303,8 +1278,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Core\Src\sensors.c</PathWithFileName>
-      <FilenameWithoutPath>sensors.c</FilenameWithoutPath>
+      <PathWithFileName>..\Core\Src\usart_transm.c</PathWithFileName>
+      <FilenameWithoutPath>usart_transm.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1788,7 +1763,7 @@
 
   <Group>
     <GroupName>Middlewares/LoRaWAN/LmHandler</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -2179,18 +2154,6 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\fillBuff.c</PathWithFileName>
-      <FilenameWithoutPath>fillBuff.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>17</GroupNumber>
-      <FileNumber>84</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
       <PathWithFileName>..\Core\Src\tiny-json_extra.c</PathWithFileName>
       <FilenameWithoutPath>tiny-json_extra.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
@@ -2198,7 +2161,7 @@
     </File>
     <File>
       <GroupNumber>17</GroupNumber>
-      <FileNumber>85</FileNumber>
+      <FileNumber>84</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2210,12 +2173,24 @@
     </File>
     <File>
       <GroupNumber>17</GroupNumber>
+      <FileNumber>85</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Core\Src\fillBuff.c</PathWithFileName>
+      <FilenameWithoutPath>fillBuff.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>17</GroupNumber>
       <FileNumber>86</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\parseMessages.c</PathWithFileName>
+      <PathWithFileName>..\Core\Src\parseMessages.c</PathWithFileName>
       <FilenameWithoutPath>parseMessages.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2355,8 +2330,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\flash_work.c</PathWithFileName>
-      <FilenameWithoutPath>flash_work.c</FilenameWithoutPath>
+      <PathWithFileName>..\Core\Src\flash_mem.c</PathWithFileName>
+      <FilenameWithoutPath>flash_mem.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2367,8 +2342,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Core\Src\flash_mem.c</PathWithFileName>
-      <FilenameWithoutPath>flash_mem.c</FilenameWithoutPath>
+      <PathWithFileName>..\Core\Src\flash_work.c</PathWithFileName>
+      <FilenameWithoutPath>flash_work.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

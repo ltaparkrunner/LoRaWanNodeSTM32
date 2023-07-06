@@ -109,7 +109,7 @@ uint32_t Count_interval(int32_t indx, struct buffer_t* buf)
 
 uint32_t Count_duration(int32_t indx, struct buffer_t* buf)
 {
-	uint32_t ret = 	(uint32_t)buf->array[json_descr[indx].offset];
+	uint32_t ret = 	((uint32_t)buf->array[json_descr[indx].offset]<< 8) + buf->array[json_descr[indx].offset + 1];
 	return ret;
 }
 
@@ -201,44 +201,49 @@ int32_t RealiseSettings(struct buffer_t* buff)
 //	return 0;
 //}
 
-uint32_t ReadInterval(int32_t ch)
+uint32_t ReadBlinkPeriod(int32_t ch)
 {
 	uint32_t addr_w;
 	uint32_t addr_r = ChooseReadFlashBank(&addr_w);
 	uint32_t offset;
 	int32_t len;
-	uint8_t buf[10];
+	uint8_t buf[10] ={0};
 	uint32_t ret = 0;
 	if(ch == 0) {
 		offset = json_descr[HL2USB_INDX_H].offset;
-		len = json_descr[HL2USB_INDX_H].offset - json_descr[HL2USB_INDX_T].offset;
+		len = json_descr[HL2USB_INDX_T].offset - json_descr[HL2USB_INDX_H].offset + 1;
 	}
 	else {
 		offset = json_descr[HL2LORA_INDX_H].offset;
-		len = json_descr[HL2LORA_INDX_H].offset - json_descr[HL2LORA_INDX_T].offset;
+		len = json_descr[HL2LORA_INDX_T].offset - json_descr[HL2LORA_INDX_H].offset + 1;
 	}
 	readflash_8b(addr_r + offset , buf, len);
-	if(buf[1] != 0)
-		ret = 	(uint32_t)buf[0];
+	if(buf[2] > 0)
+		ret = 	((uint32_t)buf[0]<<8) + buf[1];
 	
 	return ret;
 }
 
-uint32_t ReadDuration(int32_t ch)
+//uint32_t ReadDuration(int32_t ch)
+uint32_t ReadPeriod(int32_t ch)
 {
 	uint32_t addr_w;
 	uint32_t addr_r = ChooseReadFlashBank(&addr_w);
 	uint32_t offset;
 	int32_t len;
-	uint8_t buf[10];
+	uint8_t buf[10] = {0};
 	uint32_t ret = 0;
 	if(ch == 0) {
 		offset = json_descr[HL1USB_INDX_H].offset;
-		len = json_descr[HL1USB_INDX_H].offset - json_descr[HL1USB_INDX_T].offset;
+		len = json_descr[HL1USB_INDX_T].offset - json_descr[HL1USB_INDX_H].offset + 1;
+	}
+	else if(ch == 1){
+		offset = json_descr[HL1BAT_INDX_H].offset;
+		len =json_descr[HL1BAT_INDX_T].offset -  json_descr[HL1BAT_INDX_H].offset + 1;
 	}
 	else {
-		offset = json_descr[HL1BAT_INDX_H].offset;
-		len = json_descr[HL1BAT_INDX_H].offset - json_descr[HL1BAT_INDX_T].offset;
+		offset = json_descr[PERIODLORA_INDX_H].offset;
+		len =json_descr[PERIODLORA_INDX_T].offset -  json_descr[PERIODLORA_INDX_H].offset + 1;
 	}
 	readflash_8b(addr_r + offset , buf, len);
 	if(buf[4] == truefl)

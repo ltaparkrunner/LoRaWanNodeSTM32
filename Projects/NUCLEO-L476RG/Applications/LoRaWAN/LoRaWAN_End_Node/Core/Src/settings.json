@@ -529,5 +529,80 @@
                 "APPKEY": 0x35ad814f4236eb0d7ebc74f27a1ad5bb
 				}
 }
+{
+"LoRa_text": "I want to be forever young, forever young"
+}
+}
+ 
+{
+        "period_LoRa": {
+                "sec": 25  ,
+                "min": 0  ,
+                "hour": 0  ,
+                "days": 0  ,
+                "work": true}
+}
+{
+"HL1": {
+                "USB": {
+                        "sec": 15 ,
+                        "min": 0  ,
+                        "hour": 0  ,
+                        "days": 0  ,
+                        "work": true}
+		}
+}
 
+{						
+        "HL1": {
+                "battery": {
+                        "sec": 40,
+                        "min": 0 ,
+                        "hour": 0  ,
+                        "days": 0  ,
+                        "work": true}
+        }
+}
 
+ 
+{
+ "Command": "read settings"
+} 
+
+{
+"HL2": {
+                "LoRa": {
+                        "blinks":{
+                                "msec": 200  ,
+                                "times": 2  }
+						}
+		}
+}
+		
+
+{
+"HL2": {
+                "LoRa": {
+                        "blinks":{
+                                "msec": 100  ,
+                                "times": 2  }
+						}
+		}
+}
+
+{
+	"LoRa_Data": [{"AD_1": false},  {"AD_2": true}]
+}
+{
+        "LoRa_Data": [{"AD_1": false},  {"AD_2": false}, {"INP1": false}, {"INP2": false}, {"TEXT": true}]
+}
+
+ 
+{
+        "period_LoRa": {
+                "sec": 25  ,
+                "min": 0  ,
+                "hour": 0  ,
+                "days": 0  ,
+                "work": true}
+}
