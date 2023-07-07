@@ -11,7 +11,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc);
 static void MX_ADC2_Init(uint32_t channel);
 
 
-int32_t ADCtoBuff(struct LmHandlerAppData_s* appData);
+int32_t ADCtoBuff(struct LmHandlerAppData_s* appData, int32_t ch);
 int32_t MX_DIG_Init(void);
 int32_t MX_Dig_DeInit(void);
 int32_t DigtoBuff(struct LmHandlerAppData_s* appData);

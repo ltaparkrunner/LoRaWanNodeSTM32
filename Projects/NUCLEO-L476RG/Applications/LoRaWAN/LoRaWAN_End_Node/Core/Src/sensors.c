@@ -183,12 +183,12 @@ int32_t CollectData(struct LmHandlerAppData_s* appData)
 	if(readflash_8b(addr_r+offset, temp_buff, bf_len) > 0) {
 		if(temp_buff[0] == truefl) {
 			MX_ADC2_Init(ADC_CHANNEL_6);
-			ret = ADCtoBuff(appData);
+			ret = ADCtoBuff(appData, 1);
 			HAL_ADC_DeInit(&hadc2);
 		}
 		else if(temp_buff[1] == truefl) {
 			MX_ADC2_Init(ADC_CHANNEL_7);
-			ret = ADCtoBuff(appData);
+			ret = ADCtoBuff(appData, 2);
 			HAL_ADC_DeInit(&hadc2);
 		}
 		else if(temp_buff[2] == truefl) {
@@ -208,9 +208,9 @@ int32_t CollectData(struct LmHandlerAppData_s* appData)
 	return ret;
 }
 #include <stdio.h>
-int32_t ADCtoBuff(struct LmHandlerAppData_s* appData)
+int32_t ADCtoBuff(struct LmHandlerAppData_s* appData, int32_t ch)
 {
-	int32_t uhADCxConvertedValue = 0;
+	int32_t ADCValue[3] = {0};
 	  /*##-3- Calibrate ADC then Start the conversion process ####################*/
 	HAL_StatusTypeDef res = HAL_ADCEx_Calibration_Start(&hadc2, ADC_SINGLE_ENDED);
   if (res !=  HAL_OK)
@@ -244,14 +244,22 @@ int32_t ADCtoBuff(struct LmHandlerAppData_s* appData)
 		if ((HAL_ADC_GetState(&hadc2) & HAL_ADC_STATE_REG_EOC) == HAL_ADC_STATE_REG_EOC)
 		{
 			/*##-5- Get the converted value of regular channel  ########################*/
-			uhADCxConvertedValue += HAL_ADC_GetValue(&hadc2);
+			ADCValue[i1] = HAL_ADC_GetValue(&hadc2);
 		}
 	}
-	char *pBuf = (char*)appData->Buffer;
+	if(ADCValue[0] >= ADCValue[1] && ADCValue[1] >= ADCValue[2]) ADCValue[0] = ADCValue[1];
+	else if(ADCValue[0] >= ADCValue[2] && ADCValue[2] >= ADCValue[1]) ADCValue[0] = ADCValue[2];
+	else if(ADCValue[1] >= ADCValue[2] && ADCValue[2] >= ADCValue[0]) ADCValue[0] = ADCValue[2];
+	else if(ADCValue[2] >= ADCValue[1] && ADCValue[1] >= ADCValue[0]) ADCValue[0] = ADCValue[1];
+	
 	//uhADCxConvertedValue = (uhADCxConvertedValue *3300) / 12288;
-	uhADCxConvertedValue = (uhADCxConvertedValue *3300) / 18570;//18588;
-	sprintf(pBuf, "The analog result is : %-4d", uhADCxConvertedValue);
-	return 27;
+	ADCValue[0] = (ADCValue[0] *3300) / 6116;//18350;//18588;
+	uint8_t hd, ld;
+	hd = (uint8_t)(ADCValue[0] /1000);
+	ld = (uint8_t)((ADCValue[0] /10) % 100);
+	char *pBuf = (char *)appData->Buffer;
+	sprintf(pBuf, "The PA%1d analog value is: %-1d,%02d", ch, hd, ld);
+	return 29;
 }
 
 int32_t MX_DIG_Init(void)
@@ -308,7 +316,7 @@ int32_t DigtoBuff(struct LmHandlerAppData_s* appData)
 	else *pBuf++ = '1';
 	
 	*pBuf++ = '.';
-	*pBuf++ = 0;
+	*pBuf++ = 20;
 	
 	return 32;
 }
@@ -322,7 +330,7 @@ int32_t TexttoBuff(struct LmHandlerAppData_s* appData)
 	uint32_t addr_w;
 	uint32_t addr_r = ChooseReadFlashBank(&addr_w);
 	uint32_t offset = json_descr[text_sett].offset;
-	uint32_t bf_len = json_descr[text_sett + 1].offset - json_descr[text_sett].offset + 1;
+	uint32_t bf_len = json_descr[text_sett + 1].offset - json_descr[text_sett].offset;
 	
 	static uint8_t temp_buff[50];
 	

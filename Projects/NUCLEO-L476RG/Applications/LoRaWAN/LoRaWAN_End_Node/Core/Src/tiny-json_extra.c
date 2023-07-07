@@ -81,7 +81,7 @@ struct field_json json_descr[Json_Descript_Length] = {
 															//{"Command",0,0,1,0,JSON_BOOLEAN,103,0},
 															{"Command",0,0,13,0,JSON_TEXT,100,0},		// 14},					//53
 															{"WRTN",0,0x99,1,0,JSON_INTEGER,113,0},	// 15},
-															{"DevEuiVal",0,0,1,0,JSON_BOOLEAN,114,0},		// 0},
+															{"DevEuiValid",0,0,1,0,JSON_BOOLEAN,114,0},		// 0},
 															{"AppKeyValid",0,0,1,0,JSON_BOOLEAN,115,0},	// 1}
 															//	\"LoRa_Data\": [\"AD1\", \"INP1\", \"INP3\", \"AD4\", \"text\"],
 };

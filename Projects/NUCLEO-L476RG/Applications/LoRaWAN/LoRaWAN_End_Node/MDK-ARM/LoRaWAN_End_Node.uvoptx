@@ -153,12 +153,7 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>buf</ItemText>
-        </Ww>
-        <Ww>
-          <count>1</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>uhADCxConvertedValue</ItemText>
+          <ItemText>bf</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -2119,7 +2114,7 @@
 
   <Group>
     <GroupName>JSON_settings</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

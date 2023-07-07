@@ -511,7 +511,7 @@
                 "hour": 0  ,
                 "days": 153  ,
                 "work": true},
-        "LoRa_text": "Soon as early Dawn appeared, the  ", the ",
+        "LoRa_text": "Soon as early Dawn appeared, the r",
         "LoRa_Data": [{"AD_1": false},  {"AD_2": false}, {"INP1": false}, {"INP2": false}, {"TEXT": true}],
         "Command": "        (    ",
         "WRTN": 2  ,
@@ -589,12 +589,17 @@
 						}
 		}
 }
+{
+        "DevEuiValid": true,
+        "AppKeyValid": true
+}
+
 
 {
 	"LoRa_Data": [{"AD_1": false},  {"AD_2": true}]
 }
 {
-        "LoRa_Data": [{"AD_1": false},  {"AD_2": false}, {"INP1": false}, {"INP2": false}, {"TEXT": true}]
+        "LoRa_Data": [{"AD_1": false},  {"AD_2": true}, {"INP1": false}, {"INP2": false}, {"TEXT": false}]
 }
 
  
@@ -605,4 +610,19 @@
                 "hour": 0  ,
                 "days": 0  ,
                 "work": true}
+}
+
+
+
+ {       "LoRa_text": "Everybody, need somebody. You you you," }
+ 
+ {
+        "DevEuiValid": true
+		}
+
+{
+"DevEuiValid": true
+}
+{		
+		"LoRa_text": "Soon as early Dawn appeared, the r"
 }

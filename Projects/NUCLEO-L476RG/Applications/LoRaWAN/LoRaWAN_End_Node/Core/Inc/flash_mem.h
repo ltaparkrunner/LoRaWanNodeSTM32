@@ -95,7 +95,7 @@ uint32_t ChooseReadFlashBank(uint32_t* Addr_w);
 struct json_arr* GetJsonFlash(void);
 
 #define WRTN_CHECK 0x99
-#define WRTN_OFFSET 108//96
+#define WRTN_OFFSET 113//96
 
 
 struct json_arr{

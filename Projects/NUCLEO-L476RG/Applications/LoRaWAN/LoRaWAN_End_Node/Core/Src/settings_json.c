@@ -62,9 +62,9 @@ char sets_JSON[] = "{\
 		\"days\": 0  ,\
 		\"work\": true \
 	},\
-	\"LoRa_text\": \"Soon as early Dawn appeare\",\
+	\"LoRa_text\": \"Soon as early Dawn appeared, the r\",\
 	\"LoRa_Data\": [{\"AD_1\": false },  {\"AD_2\": false }, {\"INP1\": false}, {\"INP2\": false}, {\"TEXT\": true}],\
-	\"Command\": \"              \",\
+	\"Command\": \"             \",\
 	\"WRTN\": 2,\
 	\"DevEuiValid\": true ,\
 	\"AppKeyValid\": true \
