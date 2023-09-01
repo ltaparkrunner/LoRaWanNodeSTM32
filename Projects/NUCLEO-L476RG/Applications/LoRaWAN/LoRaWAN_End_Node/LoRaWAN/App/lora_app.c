@@ -139,11 +139,12 @@ static void OnRxTimerLedEvent(void *context);
   * @param  context ptr of LED context
   */
 //static void OnJoinTimerLedEvent(void *context);
-static void OnPowerGreenLedOnEvent(void *context);
-static void OnPowerGreenLedOffEvent(void *context);
+//static void OnPowerGreenLedOnEvent(void *context);
+//static void OnPowerGreenLedOffEvent(void *context);
 //static void OnPowerYellowLedOnEvent_USB(void *context);
 //static void OnPowerYellowLedOnEvent_LoRa(void *context);
 static void OnPowerYellowLedOffEvent(void *context);
+static void OnLoRaRxBothLedsToggleEvent(void *context);
 
 static void USBReset(void);
 //static void ledSwitch1(void);
@@ -152,7 +153,7 @@ static void USBReset(void);
 
 /* Private variables ---------------------------------------------------------*/
 static ActivationType_t ActivationType = LORAWAN_DEFAULT_ACTIVATION_TYPE;
-
+int32_t ledBlinkLoRaRxCount;
 /**
   * @brief LoRaWAN handler Callbacks
   */
@@ -220,11 +221,12 @@ static UTIL_TIMER_Object_t RxLedTimer;
   * @brief Timer to handle the application Join Led to toggle
   */
 static UTIL_TIMER_Object_t JoinLedTimer;
-static UTIL_TIMER_Object_t PowerGreenLedOnTimer;
-static UTIL_TIMER_Object_t PowerGreenLedOffTimer;
+//** static UTIL_TIMER_Object_t PowerGreenLedOnTimer;
+//** static UTIL_TIMER_Object_t PowerGreenLedOffTimer;
 //static UTIL_TIMER_Object_t PowerYellowLedOnTimer;
 static UTIL_TIMER_Object_t YellowLedOffTimer_USB;
 static UTIL_TIMER_Object_t YellowLedOffTimer_LORA;
+static UTIL_TIMER_Object_t BothLedsBlinkLoRaRx;
 
 /* USER CODE END PV */
 
@@ -266,18 +268,19 @@ void LoRaWAN_Init(void)
   UTIL_TIMER_Create(&TxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnTxTimerLedEvent, NULL);
   UTIL_TIMER_Create(&RxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnRxTimerLedEvent, NULL);
 //  UTIL_TIMER_Create(&JoinLedTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnJoinTimerLedEvent, NULL);
-	UTIL_TIMER_Create(&PowerGreenLedOnTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerGreenLedOnEvent, NULL);
-	UTIL_TIMER_Create(&PowerGreenLedOffTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerGreenLedOffEvent, NULL);
+//	UTIL_TIMER_Create(&PowerGreenLedOnTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerGreenLedOnEvent, NULL);
+//	UTIL_TIMER_Create(&PowerGreenLedOffTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerGreenLedOffEvent, NULL);
 //	UTIL_TIMER_Create(&YellowLedOffTimer_LORA, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerGreenLedOffEvent, NULL);
-	
+	UTIL_TIMER_Create(&BothLedsBlinkLoRaRx, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnLoRaRxBothLedsToggleEvent, NULL);	
 //	UTIL_TIMER_Create(&PowerYellowLedOnTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerYellowLedOnEvent, NULL);
 	UTIL_TIMER_Create(&YellowLedOffTimer_USB, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerYellowLedOffEvent, NULL);
 	UTIL_TIMER_Create(&YellowLedOffTimer_LORA, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnPowerYellowLedOffEvent, NULL);
   UTIL_TIMER_SetPeriod(&TxLedTimer, 1500);
   UTIL_TIMER_SetPeriod(&RxLedTimer, 500);
+	UTIL_TIMER_SetPeriod(&BothLedsBlinkLoRaRx, 300);
 //  UTIL_TIMER_SetPeriod(&JoinLedTimer, 30000);
 //	UTIL_TIMER_SetPeriod(&PowerGreenLedOnTimer, 30000);
-	UTIL_TIMER_SetPeriod(&PowerGreenLedOffTimer, 100);
+//	UTIL_TIMER_SetPeriod(&PowerGreenLedOffTimer, 100);
 //	UTIL_TIMER_SetPeriod(&PowerYellowLedOnTimer, 20000);
 //	UTIL_TIMER_SetPeriod(&YellowLedOffTimer_USB, 500);
 //	UTIL_TIMER_SetPeriod(&YellowLedOffTimer_LORA, 200);
@@ -533,18 +536,18 @@ uint32_t Set_yellow_blink(int32_t ch)
 	else ChangeLORA_transm_blink(dur);
 	return dur;
 }
+//////////////////****
+//static void OnPowerGreenLedOnEvent(void *context)
+//{
+//	MU_LED_On(HL1);
+//	UTIL_TIMER_Start(&PowerGreenLedOffTimer);
+//}
 
-static void OnPowerGreenLedOnEvent(void *context)
-{
-	MU_LED_On(HL1);
-	UTIL_TIMER_Start(&PowerGreenLedOffTimer);
-}
-
-static void OnPowerGreenLedOffEvent(void *context)
-{
-	MU_LED_Off(HL1);
-	UTIL_TIMER_Stop(&PowerGreenLedOffTimer);
-}
+//static void OnPowerGreenLedOffEvent(void *context)
+//{
+//	MU_LED_Off(HL1);
+//	UTIL_TIMER_Stop(&PowerGreenLedOffTimer);
+//}
 
 void YellowLedOn_USB(void *context)
 {
@@ -564,20 +567,21 @@ static void OnPowerYellowLedOffEvent(void *context)
 	UTIL_TIMER_Stop(&YellowLedOffTimer_USB);
 	UTIL_TIMER_Stop(&YellowLedOffTimer_LORA);
 }
-
+//****
 int32_t Change_power_blink(uint32_t interval)
 {
-	MU_LED_On(HL1);
-	UTIL_TIMER_Start(&PowerGreenLedOffTimer);
-	
-	if(interval > 0) {
-		UTIL_TIMER_Stop(&PowerGreenLedOnTimer);
-		UTIL_TIMER_SetPeriod(&PowerGreenLedOnTimer,  interval);
-		UTIL_TIMER_Start(&PowerGreenLedOnTimer);
-	}
-	else UTIL_TIMER_Stop(&PowerGreenLedOnTimer);
-	return interval;
+//	MU_LED_On(HL1);
+//	UTIL_TIMER_Start(&PowerGreenLedOffTimer);
+//	
+//	if(interval > 0) {
+//		UTIL_TIMER_Stop(&PowerGreenLedOnTimer);
+//		UTIL_TIMER_SetPeriod(&PowerGreenLedOnTimer,  interval);
+//		UTIL_TIMER_Start(&PowerGreenLedOnTimer);
+//	}
+//	else UTIL_TIMER_Stop(&PowerGreenLedOnTimer);
+//	return interval;
 }
+
 //int32_t ChangeBat_power_blink(uint32_t interval)
 //{
 //	return 0;
@@ -650,7 +654,11 @@ static void OnJoinRequest(LmHandlerJoinParams_t *joinParams)
     if (joinParams->Status == LORAMAC_HANDLER_SUCCESS)
     {
       UTIL_TIMER_Stop(&JoinLedTimer);
-
+			//****
+			ledBlinkLoRaRxCount = 6;
+			MU_LED_On(HL1);
+			MU_LED_On(HL2);
+			UTIL_TIMER_Start(&BothLedsBlinkLoRaRx);
       //LED_Off(LED_RED1) ;
 
       APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### = JOINED = ");
@@ -666,6 +674,10 @@ static void OnJoinRequest(LmHandlerJoinParams_t *joinParams)
     else
     {
       APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### = JOIN FAILED\r\n");
+			ledBlinkLoRaRxCount = 2;
+			MU_LED_On(HL1);
+			MU_LED_On(HL2);
+			UTIL_TIMER_Start(&BothLedsBlinkLoRaRx);
     }
   }
   /* USER CODE END OnJoinRequest_1 */
@@ -681,6 +693,23 @@ static void OnMacProcessNotify(void)
   /* USER CODE BEGIN OnMacProcessNotify_2 */
 
   /* USER CODE END OnMacProcessNotify_2 */
+}
+
+
+static void OnLoRaRxBothLedsToggleEvent(void *context)
+{
+	if(ledBlinkLoRaRxCount > 0) 
+	{
+		MU_LED_Toggle(HL1);
+		MU_LED_Toggle(HL2);
+		ledBlinkLoRaRxCount--;
+	}		
+	else
+	{
+		MU_LED_Off(HL1);
+		MU_LED_Off(HL2);
+		UTIL_TIMER_Stop(&BothLedsBlinkLoRaRx);
+	}
 }
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
