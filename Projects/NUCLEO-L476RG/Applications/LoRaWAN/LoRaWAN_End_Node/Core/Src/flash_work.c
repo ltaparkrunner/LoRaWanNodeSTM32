@@ -78,6 +78,7 @@ int32_t WriteBufferToFlash(struct buffer_t* buff)
 		}
 		else {
 			buffer2[i1] = *(__IO uint8_t *)(Address_r+i1);
+			buff->array[i1] = buffer2[i1];
 		}
 	}
 	
