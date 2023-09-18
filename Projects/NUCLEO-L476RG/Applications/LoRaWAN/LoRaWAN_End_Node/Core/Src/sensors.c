@@ -182,13 +182,13 @@ int32_t CollectData(struct LmHandlerAppData_s* appData)
 	//	if(readflash(addr_r, (uint8_t*)temp_buff, FlashBuffLen) > 0) {
 	if(readflash_8b(addr_r+offset, temp_buff, bf_len) > 0) {
 		if(temp_buff[0] == truefl) {
-			MX_ADC2_Init(ADC_CHANNEL_6);
-			ret = ADCtoBuff(appData, 1);
+			MX_ADC2_Init(ADC_CHANNEL_7);
+			ret = ADCtoBuff(appData, 2);
 			HAL_ADC_DeInit(&hadc2);
 		}
 		else if(temp_buff[1] == truefl) {
-			MX_ADC2_Init(ADC_CHANNEL_7);
-			ret = ADCtoBuff(appData, 2);
+			MX_ADC2_Init(ADC_CHANNEL_6);
+			ret = ADCtoBuff(appData, 1);
 			HAL_ADC_DeInit(&hadc2);
 		}
 		else if(temp_buff[2] == truefl) {
@@ -253,7 +253,7 @@ int32_t ADCtoBuff(struct LmHandlerAppData_s* appData, int32_t ch)
 	else if(ADCValue[2] >= ADCValue[1] && ADCValue[1] >= ADCValue[0]) ADCValue[0] = ADCValue[1];
 	
 	//uhADCxConvertedValue = (uhADCxConvertedValue *3300) / 12288;
-	ADCValue[0] = (ADCValue[0] *3300) / 6116;//18350;//18588;
+	ADCValue[0] = (ADCValue[0] *3300) / 6720;//6116;//18350;//18588;
 	uint8_t hd, ld;
 	hd = (uint8_t)(ADCValue[0] /1000);
 	ld = (uint8_t)((ADCValue[0] /10) % 100);
