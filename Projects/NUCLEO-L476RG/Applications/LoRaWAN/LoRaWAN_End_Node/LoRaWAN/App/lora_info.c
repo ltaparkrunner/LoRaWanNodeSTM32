@@ -22,7 +22,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "LoRaMac.h"
 #include "lora_info.h"
-#include "sys_app.h" /* APP_PRINTF */
+//#include "sys_app.h" /* APP_PRINTF */
 
 /* USER CODE BEGIN Includes */
 
@@ -56,7 +56,7 @@ static LoraInfo_t loraInfo = {0, 0};
 /* Private function prototypes -----------------------------------------------*/
 
 /* USER CODE BEGIN PFP */
-
+void Error_Handler2(int32_t num);
 /* USER CODE END PFP */
 
 /* Exported variables --------------------------------------------------------*/
@@ -109,12 +109,13 @@ void LoraInfo_Init(void)
 
   if (loraInfo.Region == 0)
   {
-    APP_PRINTF("error: At least one region shall be defined in the MW: check lorawan_conf.h \r\n");
-    while (1 != UTIL_ADV_TRACE_IsBufferEmpty())
-    {
-      /* Wait that all printfs are completed*/
-    }
-    while (1) {} /* At least one region shall be defined */
+//    APP_PRINTF("error: At least one region shall be defined in the MW: check lorawan_conf.h \r\n");
+//    while (1 != UTIL_ADV_TRACE_IsBufferEmpty())
+//    {
+//      /* Wait that all printfs are completed*/
+//    }
+//    while (1) {} /* At least one region shall be defined */
+		Error_Handler2(11);
   }
 
 #if ( LORAMAC_CLASSB_ENABLED == 1 )

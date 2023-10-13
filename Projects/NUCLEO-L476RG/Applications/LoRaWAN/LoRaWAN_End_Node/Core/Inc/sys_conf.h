@@ -54,7 +54,7 @@ extern "C" {
 /**
   * @brief Enable trace logs
   */
-#define APP_LOG_ENABLED             1
+//#define APP_LOG_ENABLED             1
 
 /**
   * @brief Enable MCU Debugger pins (dbg serial wires, sbg spi, etc)

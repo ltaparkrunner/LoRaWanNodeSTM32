@@ -409,11 +409,6 @@
           <GroupName>Application/Core</GroupName>
           <Files>
             <File>
-              <FileName>dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/dma.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
@@ -459,16 +454,6 @@
               <FilePath>../Core/Src/sys_sensors.c</FilePath>
             </File>
             <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_if.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\usart_if.c</FilePath>
-            </File>
-            <File>
               <FileName>realiseSettings.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\realiseSettings.c</FilePath>
@@ -482,11 +467,6 @@
               <FileName>SettingsToHw.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\SettingsToHw.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_transm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\usart_transm.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -843,11 +823,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -962,6 +937,21 @@
               <FileName>flash_work.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\flash_work.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Utils</GroupName>
+          <Files>
+            <File>
+              <FileName>wait.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\wait.c</FilePath>
+            </File>
+            <File>
+              <FileName>Errs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\Errs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1370,11 +1360,6 @@
           <GroupName>Application/Core</GroupName>
           <Files>
             <File>
-              <FileName>dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/dma.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
@@ -1420,16 +1405,6 @@
               <FilePath>../Core/Src/sys_sensors.c</FilePath>
             </File>
             <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_if.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\usart_if.c</FilePath>
-            </File>
-            <File>
               <FileName>realiseSettings.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\realiseSettings.c</FilePath>
@@ -1443,11 +1418,6 @@
               <FileName>SettingsToHw.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\SettingsToHw.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_transm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\usart_transm.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1924,11 +1894,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -2043,6 +2008,21 @@
               <FileName>flash_work.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\flash_work.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Utils</GroupName>
+          <Files>
+            <File>
+              <FileName>wait.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\wait.c</FilePath>
+            </File>
+            <File>
+              <FileName>Errs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\Errs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2451,11 +2431,6 @@
           <GroupName>Application/Core</GroupName>
           <Files>
             <File>
-              <FileName>dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/dma.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
@@ -2501,16 +2476,6 @@
               <FilePath>../Core/Src/sys_sensors.c</FilePath>
             </File>
             <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_if.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\usart_if.c</FilePath>
-            </File>
-            <File>
               <FileName>realiseSettings.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\realiseSettings.c</FilePath>
@@ -2524,11 +2489,6 @@
               <FileName>SettingsToHw.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\SettingsToHw.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_transm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\usart_transm.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2954,11 +2914,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -3073,6 +3028,21 @@
               <FileName>flash_work.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\flash_work.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Utils</GroupName>
+          <Files>
+            <File>
+              <FileName>wait.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\wait.c</FilePath>
+            </File>
+            <File>
+              <FileName>Errs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\Errs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3481,11 +3451,6 @@
           <GroupName>Application/Core</GroupName>
           <Files>
             <File>
-              <FileName>dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/dma.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
@@ -3531,16 +3496,6 @@
               <FilePath>../Core/Src/sys_sensors.c</FilePath>
             </File>
             <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_if.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\usart_if.c</FilePath>
-            </File>
-            <File>
               <FileName>realiseSettings.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\realiseSettings.c</FilePath>
@@ -3554,11 +3509,6 @@
               <FileName>SettingsToHw.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\SettingsToHw.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_transm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\usart_transm.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4035,11 +3985,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -4154,6 +4099,21 @@
               <FileName>flash_work.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\flash_work.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Utils</GroupName>
+          <Files>
+            <File>
+              <FileName>wait.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\wait.c</FilePath>
+            </File>
+            <File>
+              <FileName>Errs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\Errs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4562,11 +4522,6 @@
           <GroupName>Application/Core</GroupName>
           <Files>
             <File>
-              <FileName>dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/dma.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
@@ -4612,16 +4567,6 @@
               <FilePath>../Core/Src/sys_sensors.c</FilePath>
             </File>
             <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_if.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\usart_if.c</FilePath>
-            </File>
-            <File>
               <FileName>realiseSettings.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\realiseSettings.c</FilePath>
@@ -4635,11 +4580,6 @@
               <FileName>SettingsToHw.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\SettingsToHw.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_transm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\usart_transm.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5116,11 +5056,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -5235,6 +5170,21 @@
               <FileName>flash_work.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\flash_work.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Utils</GroupName>
+          <Files>
+            <File>
+              <FileName>wait.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\wait.c</FilePath>
+            </File>
+            <File>
+              <FileName>Errs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\Errs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5643,11 +5593,6 @@
           <GroupName>Application/Core</GroupName>
           <Files>
             <File>
-              <FileName>dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/dma.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
@@ -5693,16 +5638,6 @@
               <FilePath>../Core/Src/sys_sensors.c</FilePath>
             </File>
             <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_if.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\usart_if.c</FilePath>
-            </File>
-            <File>
               <FileName>realiseSettings.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\realiseSettings.c</FilePath>
@@ -5716,11 +5651,6 @@
               <FileName>SettingsToHw.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\SettingsToHw.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_transm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\usart_transm.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -6197,11 +6127,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\Utilities\misc\stm32_tiny_vsnprintf.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32_adv_trace.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Utilities\trace\adv_trace\stm32_adv_trace.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -6316,6 +6241,21 @@
               <FileName>flash_work.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\flash_work.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Utils</GroupName>
+          <Files>
+            <File>
+              <FileName>wait.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\wait.c</FilePath>
+            </File>
+            <File>
+              <FileName>Errs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\Errs.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -51,6 +51,7 @@ uint8_t charRx;
 /**
   * @brief Trace driver callbacks handler
   */
+/*	
 const UTIL_ADV_TRACE_Driver_s UTIL_TraceDriver =
 {
   vcom_Init,
@@ -58,7 +59,7 @@ const UTIL_ADV_TRACE_Driver_s UTIL_TraceDriver =
   vcom_ReceiveInit,
   vcom_Trace_DMA,
 };
-
+*/
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */

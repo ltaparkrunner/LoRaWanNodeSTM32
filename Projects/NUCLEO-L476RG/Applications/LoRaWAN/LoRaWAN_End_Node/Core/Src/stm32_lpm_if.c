@@ -22,7 +22,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "sys_debug.h"
 #include "stm32_lpm_if.h"
-#include "usart_if.h"
+//#include "usart_if.h"
 #include "radio_board_if.h"
 #include "main.h"
 //#include "adc.h"

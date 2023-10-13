@@ -190,7 +190,7 @@ uint8_t GetBatteryLevel(void)
   }
 	*/
 	batteryLevel = LORAWAN_MAX_BAT;
-  APP_LOG(TS_ON, VLEVEL_M, "VDDA= %d\r\n", batteryLevel);
+//  APP_LOG(TS_ON, VLEVEL_M, "VDDA= %d\r\n", batteryLevel);
 
   /* USER CODE BEGIN GetBatteryLevel_2 */
 
@@ -313,28 +313,28 @@ static void Gpio_PreInit(void)
   /* USER CODE END Gpio_PreInit_2 */
 }
 
-/* Disable StopMode when traces need to be printed */
-void UTIL_ADV_TRACE_PreSendHook(void)
-{
-  /* USER CODE BEGIN UTIL_ADV_TRACE_PreSendHook_1 */
+///* Disable StopMode when traces need to be printed */
+//void UTIL_ADV_TRACE_PreSendHook(void)
+//{
+//  /* USER CODE BEGIN UTIL_ADV_TRACE_PreSendHook_1 */
 
-  /* USER CODE END UTIL_ADV_TRACE_PreSendHook_1 */
-  UTIL_LPM_SetStopMode((1 << CFG_LPM_UART_TX_Id), UTIL_LPM_DISABLE);
-  /* USER CODE BEGIN UTIL_ADV_TRACE_PreSendHook_2 */
+//  /* USER CODE END UTIL_ADV_TRACE_PreSendHook_1 */
+//  UTIL_LPM_SetStopMode((1 << CFG_LPM_UART_TX_Id), UTIL_LPM_DISABLE);
+//  /* USER CODE BEGIN UTIL_ADV_TRACE_PreSendHook_2 */
 
-  /* USER CODE END UTIL_ADV_TRACE_PreSendHook_2 */
-}
-/* Re-enable StopMode when traces have been printed */
-void UTIL_ADV_TRACE_PostSendHook(void)
-{
-  /* USER CODE BEGIN UTIL_LPM_SetStopMode_1 */
+//  /* USER CODE END UTIL_ADV_TRACE_PreSendHook_2 */
+//}
+///* Re-enable StopMode when traces have been printed */
+//void UTIL_ADV_TRACE_PostSendHook(void)
+//{
+//  /* USER CODE BEGIN UTIL_LPM_SetStopMode_1 */
 
-  /* USER CODE END UTIL_LPM_SetStopMode_1 */
-  UTIL_LPM_SetStopMode((1 << CFG_LPM_UART_TX_Id), UTIL_LPM_ENABLE);
-  /* USER CODE BEGIN UTIL_LPM_SetStopMode_2 */
+//  /* USER CODE END UTIL_LPM_SetStopMode_1 */
+//  UTIL_LPM_SetStopMode((1 << CFG_LPM_UART_TX_Id), UTIL_LPM_ENABLE);
+//  /* USER CODE BEGIN UTIL_LPM_SetStopMode_2 */
 
-  /* USER CODE END UTIL_LPM_SetStopMode_2 */
-}
+//  /* USER CODE END UTIL_LPM_SetStopMode_2 */
+//}
 
 //static void tiny_snprintf_like(char *buf, uint32_t maxsize, const char *strFormat, ...)
 //{

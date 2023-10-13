@@ -246,23 +246,23 @@ void LoRaWAN_Init(void)
 	MU_Sound_Init();
 
   /* Get LoRa APP version*/
-  APP_LOG(TS_OFF, VLEVEL_M, "APP_VERSION:        V%X.%X.%X\r\n",
+/*  APP_LOG(TS_OFF, VLEVEL_M, "APP_VERSION:        V%X.%X.%X\r\n",
           (uint8_t)(__LORA_APP_VERSION >> __APP_VERSION_MAIN_SHIFT),
           (uint8_t)(__LORA_APP_VERSION >> __APP_VERSION_SUB1_SHIFT),
           (uint8_t)(__LORA_APP_VERSION >> __APP_VERSION_SUB2_SHIFT));
-
+*/
   /* Get MW LoraWAN info */
-  APP_LOG(TS_OFF, VLEVEL_M, "MW_LORAWAN_VERSION: V%X.%X.%X\r\n",
+/*  APP_LOG(TS_OFF, VLEVEL_M, "MW_LORAWAN_VERSION: V%X.%X.%X\r\n",
           (uint8_t)(__LORAWAN_VERSION >> __APP_VERSION_MAIN_SHIFT),
           (uint8_t)(__LORAWAN_VERSION >> __APP_VERSION_SUB1_SHIFT),
           (uint8_t)(__LORAWAN_VERSION >> __APP_VERSION_SUB2_SHIFT));
-
+*/
   /* Get MW SubGhz_Phy info */
-  APP_LOG(TS_OFF, VLEVEL_M, "MW_RADIO_VERSION:   V%X.%X.%X\r\n",
+/*  APP_LOG(TS_OFF, VLEVEL_M, "MW_RADIO_VERSION:   V%X.%X.%X\r\n",
           (uint8_t)(__SUBGHZ_PHY_VERSION >> __APP_VERSION_MAIN_SHIFT),
           (uint8_t)(__SUBGHZ_PHY_VERSION >> __APP_VERSION_SUB1_SHIFT),
           (uint8_t)(__SUBGHZ_PHY_VERSION >> __APP_VERSION_SUB2_SHIFT));
-
+*/
   UTIL_TIMER_Create(&TxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnTxTimerLedEvent, NULL);
   UTIL_TIMER_Create(&RxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnRxTimerLedEvent, NULL);
 //  UTIL_TIMER_Create(&JoinLedTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnJoinTimerLedEvent, NULL);
@@ -371,9 +371,10 @@ static void OnRxData(LmHandlerAppData_t *appData, LmHandlerRxParams_t *params)
 
     static const char *slotStrings[] = { "1", "2", "C", "C Multicast", "B Ping-Slot", "B Multicast Ping-Slot" };
 
-    APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### ========== MCPS-Indication ==========\r\n");
+/*    APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### ========== MCPS-Indication ==========\r\n");
     APP_LOG(TS_OFF, VLEVEL_H, "###### D/L FRAME:%04d | SLOT:%s | PORT:%d | DR:%d | RSSI:%d | SNR:%d\r\n",
             params->DownlinkCounter, slotStrings[params->RxSlot], appData->Port, params->Datarate, params->Rssi, params->Snr);
+*/
     switch (appData->Port)
     {
       case LORAWAN_SWITCH_CLASS_PORT:
@@ -408,14 +409,14 @@ static void OnRxData(LmHandlerAppData_t *appData, LmHandlerRxParams_t *params)
           AppLedStateOn = appData->Buffer[0] & 0x01;
           if (AppLedStateOn == RESET)
           {
-            APP_LOG(TS_OFF, VLEVEL_H,   "LED OFF\r\n");
-
+ //           APP_LOG(TS_OFF, VLEVEL_H,   "LED OFF\r\n");
+						MU_LED_Off(HL1);
             //LED_Off(LED_RED1);
           }
           else
           {
-            APP_LOG(TS_OFF, VLEVEL_H, "LED ON\r\n");
-
+ //           APP_LOG(TS_OFF, VLEVEL_H, "LED ON\r\n");
+						MU_LED_On(HL1);
             //LED_On(LED_RED1);
           }
         }
@@ -445,11 +446,11 @@ static void SendTxData(void)
 
   if (LORAMAC_HANDLER_SUCCESS == LmHandlerSend(&AppData, LORAWAN_DEFAULT_CONFIRMED_MSG_STATE, &nextTxIn, false))
   {
-    APP_LOG(TS_ON, VLEVEL_L, "SEND REQUEST\r\n");
+//    APP_LOG(TS_ON, VLEVEL_L, "SEND REQUEST\r\n");
   }
   else if (nextTxIn > 0)
   {
-    APP_LOG(TS_ON, VLEVEL_L, "Next Tx in  : ~%d second(s)\r\n", (nextTxIn / 1000));
+//    APP_LOG(TS_ON, VLEVEL_L, "Next Tx in  : ~%d second(s)\r\n", (nextTxIn / 1000));
   }
 
   /* USER CODE END SendTxData_1 */
@@ -623,19 +624,20 @@ static void OnTxData(LmHandlerTxParams_t *params)
     {
       //LED_On(LED_RED2) ;
       UTIL_TIMER_Start(&TxLedTimer);
-
+/*
       APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### ========== MCPS-Confirm =============\r\n");
       APP_LOG(TS_OFF, VLEVEL_H, "###### U/L FRAME:%04d | PORT:%d | DR:%d | PWR:%d", params->UplinkCounter,
               params->AppData.Port, params->Datarate, params->TxPower);
 
       APP_LOG(TS_OFF, VLEVEL_H, " | MSG TYPE:");
+*/
       if (params->MsgType == LORAMAC_HANDLER_CONFIRMED_MSG)
       {
-        APP_LOG(TS_OFF, VLEVEL_H, "CONFIRMED [%s]\r\n", (params->AckReceived != 0) ? "ACK" : "NACK");
+//        APP_LOG(TS_OFF, VLEVEL_H, "CONFIRMED [%s]\r\n", (params->AckReceived != 0) ? "ACK" : "NACK");
       }
       else
       {
-        APP_LOG(TS_OFF, VLEVEL_H, "UNCONFIRMED\r\n");
+//        APP_LOG(TS_OFF, VLEVEL_H, "UNCONFIRMED\r\n");
       }
     }
   }
@@ -650,22 +652,22 @@ static void OnJoinRequest(LmHandlerJoinParams_t *joinParams)
     if (joinParams->Status == LORAMAC_HANDLER_SUCCESS)
     {
       UTIL_TIMER_Stop(&JoinLedTimer);
-
+			MU_LED_Off(HL1);
       //LED_Off(LED_RED1) ;
-
-      APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### = JOINED = ");
+			
+//      APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### = JOINED = ");
       if (joinParams->Mode == ACTIVATION_TYPE_ABP)
       {
-        APP_LOG(TS_OFF, VLEVEL_M, "ABP ======================\r\n");
+//        APP_LOG(TS_OFF, VLEVEL_M, "ABP ======================\r\n");
       }
       else
       {
-        APP_LOG(TS_OFF, VLEVEL_M, "OTAA =====================\r\n");
+//        APP_LOG(TS_OFF, VLEVEL_M, "OTAA =====================\r\n");
       }
     }
     else
     {
-      APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### = JOIN FAILED\r\n");
+//      APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### = JOIN FAILED\r\n");
     }
   }
   /* USER CODE END OnJoinRequest_1 */

@@ -29,8 +29,8 @@
 #include "tiny-json.h"
 #include "tiny-json_extra.h"
 #include "string.h"
-#include "usart.h"
-#include "dma.h"
+//#include "usart.h"
+//#include "dma.h"
 #include "flash_mem.h"
 #include "usb_device.h"
 #include "usbd_cdc_if.h"
@@ -60,7 +60,7 @@ uint8_t buff2[Buff_Len];
 /* USER CODE BEGIN PV */
 extern char sets_JSON[];
 extern struct json_sets_t json_sets;
-extern UART_HandleTypeDef huart3;
+//extern UART_HandleTypeDef huart3;
 uint8_t aRxBuffer[RXBUFFERSIZE];
 uint32_t RxReady = 0;
 
@@ -124,8 +124,8 @@ int main(void)
 	HAL_SYSCFG_VREFBUF_VoltageScalingConfig(SYSCFG_VREFBUF_VOLTAGE_SCALE0);
 	HAL_SYSCFG_EnableVREFBUF();
 	HAL_SYSCFG_VREFBUF_HighImpedanceConfig(SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE);
-	MX_DMA_Init();
-  MX_USART3_UART_Init();
+//	MX_DMA_Init();
+//  MX_USART3_UART_Init();
 	MX_USB_DEVICE_Init();
 	//check();
 
@@ -145,18 +145,18 @@ int main(void)
 //  strcpy(name2, namevalue);
 
 	//HAL_UART_Transmit(&huart3, (uint8_t *)name2, 100, 800);
-	if(HAL_UART_Transmit_DMA(&huart3, (uint8_t *)"forever", 100) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	HAL_Delay(100);
+//	if(HAL_UART_Transmit_DMA(&huart3, (uint8_t *)"forever", 100) != HAL_OK)
+//	{
+//		Error_Handler();
+//	}
+//	HAL_Delay(100);
 
-	RxReady = 0;
-	if(HAL_UART_Receive_DMA(&huart3, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	
+//	RxReady = 0;
+//	if(HAL_UART_Receive_DMA(&huart3, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
+//	{
+//		Error_Handler();
+//	}
+//	
 //	while(RxReady != 1)
 //	{
 //	}
