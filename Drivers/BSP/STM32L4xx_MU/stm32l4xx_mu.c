@@ -116,8 +116,10 @@ void MU_LED_Init(Led_TypeDef Led)
 		GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
 		GPIO_InitStruct.Pull  = GPIO_NOPULL;
 		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_WritePin(LED_GPIO_PORT[Led], LED_GPIO_PIN[Led], GPIO_PIN_SET);
 		HAL_GPIO_Init(LED_GPIO_PORT[Led], &GPIO_InitStruct);
 	}
+	
 }
 
 void MU_board_LEDs_Init(void)
@@ -135,6 +137,19 @@ void MU_board_LEDs_Init(void)
 		HAL_GPIO_WritePin(HL1Sign_GPIO_Port, HL3Sign_Pin | HL2Sign_Pin | HL1Sign_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_Init(HL1Sign_GPIO_Port, &GPIO_InitStruct);
 	}
+}
+
+
+void MU_board_LEDs_DeInit(void)
+{
+  GPIO_InitTypeDef  GPIO_InitStruct = {0};
+	{
+  /* Disable the GPIO_LED pin */
+		HAL_GPIO_WritePin(HL1Sign_GPIO_Port, HL3Sign_Pin | HL2Sign_Pin | HL1Sign_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_DeInit(GPIOE, HL3Sign_Pin | HL2Sign_Pin | HL1Sign_Pin);
+	}
+	/* Disable the GPIOLED Clock */
+	//__HAL_RCC_GPIOE_CLK_DISABLE();
 }
 
 void MU_board_USB_detect_Init(void)
@@ -184,6 +199,13 @@ void MU_Sound_Init(void)
 	HAL_GPIO_Init(SoundSign_GPIO_Port, &GPIO_InitStruct);
 	HAL_GPIO_WritePin(SoundSign_GPIO_Port, SoundSign_Pin, GPIO_PIN_RESET);
 }
+
+void MU_Sound_DeInit(void)
+{
+	HAL_GPIO_WritePin(SoundSign_GPIO_Port, SoundSign_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_DeInit(SoundSign_GPIO_Port, SoundSign_Pin);
+}
+
 /**
   * @brief  DeInitialize LED GPIO.
   * @param  Led: LED to be deinitialized.
@@ -197,7 +219,7 @@ void MU_LED_DeInit(Led_TypeDef Led)
   GPIO_InitTypeDef  GPIO_InitStruct;
 
   /* Turn off LED */
-  HAL_GPIO_WritePin(LED_GPIO_PORT[Led], LED_GPIO_PIN[Led], GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LED_GPIO_PORT[Led], LED_GPIO_PIN[Led], GPIO_PIN_SET);
   /* DeInit the GPIO_LED pin */
   GPIO_InitStruct.Pin = LED_GPIO_PIN[Led];
   HAL_GPIO_DeInit(LED_GPIO_PORT[Led], GPIO_InitStruct.Pin);

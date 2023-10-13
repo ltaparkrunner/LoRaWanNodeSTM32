@@ -252,7 +252,7 @@ void EXTI9_5_IRQHandler(void)
 {
   __HAL_GPIO_EXTI_CLEAR_IT(USB_VBUS_Pin);
 	Set_Green_Led_Period();
-		
+	
 		//MX_USB_DEVICE_Init();
 		//onUSBPlugIn();
 /*
