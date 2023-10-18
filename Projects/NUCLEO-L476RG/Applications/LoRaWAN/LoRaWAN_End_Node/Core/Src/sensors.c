@@ -27,7 +27,7 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
     */
     GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_2;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG_ADC_CONTROL;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Pull = GPIO_PULLDOWN;	//NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     /* ADC2 interrupt Init */
@@ -274,12 +274,12 @@ int32_t MX_DIG_Init(void)
   /*Configure GPIO pin : Vbus_DET_Pin */
   GPIO_InitStruct.Pin = P0_PIN | P1_PIN | P2_PIN | P3_PIN  | P5_PIN | P6_PIN | P7_PIN;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN; //NOPULL;
   HAL_GPIO_Init(P0123567__Port, &GPIO_InitStruct);
 	
 	GPIO_InitStruct.Pin = P4_PIN;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;	//NOPULL;
   HAL_GPIO_Init(P4__Port, &GPIO_InitStruct);
 	return 0;
 }

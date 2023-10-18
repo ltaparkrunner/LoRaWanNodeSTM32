@@ -407,7 +407,7 @@ static void SX1276MB1MAS_RADIO_SPI_IoInit(SPI_HandleTypeDef *spiHandle)
   PC3     ------> SPI2_MOSI
     */
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;//GPIO_PULLDOWN;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;	//GPIO_NOPULL;//GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
 
   GPIO_InitStruct.Alternate = MU_SPI2_MOSI_GPIO_AF;//RADIO_SPI_MOSI_GPIO_AF;
