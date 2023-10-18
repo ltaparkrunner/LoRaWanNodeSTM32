@@ -63,3 +63,9 @@ dkms.conf
 # Keil uvision
 *.uvoptx
 *.uvprojx
+
+# Else
+*.7z
+main2.c/
+
+
