@@ -891,7 +891,7 @@ LoRaMacStatus_t RegionRU864NextChannel( NextChanParams_t* nextChanParams, uint8_
     {
         // We found a valid channel
         *channel = enabledChannels[randr( 0, nbEnabledChannels - 1 )];
-				*channel = ChooseChannelFreq(enabledChannels, nbEnabledChannels);
+//				*channel = ChooseChannelFreq(enabledChannels, nbEnabledChannels);
     }
     else if( status == LORAMAC_STATUS_NO_CHANNEL_FOUND )
     {
