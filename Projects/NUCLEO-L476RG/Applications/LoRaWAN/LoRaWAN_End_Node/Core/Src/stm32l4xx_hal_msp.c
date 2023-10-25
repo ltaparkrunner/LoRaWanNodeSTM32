@@ -64,26 +64,23 @@
 void HAL_MspInit(void)
 {
   /* USER CODE BEGIN MspInit 0 */
-  __HAL_RCC_SYSCFG_CLK_ENABLE();
-//  __HAL_RCC_PWR_CLK_ENABLE();
+
   /* USER CODE END MspInit 0 */
 
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
   __HAL_RCC_PWR_CLK_ENABLE();
 
-  /* Ensure that MSI is wake-up system clock */
-  __HAL_RCC_WAKEUPSTOP_CLK_CONFIG(RCC_STOP_WAKEUPCLOCK_MSI);
+  /* System interrupt init*/
 
   /* USER CODE BEGIN MspInit 1 */
-//	HAL_SYSCFG_VREFBUF_VoltageScalingConfig(SYSCFG_VREFBUF_VOLTAGE_SCALE0);
-//	HAL_SYSCFG_EnableVREFBUF();
-//	HAL_SYSCFG_VREFBUF_HighImpedanceConfig(SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE);
-	//huart3.Instance = USART3;
-	//HAL_UART_MspInit(&huart3);
+
   /* USER CODE END MspInit 1 */
 }
 
 /* USER CODE BEGIN 1 */
-
+//void HAL_RTC_MspInit(RTC_HandleTypeDef *hrtc)
+//{
+//}
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

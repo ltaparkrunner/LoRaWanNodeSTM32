@@ -222,8 +222,10 @@ UTIL_TIMER_Status_t RTC_IF_Init(void)
     /* ##-1- Configure the RTC clock source ###################################### */
 
     /* Select LSE as RTC clock source */
+		/* Select LSI as RTC clock source */
     PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_RTC;
-    PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
+//    PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
+		PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSI;
     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
     {
       /* Initialization Error */

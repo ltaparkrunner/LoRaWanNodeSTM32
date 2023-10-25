@@ -35,6 +35,7 @@
 #include "usb_device.h"
 #include "usbd_cdc_if.h"
 #include "parseMessage.h"
+#include "blinks.h"
 //#include "sys_app.h"
 /* USER CODE END Includes */
 
@@ -85,12 +86,14 @@ static void MX_GPIO_Init(void);
   * @retval int
   */
 int main(void)
+
 {
   /* USER CODE BEGIN 1 */
-	json_sets.length = strlen(json_sets.p);
-//	if(json_sets.array != 0) 
-	json_sets.outplen = FormOutpJson(&json_sets);
-	//memcpy(json_sets.array, json_sets.p, json_sets.length);
+	MU_LED_Init(HL1);
+	MU_LED_Init(HL2);
+//	MU_LED_On(HL1);
+//	MU_LED_On(HL2);
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -99,25 +102,16 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-//	MU_board_LEDs_Init();
-//	MU_board_USB_detect_Init();
-//	MX_GPIO_Init();
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-	//SystemApp_Init();
-//		json_t pool[ Num_Field ];
-//	uint8_t buff[Buff_Len];
 
-//	HAL_Init_Flash();
-
-//	init_flash(FLASH_PAGE_FOR_SETTINGS, buff, Buff_Len);
-	
   /* USER CODE END SysInit */
-	//HAL_Delay(10000);
+
   /* Initialize all configured peripherals */
   MX_LoRaWAN_Init();
   /* USER CODE BEGIN 2 */
@@ -127,50 +121,13 @@ int main(void)
 //	MX_DMA_Init();
 //  MX_USART3_UART_Init();
 	MX_USB_DEVICE_Init();
-	//check();
 
-
-//	json_t const *settings = json_create(sets_JSON, pool, Num_Field);
-//	if (settings == NULL) return -1;
-//	
-//	///////////////
-//	json_t const* namefield = json_getProperty(settings, "LoRa_text");
-//	if (namefield == NULL) return -1;
-//	if (json_getType(namefield) != JSON_TEXT) return -1;
-//	
-//	//////////////////
-//	char const* namevalue = json_getValue(namefield);
-//	static char name2[150];
-
-//  strcpy(name2, namevalue);
-
-	//HAL_UART_Transmit(&huart3, (uint8_t *)name2, 100, 800);
-//	if(HAL_UART_Transmit_DMA(&huart3, (uint8_t *)"forever", 100) != HAL_OK)
-//	{
-//		Error_Handler();
-//	}
-//	HAL_Delay(100);
-
-//	RxReady = 0;
-//	if(HAL_UART_Receive_DMA(&huart3, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
-//	{
-//		Error_Handler();
-//	}
-//	
-//	while(RxReady != 1)
-//	{
-//	}
-	//strcpy(
-	//printf("%s%s%s", "LoRa_text: '", namevalue, "'.\n");
-	//printf(namevalue);
-	//printf("forever");
-	//printf(
-	
-
-//		write_read_flash();
 	uint8_t result = USBD_OK;
 	uint8_t result2 = PARSED_JSON_OK;
 	uint8_t result3 = WRITTEN_FLASH_OK;
+	json_sets.length = strlen(json_sets.p);
+	json_sets.outplen = FormOutpJson(&json_sets);
+	blinking(3, 1);
   /* USER CODE END 2 */
 	
   /* Infinite loop */
@@ -261,84 +218,49 @@ int main(void)
   * @brief System Clock Configuration
   * @retval None
   */
-//void SystemClock_Config(void)
-//{
-//  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-//  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-//	
-//	  HAL_PWR_EnableBkUpAccess();
-//  __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
-
-//  /* MSI is enabled after System reset, activate PLL with MSI as source */
-//  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_MSI;
-//  RCC_OscInitStruct.MSIState = RCC_MSI_ON;
-//  RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_6;
-//  RCC_OscInitStruct.MSICalibrationValue = RCC_MSICALIBRATION_DEFAULT;
-//  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-//  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_MSI;
-//  RCC_OscInitStruct.PLL.PLLM = 4;//1;
-//  RCC_OscInitStruct.PLL.PLLN = 40;
-//  RCC_OscInitStruct.PLL.PLLR = 2;
-//  RCC_OscInitStruct.PLL.PLLP = 7;
-//  RCC_OscInitStruct.PLL.PLLQ = 4;
-//  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-//  {
-//    Error_Handler();
-//  }
-
-//  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2
-//  clocks dividers */
-//  RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
-//  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-//  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-//  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-//  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
-//  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
-//  {
-//    Error_Handler();
-//  }
-//	
-////	RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-////                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-////  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-////  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-////  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-////  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
-
-////  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
-////  {
-////    Error_Handler();
-////  }
-//		USBClock_Config();
-//}
-
-/**
-  * @brief System Clock Configuration
-  * @retval None
-  */
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
-
-  /** Configure LSE Drive Capability
+	
+	/** Configure LSE Drive Capability
   */
-  HAL_PWR_EnableBkUpAccess();
-  __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
+/*	
+	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+	
+	__HAL_RCC_PWR_CLK_ENABLE();
+	HAL_PWR_EnableBkUpAccess();
+  __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_HIGH);
+	
+	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSE ;
+  RCC_OscInitStruct.LSEState = RCC_LSE_ON;
+	//RCC_OscInitStruct.LSIState = RCC_LSI_OFF;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+//	MU_LED_On(HL1);
+//	MU_LED_On(HL2);
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+	MU_LED_Off(HL1_Pin);
+	MU_LED_Off(HL2_Pin);
+	blinking(3,0);
+*/
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_LSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI|RCC_OSCILLATORTYPE_HSE | RCC_OSCILLATORTYPE_LSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.LSEState = RCC_LSE_ON;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 4;
-  RCC_OscInitStruct.PLL.PLLN = 8;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
-  RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
-  RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
+	RCC_OscInitStruct.LSEState = RCC_LSE_OFF;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -347,7 +269,7 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSE;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
@@ -356,17 +278,14 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC|RCC_PERIPHCLK_USART3
-                              |RCC_PERIPHCLK_LPTIM1|RCC_PERIPHCLK_USB
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC|RCC_PERIPHCLK_USB
                               |RCC_PERIPHCLK_ADC;
-  PeriphClkInit.Usart3ClockSelection = RCC_USART3CLKSOURCE_PCLK1;
-  PeriphClkInit.Lptim1ClockSelection = RCC_LPTIM1CLKSOURCE_PCLK;
   PeriphClkInit.AdcClockSelection = RCC_ADCCLKSOURCE_PLLSAI1;
-  PeriphClkInit.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
+  PeriphClkInit.RTCClockSelection = RCC_RTCCLKSOURCE_LSI;
   PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLLSAI1;
   PeriphClkInit.PLLSAI1.PLLSAI1Source = RCC_PLLSOURCE_HSE;
-  PeriphClkInit.PLLSAI1.PLLSAI1M = 4;
-  PeriphClkInit.PLLSAI1.PLLSAI1N = 24;
+  PeriphClkInit.PLLSAI1.PLLSAI1M = 2;
+  PeriphClkInit.PLLSAI1.PLLSAI1N = 12;
   PeriphClkInit.PLLSAI1.PLLSAI1P = RCC_PLLP_DIV7;
   PeriphClkInit.PLLSAI1.PLLSAI1Q = RCC_PLLQ_DIV4;
   PeriphClkInit.PLLSAI1.PLLSAI1R = RCC_PLLR_DIV4;
@@ -375,9 +294,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  /** Enables the Clock Security System
-  */
-  HAL_RCCEx_EnableLSECSS();
+	//HAL_RCCEx_EnableLSECSS();
   /** Configure the main internal regulator output voltage
   */
   if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
@@ -385,6 +302,80 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 }
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+//void SystemClock_Config(void)
+//{
+//  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+//  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+//  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+
+//  /** Configure LSE Drive Capability
+//  */
+//  HAL_PWR_EnableBkUpAccess();
+//  __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
+//  /** Initializes the RCC Oscillators according to the specified parameters
+//  * in the RCC_OscInitTypeDef structure.
+//  */
+//  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_LSE;
+//  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+//  RCC_OscInitStruct.LSEState = RCC_LSE_ON;
+//  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+//  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+//  RCC_OscInitStruct.PLL.PLLM = 4;
+//  RCC_OscInitStruct.PLL.PLLN = 8;
+//  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
+//  RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
+//  RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
+//  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//  /** Initializes the CPU, AHB and APB buses clocks
+//  */
+//  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+//                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+//  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+//  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+//  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+//  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+//  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC|RCC_PERIPHCLK_USART3
+//                              |RCC_PERIPHCLK_LPTIM1|RCC_PERIPHCLK_USB
+//                              |RCC_PERIPHCLK_ADC;
+//  PeriphClkInit.Usart3ClockSelection = RCC_USART3CLKSOURCE_PCLK1;
+//  PeriphClkInit.Lptim1ClockSelection = RCC_LPTIM1CLKSOURCE_PCLK;
+//  PeriphClkInit.AdcClockSelection = RCC_ADCCLKSOURCE_PLLSAI1;
+//  PeriphClkInit.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
+//  PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLLSAI1;
+//  PeriphClkInit.PLLSAI1.PLLSAI1Source = RCC_PLLSOURCE_HSE;
+//  PeriphClkInit.PLLSAI1.PLLSAI1M = 4;
+//  PeriphClkInit.PLLSAI1.PLLSAI1N = 24;
+//  PeriphClkInit.PLLSAI1.PLLSAI1P = RCC_PLLP_DIV7;
+//  PeriphClkInit.PLLSAI1.PLLSAI1Q = RCC_PLLQ_DIV4;
+//  PeriphClkInit.PLLSAI1.PLLSAI1R = RCC_PLLR_DIV4;
+//  PeriphClkInit.PLLSAI1.PLLSAI1ClockOut = RCC_PLLSAI1_48M2CLK|RCC_PLLSAI1_ADC1CLK;
+//  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//  /** Enables the Clock Security System
+//  */
+//  HAL_RCCEx_EnableLSECSS();
+//  /** Configure the main internal regulator output voltage
+//  */
+//  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//}
 
 /* USER CODE BEGIN 4 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)

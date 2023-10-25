@@ -41,7 +41,7 @@ void blinking(int32_t num, int32_t ver)
 void wait(int32_t num, int32_t ver)
 {
 	int32_t v = (ver == 0)? 100000 : 1000000;
-	for(int32_t i2 = 0; i2 < num*2; i2++)
+	for(int32_t i1 = 0; i1 < num*2; i1++)
 	{
 		for(int32_t i2 = 0; i2 < v; i2++)
 			waiting_for(num);
