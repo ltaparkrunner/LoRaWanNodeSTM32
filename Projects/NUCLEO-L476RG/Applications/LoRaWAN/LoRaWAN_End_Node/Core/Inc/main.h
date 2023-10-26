@@ -58,9 +58,13 @@ void SystemClock_Config(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define RTC_N_PREDIV_S 10
+#define RTC_N_PREDIV_S 8//10
 #define RTC_PREDIV_S ((1<<RTC_N_PREDIV_S)-1)
-#define RTC_PREDIV_A ((1<<(15-RTC_N_PREDIV_S))-1)
+//#define RTC_PREDIV_A ((1<<(15-RTC_N_PREDIV_S))-1)
+
+//#define RTC_PREDIV_S	1031
+#define RTC_PREDIV_A	124
+
 #define USART_BAUDRATE 115200
 
 /* Pin mapping */

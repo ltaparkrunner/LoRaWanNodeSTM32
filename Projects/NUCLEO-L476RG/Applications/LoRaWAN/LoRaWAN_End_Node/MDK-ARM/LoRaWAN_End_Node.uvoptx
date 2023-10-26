@@ -154,7 +154,7 @@
           <Type>0</Type>
           <LineNumber>2936</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134287192</Address>
+          <Address>134287180</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -185,7 +185,17 @@
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>tmpregister</ItemText>
+          <ItemText>RCC_OscInitStruct-&gt;HSEState</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>first_read</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>RCC_OscInitStruct-&gt;HSEState</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
