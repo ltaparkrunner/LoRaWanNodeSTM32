@@ -152,34 +152,50 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>893</LineNumber>
+          <LineNumber>557</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/Region/RegionRU864.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>2573</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134285712</Address>
+          <Address>134240718</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.c</Filename>
+          <Filename>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.c\2573</Expression>
+          <Expression>\\sx1276mb1mas\../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.c\557</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>551</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134240634</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\sx1276mb1mas\../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.c\551</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>534</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134240594</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\sx1276mb1mas\../../../../../../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.c\534</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -196,22 +212,22 @@
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>tchanged</ItemText>
+          <ItemText>tickstart</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>channel</ItemText>
+          <ItemText>RCC_OscInitStruct-&gt;HSEState</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>MacCtx.Channel</ItemText>
+          <ItemText>first_read</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>enabledChannels</ItemText>
+          <ItemText>RCC_OscInitStruct-&gt;HSEState</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -272,6 +288,16 @@
       <pszMrulep></pszMrulep>
       <pSingCmdsp></pSingCmdsp>
       <pMultCmdsp></pMultCmdsp>
+      <SystemViewers>
+        <Entry>
+          <Name>System Viewer\RCC</Name>
+          <WinId>35904</WinId>
+        </Entry>
+        <Entry>
+          <Name>System Viewer\RTC</Name>
+          <WinId>35905</WinId>
+        </Entry>
+      </SystemViewers>
       <DebugDescription>
         <Enable>1</Enable>
         <EnableFlashSeq>0</EnableFlashSeq>
@@ -1140,7 +1166,7 @@
 
   <Group>
     <GroupName>Application/Core</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -2344,7 +2370,7 @@
 
   <Group>
     <GroupName>Utils</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

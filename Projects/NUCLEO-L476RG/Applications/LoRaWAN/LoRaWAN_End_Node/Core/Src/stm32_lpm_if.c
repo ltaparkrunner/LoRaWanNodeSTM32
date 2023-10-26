@@ -100,9 +100,9 @@ void PWR_EnterStopMode(void)
   UTILS_ENTER_CRITICAL_SECTION();
 
   Sx_Board_IoDeInit();
-	MU_board_LEDs_DeInit();
-	MU_Sound_DeInit();
-	MU_LED_DeInit(HL1);
+//	MU_board_LEDs_DeInit();
+//	MU_Sound_DeInit();
+//	MU_LED_DeInit(HL1);
 //	MU_LED_DeInit(HL2);
 //  HAL_ADC_MspDeInit(&hadc);
 
@@ -160,7 +160,8 @@ void PWR_ExitStopMode(void)
 //    {
 //      while (1);
 //    }
-		SystemClock_Config();
+//		SystemClock_Config();
+			Clock_Config();
   }
   else
   {
@@ -169,10 +170,10 @@ void PWR_ExitStopMode(void)
 
   /* initializes the peripherals */
   Sx_Board_IoInit();
-	MU_board_LEDs_Init();
-	MU_Sound_Init();
-	MU_LED_Init(HL1);
-	MU_LED_Init(HL2);
+//	MU_board_LEDs_Init();
+//	MU_Sound_Init();
+//	MU_LED_Init(HL1);
+//	MU_LED_Init(HL2);
   UTILS_EXIT_CRITICAL_SECTION();
   /* USER CODE BEGIN ExitStopMode_2 */
 //	{

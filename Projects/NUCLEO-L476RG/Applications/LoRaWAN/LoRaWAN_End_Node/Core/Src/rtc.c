@@ -156,17 +156,17 @@ void HAL_RTC_MspInit(RTC_HandleTypeDef *hrtc)
 
   /*##-1- Configue the RTC clock soucre ######################################*/
   /* -a- Enable LSE Oscillator */
-  RCC_OscInitStruct.OscillatorType =  RCC_OSCILLATORTYPE_LSE;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
-  RCC_OscInitStruct.LSEState = RCC_LSE_ON;
-  if(HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
+//  RCC_OscInitStruct.OscillatorType =  RCC_OSCILLATORTYPE_LSE;
+//  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+//  RCC_OscInitStruct.LSEState = RCC_LSE_ON;
+//  if(HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
 
   /* -b- Select LSI as RTC clock source */
   PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_RTC;
-  PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
+  PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_HSE_DIV32;		//RCC_RTCCLKSOURCE_LSE;
   if(HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   { 
     Error_Handler();

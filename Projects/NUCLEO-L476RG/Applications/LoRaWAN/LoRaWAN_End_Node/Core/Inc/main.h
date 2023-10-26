@@ -53,14 +53,20 @@ extern "C" {
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 void SystemClock_Config(void);
+void Clock_Config(void);
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
 #define RTC_N_PREDIV_S 10
-#define RTC_PREDIV_S ((1<<RTC_N_PREDIV_S)-1)
-#define RTC_PREDIV_A ((1<<(15-RTC_N_PREDIV_S))-1)
+//#define RTC_PREDIV_S ((1<<RTC_N_PREDIV_S)-1)
+//#define RTC_PREDIV_A ((1<<(15-RTC_N_PREDIV_S))-1)
+
+// for HSE/32
+#define RTC_PREDIV_A	99
+#define RTC_PREDIV_S 	9999
+
 #define USART_BAUDRATE 115200
 
 /* Pin mapping */
