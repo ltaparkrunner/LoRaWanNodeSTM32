@@ -25,7 +25,7 @@
 /* USER CODE END 0 */
 
 RTC_HandleTypeDef hrtc;
-
+int32_t extra_fr = 2;
 /* RTC init function */
 void MX_RTC_Init(void)
 {
@@ -46,7 +46,7 @@ void MX_RTC_Init(void)
   hrtc.Instance = RTC;
   hrtc.Init.HourFormat = RTC_HOURFORMAT_24;
   hrtc.Init.AsynchPrediv = RTC_PREDIV_A;
-  hrtc.Init.SynchPrediv = RTC_PREDIV_S;
+  hrtc.Init.SynchPrediv = RTC_PREDIV_S + extra_fr;
   hrtc.Init.OutPut = RTC_OUTPUT_DISABLE;
   hrtc.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
   hrtc.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;

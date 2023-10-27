@@ -135,7 +135,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGTARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)</Name>
+          <Name>(1010=77,104,517,647,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -152,25 +152,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>98</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134260310</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>../Core/Src/rtc.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../Core/Src/rtc.c\98</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
           <LineNumber>2936</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134287188</Address>
+          <Address>134287200</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -181,53 +165,37 @@
           <ExecCommand></ExecCommand>
           <Expression>\\sx1276mb1mas\../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.c\2936</Expression>
         </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>506</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134269598</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>../Core/Src/rtc_if.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../Core/Src/rtc_if.c\506</Expression>
-        </Bp>
       </Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>bf</ItemText>
+          <ItemText>RCC_OscInitStruct-&gt;HSEState</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>buff</ItemText>
+          <ItemText>sAlarm</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>tickstart</ItemText>
+          <ItemText>RTC_AlarmStructure</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>RCC_OscInitStruct-&gt;HSEState</ItemText>
+          <ItemText>Regulator</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>first_read</ItemText>
+          <ItemText>StopModeDisable</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>RCC_OscInitStruct-&gt;HSEState</ItemText>
+          <ItemText>OffModeDisable</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -290,12 +258,16 @@
       <pMultCmdsp></pMultCmdsp>
       <SystemViewers>
         <Entry>
+          <Name>System Viewer\NVIC</Name>
+          <WinId>35905</WinId>
+        </Entry>
+        <Entry>
           <Name>System Viewer\RCC</Name>
           <WinId>35904</WinId>
         </Entry>
         <Entry>
           <Name>System Viewer\RTC</Name>
-          <WinId>35905</WinId>
+          <WinId>35903</WinId>
         </Entry>
       </SystemViewers>
       <DebugDescription>

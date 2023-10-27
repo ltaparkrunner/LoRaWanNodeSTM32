@@ -121,7 +121,7 @@ static UTIL_LPM_bm_t OffModeDisable = UTIL_LPM_NO_BIT_SET;
   */
 void UTIL_LPM_Init( void )
 {
-  StopModeDisable = UTIL_LPM_NO_BIT_SET;
+  StopModeDisable = ~UTIL_LPM_NO_BIT_SET;//UTIL_LPM_NO_BIT_SET;
   OffModeDisable = UTIL_LPM_NO_BIT_SET;
   UTIL_LPM_INIT_CRITICAL_SECTION( );
 }

@@ -135,6 +135,7 @@ void SystemApp_Init(void)
   UTIL_LPM_Init();
   /* Disable Stand-by mode */
   UTIL_LPM_SetOffMode((1 << CFG_LPM_APPLI_Id), UTIL_LPM_DISABLE);
+	UTIL_LPM_SetStopMode((1 << CFG_LPM_APPLI_Id), UTIL_LPM_DISABLE);
 
 #if defined (LOW_POWER_DISABLE) && (LOW_POWER_DISABLE == 1)
   /* Disable Stop Mode */
