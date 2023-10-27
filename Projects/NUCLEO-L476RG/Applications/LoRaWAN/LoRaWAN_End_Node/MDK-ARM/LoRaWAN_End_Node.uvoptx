@@ -152,50 +152,40 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>2936</LineNumber>
+          <LineNumber>470</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134287200</Address>
+          <Address>134222202</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.c</Filename>
+          <Filename>..\Core\Src\parseMessages.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/LoRaMac.c\2936</Expression>
+          <Expression>\\sx1276mb1mas\../Core/Src/parseMessages.c\470</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>RCC_OscInitStruct-&gt;HSEState</ItemText>
+          <ItemText>json_sets</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>sAlarm</ItemText>
+          <ItemText>ch[8]</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>RTC_AlarmStructure</ItemText>
+          <ItemText>i64</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Regulator</ItemText>
-        </Ww>
-        <Ww>
-          <count>4</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>StopModeDisable</ItemText>
-        </Ww>
-        <Ww>
-          <count>5</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>OffModeDisable</ItemText>
+          <ItemText>ch8</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -1082,7 +1072,7 @@
 
   <Group>
     <GroupName>Application/App</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -2110,7 +2100,7 @@
 
   <Group>
     <GroupName>JSON_settings</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

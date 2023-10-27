@@ -67,7 +67,8 @@ char sets_JSON[] = "{\
 	\"Command\": \"             \",\
 	\"WRTN\": 2,\
 	\"DevEuiValid\": true ,\
-	\"AppKeyValid\": true \
+	\"AppKeyValid\": true, \
+	\"ClockAdjustment\": -1 \
 }";
 
 struct json_sets_t json_sets = {
