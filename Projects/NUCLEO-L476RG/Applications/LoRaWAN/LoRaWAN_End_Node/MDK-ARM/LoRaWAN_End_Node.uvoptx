@@ -152,6 +152,22 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
+          <LineNumber>471</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>..\Core\Src\parseMessages.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
           <LineNumber>470</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>134222202</Address>
@@ -163,7 +179,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\Core\Src\parseMessages.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sx1276mb1mas\../Core/Src/parseMessages.c\470</Expression>
+          <Expression>\\\../Core/Src/parseMessages.c\470</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -186,6 +202,11 @@
           <count>3</count>
           <WinNumber>1</WinNumber>
           <ItemText>ch8</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>i64</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

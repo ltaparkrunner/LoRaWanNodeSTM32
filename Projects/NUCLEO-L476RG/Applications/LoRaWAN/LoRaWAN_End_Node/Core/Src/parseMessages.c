@@ -466,8 +466,10 @@ int32_t AssembleFullJSONStringForUSB(struct json_sets_t* json_sets, /*struct buf
 									break;
 									case 4:
 									{
+										int32_t i32 = i64;
 										char ch8[10];
-										sprintf(ch8, "%-10lld", i64);
+										//sprintf(ch8, "%-10lld", i64);
+										sprintf(ch8, "%-10d", i32);
 										strncpy(str_dh, ch8, 10);
 										str_dh +=10;
 									}
