@@ -186,13 +186,13 @@ int32_t CollectData(struct LmHandlerAppData_s* appData)
 	//	if(readflash(addr_r, (uint8_t*)temp_buff, FlashBuffLen) > 0) {
 	if(readflash_8b(addr_r+offset, temp_buff, bf_len) > 0) {
 		if(temp_buff[0] == truefl) {
-			MX_ADC2_Init(ADC_CHANNEL_7);
-			ret = ADCtoBuff(appData, 2);
+			MX_ADC2_Init(ADC_CHANNEL_6);
+			ret = ADCtoBuff(appData, 1);
 			HAL_ADC_DeInit(&hadc2);
 		}
 		else if(temp_buff[1] == truefl) {
-			MX_ADC2_Init(ADC_CHANNEL_6);
-			ret = ADCtoBuff(appData, 1);
+			MX_ADC2_Init(ADC_CHANNEL_7);
+			ret = ADCtoBuff(appData, 2);
 			HAL_ADC_DeInit(&hadc2);
 		}
 		else if(temp_buff[2] == truefl) {
