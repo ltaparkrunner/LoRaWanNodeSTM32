@@ -83,7 +83,7 @@ struct field_json json_descr[Json_Descript_Length] = {
 															{"WRTN",0,0x99,1,0,JSON_INTEGER,113,0},	// 15},
 															{"DevEuiValid",0,0,1,0,JSON_BOOLEAN,114,0},		// 0},
 															{"AppKeyValid",0,0,1,0,JSON_BOOLEAN,115,0},	// 1}
-															{"ClockAdjustment", 0,0,4,0,JSON_INTEGER, 119,0}
+															{"ClockAdjustment", 0,0,4,0,JSON_INTEGER, 119,0}				//57
 															//	\"LoRa_Data\": [\"AD1\", \"INP1\", \"INP3\", \"AD4\", \"text\"],
 };
 
@@ -341,4 +341,24 @@ int32_t json_to_buffer(char* str, json_t mem[], unsigned int qty, uint8_t buffer
 				j2++;
 	}
 	return json_descr[j2].offset + json_descr[j2].bytes;
+}
+
+#define ClkAdst			57
+int32_t read_fr(void)
+{
+	int32_t num, *pBuf = &num;
+	//uint8_t *pBuf = &num;
+	
+	uint32_t addr_w;
+	uint32_t addr_r = ChooseReadFlashBank(&addr_w);
+	uint32_t offset = json_descr[ClkAdst].offset;
+	uint32_t bf_len = json_descr[ClkAdst + 1].offset - json_descr[ClkAdst].offset;
+	
+	uint8_t temp_buff[8];
+	
+	//	if(readflash(addr_r, (uint8_t*)temp_buff, FlashBuffLen) > 0) {
+	if(readflash(addr_r+offset, temp_buff, 8) > 0) {
+		num = (int32_t)(temp_buff[0]<<24) + (temp_buff[1]<<16) + (temp_buff[2]<<8) + temp_buff[3];
+	}
+	return num;
 }
