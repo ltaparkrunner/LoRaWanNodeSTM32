@@ -24,7 +24,8 @@
 #include "app_lorawan.h"
 #include "lora_app.h"
 #include "sys_app.h"
-#include "stm32_seq.h"
+//#include "stm32_seq.h"
+#include "cmsis_os.h"
 /* USER CODE BEGIN Includes */
 
 #include "settings_json.h"
@@ -87,16 +88,22 @@ void MX_LoRaWAN_Init(void)
   /* USER CODE END MX_LoRaWAN_Init_3 */
 }
 
-void MX_LoRaWAN_Process(void)
+//void MX_LoRaWAN_Process(void)
+//{
+//  /* USER CODE BEGIN MX_LoRaWAN_Process_1 */
+
+//  /* USER CODE END MX_LoRaWAN_Process_1 */
+//  UTIL_SEQ_Run(UTIL_SEQ_DEFAULT);
+//  /* USER CODE BEGIN MX_LoRaWAN_Process_2 */
+
+//  /* USER CODE END MX_LoRaWAN_Process_2 */
+//}
+
+void MU_LoRaWAN_Process(void)
 {
-  /* USER CODE BEGIN MX_LoRaWAN_Process_1 */
-
-  /* USER CODE END MX_LoRaWAN_Process_1 */
-  UTIL_SEQ_Run(UTIL_SEQ_DEFAULT);
-  /* USER CODE BEGIN MX_LoRaWAN_Process_2 */
-
-  /* USER CODE END MX_LoRaWAN_Process_2 */
+	osKernelStart();
 }
+
 
 /* USER CODE BEGIN EF */
 
