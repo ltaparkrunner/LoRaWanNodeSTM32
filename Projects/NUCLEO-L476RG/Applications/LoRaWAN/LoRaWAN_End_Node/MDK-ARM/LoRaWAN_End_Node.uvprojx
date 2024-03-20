@@ -10,7 +10,7 @@
       <TargetName>sx1276mb1mas</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060960::V5.06 update 7 (build 960)::ARMCC</pCCUsed>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -48,7 +48,7 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>sx1276mb1mas\Exe\</OutputDirectory>
+          <OutputDirectory>.\sx1276mb1mas\Exe\</OutputDirectory>
           <OutputName>sx1276mb1mas</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
@@ -339,11 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32L476xx,USE_STM32L4XX_NUCLEO,SX1276MB1MAS</Define>
               <Undefine></Undefine>
-<<<<<<< HEAD
               <IncludePath>../LoRaWAN/App;../LoRaWAN/Target;../Core/Inc;../../../../../../Utilities/misc;../../../../../../Utilities/timer;../../../../../../Utilities/trace/adv_trace;../../../../../../Utilities/lpm/tiny_lpm;../../../../../../Utilities/sequencer;../../../../../../Drivers/BSP/STM32L4xx_MU;../../../../../../Drivers/BSP/sx1276mb1mas;../../../../../../Drivers/STM32L4xx_HAL_Driver/Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32L4xx/Include;../../../../../../Drivers/CMSIS/Include;../../../../../../Drivers/CMSIS/Core/Include;../../../../../../Middlewares/Third_Party/SubGHz_Phy;../../../../../../Middlewares/Third_Party/SubGHz_Phy/sx1276;../../../../../../Middlewares/Third_Party/LoRaWAN/Crypto;../../../../../../Middlewares/Third_Party/LoRaWAN/Mac;../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/Region;../../../../../../Middlewares/Third_Party/LoRaWAN/Utilities;../../../../../../Middlewares/Third_Party/LoRaWAN/LmHandler;../../../../../../Middlewares/Third_Party/LoRaWAN/LmHandler/packages;../../../../../../Drivers/BSP/IKS01A2;../../../../../../Drivers/BSP/Components/Common;../../../../../../Drivers/BSP/Components/hts221;../../../../../../Drivers/BSP/Components/lps22hb;../../../../../../Drivers/BSP/Components/lsm6dsl;../../../../../../Drivers/BSP/Components/lsm303agr;../../../../../../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../../../../../../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../../../../../../USB_DEVICE/App;../../../../../../USB_DEVICE/Target</IncludePath>
-=======
-              <IncludePath>../LoRaWAN/App;../LoRaWAN/Target;../Core/Inc;../../../../../../Utilities/misc;../../../../../../Utilities/timer;../../../../../../Utilities/trace/adv_trace;../../../../../../Utilities/lpm/tiny_lpm;../../../../../../Utilities/sequencer;../../../../../../Drivers/BSP/STM32L4xx_MU;../../../../../../Drivers/BSP/sx1276mb1mas;../../../../../../Drivers/STM32L4xx_HAL_Driver/Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32L4xx/Include;../../../../../../Drivers/CMSIS/Include;../../../../../../Drivers/CMSIS/Core/Include;../../../../../../Middlewares/Third_Party/SubGHz_Phy;../../../../../../Middlewares/Third_Party/SubGHz_Phy/sx1276;../../../../../../Middlewares/Third_Party/LoRaWAN/Crypto;../../../../../../Middlewares/Third_Party/LoRaWAN/Mac;../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/Region;../../../../../../Middlewares/Third_Party/LoRaWAN/Utilities;../../../../../../Middlewares/Third_Party/LoRaWAN/LmHandler;../../../../../../Middlewares/Third_Party/LoRaWAN/LmHandler/packages;../../../../../../Drivers/BSP/IKS01A2;../../../../../../Drivers/BSP/Components/Common;../../../../../../Drivers/BSP/Components/hts221;../../../../../../Drivers/BSP/Components/lps22hb;../../../../../../Drivers/BSP/Components/lsm6dsl;../../../../../../Drivers/BSP/Components/lsm303agr;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/include;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS</IncludePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </VariousControls>
           </Cads>
           <Aads>
@@ -840,7 +836,6 @@
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>JSON_settings</GroupName>
           <Files>
             <File>
@@ -872,34 +867,10 @@
               <FileName>parseMessages.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\parseMessages.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS</GroupName>
-          <Files>
-            <File>
-              <FileName>list.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\list.c</FilePath>
-            </File>
-            <File>
-              <FileName>queue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\queue.c</FilePath>
-            </File>
-            <File>
-              <FileName>tasks.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\tasks.c</FilePath>
-            </File>
-            <File>
-              <FileName>timers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\timers.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>Application/USB_DEVICE/App</GroupName>
           <Files>
             <File>
@@ -916,24 +887,10 @@
               <FileName>usbd_desc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\USB_DEVICE\App\usbd_desc.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS/portable</GroupName>
-          <Files>
-            <File>
-              <FileName>heap_4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\MemMang\heap_4.c</FilePath>
-            </File>
-            <File>
-              <FileName>port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\port.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>Application/USB_DEVICE/Target</GroupName>
           <Files>
             <File>
@@ -995,14 +952,6 @@
               <FileName>Errs.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\Errs.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS/CMSIS_RTOS</GroupName>
-          <Files>
-            <File>
-              <FileName>cmsis_os.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
@@ -1958,7 +1907,6 @@
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>JSON_settings</GroupName>
           <Files>
             <File>
@@ -1990,34 +1938,10 @@
               <FileName>parseMessages.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\parseMessages.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS</GroupName>
-          <Files>
-            <File>
-              <FileName>list.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\list.c</FilePath>
-            </File>
-            <File>
-              <FileName>queue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\queue.c</FilePath>
-            </File>
-            <File>
-              <FileName>tasks.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\tasks.c</FilePath>
-            </File>
-            <File>
-              <FileName>timers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\timers.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>Application/USB_DEVICE/App</GroupName>
           <Files>
             <File>
@@ -2034,24 +1958,10 @@
               <FileName>usbd_desc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\USB_DEVICE\App\usbd_desc.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS/portable</GroupName>
-          <Files>
-            <File>
-              <FileName>heap_4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\MemMang\heap_4.c</FilePath>
-            </File>
-            <File>
-              <FileName>port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\port.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>Application/USB_DEVICE/Target</GroupName>
           <Files>
             <File>
@@ -2113,14 +2023,6 @@
               <FileName>Errs.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\Errs.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS/CMSIS_RTOS</GroupName>
-          <Files>
-            <File>
-              <FileName>cmsis_os.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
@@ -3025,7 +2927,6 @@
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>JSON_settings</GroupName>
           <Files>
             <File>
@@ -3057,34 +2958,10 @@
               <FileName>parseMessages.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\parseMessages.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS</GroupName>
-          <Files>
-            <File>
-              <FileName>list.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\list.c</FilePath>
-            </File>
-            <File>
-              <FileName>queue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\queue.c</FilePath>
-            </File>
-            <File>
-              <FileName>tasks.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\tasks.c</FilePath>
-            </File>
-            <File>
-              <FileName>timers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\timers.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>Application/USB_DEVICE/App</GroupName>
           <Files>
             <File>
@@ -3101,24 +2978,10 @@
               <FileName>usbd_desc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\USB_DEVICE\App\usbd_desc.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS/portable</GroupName>
-          <Files>
-            <File>
-              <FileName>heap_4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\MemMang\heap_4.c</FilePath>
-            </File>
-            <File>
-              <FileName>port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\port.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>Application/USB_DEVICE/Target</GroupName>
           <Files>
             <File>
@@ -3180,14 +3043,6 @@
               <FileName>Errs.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\Errs.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS/CMSIS_RTOS</GroupName>
-          <Files>
-            <File>
-              <FileName>cmsis_os.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
@@ -4143,7 +3998,6 @@
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>JSON_settings</GroupName>
           <Files>
             <File>
@@ -4175,34 +4029,10 @@
               <FileName>parseMessages.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\parseMessages.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS</GroupName>
-          <Files>
-            <File>
-              <FileName>list.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\list.c</FilePath>
-            </File>
-            <File>
-              <FileName>queue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\queue.c</FilePath>
-            </File>
-            <File>
-              <FileName>tasks.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\tasks.c</FilePath>
-            </File>
-            <File>
-              <FileName>timers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\timers.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>Application/USB_DEVICE/App</GroupName>
           <Files>
             <File>
@@ -4219,24 +4049,10 @@
               <FileName>usbd_desc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\USB_DEVICE\App\usbd_desc.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS/portable</GroupName>
-          <Files>
-            <File>
-              <FileName>heap_4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\MemMang\heap_4.c</FilePath>
-            </File>
-            <File>
-              <FileName>port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\port.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>Application/USB_DEVICE/Target</GroupName>
           <Files>
             <File>
@@ -4298,14 +4114,6 @@
               <FileName>Errs.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\Errs.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS/CMSIS_RTOS</GroupName>
-          <Files>
-            <File>
-              <FileName>cmsis_os.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
@@ -5261,7 +5069,6 @@
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>JSON_settings</GroupName>
           <Files>
             <File>
@@ -5293,34 +5100,10 @@
               <FileName>parseMessages.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\parseMessages.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS</GroupName>
-          <Files>
-            <File>
-              <FileName>list.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\list.c</FilePath>
-            </File>
-            <File>
-              <FileName>queue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\queue.c</FilePath>
-            </File>
-            <File>
-              <FileName>tasks.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\tasks.c</FilePath>
-            </File>
-            <File>
-              <FileName>timers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\timers.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>Application/USB_DEVICE/App</GroupName>
           <Files>
             <File>
@@ -5337,24 +5120,10 @@
               <FileName>usbd_desc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\USB_DEVICE\App\usbd_desc.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS/portable</GroupName>
-          <Files>
-            <File>
-              <FileName>heap_4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\MemMang\heap_4.c</FilePath>
-            </File>
-            <File>
-              <FileName>port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\port.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>Application/USB_DEVICE/Target</GroupName>
           <Files>
             <File>
@@ -5416,14 +5185,6 @@
               <FileName>Errs.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\Errs.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS/CMSIS_RTOS</GroupName>
-          <Files>
-            <File>
-              <FileName>cmsis_os.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
@@ -6379,7 +6140,6 @@
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>JSON_settings</GroupName>
           <Files>
             <File>
@@ -6411,34 +6171,10 @@
               <FileName>parseMessages.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\parseMessages.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS</GroupName>
-          <Files>
-            <File>
-              <FileName>list.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\list.c</FilePath>
-            </File>
-            <File>
-              <FileName>queue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\queue.c</FilePath>
-            </File>
-            <File>
-              <FileName>tasks.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\tasks.c</FilePath>
-            </File>
-            <File>
-              <FileName>timers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\timers.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>Application/USB_DEVICE/App</GroupName>
           <Files>
             <File>
@@ -6455,24 +6191,10 @@
               <FileName>usbd_desc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\USB_DEVICE\App\usbd_desc.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS/portable</GroupName>
-          <Files>
-            <File>
-              <FileName>heap_4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\MemMang\heap_4.c</FilePath>
-            </File>
-            <File>
-              <FileName>port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\port.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
         <Group>
-<<<<<<< HEAD
           <GroupName>Application/USB_DEVICE/Target</GroupName>
           <Files>
             <File>
@@ -6534,14 +6256,6 @@
               <FileName>Errs.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\Errs.c</FilePath>
-=======
-          <GroupName>Middlewares/FreeRTOS/CMSIS_RTOS</GroupName>
-          <Files>
-            <File>
-              <FileName>cmsis_os.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.c</FilePath>
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
             </File>
           </Files>
         </Group>
