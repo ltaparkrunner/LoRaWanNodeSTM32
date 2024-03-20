@@ -91,6 +91,20 @@ void MX_USB_DEVICE_Init(void)
   /* USER CODE END USB_DEVICE_Init_PostTreatment */
 }
 
+
+void MX_USB_DEVICE_DeInit(void)
+{
+	if(hUsbDeviceFS.pData != NULL) {
+		if(USBD_Stop(&hUsbDeviceFS)!= USBD_OK)
+		{
+			Error_Handler();
+		}
+		if (USBD_DeInit(&hUsbDeviceFS) != USBD_OK)
+		{
+			Error_Handler();
+		}
+	}
+}
 /**
   * @}
   */
