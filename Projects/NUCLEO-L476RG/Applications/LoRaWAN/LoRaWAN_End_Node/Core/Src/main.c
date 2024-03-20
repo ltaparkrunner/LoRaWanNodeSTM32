@@ -105,7 +105,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_LoRaWAN_Init();
   /* USER CODE BEGIN 2 */
-<<<<<<< HEAD
 	HAL_SYSCFG_VREFBUF_VoltageScalingConfig(SYSCFG_VREFBUF_VOLTAGE_SCALE0);
 	HAL_SYSCFG_EnableVREFBUF();
 	HAL_SYSCFG_VREFBUF_HighImpedanceConfig(SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE);
@@ -115,9 +114,6 @@ int main(void)
 	uint8_t result = USBD_FAIL;
 	uint8_t result2 = PARSED_JSON_OK;
 	uint8_t result3 = WRITTEN_FLASH_OK;
-=======
-	MU_LoRaWAN_Process();
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
   /* USER CODE END 2 */
 	
   /* Infinite loop */
@@ -126,7 +122,6 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-<<<<<<< HEAD
     MX_LoRaWAN_Process();
 		GPIO_PinState ps = HAL_GPIO_ReadPin(USB_VBUS_Port, USB_VBUS_Pin);
 		if(result != USBD_FAIL ) result = CheckTransmit(cmd);
@@ -146,11 +141,6 @@ int main(void)
 		result2 = JsonSettingsToBuffer_wrap(&cmd);
 		result3 = WriteBufferToFlash_wrap(result2);
 		
-=======
-    //MX_LoRaWAN_Process();
-		//MU_LED_Toggle(1);
-		//HAL_Delay(400);
->>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
