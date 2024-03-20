@@ -145,7 +145,8 @@ static void OnPowerGreenLedOffEvent(void *context);
 //static void OnPowerYellowLedOnEvent_LoRa(void *context);
 static void OnPowerYellowLedOffEvent(void *context);
 
-static void USBReset(void);
+static void USB_Init(void);
+static void USB_DeInit(void);
 //static void ledSwitch1(void);
 //static void ledSwitch2(void);
 /* USER CODE END PFP */
@@ -286,8 +287,8 @@ void LoRaWAN_Init(void)
 
 	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
 	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerEvent), UTIL_SEQ_RFU, SendTxData);
-	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_USBPlugInEvent), UTIL_SEQ_RFU, USBReset);
-	
+	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_USBPlugInEvent), UTIL_SEQ_RFU, USB_Init);//USBReset);
+	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_USBPlugOffEvent), UTIL_SEQ_RFU, USB_DeInit);
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, ledSwitch2);
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerEvent), UTIL_SEQ_RFU, ledSwitch1);
   /* Init Info table used by LmHandler*/
@@ -369,7 +370,7 @@ static void OnRxData(LmHandlerAppData_t *appData, LmHandlerRxParams_t *params)
 
     UTIL_TIMER_Start(&RxLedTimer);
 
-    static const char *slotStrings[] = { "1", "2", "C", "C Multicast", "B Ping-Slot", "B Multicast Ping-Slot" };
+//    static const char *slotStrings[] = { "1", "2", "C", "C Multicast", "B Ping-Slot", "B Multicast Ping-Slot" };
 
 /*    APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### ========== MCPS-Indication ==========\r\n");
     APP_LOG(TS_OFF, VLEVEL_H, "###### D/L FRAME:%04d | SLOT:%s | PORT:%d | DR:%d | RSSI:%d | SNR:%d\r\n",
@@ -461,13 +462,26 @@ void onUSBPlugIn(void)
 	UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_USBPlugInEvent), CFG_SEQ_Prio_0);
 }
 
+void onUSBPlugOff(void)
+{
+	UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_USBPlugOffEvent), CFG_SEQ_Prio_0);
+}
 //#include "usb_device.h"
 //#include "usbd_core.h"
 //extern USBD_HandleTypeDef hUsbDeviceFS;
 //extern USBD_DescriptorsTypeDef FS_Desc;
-static void USBReset(void)
+static void USB_Init(void)
 {
-	//MX_USB_DEVICE_Init();
+	MX_USB_DEVICE_Init();
+//	if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK)
+//  {
+//    Error_Handler();
+//  }
+}
+
+static void USB_DeInit(void)
+{
+	MX_USB_DEVICE_DeInit();
 //	if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK)
 //  {
 //    Error_Handler();

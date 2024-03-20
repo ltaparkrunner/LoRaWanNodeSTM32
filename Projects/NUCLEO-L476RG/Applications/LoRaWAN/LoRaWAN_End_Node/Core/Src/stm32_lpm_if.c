@@ -123,11 +123,11 @@ void PWR_ExitStopMode(void)
 
   /* USER CODE END ExitStopMode_1 */
   /* Disable IRQ while the MCU is not running on PLL */
-
+/*
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   uint32_t pFLatency = 0;
-
+*/
   UTILS_ENTER_CRITICAL_SECTION();
 
   /* In case nvic had a pending IT, the arm doesn't enter stop mode

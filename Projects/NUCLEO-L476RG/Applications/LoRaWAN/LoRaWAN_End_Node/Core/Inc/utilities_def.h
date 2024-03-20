@@ -81,6 +81,7 @@ typedef enum
   CFG_SEQ_Task_LoRaSendOnTxTimerEvent,
   /* USER CODE BEGIN CFG_SEQ_Task_Id_t */
 	CFG_SEQ_Task_USBPlugInEvent,
+	CFG_SEQ_Task_USBPlugOffEvent,
   /* USER CODE END CFG_SEQ_Task_Id_t */
   CFG_SEQ_Task_NBR
 } CFG_SEQ_Task_Id_t;

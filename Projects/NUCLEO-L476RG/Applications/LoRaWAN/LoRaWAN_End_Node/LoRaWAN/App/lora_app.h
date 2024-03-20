@@ -122,6 +122,7 @@ void LoRaWAN_Init(void);
 /* USER CODE BEGIN EFP */
 
 void onUSBPlugIn(void);
+void onUSBPlugOff(void);
 int32_t Change_power_blink(uint32_t interval);
 //int32_t ChangeBat_power_blink(uint32_t interval);
 int32_t ChangeUSB_transm_blink(uint32_t interval);
