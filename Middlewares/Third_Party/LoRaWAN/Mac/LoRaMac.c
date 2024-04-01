@@ -2049,10 +2049,10 @@ static void ProcessMacCommands( uint8_t *payload, uint8_t macIndex, uint8_t comm
             case SRV_MAC_DEV_STATUS_REQ:
             {
                 uint8_t batteryLevel = BAT_LEVEL_NO_MEASURE;
-                if( ( MacCtx.MacCallbacks != NULL ) && ( MacCtx.MacCallbacks->GetBatteryLevel != NULL ) )
-                {
-                    batteryLevel = MacCtx.MacCallbacks->GetBatteryLevel( );
-                }
+//                if( ( MacCtx.MacCallbacks != NULL ) && ( MacCtx.MacCallbacks->GetBatteryLevel != NULL ) )
+//                {
+//                    batteryLevel = MacCtx.MacCallbacks->GetBatteryLevel( );
+//                }
                 macCmdPayload[0] = batteryLevel;
                 macCmdPayload[1] = ( uint8_t )( snr & 0x3F );
                 LoRaMacCommandsAddCmd( MOTE_MAC_DEV_STATUS_ANS, macCmdPayload, 2 );

@@ -35,7 +35,7 @@
 #include "defaults.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "stm32l4xx_mu.h"
 /* USER CODE END Includes */
 
 /* External variables ---------------------------------------------------------*/
@@ -150,12 +150,13 @@ void SystemApp_Init(void)
 /**
   * @brief redefines __weak function in stm32_seq.c such to enter low power
   */
-void UTIL_SEQ_Idle(void)
+void Idle_Task(void)
 {
   /* USER CODE BEGIN UTIL_SEQ_Idle_1 */
 
   /* USER CODE END UTIL_SEQ_Idle_1 */
-  //UTIL_LPM_EnterLowPower();
+	if(	HAL_GPIO_ReadPin(USB_VBUS_Port, USB_VBUS_Pin) == GPIO_PIN_RESET )
+		UTIL_LPM_EnterLowPower();
   /* USER CODE BEGIN UTIL_SEQ_Idle_2 */
 
   /* USER CODE END UTIL_SEQ_Idle_2 */
@@ -164,29 +165,11 @@ void UTIL_SEQ_Idle(void)
 uint8_t GetBatteryLevel(void)
 {
   uint8_t batteryLevel = 0;
-  uint16_t batteryLevelmV;
 
   /* USER CODE BEGIN GetBatteryLevel_0 */
 
   /* USER CODE END GetBatteryLevel_0 */
 
-  //batteryLevelmV = (uint16_t) SYS_GetBatteryLevel();
-
-  /* Convert battery level from mV to linear scale: 1 (very low) to 254 (fully charged) */
-	/*
-  if (batteryLevelmV > VDD_BAT)
-  {
-    batteryLevel = LORAWAN_MAX_BAT;
-  }
-  else if (batteryLevelmV < VDD_MIN)
-  {
-    batteryLevel = 0;
-  }
-  else
-  {
-    batteryLevel = (((uint32_t)(batteryLevelmV - VDD_MIN) * LORAWAN_MAX_BAT) / (VDD_BAT - VDD_MIN));
-  }
-	*/
 	batteryLevel = LORAWAN_MAX_BAT;
   APP_LOG(TS_ON, VLEVEL_M, "VDDA= %d\r\n", batteryLevel);
 

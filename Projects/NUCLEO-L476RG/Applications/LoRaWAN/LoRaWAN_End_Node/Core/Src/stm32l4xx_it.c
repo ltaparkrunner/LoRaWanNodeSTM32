@@ -25,7 +25,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stm32l4xx_mu.h"
-#include "cmsis_os.h"
+//#include "cmsis_os.h"
+#include "thrds_def.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -186,16 +187,16 @@ void DebugMon_Handler(void)
 /**
   * @brief This function handles System tick timer.
   */
-void SysTick_Handler(void)
-{
-  /* USER CODE BEGIN SysTick_IRQn 0 */
-	osSystickHandler();
-  /* USER CODE END SysTick_IRQn 0 */
-  HAL_IncTick();
-  /* USER CODE BEGIN SysTick_IRQn 1 */
+//void SysTick_Handler(void)
+//{
+//  /* USER CODE BEGIN SysTick_IRQn 0 */
+//	osSystickHandler();
+//  /* USER CODE END SysTick_IRQn 0 */
+//  HAL_IncTick();
+//  /* USER CODE BEGIN SysTick_IRQn 1 */
 
-  /* USER CODE END SysTick_IRQn 1 */
-}
+//  /* USER CODE END SysTick_IRQn 1 */
+//}
 
 /******************************************************************************/
 /* STM32L4xx Peripheral Interrupt Handlers                                    */
@@ -248,6 +249,12 @@ void EXTI4_IRQHandler(void)
 
 void EXTI9_5_IRQHandler(void)
 {
+//		Set_Green_Led_Period();
+	__HAL_GPIO_EXTI_CLEAR_IT(USB_VBUS_Pin);
+	
+	if(HAL_GPIO_ReadPin(USB_VBUS_Port, USB_VBUS_Pin) == GPIO_PIN_SET) onUSBPlugIn();
+	else if(HAL_GPIO_ReadPin(USB_VBUS_Port, USB_VBUS_Pin) == GPIO_PIN_RESET) onUSBPlugOff();
+	
 //	if (HAL_GPIO_ReadPin(SHIELD_RST_GPIO_PORT, SHIELD_RST_PIN) == GPIO_PIN_RESET)
 	{
 		//CallbackRSTButton();

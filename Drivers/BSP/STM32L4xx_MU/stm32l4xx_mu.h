@@ -64,6 +64,17 @@ typedef enum{
 #define HL2Sign_GPIO_Port GPIOE
 #define HL1Sign_Pin GPIO_PIN_6
 #define HL1Sign_GPIO_Port GPIOE
+
+#define USB_VBUS_Pin	GPIO_PIN_9
+#define USB_VBUS_Port GPIOA
+#define USB_VBUS_EXTI_IRQn EXTI9_5_IRQn
+
+
+
+
+
+
+
 #define button_Pin GPIO_PIN_4					// ќт кнопок на LED_Shield 
 #define button_GPIO_Port GPIOC				// один аналоговый сигнал на 5 кнопок 
 																			// SELECT, LEFT, UP, DOWN, RIGHT

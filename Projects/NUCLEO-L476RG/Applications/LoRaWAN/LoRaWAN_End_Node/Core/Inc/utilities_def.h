@@ -75,15 +75,15 @@ typedef enum
   * This is the list of task id required by the application
   * Each Id shall be in the range 0..31
   */
-typedef enum
-{
-  CFG_SEQ_Task_LmHandlerProcess,
-  CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent,
-  /* USER CODE BEGIN CFG_SEQ_Task_Id_t */
+//typedef enum
+//{
+//  CFG_SEQ_Task_LmHandlerProcess,
+//  CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent,
+//  /* USER CODE BEGIN CFG_SEQ_Task_Id_t */
 
-  /* USER CODE END CFG_SEQ_Task_Id_t */
-  CFG_SEQ_Task_NBR
-} CFG_SEQ_Task_Id_t;
+//  /* USER CODE END CFG_SEQ_Task_Id_t */
+//  CFG_SEQ_Task_NBR
+//} CFG_SEQ_Task_Id_t;
 
 /* USER CODE BEGIN ET */
 

@@ -88,7 +88,7 @@ void SystemApp_Init(void);
   * @brief  callback to get the battery level in % of full charge (254 full charge, 0 no charge)
   * @retval battery level
   */
-uint8_t GetBatteryLevel(void);
+//uint8_t GetBatteryLevel(void);
 
 /**
   * @brief  callback to get the current temperature in the MCU

@@ -42,12 +42,12 @@
 #include "defaults.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "thrds_def.h"
 /* USER CODE END Includes */
 
 /* External variables ---------------------------------------------------------*/
 /* USER CODE BEGIN EV */
-osThreadId LmHandler_ThreadId, LoRaSend_ThreadId;
+//osThreadId LmHandler_ThreadId, LoRaSend_ThreadId;
 /* USER CODE END EV */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -140,8 +140,8 @@ static void OnRxTimerLedEvent(void *context);
   */
 static void OnJoinTimerLedEvent(void *context);
 
-static void ledSwitch1(void);
-static void ledSwitch2(void);
+//static void ledSwitch1(void);
+//static void ledSwitch2(void);
 /* USER CODE END PFP */
 
 /* Private variables ---------------------------------------------------------*/
@@ -152,8 +152,8 @@ static ActivationType_t ActivationType = LORAWAN_DEFAULT_ACTIVATION_TYPE;
   */
 static LmHandlerCallbacks_t LmHandlerCallbacks =
 {
-  .GetBatteryLevel =           GetBatteryLevel,
-  .GetTemperature =            GetTemperatureLevel,
+//  .GetBatteryLevel =           GetBatteryLevel,
+//  .GetTemperature =            GetTemperatureLevel,
   .GetUniqueId =               GetUniqueId,
   .GetDevAddr =                GetDevAddr,
   .OnMacProcess =              OnMacProcessNotify,
@@ -215,38 +215,87 @@ static UTIL_TIMER_Object_t RxLedTimer;
   */
 static UTIL_TIMER_Object_t JoinLedTimer;
 
+
+
+/* Definitions for defaultTask */
+osThreadId_t defaultTaskHandle;
+const osThreadAttr_t defaultTask_attrs = {
+  .name = "defaultTask",
+  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 128 * 4
+};
+
+/* Definitions for LmHandlerProcess */
+osThreadId_t LmHandlerProcessHandle;
+const osThreadAttr_t LmHandlerProcess_attrs = {
+  .name = "LmHandlerProcess",
+  .priority = (osPriority_t) osPriorityLow,
+  .stack_size = 128 * 4
+};
+
+/* Definitions for LoRaSendTask */
+osThreadId_t LoRaSendTaskHandle;
+const osThreadAttr_t LoRaSendTask_attrs = {
+  .name = "LoRaSendTask",
+  .priority = (osPriority_t) osPriorityLow,
+  .stack_size = 128 * 4
+};
+
+/* Definitions for USBPlugInTask */
+osThreadId_t USBPlugInTaskHandle;
+const osThreadAttr_t USBPlugIn_attrs = {
+  .name = "USBPlugInTask",
+  .priority = (osPriority_t) osPriorityLow,
+  .stack_size = 128 * 4
+};
+
+/* Definitions for USBPlugOffTask */
+osThreadId_t USBPlugOffTaskHandle;
+const osThreadAttr_t USBPlugOff_attrs = {
+  .name = "USBPlugOffTask",
+  .priority = (osPriority_t) osPriorityLow,
+  .stack_size = 128 * 4
+};
+
 /* USER CODE END PV */
 
 /* Exported functions ---------------------------------------------------------*/
 /* USER CODE BEGIN EF */
 
-static void wrap_LmHandlerProcess(void const *argument)
+static void wrap_LmHandlerProcess(void *argument)
 {
 	(void) argument;
-  osEvent event;
+//  osEvent event;
+	uint32_t flag;
   
   for(;;)
   {
-    event = osSignalWait( 4, osWaitForever);
-    if(event.value.signals == 4)
+//    event = osSignalWait( 4, osWaitForever);
+		flag = osThreadFlagsWait(4, osFlagsWaitAny, osWaitForever);
+    if(flag == 4)
     {      
       LmHandlerProcess();
     }
+		else if(flag > 0x7ffffff) Error_Handler();
+			
   }
 }
 
-static void wrap_SendTxData(void const *argument)
+static void wrap_SendTxData(void *argument)
 {
 	(void) argument;
-  osEvent event;
+//  osEvent event;
+	uint32_t flag;
   
   for(;;)
   {
-    event = osSignalWait( 2, osWaitForever);
-    if(event.value.signals == 2)
+//    event = osSignalWait( 2, osWaitForever);
+		flag = osThreadFlagsWait(2, osFlagsWaitAny, osWaitForever);
+    if(flag == 2)
     {      
       SendTxData();
     }
+		else if(flag > 0x7ffffff) Error_Handler();
   }
 }
 
@@ -262,23 +311,6 @@ void LoRaWAN_Init(void)
 	MU_LED_Init(LED2);
 	MU_Sound_Init();
 
-  /* Get LoRa APP version*/
-  APP_LOG(TS_OFF, VLEVEL_M, "APP_VERSION:        V%X.%X.%X\r\n",
-          (uint8_t)(__LORA_APP_VERSION >> __APP_VERSION_MAIN_SHIFT),
-          (uint8_t)(__LORA_APP_VERSION >> __APP_VERSION_SUB1_SHIFT),
-          (uint8_t)(__LORA_APP_VERSION >> __APP_VERSION_SUB2_SHIFT));
-
-  /* Get MW LoraWAN info */
-  APP_LOG(TS_OFF, VLEVEL_M, "MW_LORAWAN_VERSION: V%X.%X.%X\r\n",
-          (uint8_t)(__LORAWAN_VERSION >> __APP_VERSION_MAIN_SHIFT),
-          (uint8_t)(__LORAWAN_VERSION >> __APP_VERSION_SUB1_SHIFT),
-          (uint8_t)(__LORAWAN_VERSION >> __APP_VERSION_SUB2_SHIFT));
-
-  /* Get MW SubGhz_Phy info */
-  APP_LOG(TS_OFF, VLEVEL_M, "MW_RADIO_VERSION:   V%X.%X.%X\r\n",
-          (uint8_t)(__SUBGHZ_PHY_VERSION >> __APP_VERSION_MAIN_SHIFT),
-          (uint8_t)(__SUBGHZ_PHY_VERSION >> __APP_VERSION_SUB1_SHIFT),
-          (uint8_t)(__SUBGHZ_PHY_VERSION >> __APP_VERSION_SUB2_SHIFT));
 
   UTIL_TIMER_Create(&TxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnTxTimerLedEvent, NULL);
   UTIL_TIMER_Create(&RxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnRxTimerLedEvent, NULL);
@@ -288,15 +320,19 @@ void LoRaWAN_Init(void)
   UTIL_TIMER_SetPeriod(&JoinLedTimer, 500);
 
   /* USER CODE END LoRaWAN_Init_1 */
-
+	defaultTaskHandle = osThreadNew(Idle_Task, NULL, &defaultTask_attrs);
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
-	osThreadDef(LmHandler, wrap_LmHandlerProcess, osPriorityNormal, 0, 600/*configMINIMAL_STACK_SIZE*/);
+	//osThreadDef(LmHandler, wrap_LmHandlerProcess, osPriorityNormal, 0, 600/*configMINIMAL_STACK_SIZE*/);
+	LmHandlerProcessHandle = osThreadNew(wrap_LmHandlerProcess, NULL, &LmHandlerProcess_attrs);
 	
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, SendTxData);
-	osThreadDef(LoRaSend, wrap_SendTxData, osPriorityNormal, 0, 600/*configMINIMAL_STACK_SIZE*/);
-		
-	LmHandler_ThreadId = osThreadCreate(osThread(LmHandler), NULL);
-	LoRaSend_ThreadId = osThreadCreate(osThread(LoRaSend), NULL);
+	//osThreadDef(LoRaSend, wrap_SendTxData, osPriorityNormal, 0, 600/*configMINIMAL_STACK_SIZE*/);
+	LoRaSendTaskHandle = osThreadNew(wrap_SendTxData, NULL, &LoRaSendTask_attrs);	
+	
+	USBPlugInTaskHandle = osThreadNew(wrap_USB_Init, NULL, &USBPlugIn_attrs);
+	USBPlugOffTaskHandle = osThreadNew(wrap_USB_DeInit, NULL, &USBPlugOff_attrs);
+	//LmHandler_ThreadId = osThreadCreate(osThread(LmHandler), NULL);
+	//LoRaSend_ThreadId = osThreadCreate(osThread(LoRaSend), NULL);
 	
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, ledSwitch2);
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, ledSwitch1);
@@ -338,27 +374,6 @@ void LoRaWAN_Init(void)
   /* USER CODE END LoRaWAN_Init_Last */
 }
 
-/* USER CODE BEGIN PB_Callbacks */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-  switch (GPIO_Pin)
-  {
-    case  USER_BUTTON_PIN:
-      //UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), CFG_SEQ_Prio_0);
-			osSignalSet( LoRaSend_ThreadId, 2); 
-      break;
-    default:
-      break;
-  }
-}
-void CallbackRSTButton(void)//(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
-{
-	if (HAL_GPIO_ReadPin(SHIELD_RST_GPIO_PORT, SHIELD_RST_PIN) == GPIO_PIN_RESET)
-	{
-		HAL_Delay(100);
-	}
-}
-/* USER CODE END PB_Callbacks */
 
 /* Private functions ---------------------------------------------------------*/
 /* USER CODE BEGIN PrFD */
@@ -433,23 +448,23 @@ static void OnRxData(LmHandlerAppData_t *appData, LmHandlerRxParams_t *params)
   }
   /* USER CODE END OnRxData_1 */
 }
-static void ledSwitch1(void)
-{
-//	MU_LED_Toggle(1);
-	MU_LED_Toggle(LED1);
-}
+//static void ledSwitch1(void)
+//{
+////	MU_LED_Toggle(1);
+//	MU_LED_Toggle(LED1);
+//}
 
-static void ledSwitch2(void)
-{
-	MU_LED_Toggle(LED2);
-//	MU_LED_Toggle(0);
-}
+//static void ledSwitch2(void)
+//{
+//	MU_LED_Toggle(LED2);
+////	MU_LED_Toggle(0);
+//}
 static void SendTxData(void)
 {
   /* USER CODE BEGIN SendTxData_1 */
   uint16_t pressure = 0;
   int16_t temperature = 0;
-  sensor_t sensor_data;
+//  sensor_t sensor_data;
   UTIL_TIMER_Time_t nextTxIn = 0;
 
 #ifdef CAYENNE_LPP
@@ -458,8 +473,8 @@ static void SendTxData(void)
   uint16_t humidity = 0;
   uint32_t i = 0;
   int32_t latitude = 0;
-  int32_t longitude = 0;
-  uint16_t altitudeGps = 0;
+//  int32_t longitude = 0;
+//  uint16_t altitudeGps = 0;
 #endif /* CAYENNE_LPP */
 	/*
   EnvSensors_Read(&sensor_data);
@@ -511,19 +526,14 @@ static void SendTxData(void)
   else
   {
     latitude = STSOP_LATTITUDE;	//sensor_data.latitude;
-    longitude = STSOP_LONGITUDE;	//sensor_data.longitude;
-		altitudeGps = ALTITUDE_GPS;		// 
+//    longitude = STSOP_LONGITUDE;	//sensor_data.longitude;
+//		altitudeGps = ALTITUDE_GPS;		// 
 		
     AppData.Buffer[i++] = 220;	//GetBatteryLevel();        /* 1 (very low) to 254 (fully charged) */
     AppData.Buffer[i++] = (uint8_t)((latitude >> 16) & 0xFF);
     AppData.Buffer[i++] = (uint8_t)((latitude >> 8) & 0xFF);
     AppData.Buffer[i++] = (uint8_t)(latitude & 0xFF);
-/*    AppData.Buffer[i++] = (uint8_t)((longitude >> 16) & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)((longitude >> 8) & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)(longitude & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)((altitudeGps >> 8) & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)(altitudeGps & 0xFF);
-*/  }
+  }
 
   AppData.BufferSize = i;
 #endif /* CAYENNE_LPP */
@@ -639,7 +649,7 @@ static void OnMacProcessNotify(void)
 
   /* USER CODE END OnMacProcessNotify_1 */
   //UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LmHandlerProcess), CFG_SEQ_Prio_0);
-	osSignalSet( LmHandler_ThreadId, 4);
+	osThreadFlagsSet( LmHandlerProcessHandle, 4);
   /* USER CODE BEGIN OnMacProcessNotify_2 */
 
   /* USER CODE END OnMacProcessNotify_2 */

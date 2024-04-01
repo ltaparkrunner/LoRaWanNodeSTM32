@@ -2454,7 +2454,7 @@ typedef struct sLoRaMacCallback
      *          and 254 is the maximum value, 255: the node was not able
      *          to measure the battery level]
      */
-    uint8_t ( *GetBatteryLevel )( void );
+//    uint8_t ( *GetBatteryLevel )( void );
     /* ST_WORKAROUND_BEGIN: Return temperature into Q7.8 instead float */
     /*!
      * \brief   Measures the temperature level

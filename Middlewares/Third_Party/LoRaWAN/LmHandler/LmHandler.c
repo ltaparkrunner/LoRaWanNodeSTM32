@@ -307,7 +307,7 @@ LmHandlerErrorStatus_t LmHandlerInit( LmHandlerCallbacks_t *handlerCallbacks )
     LoRaMacPrimitives.MacMcpsIndication = McpsIndication;
     LoRaMacPrimitives.MacMlmeConfirm = MlmeConfirm;
     LoRaMacPrimitives.MacMlmeIndication = MlmeIndication;
-    LoRaMacCallbacks.GetBatteryLevel = LmHandlerCallbacks->GetBatteryLevel;
+//    LoRaMacCallbacks.GetBatteryLevel = LmHandlerCallbacks->GetBatteryLevel;
     LoRaMacCallbacks.GetTemperatureLevel = LmHandlerCallbacks->GetTemperature;
     LoRaMacCallbacks.GetUniqueId = LmHandlerCallbacks->GetUniqueId;
     LoRaMacCallbacks.NvmDataChange  = NvmDataMgmtEvent;

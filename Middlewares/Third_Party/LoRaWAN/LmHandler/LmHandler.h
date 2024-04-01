@@ -155,7 +155,7 @@ typedef struct LmHandlerCallbacks_s
      *
      * \retval value  Battery level ( 0: very low, 254: fully charged )
      */
-    uint8_t ( *GetBatteryLevel )( void );
+//    uint8_t ( *GetBatteryLevel )( void );
     /*!
      * Get the current temperature
      *
