@@ -154,7 +154,11 @@
           <Type>0</Type>
           <LineNumber>2936</LineNumber>
           <EnabledFlag>1</EnabledFlag>
+<<<<<<< HEAD
           <Address>134287208</Address>
+=======
+          <Address>134274302</Address>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -1104,7 +1108,7 @@
 
   <Group>
     <GroupName>Application/App</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1112,7 +1116,7 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>1</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>../LoRaWAN/App/app_lorawan.c</PathWithFileName>
@@ -1160,7 +1164,7 @@
 
   <Group>
     <GroupName>Application/Core</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1312,7 +1316,7 @@
 
   <Group>
     <GroupName>Application/MDK-ARM</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1332,7 +1336,7 @@
 
   <Group>
     <GroupName>Application/Target</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1352,7 +1356,7 @@
 
   <Group>
     <GroupName>Doc</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1372,7 +1376,7 @@
 
   <Group>
     <GroupName>Drivers/BSP/sx1276mb1mas</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -2032,7 +2036,7 @@
 
   <Group>
     <GroupName>Utilities</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -2131,54 +2135,90 @@
   </Group>
 
   <Group>
+<<<<<<< HEAD
     <GroupName>JSON_settings</GroupName>
+=======
+    <GroupName>Middlewares/FreeRTOS</GroupName>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>17</GroupNumber>
+<<<<<<< HEAD
       <FileNumber>76</FileNumber>
+=======
+      <FileNumber>68</FileNumber>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+<<<<<<< HEAD
       <PathWithFileName>..\Core\Src\settings_json.c</PathWithFileName>
       <FilenameWithoutPath>settings_json.c</FilenameWithoutPath>
+=======
+      <PathWithFileName>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\list.c</PathWithFileName>
+      <FilenameWithoutPath>list.c</FilenameWithoutPath>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>17</GroupNumber>
+<<<<<<< HEAD
       <FileNumber>77</FileNumber>
+=======
+      <FileNumber>69</FileNumber>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+<<<<<<< HEAD
       <PathWithFileName>..\Core\Src\tiny-json.c</PathWithFileName>
       <FilenameWithoutPath>tiny-json.c</FilenameWithoutPath>
+=======
+      <PathWithFileName>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\queue.c</PathWithFileName>
+      <FilenameWithoutPath>queue.c</FilenameWithoutPath>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>17</GroupNumber>
+<<<<<<< HEAD
       <FileNumber>78</FileNumber>
+=======
+      <FileNumber>70</FileNumber>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+<<<<<<< HEAD
       <PathWithFileName>..\Core\Src\tiny-json_extra.c</PathWithFileName>
       <FilenameWithoutPath>tiny-json_extra.c</FilenameWithoutPath>
+=======
+      <PathWithFileName>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\tasks.c</PathWithFileName>
+      <FilenameWithoutPath>tasks.c</FilenameWithoutPath>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>17</GroupNumber>
+<<<<<<< HEAD
       <FileNumber>79</FileNumber>
+=======
+      <FileNumber>71</FileNumber>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+<<<<<<< HEAD
       <PathWithFileName>..\Core\Src\example01.c</PathWithFileName>
       <FilenameWithoutPath>example01.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
@@ -2205,19 +2245,29 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\Core\Src\parseMessages.c</PathWithFileName>
       <FilenameWithoutPath>parseMessages.c</FilenameWithoutPath>
+=======
+      <PathWithFileName>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\timers.c</PathWithFileName>
+      <FilenameWithoutPath>timers.c</FilenameWithoutPath>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
   </Group>
 
   <Group>
+<<<<<<< HEAD
     <GroupName>Application/USB_DEVICE/App</GroupName>
     <tvExp>0</tvExp>
+=======
+    <GroupName>Middlewares/FreeRTOS/portable</GroupName>
+    <tvExp>1</tvExp>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>18</GroupNumber>
+<<<<<<< HEAD
       <FileNumber>82</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
@@ -2231,17 +2281,26 @@
     <File>
       <GroupNumber>18</GroupNumber>
       <FileNumber>83</FileNumber>
+=======
+      <FileNumber>72</FileNumber>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+<<<<<<< HEAD
       <PathWithFileName>..\..\..\..\..\..\USB_DEVICE\App\usbd_cdc_if.c</PathWithFileName>
       <FilenameWithoutPath>usbd_cdc_if.c</FilenameWithoutPath>
+=======
+      <PathWithFileName>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\MemMang\heap_4.c</PathWithFileName>
+      <FilenameWithoutPath>heap_4.c</FilenameWithoutPath>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>18</GroupNumber>
+<<<<<<< HEAD
       <FileNumber>84</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
@@ -2325,18 +2384,32 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\..\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c</PathWithFileName>
       <FilenameWithoutPath>usbd_cdc.c</FilenameWithoutPath>
+=======
+      <FileNumber>73</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>1</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\port.c</PathWithFileName>
+      <FilenameWithoutPath>port.c</FilenameWithoutPath>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
   </Group>
 
   <Group>
+<<<<<<< HEAD
     <GroupName>Flash_Writting</GroupName>
+=======
+    <GroupName>Middlewares/FreeRTOS/CMSIS_RTOS</GroupName>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
+<<<<<<< HEAD
       <GroupNumber>21</GroupNumber>
       <FileNumber>90</FileNumber>
       <FileType>1</FileType>
@@ -2383,12 +2456,21 @@
     <File>
       <GroupNumber>22</GroupNumber>
       <FileNumber>93</FileNumber>
+=======
+      <GroupNumber>19</GroupNumber>
+      <FileNumber>74</FileNumber>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+<<<<<<< HEAD
       <PathWithFileName>..\Core\Src\Errs.c</PathWithFileName>
       <FilenameWithoutPath>Errs.c</FilenameWithoutPath>
+=======
+      <PathWithFileName>..\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.c</PathWithFileName>
+      <FilenameWithoutPath>cmsis_os.c</FilenameWithoutPath>
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -24,7 +24,8 @@
 #include "Region.h" /* Needed for LORAWAN_DEFAULT_DATA_RATE */
 #include "sys_app.h"
 #include "lora_app.h"
-#include "stm32_seq.h"
+#include "cmsis_os.h"
+//#include "stm32_seq.h"
 #include "stm32_timer.h"
 #include "utilities_def.h"
 #include "lora_app_version.h"
@@ -47,7 +48,7 @@
 
 /* External variables ---------------------------------------------------------*/
 /* USER CODE BEGIN EV */
-
+osThreadId LmHandler_ThreadId, LoRaSend_ThreadId;
 /* USER CODE END EV */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -232,6 +233,36 @@ static UTIL_TIMER_Object_t YellowLedOffTimer_LORA;
 /* Exported functions ---------------------------------------------------------*/
 /* USER CODE BEGIN EF */
 
+static void wrap_LmHandlerProcess(void const *argument)
+{
+	(void) argument;
+  osEvent event;
+  
+  for(;;)
+  {
+    event = osSignalWait( 4, osWaitForever);
+    if(event.value.signals == 4)
+    {      
+      LmHandlerProcess();
+    }
+  }
+}
+
+static void wrap_SendTxData(void const *argument)
+{
+	(void) argument;
+  osEvent event;
+  
+  for(;;)
+  {
+    event = osSignalWait( 2, osWaitForever);
+    if(event.value.signals == 2)
+    {      
+      SendTxData();
+    }
+  }
+}
+
 /* USER CODE END EF */
 
 void LoRaWAN_Init(void)
@@ -285,10 +316,22 @@ void LoRaWAN_Init(void)
 	
   /* USER CODE END LoRaWAN_Init_1 */
 
+<<<<<<< HEAD
 	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
 	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerEvent), UTIL_SEQ_RFU, SendTxData);
 	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_USBPlugInEvent), UTIL_SEQ_RFU, USB_Init);//USBReset);
 	UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_USBPlugOffEvent), UTIL_SEQ_RFU, USB_DeInit);
+=======
+	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
+	osThreadDef(LmHandler, wrap_LmHandlerProcess, osPriorityNormal, 0, 600/*configMINIMAL_STACK_SIZE*/);
+	
+	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, SendTxData);
+	osThreadDef(LoRaSend, wrap_SendTxData, osPriorityNormal, 0, 600/*configMINIMAL_STACK_SIZE*/);
+		
+	LmHandler_ThreadId = osThreadCreate(osThread(LmHandler), NULL);
+	LoRaSend_ThreadId = osThreadCreate(osThread(LoRaSend), NULL);
+	
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, ledSwitch2);
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerEvent), UTIL_SEQ_RFU, ledSwitch1);
   /* Init Info table used by LmHandler*/
@@ -336,6 +379,7 @@ void LoRaWAN_Init(void)
 }
 
 /* USER CODE BEGIN PB_Callbacks */
+<<<<<<< HEAD
 //void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 //{
 //  switch (GPIO_Pin)
@@ -354,6 +398,27 @@ void LoRaWAN_Init(void)
 //		HAL_Delay(100);
 //	}
 //}
+=======
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  switch (GPIO_Pin)
+  {
+    case  USER_BUTTON_PIN:
+      //UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), CFG_SEQ_Prio_0);
+			osSignalSet( LoRaSend_ThreadId, 2); 
+      break;
+    default:
+      break;
+  }
+}
+void CallbackRSTButton(void)//(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+{
+	if (HAL_GPIO_ReadPin(SHIELD_RST_GPIO_PORT, SHIELD_RST_PIN) == GPIO_PIN_RESET)
+	{
+		HAL_Delay(100);
+	}
+}
+>>>>>>> eebeffd6ee449d712bbe64d9c3642051aead0a65
 /* USER CODE END PB_Callbacks */
 
 /* Private functions ---------------------------------------------------------*/
@@ -692,8 +757,8 @@ static void OnMacProcessNotify(void)
   /* USER CODE BEGIN OnMacProcessNotify_1 */
 
   /* USER CODE END OnMacProcessNotify_1 */
-  UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LmHandlerProcess), CFG_SEQ_Prio_0);
-
+  //UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LmHandlerProcess), CFG_SEQ_Prio_0);
+	osSignalSet( LmHandler_ThreadId, 4);
   /* USER CODE BEGIN OnMacProcessNotify_2 */
 
   /* USER CODE END OnMacProcessNotify_2 */
