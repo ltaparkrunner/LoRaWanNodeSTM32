@@ -52,7 +52,7 @@ extern "C"
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "timer.h"
+#include "timer_rtos.h"
 #include "systime.h"
 
 /*!

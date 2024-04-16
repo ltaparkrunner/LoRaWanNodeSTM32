@@ -61,7 +61,7 @@ extern "C"
 #include <stdbool.h>
 #include "utilities.h"
 #include "LoRaMac.h"
-#include "timer.h"
+#include "timer_rtos.h"
 #include "RegionCommon.h"
 
 /*!

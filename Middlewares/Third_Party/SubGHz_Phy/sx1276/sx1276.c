@@ -46,7 +46,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "sys_debug.h"
-#include "timer.h"
+#include "timer_rtos.h"
 #include "radio.h"
 #include "sx1276.h"
 #include "radio_conf.h"

@@ -37,7 +37,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "utilities.h"
-#include "timer.h"
+#include "timer_rtos.h"
 #include "Commissioning.h"
 #include "NvmDataMgmt.h"
 #include "radio.h"
