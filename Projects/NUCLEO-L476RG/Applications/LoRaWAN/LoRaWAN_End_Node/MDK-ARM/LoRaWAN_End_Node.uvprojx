@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>STM32L476xx,USE_STM32L4XX_NUCLEO,SX1276MB1MAS</Define>
               <Undefine></Undefine>
-              <IncludePath>../LoRaWAN/App;../LoRaWAN/Target;../Core/Inc;../../../../../../Utilities/misc;../../../../../../Utilities/timer;../../../../../../Utilities/trace/adv_trace;../../../../../../Utilities/lpm/tiny_lpm;../../../../../../Utilities/sequencer;../../../../../../Drivers/BSP/STM32L4xx_MU;../../../../../../Drivers/BSP/sx1276mb1mas;../../../../../../Drivers/STM32L4xx_HAL_Driver/Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32L4xx/Include;../../../../../../Drivers/CMSIS/Include;../../../../../../Drivers/CMSIS/Core/Include;../../../../../../Middlewares/Third_Party/SubGHz_Phy;../../../../../../Middlewares/Third_Party/SubGHz_Phy/sx1276;../../../../../../Middlewares/Third_Party/LoRaWAN/Crypto;../../../../../../Middlewares/Third_Party/LoRaWAN/Mac;../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/Region;../../../../../../Middlewares/Third_Party/LoRaWAN/Utilities;../../../../../../Middlewares/Third_Party/LoRaWAN/LmHandler;../../../../../../Middlewares/Third_Party/LoRaWAN/LmHandler/packages;../../../../../../Drivers/BSP/IKS01A2;../../../../../../Drivers/BSP/Components/Common;../../../../../../Drivers/BSP/Components/hts221;../../../../../../Drivers/BSP/Components/lps22hb;../../../../../../Drivers/BSP/Components/lsm6dsl;../../../../../../Drivers/BSP/Components/lsm303agr;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/include;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;../../../../../../Middlewares\ST\STM32_USB_Device_Library\Core\Inc;../../../../../../Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc;../../../../../../USB_DEVICE\App;../../../../../../USB_DEVICE\Target;..\JSON;../../../../../../Utilities\timer_rtos</IncludePath>
+              <IncludePath>../LoRaWAN/App;../LoRaWAN/Target;../Core/Inc;../../../../../../Utilities/misc;../../../../../../Utilities/timer;../../../../../../Utilities/trace/adv_trace;../../../../../../Utilities/lpm/tiny_lpm;../../../../../../Utilities/sequencer;../../../../../../Drivers/BSP/STM32L4xx_MU;../../../../../../Drivers/BSP/sx1276mb1mas;../../../../../../Drivers/STM32L4xx_HAL_Driver/Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32L4xx/Include;../../../../../../Drivers/CMSIS/Include;../../../../../../Drivers/CMSIS/Core/Include;../../../../../../Middlewares/Third_Party/SubGHz_Phy;../../../../../../Middlewares/Third_Party/SubGHz_Phy/sx1276;../../../../../../Middlewares/Third_Party/LoRaWAN/Crypto;../../../../../../Middlewares/Third_Party/LoRaWAN/Mac;../../../../../../Middlewares/Third_Party/LoRaWAN/Mac/Region;../../../../../../Middlewares/Third_Party/LoRaWAN/Utilities;../../../../../../Middlewares/Third_Party/LoRaWAN/LmHandler;../../../../../../Middlewares/Third_Party/LoRaWAN/LmHandler/packages;../../../../../../Drivers/BSP/IKS01A2;../../../../../../Drivers/BSP/Components/Common;../../../../../../Drivers/BSP/Components/hts221;../../../../../../Drivers/BSP/Components/lps22hb;../../../../../../Drivers/BSP/Components/lsm6dsl;../../../../../../Drivers/BSP/Components/lsm303agr;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/include;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;../../../../../../Middlewares\ST\STM32_USB_Device_Library\Core\Inc;../../../../../../Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc;../../../../../../USB_DEVICE\App;../../../../../../USB_DEVICE\Target;..\JSON;../../../../../../Utilities\timer_rtos;..\..\..\..\..\..\Utilities\json;..\..\..\..\..\..\Utilities\flash</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -947,6 +947,43 @@
         </Group>
         <Group>
           <GroupName>JSON_settings</GroupName>
+          <Files>
+            <File>
+              <FileName>parseMessages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\parseMessages.c</FilePath>
+            </File>
+            <File>
+              <FileName>settings_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\settings_json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\tiny-json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json_extra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\tiny-json_extra.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>flash_wr</GroupName>
+          <Files>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\flash\flash_mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\flash\flash_work.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -2011,6 +2048,43 @@
         </Group>
         <Group>
           <GroupName>JSON_settings</GroupName>
+          <Files>
+            <File>
+              <FileName>parseMessages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\parseMessages.c</FilePath>
+            </File>
+            <File>
+              <FileName>settings_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\settings_json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\tiny-json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json_extra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\tiny-json_extra.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>flash_wr</GroupName>
+          <Files>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\flash\flash_mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\flash\flash_work.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -3024,6 +3098,43 @@
         </Group>
         <Group>
           <GroupName>JSON_settings</GroupName>
+          <Files>
+            <File>
+              <FileName>parseMessages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\parseMessages.c</FilePath>
+            </File>
+            <File>
+              <FileName>settings_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\settings_json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\tiny-json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json_extra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\tiny-json_extra.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>flash_wr</GroupName>
+          <Files>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\flash\flash_mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\flash\flash_work.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -4088,6 +4199,43 @@
         </Group>
         <Group>
           <GroupName>JSON_settings</GroupName>
+          <Files>
+            <File>
+              <FileName>parseMessages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\parseMessages.c</FilePath>
+            </File>
+            <File>
+              <FileName>settings_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\settings_json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\tiny-json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json_extra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\tiny-json_extra.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>flash_wr</GroupName>
+          <Files>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\flash\flash_mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\flash\flash_work.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -5152,6 +5300,43 @@
         </Group>
         <Group>
           <GroupName>JSON_settings</GroupName>
+          <Files>
+            <File>
+              <FileName>parseMessages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\parseMessages.c</FilePath>
+            </File>
+            <File>
+              <FileName>settings_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\settings_json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\tiny-json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json_extra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\tiny-json_extra.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>flash_wr</GroupName>
+          <Files>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\flash\flash_mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\flash\flash_work.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -6216,6 +6401,43 @@
         </Group>
         <Group>
           <GroupName>JSON_settings</GroupName>
+          <Files>
+            <File>
+              <FileName>parseMessages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\parseMessages.c</FilePath>
+            </File>
+            <File>
+              <FileName>settings_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\settings_json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\tiny-json.c</FilePath>
+            </File>
+            <File>
+              <FileName>tiny-json_extra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\json\tiny-json_extra.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>flash_wr</GroupName>
+          <Files>
+            <File>
+              <FileName>flash_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\flash\flash_mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_work.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\Utilities\flash\flash_work.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>

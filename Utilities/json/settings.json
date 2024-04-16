@@ -1,0 +1,628 @@
+﻿{
+	"LoRa_settings": {
+		"DEVEUI": 111101011010,
+		"APPKEY": 1698162386,
+		"FREQ": 86800000,
+		"fr": 129374907
+	},
+	"UART3": "on",
+	"LED2": {
+		"USB": {
+			"sec": 10,
+			"min": 2,
+			"hour": 0,
+			"days": 0,
+			"work": 1
+		},
+		"battery": {
+			"sec": 0,
+			"min": 3,
+			"hour": 0,
+			"days": 0,
+			"work": 1
+		}
+	},
+	"LED1": {
+		"USB": {
+			"blinks":{
+				"msec": 100,
+				"times": 3
+			},
+			"period":{
+				"sec": 1,
+				"min": 2,
+				"hour": 0,
+				"days": 0,
+				"work": 1
+			},
+		},
+		"LoRa": {
+			"blinks":{
+				"msec": 200,
+				"times": 2
+			},
+			"period":{
+				"sec": 1,
+				"min": 2,
+				"hour": 0,
+				"days": 0	
+			},	
+			"work": 1
+		}
+	},
+	"period_LoRa": {
+		"sec": 1,
+		"min": 2,
+		"hour": 0,
+		"days": 0	
+	},
+	"LoRa_text": "Встала из мрака младая с перстами пурпурными Эос; Ложе покинул тогда и возлюбленный сын Одиссеев;",
+	"LoRa_Data": ["AD1", "INP1", "INP3", "AD4", "text"],
+	"Command": "read_settings"
+}
+{
+ "Command": "read settings" 
+}  
+
+{
+        "LoRa_settings": {
+                "DEVEUI": 0x11101011010,
+                "APPKEY": 0x1b6c162386,
+                "FREQ": 86800000,
+                "FR": 129374907
+        },
+        "UART3": true,
+        "LED2": {
+                "USB": {
+                        "sec": 10,
+                        "min": 2,
+                        "hour": 0,
+                        "days": 0,
+                        "work": true
+                },
+                "battery": {
+                        "sec": 0,
+                        "min": 3,
+                        "hour": 0,
+                        "days": 0,
+                        "work": true
+                }
+        },
+        "LED1": {
+                "USB": {
+                        "blinks":{
+                                "msec": 100,
+                                "times": 3
+                        },
+                        "period":{
+                                "sec": 1,
+                                "min": 2,
+                                "hour": 0,
+                                "days": 0,
+                                "work": false,
+                        },
+                },
+                "LoRa": {
+                        "blinks":{
+                                "msec": 200,
+                                "times": 2
+                        },
+                        "period":{
+                                "sec": 1,
+                                "min": 2,
+                                "hour": 0,
+                                "days": 0,
+                                "work": true
+                        },
+                }
+        },
+        "period_LoRa": {
+                "sec": 1,
+                "min": 2,
+                "hour": 0,
+                "days": 0,
+                "work": true
+        },
+        "LoRa_text": "Soon as early Dawn appeared, the rosy-fingered, up from his bed arose the dear son of Odysseus and put on his clothing.",
+        "LoRa_Data": [{"AD_1":true}, {"INP1":false}, {"INP3":false}, {"AD_4":true}, {"TEXT":false}],
+        "Command": "              ",
+        "WRTN": 153,
+        "DevEuiValid":true,
+        "AppKeyValid":true}
+
+
+
+{
+ "Command": "read settings"
+} 
+
+
+
+
+
+{
+        "LoRa_settings": { "FR": 55 }
+}
+{
+        "HL1": {
+                "USB": {
+                        "sec": 50,
+                        "min": 20,
+                        "hour": 2,
+                        "days": 1,
+                        "work": false
+				}
+		}
+}
+				
+
+0x20006660
+0x20006660
+
+ {       "LoRa_text": "Forever young, I want to be forever" }
+ {       "LoRa_text": "Everybody, need somebody. You you you," }
+
+
+{
+ "Command": "read settings"
+} 
+
+В обратную сторону сзаду наперед класть.
+
+
+{
+        "HL2": {
+                "LoRa": {
+                        "blinks":{
+                                "msec": 150,
+                                "times": 1
+                        },
+                        "period":{
+                                "sec": 10,
+                                "min": 1,
+                                "hour": 1,
+                                "days": 2,
+                                "work": true
+                        },
+                }
+        }
+}
+
+{
+        "LoRa_settings": {
+                "DEVEUI": 0x1234567890123456}
+}
+
+
+{
+        "LoRa_settings": {
+                "APPKEY": 0x9876543210987654}
+				}
+				
+	{
+        "LoRa_settings": {
+                "DEVEUI": 0x1234567890123456,
+                "APPKEY": 0x9876543210987654,
+                "FREQ": 2155228165,
+                "FR": 187},
+        "UART3": true,
+        "HL1": {
+                "USB": {
+                        "sec": 10 ,
+                        "min": 1  ,
+                        "hour": 1  ,
+                        "days": 512  ,
+                        "work": true},
+                "battery": {
+                        "sec": 0  ,
+                        "min": 3  ,
+                        "hour": 0  ,
+                        "days": 0    ,
+                        "work": true}
+        },
+        "HL2": {
+                "USB": {
+                        "blinks":{
+                                "msec": 100,
+                                "times": 3  },
+                        "period":{
+                                "sec": 1  ,
+                                "min": 2  ,
+                                "hour": 0  ,
+                                "days": 0    ,
+                                "work": false,
+                        },
+                },
+                "LoRa": {
+                        "blinks":{
+                                "msec": 150,
+                                "times": 1  },
+                        "period":{
+                                "sec": 10 ,
+                                "min": 1  ,
+                                "hour": 1  ,
+                                "days": 512  ,
+                                "work": true},
+                }
+        },
+        "period_LoRa": {
+                "sec": 1  ,
+                "min": 2  ,
+                "hour": 0  ,
+                "days": 0    ,
+                "work": true},
+        "LoRa_text": "Forever young, I want to be foreve", the ",
+        "LoRa_Data": [{"AD_1": false}, {"INP1": false}, {"INP3": false}, {"AD_4": false}, {"TEXT": false}],
+        "Command": "             ",
+        "WRTN": 21 ,
+        "DevEuiValid": true,
+        "AppKeyValid": true
+}
+		
+{
+        "period_LoRa": {
+                "sec": 25  ,
+                "min": 3  ,
+                "hour": 2  ,
+                "days": 3    ,
+                "work": false},
+}
+
+
+{
+        "LoRa_settings": {
+                "DEVEUI": 0x1234567890123456,
+                "APPKEY": 0x9876543210987654,
+                "FREQ": 2155228165,
+                "FR": 187},
+        "UART3": true,
+        "HL1": {
+                "USB": {
+                        "sec": 10 ,
+                        "min": 1  ,
+                        "hour": 1  ,
+                        "days": 512  ,
+                        "work": true},
+                "battery": {
+                        "sec": 0  ,
+                        "min": 3  ,
+                        "hour": 0  ,
+                        "days": 0    ,
+                        "work": true}
+        },
+        "HL2": {
+                "USB": {
+                        "blinks":{
+                                "msec": 100,
+                                "times": 3  },
+                        "period":{
+                                "sec": 1  ,
+                                "min": 2  ,
+                                "hour": 0  ,
+                                "days": 0    ,
+                                "work": false,
+                        },
+                },
+                "LoRa": {
+                        "blinks":{
+                                "msec": 150,
+                                "times": 1  },
+                        "period":{
+                                "sec": 10 ,
+                                "min": 1  ,
+                                "hour": 1  ,
+                                "days": 512  ,
+                                "work": true},
+                }
+        },
+        "period_LoRa": {
+                "sec": 25 ,
+                "min": 3  ,
+                "hour": 2  ,
+                "days": 3    ,
+                "work": false},
+        "LoRa_text": "Forever young, I want to be foreve", the ",
+        "LoRa_Data": [{"AD_1": false}, {"INP1": false}, {"INP3": false}, {"AD_4": false}, {"TEXT": false}],
+        "Command": "             ",
+        "WRTN": 23 ,
+        "DevEuiValid": true,
+        "AppKeyValid": true
+}
+
+
+
+
+
+
+
+
+{
+
+ "HL2": {
+                "USB": {
+                        "blinks":{
+                                "msec": 25,
+                                "times": 3  },
+                        "period":{
+                                "sec": 1  ,
+                                "min": 2  ,
+                                "hour": 0  ,
+                                "days": 0    ,
+                                "work": false,
+                        },
+                },
+                "LoRa": {
+                        "blinks":{
+                                "msec": 150,
+                                "times": 1  },
+                        "period":{
+                                "sec": 10 ,
+                                "min": 1  ,
+                                "hour": 1  ,
+                                "days": 512  ,
+                                "work": true},
+                }
+        }
+		}
+			
+			
+			    {    "LoRa_Data": [{"AD_1": false}, {"INP1": false}, {"INP3": false}, {"AD_4": true}, {"TEXT": false}],
+}
+
+
+
+
+{
+ "LoRa_Data": [{"AD_1": false}, {"INP1": false}, {"INP3": true}, {"AD_4": false}, {"TEXT": false}]
+ }
+
+{
+	"LoRa_Data": [{"AD_1": false}, {"INP1": false}, {"INP3": false}, {"AD_4": false}, {"TEXT": true}],
+}
+ 
+{
+ "Command": "read settings"
+} 
+
+{
+ "AppKeyValid": true
+ }
+ 
+  {
+        "LoRa_settings": {
+                "DEVEUI": 0x1234567890123456,
+				
+				}
+				}
+ 
+ {
+        "LoRa_settings": {
+                "DEVEUI": 0x1234567890123456,
+                "APPKEY": 0x80,
+                "FREQ":   16908441,
+                "FR": 0  },
+        "UART3": false,
+        "HL1": {
+                "USB": {
+                        "sec": 0  ,
+                        "min": 0  ,
+                        "hour": 0  ,
+                        "days": 39268,
+                        "work": false},
+                "battery": {
+                        "sec": 1  ,
+                        "min": 2  ,
+                        "hour": 0  ,
+                        "days": 0    ,
+                        "work": false}
+        },
+        "HL2": {
+                "USB": {
+                        "blinks":{
+                                "msec": 150,
+                                "times": 1  },
+                        "period":{
+                                "sec": 10 ,
+                                "min": 1  ,
+                                "hour": 1  ,
+                                "days": 512  ,
+                                "work": true,
+                        },
+                },
+                "LoRa": {
+                        "blinks":{
+                                "msec": 25 ,
+                                "times": 3  },
+                        "period":{
+                                "sec": 2  ,
+                                "min": 0  ,
+                                "hour": 3  ,
+                                "days": 61510,
+                                "work": false},
+                }
+        },
+        "period_LoRa": {
+                "sec": 114,
+                "min": 101,
+                "hour": 118,
+                "days": 25970,
+                "work": false},
+        "LoRa_text": "I want to be forever young",
+        "LoRa_Data": [{"AD_1": true},  {"AD_2": false}, {"INP1": true}, {"INP2": false}, {"TEXT": true}],
+        "Command": "           ",
+        "WRTN": 240,
+        "DevEuiValid": true,
+        "AppKeyValid": true
+}
+
+{
+"FREQ":   86700000
+}
+
+{
+        "LoRa_settings": {
+                "DEVEUI": 0x111010110100202c,
+                "APPKEY": 0x35ad814f4236eb0d7ebc74f27a1ad5bb,
+                "FREQ":   86800000,
+                "FR": 187},
+        "UART3": true,
+        "HL1": {
+                "USB": {
+                        "sec": 10 ,
+                        "min": 2  ,
+                        "hour": 0  ,
+                        "days": 0  ,
+                        "work": true},
+                "battery": {
+                        "sec": 0  ,
+                        "min": 3  ,
+                        "hour": 0  ,
+                        "days": 0  ,
+                        "work": true}
+        },
+        "HL2": {
+                "USB": {
+                        "blinks":{
+                                "msec": 100  ,
+                                "times": 3  },
+                        "period":{
+                                "sec": 1  ,
+                                "min": 2  ,
+                                "hour": 0  ,
+                                "days": 0  ,
+                                "work": false,
+                        },
+                },
+                "LoRa": {
+                        "blinks":{
+                                "msec": 200  ,
+                                "times": 2  },
+                        "period":{
+                                "sec": 1  ,
+                                "min": 2  ,
+                                "hour": 0  ,
+                                "days": 0  ,
+                                "work": true},
+                }
+        },
+        "period_LoRa": {
+                "sec": 1  ,
+                "min": 2  ,
+                "hour": 0  ,
+                "days": 153  ,
+                "work": true},
+        "LoRa_text": "Soon as early Dawn appeared, the r",
+        "LoRa_Data": [{"AD_1": false},  {"AD_2": false}, {"INP1": false}, {"INP2": false}, {"TEXT": true}],
+        "Command": "        (    ",
+        "WRTN": 2  ,
+        "DevEuiValid": true,
+        "AppKeyValid": true
+}
+
+
+{
+        "LoRa_settings": {
+                "DEVEUI": 0x111010110100202c}
+}
+{
+        "LoRa_settings": {
+                "APPKEY": 0x35ad814f4236eb0d7ebc74f27a1ad5bb
+				}
+}
+{
+"LoRa_text": "I want to be forever young, forever young"
+}
+}
+ 
+{
+        "period_LoRa": {
+                "sec": 25  ,
+                "min": 0  ,
+                "hour": 0  ,
+                "days": 0  ,
+                "work": true}
+}
+{
+"HL1": {
+                "USB": {
+                        "sec": 15 ,
+                        "min": 0  ,
+                        "hour": 0  ,
+                        "days": 0  ,
+                        "work": true}
+		}
+}
+
+{						
+        "HL1": {
+                "battery": {
+                        "sec": 40,
+                        "min": 0 ,
+                        "hour": 0  ,
+                        "days": 0  ,
+                        "work": true}
+        }
+}
+
+ 
+{
+ "Command": "read settings"
+} 
+
+{
+"HL2": {
+                "LoRa": {
+                        "blinks":{
+                                "msec": 200  ,
+                                "times": 2  }
+						}
+		}
+}
+		
+
+{
+"HL2": {
+                "LoRa": {
+                        "blinks":{
+                                "msec": 100  ,
+                                "times": 2  }
+						}
+		}
+}
+{
+        "DevEuiValid": true,
+        "AppKeyValid": true
+}
+
+
+{
+	"LoRa_Data": [{"AD_1": false},  {"AD_2": true}]
+}
+{
+        "LoRa_Data": [{"AD_1": false},  {"AD_2": true}, {"INP1": false}, {"INP2": false}, {"TEXT": false}]
+}
+
+ 
+{
+        "period_LoRa": {
+                "sec": 25  ,
+                "min": 0  ,
+                "hour": 0  ,
+                "days": 0  ,
+                "work": true}
+}
+
+
+
+ {       "LoRa_text": "Everybody, need somebody. You you you," }
+ 
+ {
+        "DevEuiValid": true
+		}
+
+{
+"DevEuiValid": true
+}
+{		
+		"LoRa_text": "Soon as early Dawn appeared, the r"
+}

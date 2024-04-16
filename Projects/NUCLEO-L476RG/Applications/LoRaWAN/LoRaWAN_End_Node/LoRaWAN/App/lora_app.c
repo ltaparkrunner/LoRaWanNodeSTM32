@@ -306,9 +306,9 @@ void LoRaWAN_Init(void)
   /* USER CODE BEGIN LoRaWAN_Init_1 */
 
 
-	MU_LED_Init(LED1);
+	MU_LED_Init(HL1);
 
-	MU_LED_Init(LED2);
+	MU_LED_Init(HL2);
 	MU_Sound_Init();
 
 

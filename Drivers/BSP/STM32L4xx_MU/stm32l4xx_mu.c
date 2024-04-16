@@ -110,7 +110,7 @@ void MU_LED_Init(Led_TypeDef Led)
 
   /* Enable the GPIO_LED Clock */
   LEDx_GPIO_CLK_ENABLE(Led);
-	if(Led == LED1 || Led == LED2){
+	if(Led == HL1 || Led == HL2){
   /* Configure the GPIO_LED pin */
 		GPIO_InitStruct.Pin   = LED_GPIO_PIN[Led];
 		GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
