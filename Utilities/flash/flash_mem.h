@@ -86,7 +86,7 @@ int32_t readflash_8b(uint32_t adr, uint8_t buf[], uint32_t len);
 int32_t change_buf(uint32_t adr, uint32_t subst[], uint32_t buf[], uint32_t len);
 int32_t rewriteflash(uint32_t adr, uint8_t buf[], uint32_t len);
 
-uint8_t WriteBufferToFlash_wrap(uint8_t json_res);
+//uint8_t WriteBufferToFlash_wrap(uint8_t json_res);
 int32_t WriteBufferToFlash(struct buffer_t* buff);
 int32_t FinilizeWriteBufferToFlash(struct buffer_t* buff);
 int32_t CancelJSONChanges(struct buffer_t* buff);

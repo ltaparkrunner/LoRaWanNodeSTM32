@@ -11,6 +11,9 @@
 extern struct json_sets_t json_sets;
 struct jsonmsg_t jsonmsg;
 
+struct bufc_t bufc ={APP_RX_DATA_SIZE, 0,0,0,0,0,0, {0}};
+
+struct parentharray_t pararr = {0};
 
 int32_t outpStr(struct bufc_t* bufc, struct strc_t* str, struct parentharray_t* pararr)
 {

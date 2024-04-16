@@ -21,31 +21,31 @@ struct json_arr json_buff, *pjson_buff = &json_buff;
 //	}
 //}
 
-extern struct buffer_t buff;
-uint8_t WriteBufferToFlash_wrap(uint8_t json_res)
-{
-	static int32_t res = 1;
-	if(json_res == PARSED_JSON_OK){
-		res = WriteBufferToFlash(&buff);
-		if(res > 0) {
-			RealiseSettings(&buff);
-			CancelJSONChanges(&buff);
-			return WRITTEN_FLASH_OK;
-		}
-		else return WRITTEN_FLASH_FAIL;
-	}
-	else if(json_res == NO_PARSED_JSON && res <= 0){
-		res = FinilizeWriteBufferToFlash(&buff);
-		if(res > 0){
-			RealiseSettings(&buff);
-			CancelJSONChanges(&buff);
-			return WRITTEN_FLASH_OK;
-		}
-		else return WRITTEN_FLASH_FAIL;
-	}
-	else return NOTHING_TO_WRITE;
-	
-}
+//extern struct buffer_t buff;
+//uint8_t WriteBufferToFlash_wrap(uint8_t json_res)
+//{
+//	static int32_t res = 1;
+//	if(json_res == PARSED_JSON_OK){
+//		res = WriteBufferToFlash(&buff);
+//		if(res > 0) {
+//			RealiseSettings(&buff);
+//			CancelJSONChanges(&buff);
+//			return WRITTEN_FLASH_OK;
+//		}
+//		else return WRITTEN_FLASH_FAIL;
+//	}
+//	else if(json_res == NO_PARSED_JSON && res <= 0){
+//		res = FinilizeWriteBufferToFlash(&buff);
+//		if(res > 0){
+//			RealiseSettings(&buff);
+//			CancelJSONChanges(&buff);
+//			return WRITTEN_FLASH_OK;
+//		}
+//		else return WRITTEN_FLASH_FAIL;
+//	}
+//	else return NOTHING_TO_WRITE;
+//	
+//}
 
 uint8_t buffer2[Buff_Len];
 extern struct json_arr *jsonarrflash_1, *jsonarrflash_2;
