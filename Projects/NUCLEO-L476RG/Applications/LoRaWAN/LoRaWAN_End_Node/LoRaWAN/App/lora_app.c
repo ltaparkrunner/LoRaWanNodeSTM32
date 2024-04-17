@@ -182,7 +182,7 @@ static TxEventType_t EventType = TX_ON_TIMER;
 /**
   * @brief Timer to handle the application Tx
   */
-static UTIL_TIMER_Object_t TxTimer;
+static TimerHandle_t TxTimer;
 
 /* USER CODE BEGIN PV */
 /**
@@ -203,17 +203,17 @@ static uint8_t AppLedStateOn = RESET;
 /**
   * @brief Timer to handle the application Tx Led to toggle
   */
-static UTIL_TIMER_Object_t TxLedTimer;
+static TimerHandle_t TxLedTimer;
 
 /**
   * @brief Timer to handle the application Rx Led to toggle
   */
-static UTIL_TIMER_Object_t RxLedTimer;
+static TimerHandle_t RxLedTimer;
 
 /**
   * @brief Timer to handle the application Join Led to toggle
   */
-static UTIL_TIMER_Object_t JoinLedTimer;
+static TimerHandle_t JoinLedTimer;
 
 
 
@@ -312,12 +312,18 @@ void LoRaWAN_Init(void)
 	MU_Sound_Init();
 
 
-  UTIL_TIMER_Create(&TxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnTxTimerLedEvent, NULL);
-  UTIL_TIMER_Create(&RxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnRxTimerLedEvent, NULL);
-  UTIL_TIMER_Create(&JoinLedTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnJoinTimerLedEvent, NULL);
-  UTIL_TIMER_SetPeriod(&TxLedTimer, 1500);
-  UTIL_TIMER_SetPeriod(&RxLedTimer, 500);
-  UTIL_TIMER_SetPeriod(&JoinLedTimer, 500);
+//  UTIL_TIMER_Create(&TxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnTxTimerLedEvent, NULL);
+	TxLedTimer = xTimerCreate("TxLedTimer", 0xFFFFFFFFU, pdFALSE, ( void * ) 0, (TimerCallbackFunction_t)OnTxTimerLedEvent);	
+//  UTIL_TIMER_Create(&RxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnRxTimerLedEvent, NULL);
+	RxLedTimer = xTimerCreate("RxLedTimer", 0xFFFFFFFFU, pdFALSE, ( void * ) 0, (TimerCallbackFunction_t)OnRxTimerLedEvent);
+//  UTIL_TIMER_Create(&JoinLedTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnJoinTimerLedEvent, NULL);
+	JoinLedTimer = xTimerCreate("JoinLedTimer", 0xFFFFFFFFU, pdFALSE, ( void * ) 0, (TimerCallbackFunction_t)OnJoinTimerLedEvent);
+  //UTIL_TIMER_SetPeriod(&TxLedTimer, 1500);
+	xTimerChangePeriod(TxLedTimer, 1500 / portTICK_PERIOD_MS, BLOCK_TIME);
+  //UTIL_TIMER_SetPeriod(&RxLedTimer, 500);
+	xTimerChangePeriod(RxLedTimer, 500 / portTICK_PERIOD_MS, BLOCK_TIME);
+  //UTIL_TIMER_SetPeriod(&JoinLedTimer, 500);
+	xTimerChangePeriod(JoinLedTimer, 500 / portTICK_PERIOD_MS, BLOCK_TIME);
 
   /* USER CODE END LoRaWAN_Init_1 */
 	defaultTaskHandle = osThreadNew(Idle_Task, NULL, &defaultTask_attrs);
@@ -346,7 +352,8 @@ void LoRaWAN_Init(void)
 
   /* USER CODE BEGIN LoRaWAN_Init_2 */
 	//UTIL_TIMER_Start(&TxLedTimer);
-  UTIL_TIMER_Start(&JoinLedTimer);
+  //UTIL_TIMER_Start(&JoinLedTimer);
+	xTimerStart(JoinLedTimer, BLOCK_TIME);
 
   /* USER CODE END LoRaWAN_Init_2 */
 
@@ -355,9 +362,13 @@ void LoRaWAN_Init(void)
   if (EventType == TX_ON_TIMER)
   {
     /* send every time timer elapses */
-    UTIL_TIMER_Create(&TxTimer,  0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnTxTimerEvent, NULL);
-    UTIL_TIMER_SetPeriod(&TxTimer,  APP_TX_DUTYCYCLE);
-    UTIL_TIMER_Start(&TxTimer);
+    //UTIL_TIMER_Create(&TxTimer,  0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnTxTimerEvent, NULL);
+		TxTimer = xTimerCreate("TxTimer", 0xFFFFFFFFU, pdFALSE, ( void * ) 0, (TimerCallbackFunction_t)OnTxTimerEvent);
+
+    //UTIL_TIMER_SetPeriod(&TxTimer,  APP_TX_DUTYCYCLE);
+		xTimerChangePeriod(TxTimer, APP_TX_DUTYCYCLE / portTICK_PERIOD_MS, BLOCK_TIME);
+    //UTIL_TIMER_Start(&TxTimer);
+		xTimerStart(TxTimer, BLOCK_TIME);
   }
 //  else
   {
@@ -387,7 +398,8 @@ static void OnRxData(LmHandlerAppData_t *appData, LmHandlerRxParams_t *params)
   {
     //LED_On(LED_BLUE);
 
-    UTIL_TIMER_Start(&RxLedTimer);
+    //UTIL_TIMER_Start(&RxLedTimer);
+		xTimerStart(RxLedTimer, BLOCK_TIME);
 
     static const char *slotStrings[] = { "1", "2", "C", "C Multicast", "B Ping-Slot", "B Multicast Ping-Slot" };
 
@@ -558,7 +570,8 @@ static void OnTxTimerEvent(void *context)
 //  UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), CFG_SEQ_Prio_0);
 
   /*Wait for next tx slot*/
-  UTIL_TIMER_Start(&TxTimer);
+  //UTIL_TIMER_Start(&TxTimer);
+	xTimerStart(TxTimer, BLOCK_TIME);
   /* USER CODE BEGIN OnTxTimerEvent_2 */
 
   /* USER CODE END OnTxTimerEvent_2 */
@@ -594,7 +607,8 @@ static void OnTxData(LmHandlerTxParams_t *params)
     if (params->IsMcpsConfirm != 0)
     {
       //LED_On(LED_RED2) ;
-      UTIL_TIMER_Start(&TxLedTimer);
+      //UTIL_TIMER_Start(&TxLedTimer);
+			xTimerStart(TxLedTimer, BLOCK_TIME);
 
       APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### ========== MCPS-Confirm =============\r\n");
       APP_LOG(TS_OFF, VLEVEL_H, "###### U/L FRAME:%04d | PORT:%d | DR:%d | PWR:%d", params->UplinkCounter,
@@ -621,7 +635,8 @@ static void OnJoinRequest(LmHandlerJoinParams_t *joinParams)
   {
     if (joinParams->Status == LORAMAC_HANDLER_SUCCESS)
     {
-      UTIL_TIMER_Stop(&JoinLedTimer);
+      //UTIL_TIMER_Stop(&JoinLedTimer);
+			xTimerStop(JoinLedTimer, BLOCK_TIME);
 
       //LED_Off(LED_RED1) ;
 
