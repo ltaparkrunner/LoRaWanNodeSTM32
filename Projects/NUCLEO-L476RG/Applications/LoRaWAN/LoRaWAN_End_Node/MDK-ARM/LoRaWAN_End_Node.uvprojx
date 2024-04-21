@@ -503,6 +503,11 @@
               <FileType>5</FileType>
               <FilePath>../readme.txt</FilePath>
             </File>
+            <File>
+              <FileName>howTo.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\howTo.txt</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1493,6 +1498,11 @@
               <FileName>readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>../readme.txt</FilePath>
+            </File>
+            <File>
+              <FileName>howTo.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\howTo.txt</FilePath>
             </File>
           </Files>
         </Group>
@@ -2605,6 +2615,11 @@
               <FileType>5</FileType>
               <FilePath>../readme.txt</FilePath>
             </File>
+            <File>
+              <FileName>howTo.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\howTo.txt</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3664,6 +3679,11 @@
               <FileName>readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>../readme.txt</FilePath>
+            </File>
+            <File>
+              <FileName>howTo.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\howTo.txt</FilePath>
             </File>
           </Files>
         </Group>
@@ -4776,6 +4796,11 @@
               <FileType>5</FileType>
               <FilePath>../readme.txt</FilePath>
             </File>
+            <File>
+              <FileName>howTo.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\howTo.txt</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5886,6 +5911,11 @@
               <FileName>readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>../readme.txt</FilePath>
+            </File>
+            <File>
+              <FileName>howTo.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\howTo.txt</FilePath>
             </File>
           </Files>
         </Group>

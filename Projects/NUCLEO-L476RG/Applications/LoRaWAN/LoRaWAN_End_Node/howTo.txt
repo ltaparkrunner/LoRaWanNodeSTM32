@@ -1,0 +1,62 @@
+file timer.h
+
+change funcs and types:
+#define TimerTime_t UTIL_TIMER_Time_t							typedef uint32_t UTIL_TIMER_Time_t;
+#define TimerEvent_t UTIL_TIMER_Object_t
+
+#define TimerInit(HANDLE, CB) do {\
+                                   UTIL_TIMER_Create( HANDLE, TIMERTIME_T_MAX, UTIL_TIMER_ONESHOT, CB, NULL);\
+                                 } while(0)
+
+osTimerId_t osTimerNew (osTimerFunc_t func, osTimerType_t type, void *argument, 
+						const osTimerAttr_t *attr)								 
+								 
+
+#define TimerSetValue(HANDLE, TIMEOUT) do{ \
+                                           UTIL_TIMER_SetPeriod(HANDLE, TIMEOUT);\
+                                         } while(0)
+osStatus_t 	osTimerStart (osTimerId_t timer_id, uint32_t ticks)
+
+
+#define TimerStop(HANDLE)   do {\
+                                 UTIL_TIMER_Stop(HANDLE);\
+                               } while(0)
+osStatus_t 	osTimerStop (osTimerId_t timer_id)
+
+#define TimerGetCurrentTime  UTIL_TIMER_GetCurrentTime
+
+#define TimerGetElapsedTime UTIL_TIMER_GetElapsedTime
+
+/* RTC Time and Date functions ************************************************/
+HAL_StatusTypeDef HAL_RTC_SetTime(RTC_HandleTypeDef *hrtc, RTC_TimeTypeDef *sTime, uint32_t Format);
+HAL_StatusTypeDef HAL_RTC_GetTime(RTC_HandleTypeDef *hrtc, RTC_TimeTypeDef *sTime, uint32_t Format);
+HAL_StatusTypeDef HAL_RTC_SetDate(RTC_HandleTypeDef *hrtc, RTC_DateTypeDef *sDate, uint32_t Format);
+HAL_StatusTypeDef HAL_RTC_GetDate(RTC_HandleTypeDef *hrtc, RTC_DateTypeDef *sDate, uint32_t Format);
+void              HAL_RTC_DST_Add1Hour(RTC_HandleTypeDef *hrtc);
+void              HAL_RTC_DST_Sub1Hour(RTC_HandleTypeDef *hrtc);
+void              HAL_RTC_DST_SetStoreOperation(RTC_HandleTypeDef *hrtc);
+void              HAL_RTC_DST_ClearStoreOperation(RTC_HandleTypeDef *hrtc);
+uint32_t          HAL_RTC_DST_ReadStoreOperation(RTC_HandleTypeDef *hrtc);
+
+
+
+working with USB through the interrupt:	 permit the interrupt: void OTG_FS_IRQHandler(void)  in stm32l4xx_it.c
+over void HAL_PCD_MspInit(PCD_HandleTypeDef* pcdHandle) in usbd_conf.c
+
+HAL_PCD_IRQHandler(&hpcd_USB_OTG_FS); -> CDC_Receive_FS -> USBD_CDC_DataOut -> DataOut -> USBD_LL_DataOutStage -> 
+										 HAL_PCD_DataOutStageCallback -> PCD_EP_OutXfrComplete_int -> HAL_PCD_IRQHandler
+										 TransmitCplt ->    USBD_CDC_DataIn ->  DataIn ->  USBD_LL_DataInStage ->  
+										 HAL_PCD_DataInStageCallback -> HAL_PCD_IRQHandler
+
+then it has to call functions: usbd_cdc_if.c
+USBD_CDC_ItfTypeDef USBD_Interface_fops_FS =
+{
+  CDC_Init_FS,
+  CDC_DeInit_FS,
+  CDC_Control_FS,
+  CDC_Receive_FS,
+  CDC_TransmitCplt_FS
+};
+look that CDC_Receive_FS and CDC_Transmit_FS
+
+The main thing -- the USB interrupt works
