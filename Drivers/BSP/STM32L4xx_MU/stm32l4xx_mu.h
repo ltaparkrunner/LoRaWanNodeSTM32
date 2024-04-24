@@ -231,6 +231,10 @@ void             MU_LED_On(Led_TypeDef Led);
 void             MU_LED_Off(Led_TypeDef Led);
 void             MU_LED_Toggle(Led_TypeDef Led);
 void MU_Sound_Init(void);
+
+void MU_board_LEDs_Init(void);
+void MU_board_LEDs_DeInit(void);
+void MU_board_USB_detect_Init(void);
 /**
   * @}
   */

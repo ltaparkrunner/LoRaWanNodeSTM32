@@ -313,26 +313,31 @@ void LoRaWAN_Init(void)
 
 
 //  UTIL_TIMER_Create(&TxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnTxTimerLedEvent, NULL);
-	TxLedTimer = xTimerCreate("TxLedTimer", 0xFFFFFFFFU, pdFALSE, ( void * ) 0, (TimerCallbackFunction_t)OnTxTimerLedEvent);	
+	TxLedTimer = xTimerCreate("TxLedTimer", /*0xFFFFFFFFU*/ 15000, pdTRUE, ( void * ) 0, (TimerCallbackFunction_t)OnTxTimerLedEvent);	
+/*
 //  UTIL_TIMER_Create(&RxLedTimer, 0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnRxTimerLedEvent, NULL);
 	RxLedTimer = xTimerCreate("RxLedTimer", 0xFFFFFFFFU, pdFALSE, ( void * ) 0, (TimerCallbackFunction_t)OnRxTimerLedEvent);
 //  UTIL_TIMER_Create(&JoinLedTimer, 0xFFFFFFFFU, UTIL_TIMER_PERIODIC, OnJoinTimerLedEvent, NULL);
 	JoinLedTimer = xTimerCreate("JoinLedTimer", 0xFFFFFFFFU, pdFALSE, ( void * ) 0, (TimerCallbackFunction_t)OnJoinTimerLedEvent);
   //UTIL_TIMER_SetPeriod(&TxLedTimer, 1500);
-	xTimerChangePeriod(TxLedTimer, 1500 / portTICK_PERIOD_MS, BLOCK_TIME);
+*/
+	xTimerChangePeriod(TxLedTimer, 15000 /*/ portTICK_PERIOD_MS*/, BLOCK_TIME);
   //UTIL_TIMER_SetPeriod(&RxLedTimer, 500);
+/*
 	xTimerChangePeriod(RxLedTimer, 500 / portTICK_PERIOD_MS, BLOCK_TIME);
   //UTIL_TIMER_SetPeriod(&JoinLedTimer, 500);
 	xTimerChangePeriod(JoinLedTimer, 500 / portTICK_PERIOD_MS, BLOCK_TIME);
-
+*/
   /* USER CODE END LoRaWAN_Init_1 */
 	defaultTaskHandle = osThreadNew(Idle_Task, NULL, &defaultTask_attrs);
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, LmHandlerProcess);
 	//osThreadDef(LmHandler, wrap_LmHandlerProcess, osPriorityNormal, 0, 600/*configMINIMAL_STACK_SIZE*/);
+/*
 	LmHandlerProcessHandle = osThreadNew(wrap_LmHandlerProcess, NULL, &LmHandlerProcess_attrs);
-	
+*/	
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, SendTxData);
 	//osThreadDef(LoRaSend, wrap_SendTxData, osPriorityNormal, 0, 600/*configMINIMAL_STACK_SIZE*/);
+/*
 	LoRaSendTaskHandle = osThreadNew(wrap_SendTxData, NULL, &LoRaSendTask_attrs);	
 	
 	USBPlugInTaskHandle = osThreadNew(wrap_USB_Init, NULL, &USBPlugIn_attrs);
@@ -342,27 +347,33 @@ void LoRaWAN_Init(void)
 	
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LmHandlerProcess), UTIL_SEQ_RFU, ledSwitch2);
 	//UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), UTIL_SEQ_RFU, ledSwitch1);
+*/
   /* Init Info table used by LmHandler*/
+/*
   LoraInfo_Init();
-
+*/
   /* Init the Lora Stack*/
-  LmHandlerInit(&LmHandlerCallbacks);
+/*  LmHandlerInit(&LmHandlerCallbacks);
 
   LmHandlerConfigure(&LmHandlerParams);
-
+*/
   /* USER CODE BEGIN LoRaWAN_Init_2 */
 	//UTIL_TIMER_Start(&TxLedTimer);
   //UTIL_TIMER_Start(&JoinLedTimer);
-	xTimerStart(JoinLedTimer, BLOCK_TIME);
-
+	xTimerStart(TxLedTimer, BLOCK_TIME);
+/*	xTimerStart(JoinLedTimer, BLOCK_TIME);
+*/
   /* USER CODE END LoRaWAN_Init_2 */
-
+/*
   LmHandlerJoin(ActivationType);
-
+*/
+/*
   if (EventType == TX_ON_TIMER)
   {
+*/
     /* send every time timer elapses */
     //UTIL_TIMER_Create(&TxTimer,  0xFFFFFFFFU, UTIL_TIMER_ONESHOT, OnTxTimerEvent, NULL);
+/*
 		TxTimer = xTimerCreate("TxTimer", 0xFFFFFFFFU, pdFALSE, ( void * ) 0, (TimerCallbackFunction_t)OnTxTimerEvent);
 
     //UTIL_TIMER_SetPeriod(&TxTimer,  APP_TX_DUTYCYCLE);
@@ -372,13 +383,16 @@ void LoRaWAN_Init(void)
   }
 //  else
   {
+*/
     /* USER CODE BEGIN LoRaWAN_Init_3 */
 
     /* send every time button is pushed */
+/*
     MU_PB_Init(BUTTON_MODE_EXTI); //BUTTON_USER, 
-    /* USER CODE END LoRaWAN_Init_3 */
-  }
-
+*/    /* USER CODE END LoRaWAN_Init_3 */
+/*
+	}
+*/
 	//HAL_Delay(100);
   /* USER CODE BEGIN LoRaWAN_Init_Last */
 
@@ -568,10 +582,10 @@ static void OnTxTimerEvent(void *context)
 
   /* USER CODE END OnTxTimerEvent_1 */
 //  UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LoRaSendOnTxTimerOrButtonEvent), CFG_SEQ_Prio_0);
-
+	MU_LED_Toggle(HL1);
   /*Wait for next tx slot*/
   //UTIL_TIMER_Start(&TxTimer);
-	xTimerStart(TxTimer, BLOCK_TIME);
+	//xTimerStart(TxTimer, BLOCK_TIME);
   /* USER CODE BEGIN OnTxTimerEvent_2 */
 
   /* USER CODE END OnTxTimerEvent_2 */
@@ -581,19 +595,20 @@ static void OnTxTimerEvent(void *context)
 static void OnTxTimerLedEvent(void *context)
 {
 //  LED_Off(LED_RED2);
-//	MU_LED_Toggle(LED1);
+	MU_LED_Toggle(HL1);
 	
 }
 
 static void OnRxTimerLedEvent(void *context)
 {
 //  LED_Off(LED_BLUE) ;
+	MU_LED_Toggle(HL1);
 }
 
 static void OnJoinTimerLedEvent(void *context)
 {
 //  LED_Toggle(LED_RED1) ;
-//	MU_LED_Toggle(LED2);
+	MU_LED_Toggle(HL1);
 }
 
 /* USER CODE END PrFD_LedEvents */
@@ -631,6 +646,7 @@ static void OnTxData(LmHandlerTxParams_t *params)
 static void OnJoinRequest(LmHandlerJoinParams_t *joinParams)
 {
   /* USER CODE BEGIN OnJoinRequest_1 */
+	MU_LED_Toggle(HL1);
   if (joinParams != NULL)
   {
     if (joinParams->Status == LORAMAC_HANDLER_SUCCESS)
@@ -663,6 +679,7 @@ static void OnMacProcessNotify(void)
   /* USER CODE BEGIN OnMacProcessNotify_1 */
 
   /* USER CODE END OnMacProcessNotify_1 */
+	MU_LED_Toggle(HL1);
   //UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LmHandlerProcess), CFG_SEQ_Prio_0);
 	osThreadFlagsSet( LmHandlerProcessHandle, 4);
   /* USER CODE BEGIN OnMacProcessNotify_2 */

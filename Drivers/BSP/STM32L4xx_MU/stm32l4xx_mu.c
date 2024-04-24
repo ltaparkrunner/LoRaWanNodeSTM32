@@ -185,3 +185,52 @@ void MU_LED_Toggle(Led_TypeDef Led)
 {
   HAL_GPIO_TogglePin(LED_GPIO_PORT[Led], LED_GPIO_PIN[Led]);
 }
+
+void MU_board_LEDs_Init(void)
+{
+  GPIO_InitTypeDef  GPIO_InitStruct = {0};
+
+  /* Enable the GPIOLED Clock */
+  __HAL_RCC_GPIOE_CLK_ENABLE();
+	{
+  /* Configure the GPIO_LED pin */
+		GPIO_InitStruct.Pin   = HL3Sign_Pin | HL2Sign_Pin | HL1Sign_Pin;
+		GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
+		GPIO_InitStruct.Pull  = GPIO_PULLDOWN;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_WritePin(HL1Sign_GPIO_Port, HL3Sign_Pin | HL2Sign_Pin | HL1Sign_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_Init(HL1Sign_GPIO_Port, &GPIO_InitStruct);
+	}
+}
+
+
+void MU_board_LEDs_DeInit(void)
+{
+  GPIO_InitTypeDef  GPIO_InitStruct = {0};
+	{
+  /* Disable the GPIO_LED pin */
+		HAL_GPIO_WritePin(HL1Sign_GPIO_Port, HL3Sign_Pin | HL2Sign_Pin | HL1Sign_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_DeInit(GPIOE, HL3Sign_Pin | HL2Sign_Pin | HL1Sign_Pin);
+	}
+	/* Disable the GPIOLED Clock */
+	//__HAL_RCC_GPIOE_CLK_DISABLE();
+}
+
+void MU_board_USB_detect_Init(void)
+{
+	GPIO_InitTypeDef  GPIO_InitStruct = {0};
+
+  /* Enable the USB detect pin */
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+	{
+  /* Configure the GPIO_LED pin 1*/
+		GPIO_InitStruct.Pin   = USB_VBUS_Pin;
+		GPIO_InitStruct.Mode  = GPIO_MODE_IT_RISING_FALLING;//GPIO_MODE_IT_RISING;
+		GPIO_InitStruct.Pull  = GPIO_PULLDOWN;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_Init(USB_VBUS_Port, &GPIO_InitStruct);
+		/* Enable and set VBUS_DET EXTI Interrupt to the lowest priority */
+    HAL_NVIC_SetPriority(USB_VBUS_EXTI_IRQn, /*0x0F*/0, 0);
+    HAL_NVIC_EnableIRQ(USB_VBUS_EXTI_IRQn);
+	}
+}

@@ -48,6 +48,7 @@ void SystemApp_Init(void)
   UTIL_LPM_Init();
   /* Disable Stand-by mode */
   UTIL_LPM_SetOffMode((1 << CFG_LPM_APPLI_Id), UTIL_LPM_DISABLE);
+	UTIL_LPM_SetStopMode((1 << CFG_LPM_APPLI_Id), UTIL_LPM_DISABLE);
 
 #if defined (LOW_POWER_DISABLE) && (LOW_POWER_DISABLE == 1)
   /* Disable Stop Mode */
@@ -118,15 +119,58 @@ static void Gpio_PreInit(void)
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 	HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 	HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
-  HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
+//  HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
 
   /* Disable GPIOs clock */
   __HAL_RCC_GPIOA_CLK_DISABLE();
   __HAL_RCC_GPIOB_CLK_DISABLE();
   __HAL_RCC_GPIOC_CLK_DISABLE();
-  __HAL_RCC_GPIOH_CLK_DISABLE();
+//  __HAL_RCC_GPIOH_CLK_DISABLE();
   /* USER CODE BEGIN Gpio_PreInit_2 */
 
   /* USER CODE END Gpio_PreInit_2 */
 }
 
+/**
+  * @note This function overwrites the __weak one from HAL
+  */
+HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
+{
+  /*Don't enable SysTick if TIMER_IF is based on other counters (e.g. RTC) */
+  /* USER CODE BEGIN HAL_InitTick_1 */
+
+  /* USER CODE END HAL_InitTick_1 */
+  return HAL_OK;
+  /* USER CODE BEGIN HAL_InitTick_2 */
+
+  /* USER CODE END HAL_InitTick_2 */
+}
+
+#include "rtc_if.h"
+/**
+  * @note This function overwrites the __weak one from HAL
+  */
+uint32_t HAL_GetTick(void)
+{
+  /* USER CODE BEGIN HAL_GetTick_1 */
+
+  /* USER CODE END HAL_GetTick_1 */
+  return RTC_IF_GetTimerValue();
+  /* USER CODE BEGIN HAL_GetTick_2 */
+
+  /* USER CODE END HAL_GetTick_2 */
+}
+
+/**
+  * @note This function overwrites the __weak one from HAL
+  */
+void HAL_Delay(__IO uint32_t Delay)
+{
+  /* USER CODE BEGIN HAL_Delay_1 */
+
+  /* USER CODE END HAL_Delay_1 */
+  RTC_IF_DelayMs(Delay);   /* based on RTC */
+  /* USER CODE BEGIN HAL_Delay_2 */
+
+  /* USER CODE END HAL_Delay_2 */
+}

@@ -60,3 +60,16 @@ USBD_CDC_ItfTypeDef USBD_Interface_fops_FS =
 look that CDC_Receive_FS and CDC_Transmit_FS
 
 The main thing -- the USB interrupt works
+
+problem -- in file sx1276mb1mas.c func -- void SX1276MB1MAS_RADIO_Reset(void)
+HAL_Delay doesn't work.
+
+
+RTC init in const UTIL_TIMER_Driver_s UTIL_TimerDriver so I need to start RTC and redo the RCC initialiser.
+
+#error "Definition INCLUDE_xTaskGetCurrentTaskHandle must equal 1 to implement Thread Management API."
+
+SysTick_Handler 2 шт один из них в cmsis_os2.c, second in port.c/
+//#define xPortSysTickHandler SysTick_Handler in FreeRTOSConfig.h
+
+	osTimerNew 		vs 		xTimerCreate

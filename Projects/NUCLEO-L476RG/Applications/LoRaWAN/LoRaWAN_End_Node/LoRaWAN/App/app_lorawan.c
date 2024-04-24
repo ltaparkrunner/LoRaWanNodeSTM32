@@ -26,7 +26,7 @@
 //#include "stm32_seq.h"
 #include "cmsis_os.h"
 /* USER CODE BEGIN Includes */
-
+#include "stm32l4xx_mu.h"
 /* USER CODE END Includes */
 
 /* External variables ---------------------------------------------------------*/
@@ -70,7 +70,8 @@ void MX_LoRaWAN_Init(void)
   /* USER CODE END MX_LoRaWAN_Init_1 */
   SystemApp_Init();
   /* USER CODE BEGIN MX_LoRaWAN_Init_2 */
-
+	MU_board_LEDs_Init();
+	MU_board_USB_detect_Init();
   /* USER CODE END MX_LoRaWAN_Init_2 */
   LoRaWAN_Init();
   /* USER CODE BEGIN MX_LoRaWAN_Init_3 */
