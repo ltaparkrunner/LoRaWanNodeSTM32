@@ -61,3 +61,6 @@ dkms.conf
 # Debugger options
 *.dbgconf
 *.Alex_m
+*.alex-m
+*.dbgconf
+howTo.txt
