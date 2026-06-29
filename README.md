@@ -1,1 +1,1 @@
-A LoraWan End Node is created on STM32L476VGT6 and SX1276. The programm is rewritten from an STM32 project  I-CUBE-LRWAN	LoRaWAN software expansion for STM32Cube (UM2073).
+LoRaWAN end-node based on STM32L476VGT6 and SX1276. The application is ported from the STM32Cube LoRaWAN software expansion (UM2073) under the I-CUBE-LRWAN project.
